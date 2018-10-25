@@ -20,7 +20,8 @@ Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik weer
 | Bontinck Lennert | <https://github.com/pikawika> | [lennert.bontinck.y9785@student.hogent.be](mailto:lennert.bontinck.y9785@student.hogent.be) |
 
 ## Trello
-> - [Informatie over stadium 1: coming soon](#)
+Het complete Trello Board vindt u [hier](https://trello.com/nativeappsiandroid)
+> - [Informatie over feature 1: Basic layout (Home - Zoeken - Detail)](https://trello.com/b/8Fua2NcT/feature-1-basic-layout)
 
 ## Handleidingen
 
