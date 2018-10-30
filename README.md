@@ -22,7 +22,7 @@ Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik weer
 
 Er is voor elke feature een beschrijving van wat de feauture juist implementeert met extra uitleg waar nodig voorzien. Deze documenten dienen als verduidelijking van de commentaar die reeds in de code voorzien is. U vindt het volledige overzicht [hier.](Documentatie%20per%20feature/README.md)
 
-> 1. [Meer info over Feature 1 - Basic Layout](Documentatie%20per%20feature/feature1-BasicLayout.md)
+> 1. [Meer info over Feature 1 - Basic Layout](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
 
 ## GitHub Repository van de backend
 Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaakt met de MEAN-stack zal ik de bestaande backend hergebruik en aanvullen waar nodig.
