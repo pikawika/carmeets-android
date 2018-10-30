@@ -6,8 +6,7 @@ Dit is de GitHub repository voor de Android App van CarMeets. U kan hier steeds 
 
 > - [Wat is de CarMeets app](#wat-is-de-carmeets-app)
 > - [Ontwikkelaar](#ontwikkelaar)
-> - [Trello](#trello)
-> - [Handleidingen](#handleidingen)
+> - [Documentatie per Feature](#documentatie-per-feature)
 > - [GitHub Repository van de backend](#github-repository-van-de-backend)
 
 ## Wat is de CarMeets App
@@ -19,13 +18,11 @@ Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik weer
 | :---     | :---                          | :---                                |
 | Bontinck Lennert | <https://github.com/pikawika> | [lennert.bontinck.y9785@student.hogent.be](mailto:lennert.bontinck.y9785@student.hogent.be) |
 
-## Trello
-Het complete Trello Board vindt u [hier](https://trello.com/nativeappsiandroid)
-> - [Informatie over feature 1: Basic layout (Home - Zoeken - Detail)](https://trello.com/b/8Fua2NcT/feature-1-basic-layout)
+## Documentatie per Feature
 
-## Handleidingen
+Er is voor elke feature een beschrijving van wat de feauture juist implementeert met extra uitleg waar nodig voorzien. Deze documenten dienen als verduidelijking van de commentaar die reeds in de code voorzien is. U vindt het volledige overzicht [hier.](Documentatie%20per%20feature/README.md)
 
-> - [Coming soon](#)
+> 1. [Meer info over Feature 1 - Basic Layout](Documentatie%20per%20feature/feature1-BasicLayout.md)
 
 ## GitHub Repository van de backend
 Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaakt met de MEAN-stack zal ik de bestaande backend hergebruik en aanvullen waar nodig.
