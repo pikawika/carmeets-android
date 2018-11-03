@@ -1,3 +1,16 @@
 <resources>
+    <!-- app -->
     <string name="app_name">CarMeets</string>
+
+    <!-- bottom navigation bar -->
+    <string name="bottom_navigation_home">Meetings</string>
+    <string name="bottom_navigation_favorieten">Favorieten</string>
+    <string name="bottom_navigation_account">Account</string>
+
+    <!-- meetinglijst -->
+    <string name="meetinglijstitem_titel">AndroidApp celebration meeting</string>
+
+    <!-- account -->
+    <string name="account_gebruikersnaam">Pikawika</string>
+
 </resources>

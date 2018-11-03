@@ -5,7 +5,7 @@ Een goed idee van hoe de GUI er zal uitzien is het begin van een goede app. Daar
 ## Inhoudsopgave
 
 > - [Universeel:](#universeel-)
->     - [De App Bar](#de-app-bar)
+>     - [De Toolbar](#de-toolbar)
 >     - [Bottom Navigation Bar](#bottom-navigation-bar)
 > - [Home:](#home-)
 >     - [De lijst](#de-lijst)
@@ -25,7 +25,7 @@ Een goed idee van hoe de GUI er zal uitzien is het begin van een goede app. Daar
 
 ## Universeel:
 
-### De App Bar
+### De Toolbar
 
 - Links staat de back toets waar iedereen hem verwacht
 - In het midden staat de titel van de huidige view
@@ -39,7 +39,7 @@ Een goed idee van hoe de GUI er zal uitzien is het begin van een goede app. Daar
 
 ## Home:
 
-Het scherm waar je origineel naar opent zal een lijst zijn van alle meetings startende vanaf en inclusief vandaag. Ook zal er al een app bar moeten zijn en een navigation menu onderaan. Bij een groter scherm zal deze lijst op de linkerhelft van het scherm komen te staan en de detailpagina op de rechterhelft. Het default geselecteerde item is dan het eerste item van de lijst namelijk "zoeken".
+Het scherm waar je origineel naar opent zal een lijst zijn van alle meetings startende vanaf en inclusief vandaag. Ook zal er al een navigation menu onderaan moeten zijn. Bij een groter scherm zal deze lijst op de linkerhelft van het scherm komen te staan en de detailpagina op de rechterhelft. Het default geselecteerde item is dan het eerste item van de lijst namelijk "zoeken".
 
 ### De lijst
 
@@ -52,7 +52,7 @@ Het scherm waar je origineel naar opent zal een lijst zijn van alle meetings sta
     
 ### Zoeken
 
-Het eerste list item is een zoek icoon met rechts daarvan Zoeken in het groot zodat dit zeker opvalt. Via dit list item (dat default geselecteerd is op grotere schermen) of via de zoek knop in de App Bar zal je de lijst van meetings kunnen filteren.
+Het eerste list item is een zoek icoon met rechts daarvan Zoeken in het groot zodat dit zeker opvalt. Via dit list item (dat default geselecteerd is op grotere schermen) of via de zoek knop in de Toolbar zal je de lijst van meetings kunnen filteren.
 
 ## Detail 
 
