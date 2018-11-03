@@ -15,8 +15,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:theme="@style/ToolbarTheme"
-            app:titleTextAppearance="@style/ToolbarTextAppearance.Title"
-            app:subtitleTextAppearance="@style/ToolbarTextAppearance.Subtitle"/>
+            app:titleTextAppearance="@style/ToolbarTheme.ToolbarTextAppearance.Title"
+            app:subtitleTextAppearance="@style/ToolbarTheme.ToolbarTextAppearance.Subtitle"
+
+
+            app:title="Favorieten"
+            app:subtitle="Liked en going meetings"
+
+    />
 
     <FrameLayout
             android:id="@+id/fragment_container"

@@ -16,19 +16,19 @@
 
     <!-- toolbar (topbar) thema -->
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-        <!-- kleur van terugknop etc -->
         <item name="colorControlNormal">@android:color/white</item>
+        <item name="navigationIcon">@drawable/ic_back_white_24dp</item>
     </style>
 
-    <style name="ToolbarTextAppearance">
+    <style name="ToolbarTheme.ToolbarTextAppearance">
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="ToolbarTextAppearance.Title">
+    <style name="ToolbarTheme.ToolbarTextAppearance.Title">
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="ToolbarTextAppearance.Subtitle">
+    <style name="ToolbarTheme.ToolbarTextAppearance.Subtitle">
         <item name="android:textSize">14sp</item>
     </style>
 </resources>
