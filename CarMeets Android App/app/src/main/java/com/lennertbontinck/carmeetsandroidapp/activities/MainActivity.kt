@@ -80,12 +80,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun initApp() {
         setSupportActionBar(toolbar)
+        //initieel is er geen back knop
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         //initieel meetinglijst fragment tonen
         supportActionBar?.title = "Meetings"
         supportActionBar?.subtitle = "Alle meetings"
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, MeetinglijstFragment())
+            .addToBackStack("meetinglijst")
             .commit()
 
     }
@@ -93,6 +96,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListeners() {
         bottom_navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+        supportFragmentManager.addOnBackStackChangedListener { onBackStackChangedListener() }
 
         //toolbar back button ingedrukt
         toolbar.setNavigationOnClickListener {
@@ -146,6 +151,14 @@ class MainActivity : AppCompatActivity() {
         }
         //het is nooit gelijk geweest
         return false
+    }
+
+    private fun onBackStackChangedListener() {
+        //indien nog 1 open staat is het de initiele fragment en moet er softwarematisch niet meer op back geduwd worden
+        if (supportFragmentManager.backStackEntryCount <= 1) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        }
+        else supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
