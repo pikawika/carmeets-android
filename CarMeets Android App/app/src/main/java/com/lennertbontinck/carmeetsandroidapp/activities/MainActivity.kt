@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity() {
         //manueel listener event voor notificatiebel met badge adhv actionLayout
         val notificaties = menu?.findItem(R.id.nav_notificaties)?.actionView
         notificaties?.findViewById<ImageView>(R.id.nav_notificatiebel)?.setOnClickListener({ notificatiesClicked() })
-        notificaties?.findViewById<TextView>(R.id.nav_notificatiebel_aantal)?.setOnClickListener({ notificatiesClicked() })
+        notificaties?.findViewById<TextView>(R.id.nav_notificatiebel_aantal)
+            ?.setOnClickListener({ notificatiesClicked() })
 
         return true
     }
@@ -58,12 +59,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //fysieke back button ingedruk
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        var index = supportFragmentManager.backStackEntryCount - 1
+
+        if (index >= 0){
+            val huidigFragmentType = supportFragmentManager.getBackStackEntryAt(index).name
+            when (huidigFragmentType) {
+                "meetinglijst" -> setLayoutVoorMeetinglijst()
+                "favorietenlijst" -> setLayoutVoorFavorietenlijst()
+                "account" -> setLayoutVoorAccount()
+            }
+        }
+        else setLayoutVoorMeetinglijst()
+    }
+
     private fun initApp() {
         setSupportActionBar(toolbar)
-
-
-        //initieel is meetinglijst geselecteerd
-        bottom_navigation.selectedItemId = R.id.nav_meetings
 
         //initieel meetinglijst fragment tonen
         supportActionBar?.title = "Meetings"
@@ -74,53 +88,85 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     private fun initListeners() {
         bottom_navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
+        //toolbar back button ingedrukt
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun notificatiesClicked() {
         //POC dat je aantal kan aanpassen, +1 op click
-        val notificatieAantal = toolbar.menu.findItem(R.id.nav_notificaties)?.actionView?.findViewById<TextView>(R.id.nav_notificatiebel_aantal)
+        val notificatieAantal = toolbar.menu.findItem(R.id.nav_notificaties)
+            ?.actionView?.findViewById<TextView>(R.id.nav_notificatiebel_aantal)
 
         notificatieAantal?.text = (notificatieAantal?.text.toString().toInt() + 1).toString()
 
+        setLayoutVoorFavorietenlijst()
 
-        supportActionBar?.title = "Favorieten"
-        supportActionBar?.subtitle = "Liked en going meetings"
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, FavorietenlijstFragment())
+            .addToBackStack("favorietenlijst")
             .commit()
-        bottom_navigation.selectedItemId = R.id.nav_favorieten
+    }
+
+    private fun setLayoutVoorMeetinglijst(NietNaarStack: Boolean = true) {
+        supportActionBar?.title = "Meetings"
+        supportActionBar?.subtitle = "Alle meetings"
+        if(NietNaarStack){
+            bottom_navigation.selectedItemId = R.id.nav_meetings
+            supportFragmentManager.popBackStack()
+        }
+    }
+
+    private fun setLayoutVoorFavorietenlijst(NietNaarStack: Boolean = true) {
+        supportActionBar?.title = "Favorieten"
+        supportActionBar?.subtitle = "Liked en going meetings"
+        if(NietNaarStack) {
+            bottom_navigation.selectedItemId = R.id.nav_favorieten
+            supportFragmentManager.popBackStack()
+        }
+    }
+
+    private fun setLayoutVoorAccount(NietNaarStack: Boolean = true) {
+        supportActionBar?.title = "Account"
+        supportActionBar?.subtitle = "Instellingen aanpassen"
+        if(NietNaarStack) {
+            bottom_navigation.selectedItemId = R.id.nav_account
+            supportFragmentManager.popBackStack()
+        }
     }
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item?.itemId) {
             //meetinglijst geselecteerd
             R.id.nav_meetings -> {
-                supportActionBar?.title = "Meetings"
-                supportActionBar?.subtitle = "Alle meetings"
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, MeetinglijstFragment())
+                    .addToBackStack("meetinglijst")
                     .commit()
+                setLayoutVoorMeetinglijst(false)
                 return@OnNavigationItemSelectedListener true
             }
             //favorieten geselecteerd
             R.id.nav_favorieten -> {
-                supportActionBar?.title = "Favorieten"
-                supportActionBar?.subtitle = "Liked en going meetings"
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, FavorietenlijstFragment())
+                    .addToBackStack("favorietenlijst")
                     .commit()
+                setLayoutVoorFavorietenlijst(false)
                 return@OnNavigationItemSelectedListener true
             }
             //account geselecteerd
             R.id.nav_account -> {
-                supportActionBar?.title = "Account"
-                supportActionBar?.subtitle = "Instellingen aanpassen"
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, AccountFragment())
+                    .addToBackStack("account")
                     .commit()
+                setLayoutVoorAccount(false)
                 return@OnNavigationItemSelectedListener true
             }
         }
