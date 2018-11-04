@@ -106,11 +106,6 @@ class MainActivity : AppCompatActivity() {
         notificatieAantal?.text = (notificatieAantal?.text.toString().toInt() + 1).toString()
 
         setLayoutVoorFavorietenlijst()
-
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, FavorietenlijstFragment())
-            .addToBackStack("favorietenlijst")
-            .commit()
     }
 
     private fun setLayoutVoorMeetinglijst(NietNaarStack: Boolean = true) {
@@ -118,7 +113,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.subtitle = "Alle meetings"
         if(NietNaarStack){
             bottom_navigation.selectedItemId = R.id.nav_meetings
-            supportFragmentManager.popBackStack()
         }
     }
 
@@ -127,7 +121,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.subtitle = "Liked en going meetings"
         if(NietNaarStack) {
             bottom_navigation.selectedItemId = R.id.nav_favorieten
-            supportFragmentManager.popBackStack()
         }
     }
 
@@ -136,11 +129,27 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.subtitle = "Instellingen aanpassen"
         if(NietNaarStack) {
             bottom_navigation.selectedItemId = R.id.nav_account
-            supportFragmentManager.popBackStack()
         }
     }
 
+    private fun checkFragmentEqualsNavItem(item: MenuItem?) : Boolean {
+        var index = supportFragmentManager.backStackEntryCount - 1
+        if (index >= 0){
+            val huidigFragmentType = supportFragmentManager.getBackStackEntryAt(index).name
+            when (huidigFragmentType) {
+                "meetinglijst" -> if (item?.itemId == R.id.nav_meetings) return true
+                "favorietenlijst" -> if (item?.itemId == R.id.nav_favorieten) return true
+                "account" -> if (item?.itemId == R.id.nav_account) return true
+            }
+        }
+        //het is nooit gelijk geweest
+        return false
+    }
+
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        //indien zelfde nav item geselecteerd als het reeds is, doe niets.
+        if (checkFragmentEqualsNavItem(item)) return@OnNavigationItemSelectedListener true
+
         when (item?.itemId) {
             //meetinglijst geselecteerd
             R.id.nav_meetings -> {
@@ -170,7 +179,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
         }
-        false
+        return@OnNavigationItemSelectedListener false
     }
 
 }
