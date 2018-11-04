@@ -68,9 +68,9 @@ class MainActivity : AppCompatActivity() {
         if (index >= 0) {
             val huidigFragmentType = supportFragmentManager.getBackStackEntryAt(index).name
             when (huidigFragmentType) {
-                "meetinglijst" -> setLayoutVoorMeetinglijst()
-                "favorietenlijst" -> setLayoutVoorFavorietenlijst()
-                "account" -> setLayoutVoorAccount()
+                getString(R.string.fragtag_meetinglijst) -> setLayoutVoorMeetinglijst()
+                getString(R.string.fragtag_favorietenlijst)-> setLayoutVoorFavorietenlijst()
+                getString(R.string.fragtag_account) -> setLayoutVoorAccount()
             }
         }
         //indien er geen items meer zijn in stack en je bent al op home moet de app gesloten worden
@@ -84,11 +84,11 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         //initieel meetinglijst fragment tonen
-        supportActionBar?.title = "Meetings"
-        supportActionBar?.subtitle = "Alle meetings"
+        supportActionBar?.title = getString(R.string.toolbar_meetings_titel)
+        supportActionBar?.subtitle = getString(R.string.toolbar_meetings_subtitel)
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, MeetinglijstFragment())
-            .addToBackStack("meetinglijst")
+            .addToBackStack(getString(R.string.fragtag_meetinglijst))
             .commit()
 
     }
@@ -116,24 +116,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setLayoutVoorMeetinglijst(isNietNavClick: Boolean = true) {
-        supportActionBar?.title = "Meetings"
-        supportActionBar?.subtitle = "Alle meetings"
+        supportActionBar?.title = getString(R.string.toolbar_meetings_titel)
+        supportActionBar?.subtitle = getString(R.string.toolbar_meetings_subtitel)
         if (isNietNavClick) {
             bottom_navigation.selectedItemId = R.id.nav_meetings
         }
     }
 
     private fun setLayoutVoorFavorietenlijst(isNietNavClick: Boolean = true) {
-        supportActionBar?.title = "Favorieten"
-        supportActionBar?.subtitle = "Liked en going meetings"
+        supportActionBar?.title = getString(R.string.toolbar_favorieten_titel)
+        supportActionBar?.subtitle = getString(R.string.toolbar_favorieten_subtitel)
         if (isNietNavClick) {
             bottom_navigation.selectedItemId = R.id.nav_favorieten
         }
     }
 
     private fun setLayoutVoorAccount(isNietNavClick: Boolean = true) {
-        supportActionBar?.title = "Account"
-        supportActionBar?.subtitle = "Instellingen aanpassen"
+        supportActionBar?.title = getString(R.string.toolbar_account_titel)
+        supportActionBar?.subtitle = getString(R.string.toolbar_account_subtitel)
         if (isNietNavClick) {
             bottom_navigation.selectedItemId = R.id.nav_account
         }
@@ -144,9 +144,9 @@ class MainActivity : AppCompatActivity() {
         if (index >= 0) {
             val huidigFragmentType = supportFragmentManager.getBackStackEntryAt(index).name
             when (huidigFragmentType) {
-                "meetinglijst" -> if (item?.itemId == R.id.nav_meetings) return true
-                "favorietenlijst" -> if (item?.itemId == R.id.nav_favorieten) return true
-                "account" -> if (item?.itemId == R.id.nav_account) return true
+                getString(R.string.fragtag_meetinglijst) -> if (item?.itemId == R.id.nav_meetings) return true
+                getString(R.string.fragtag_favorietenlijst) -> if (item?.itemId == R.id.nav_favorieten) return true
+                getString(R.string.fragtag_account) -> if (item?.itemId == R.id.nav_account) return true
             }
         }
         //het is nooit gelijk geweest
@@ -157,8 +157,7 @@ class MainActivity : AppCompatActivity() {
         //indien nog 1 open staat is het de initiele fragment en moet er softwarematisch niet meer op back geduwd worden
         if (supportFragmentManager.backStackEntryCount <= 1) {
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        }
-        else supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        } else supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -170,7 +169,7 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_meetings -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, MeetinglijstFragment())
-                    .addToBackStack("meetinglijst")
+                    .addToBackStack(getString(R.string.fragtag_meetinglijst))
                     .commit()
                 setLayoutVoorMeetinglijst(false)
                 return@OnNavigationItemSelectedListener true
@@ -179,7 +178,7 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_favorieten -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, FavorietenlijstFragment())
-                    .addToBackStack("favorietenlijst")
+                    .addToBackStack(getString(R.string.fragtag_favorietenlijst))
                     .commit()
                 setLayoutVoorFavorietenlijst(false)
                 return@OnNavigationItemSelectedListener true
@@ -188,7 +187,7 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_account -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, AccountFragment())
-                    .addToBackStack("account")
+                    .addToBackStack(getString(R.string.fragtag_account))
                     .commit()
                 setLayoutVoorAccount(false)
                 return@OnNavigationItemSelectedListener true
