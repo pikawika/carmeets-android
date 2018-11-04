@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         var index = supportFragmentManager.backStackEntryCount - 1
 
-        if (index >= 0){
+        if (index >= 0) {
             val huidigFragmentType = supportFragmentManager.getBackStackEntryAt(index).name
             when (huidigFragmentType) {
                 "meetinglijst" -> setLayoutVoorMeetinglijst()
@@ -73,6 +73,8 @@ class MainActivity : AppCompatActivity() {
                 "account" -> setLayoutVoorAccount()
             }
         }
+        //indien er geen items meer zijn in stack en je bent al op home moet de app gesloten worden
+        else if (index == -1 && bottom_navigation.selectedItemId == R.id.nav_meetings) finish()
         else setLayoutVoorMeetinglijst()
     }
 
@@ -108,33 +110,33 @@ class MainActivity : AppCompatActivity() {
         setLayoutVoorFavorietenlijst()
     }
 
-    private fun setLayoutVoorMeetinglijst(NietNaarStack: Boolean = true) {
+    private fun setLayoutVoorMeetinglijst(isNietNavClick: Boolean = true) {
         supportActionBar?.title = "Meetings"
         supportActionBar?.subtitle = "Alle meetings"
-        if(NietNaarStack){
+        if (isNietNavClick) {
             bottom_navigation.selectedItemId = R.id.nav_meetings
         }
     }
 
-    private fun setLayoutVoorFavorietenlijst(NietNaarStack: Boolean = true) {
+    private fun setLayoutVoorFavorietenlijst(isNietNavClick: Boolean = true) {
         supportActionBar?.title = "Favorieten"
         supportActionBar?.subtitle = "Liked en going meetings"
-        if(NietNaarStack) {
+        if (isNietNavClick) {
             bottom_navigation.selectedItemId = R.id.nav_favorieten
         }
     }
 
-    private fun setLayoutVoorAccount(NietNaarStack: Boolean = true) {
+    private fun setLayoutVoorAccount(isNietNavClick: Boolean = true) {
         supportActionBar?.title = "Account"
         supportActionBar?.subtitle = "Instellingen aanpassen"
-        if(NietNaarStack) {
+        if (isNietNavClick) {
             bottom_navigation.selectedItemId = R.id.nav_account
         }
     }
 
-    private fun checkFragmentEqualsNavItem(item: MenuItem?) : Boolean {
+    private fun checkFragmentEqualsNavItem(item: MenuItem?): Boolean {
         var index = supportFragmentManager.backStackEntryCount - 1
-        if (index >= 0){
+        if (index >= 0) {
             val huidigFragmentType = supportFragmentManager.getBackStackEntryAt(index).name
             when (huidigFragmentType) {
                 "meetinglijst" -> if (item?.itemId == R.id.nav_meetings) return true
