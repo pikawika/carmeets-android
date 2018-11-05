@@ -77,7 +77,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/communication/ic_chat_bubble_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/communication/ic_location_on_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -87,8 +87,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_chat_bubble_white_24dp" />
+                            <entry key="color" value="e8175d" />
+                            <entry key="outputName" value="ic_location_pink_24dp" />
                             <entry key="sourceFile" value="$USER_HOME$/Downloads/heartcheck.svg" />
                           </map>
                         </option>

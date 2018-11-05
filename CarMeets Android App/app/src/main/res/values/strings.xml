@@ -7,12 +7,6 @@
     <string name="menu_favorieten">Favorieten</string>
     <string name="menu_account">Account</string>
 
-    <!-- meetinglijst item -->
-    <string name="item_meeting_titel">AndroidApp celebration meeting</string>
-
-    <!-- account -->
-    <string name="account_gebruikersnaam">Pikawika</string>
-
     <!-- toolbar -->
     <string name="ab_meetings_titel">Meetings</string>
     <string name="ab_meetings_subtitel">Alle meetings</string>
@@ -27,5 +21,10 @@
     <string name="fragtag_meetinglijst">meetinglijst</string>
     <string name="fragtag_favorietenlijst">favorietenlijst</string>
     <string name="fragtag_account">account</string>
+
+    <!-- meeting -->
+    <string name="item_meeting_titel">Android app celibration</string>
+    <string name="item_meeting_subtitel">Een android app vieren met een gepaste meeting</string>
+    <string name="item_meeting_locatie">9260, Schellebelle</string>
 
 </resources>
