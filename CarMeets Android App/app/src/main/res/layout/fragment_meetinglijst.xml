@@ -8,7 +8,7 @@
             android:id="@+id/textview_meetinglijstitem_temptekst"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/meetinglijstitem_titel"
+            android:text="@string/item_meeting_titel"
     />
 
 </android.support.constraint.ConstraintLayout>

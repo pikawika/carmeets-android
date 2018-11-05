@@ -3,25 +3,25 @@
     <string name="app_name">CarMeets</string>
 
     <!-- bottom navigation bar -->
-    <string name="bottom_navigation_home">Meetings</string>
-    <string name="bottom_navigation_favorieten">Favorieten</string>
-    <string name="bottom_navigation_account">Account</string>
+    <string name="menu_home">Meetings</string>
+    <string name="menu_favorieten">Favorieten</string>
+    <string name="menu_account">Account</string>
 
-    <!-- meetinglijst -->
-    <string name="meetinglijstitem_titel">AndroidApp celebration meeting</string>
+    <!-- meetinglijst item -->
+    <string name="item_meeting_titel">AndroidApp celebration meeting</string>
 
     <!-- account -->
     <string name="account_gebruikersnaam">Pikawika</string>
 
     <!-- toolbar -->
-    <string name="toolbar_meetings_titel">Meetings</string>
-    <string name="toolbar_meetings_subtitel">Alle meetings</string>
+    <string name="ab_meetings_titel">Meetings</string>
+    <string name="ab_meetings_subtitel">Alle meetings</string>
 
-    <string name="toolbar_favorieten_titel">Favorieten</string>
-    <string name="toolbar_favorieten_subtitel">Liked en going meetings</string>
+    <string name="ab_favorieten_titel">Favorieten</string>
+    <string name="ab_favorieten_subtitel">Liked en going meetings</string>
 
-    <string name="toolbar_account_titel">Account</string>
-    <string name="toolbar_account_subtitel">Instellingen aanpassen</string>
+    <string name="ab_account_titel">Account</string>
+    <string name="ab_account_subtitel">Instellingen aanpassen</string>
 
     <!-- fragment tags -->
     <string name="fragtag_meetinglijst">meetinglijst</string>

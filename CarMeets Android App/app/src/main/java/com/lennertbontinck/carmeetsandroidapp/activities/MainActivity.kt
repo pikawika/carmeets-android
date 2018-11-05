@@ -84,8 +84,8 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         //initieel meetinglijst fragment tonen
-        supportActionBar?.title = getString(R.string.toolbar_meetings_titel)
-        supportActionBar?.subtitle = getString(R.string.toolbar_meetings_subtitel)
+        supportActionBar?.title = getString(R.string.ab_meetings_titel)
+        supportActionBar?.subtitle = getString(R.string.ab_meetings_subtitel)
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, MeetinglijstFragment())
             .addToBackStack(getString(R.string.fragtag_meetinglijst))
@@ -116,24 +116,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setLayoutVoorMeetinglijst(isNietNavClick: Boolean = true) {
-        supportActionBar?.title = getString(R.string.toolbar_meetings_titel)
-        supportActionBar?.subtitle = getString(R.string.toolbar_meetings_subtitel)
+        supportActionBar?.title = getString(R.string.ab_meetings_titel)
+        supportActionBar?.subtitle = getString(R.string.ab_meetings_subtitel)
         if (isNietNavClick) {
             bottom_navigation.selectedItemId = R.id.nav_meetings
         }
     }
 
     private fun setLayoutVoorFavorietenlijst(isNietNavClick: Boolean = true) {
-        supportActionBar?.title = getString(R.string.toolbar_favorieten_titel)
-        supportActionBar?.subtitle = getString(R.string.toolbar_favorieten_subtitel)
+        supportActionBar?.title = getString(R.string.ab_favorieten_titel)
+        supportActionBar?.subtitle = getString(R.string.ab_favorieten_subtitel)
         if (isNietNavClick) {
             bottom_navigation.selectedItemId = R.id.nav_favorieten
         }
     }
 
     private fun setLayoutVoorAccount(isNietNavClick: Boolean = true) {
-        supportActionBar?.title = getString(R.string.toolbar_account_titel)
-        supportActionBar?.subtitle = getString(R.string.toolbar_account_subtitel)
+        supportActionBar?.title = getString(R.string.ab_account_titel)
+        supportActionBar?.subtitle = getString(R.string.ab_account_subtitel)
         if (isNietNavClick) {
             bottom_navigation.selectedItemId = R.id.nav_account
         }

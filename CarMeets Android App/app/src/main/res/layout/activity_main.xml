@@ -17,10 +17,8 @@
             app:theme="@style/ToolbarTheme"
             app:titleTextAppearance="@style/ToolbarTheme.ToolbarTextAppearance.Title"
             app:subtitleTextAppearance="@style/ToolbarTheme.ToolbarTextAppearance.Subtitle"
-
-
-            app:title="Favorieten"
-            app:subtitle="Liked en going meetings"
+            app:title="@string/ab_meetings_titel"
+            app:subtitle="@string/ab_meetings_subtitel"
 
     />
 
