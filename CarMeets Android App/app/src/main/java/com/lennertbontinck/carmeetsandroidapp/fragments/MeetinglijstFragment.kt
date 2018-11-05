@@ -13,8 +13,6 @@ class MeetinglijstFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val fragment =  inflater.inflate(R.layout.fragment_meetinglijst, container, false)
 
-        fragment.textview_meetinglijstitem_temptekst.text = "hallo van home!"
-
         return fragment
     }
 
