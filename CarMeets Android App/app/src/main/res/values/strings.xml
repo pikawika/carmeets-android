@@ -17,6 +17,9 @@
     <string name="ab_account_titel">Account</string>
     <string name="ab_account_subtitel">Instellingen aanpassen</string>
 
+    <string name="ab_opties_groot">Klassieke weergave</string>
+    <string name="ab_opties_klein">Grotere weegave</string>
+
     <!-- fragment tags -->
     <string name="fragtag_meetinglijst">meetinglijst</string>
     <string name="fragtag_favorietenlijst">favorietenlijst</string>

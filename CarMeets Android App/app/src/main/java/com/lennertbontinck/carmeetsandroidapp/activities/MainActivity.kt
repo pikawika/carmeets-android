@@ -55,6 +55,16 @@ class MainActivity : AppCompatActivity() {
                 return super.onOptionsItemSelected(item)
             }
 
+            R.id.ab_opties_groot -> {
+                Toast.makeText(this, "Er is op groot geklikt", Toast.LENGTH_SHORT).show()
+                return super.onOptionsItemSelected(item)
+            }
+
+            R.id.ab_opties_klein -> {
+                Toast.makeText(this, "Er is op klein geklikt", Toast.LENGTH_SHORT).show()
+                return super.onOptionsItemSelected(item)
+            }
+
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -118,6 +128,7 @@ class MainActivity : AppCompatActivity() {
     private fun setLayoutVoorMeetinglijst(isNietNavClick: Boolean = true) {
         supportActionBar?.title = getString(R.string.ab_meetings_titel)
         supportActionBar?.subtitle = getString(R.string.ab_meetings_subtitel)
+        weergaveOptiesZichtbaar(true)
         if (isNietNavClick) {
             bottom_navigation.selectedItemId = R.id.nav_meetings
         }
@@ -126,6 +137,7 @@ class MainActivity : AppCompatActivity() {
     private fun setLayoutVoorFavorietenlijst(isNietNavClick: Boolean = true) {
         supportActionBar?.title = getString(R.string.ab_favorieten_titel)
         supportActionBar?.subtitle = getString(R.string.ab_favorieten_subtitel)
+        weergaveOptiesZichtbaar(true)
         if (isNietNavClick) {
             bottom_navigation.selectedItemId = R.id.nav_favorieten
         }
@@ -134,6 +146,7 @@ class MainActivity : AppCompatActivity() {
     private fun setLayoutVoorAccount(isNietNavClick: Boolean = true) {
         supportActionBar?.title = getString(R.string.ab_account_titel)
         supportActionBar?.subtitle = getString(R.string.ab_account_subtitel)
+        weergaveOptiesZichtbaar(false)
         if (isNietNavClick) {
             bottom_navigation.selectedItemId = R.id.nav_account
         }
@@ -195,5 +208,10 @@ class MainActivity : AppCompatActivity() {
         }
         return@OnNavigationItemSelectedListener false
     }
+
+    private fun weergaveOptiesZichtbaar(boolean: Boolean) {
+        toolbar.menu.findItem(R.id.ab_opties_klein).isVisible = boolean
+        toolbar.menu.findItem(R.id.ab_opties_groot).isVisible = boolean
+        }
 
 }
