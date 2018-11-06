@@ -12,12 +12,24 @@ import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import kotlinx.android.synthetic.main.item_meeting_groot.view.*
 
-class MeetingAdapter(private val parentActivity: MainActivity, private val lijst: List<Meeting>) :
+class MeetingAdapter(
+    private val parentActivity: MainActivity,
+    private val lijst: List<Meeting>,
+    private val lijstDesgin: String
+) :
     RecyclerView.Adapter<MeetingAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_meeting_groot, parent, false)
+
+        //default een kleine lijstDesign
+        var view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_meeting_klein, parent, false)
+
+        //kijken of ander, kon bool maar indien er nog derde design komt beter string en onderstaand
+        when (lijstDesgin) {
+            "groot" -> view = LayoutInflater.from(parent.context).inflate(R.layout.item_meeting_groot, parent, false)
+        }
+
         return ViewHolder(view)
     }
 

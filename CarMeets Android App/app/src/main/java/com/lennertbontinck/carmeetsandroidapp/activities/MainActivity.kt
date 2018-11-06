@@ -56,12 +56,19 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.ab_opties_groot -> {
-                Toast.makeText(this, "Er is op groot geklikt", Toast.LENGTH_SHORT).show()
+                val meetinglijstFragment = MeetinglijstFragment.newInstance("groot")
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, meetinglijstFragment)
+                    .commit()
+                setLayoutVoorMeetinglijst(false)
                 return super.onOptionsItemSelected(item)
             }
 
             R.id.ab_opties_klein -> {
-                Toast.makeText(this, "Er is op klein geklikt", Toast.LENGTH_SHORT).show()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, MeetinglijstFragment())
+                    .commit()
+                setLayoutVoorMeetinglijst(false)
                 return super.onOptionsItemSelected(item)
             }
 
@@ -81,6 +88,7 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.fragtag_meetinglijst) -> setLayoutVoorMeetinglijst()
                 getString(R.string.fragtag_favorietenlijst)-> setLayoutVoorFavorietenlijst()
                 getString(R.string.fragtag_account) -> setLayoutVoorAccount()
+                else -> setLayoutVoorMeetinglijst()
             }
         }
         //indien er geen items meer zijn in stack en je bent al op home moet de app gesloten worden
@@ -96,6 +104,8 @@ class MainActivity : AppCompatActivity() {
         //initieel meetinglijst fragment tonen
         supportActionBar?.title = getString(R.string.ab_meetings_titel)
         supportActionBar?.subtitle = getString(R.string.ab_meetings_subtitel)
+
+        //fragment tonen
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, MeetinglijstFragment())
             .addToBackStack(getString(R.string.fragtag_meetinglijst))

@@ -20,7 +20,13 @@ class MeetinglijstFragment : Fragment() {
 
         val meetings = dummyDataMeetingLijst()
 
-        rootView.meeting_lijst.adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings)
+        var lijstDesgin = "klein"
+
+        when (arguments?.getString("lijstDesgin")) {
+            "groot" -> lijstDesgin = "groot"
+        }
+
+        rootView.meeting_lijst.adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, lijstDesgin)
 
         return rootView
     }
@@ -229,6 +235,16 @@ class MeetinglijstFragment : Fragment() {
 
             )
         )
+    }
+
+    companion object {
+        fun newInstance(design: String): MeetinglijstFragment {
+            val args = Bundle()
+            args.putString("lijstDesgin", design)
+            val fragment = MeetinglijstFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
 
 }
