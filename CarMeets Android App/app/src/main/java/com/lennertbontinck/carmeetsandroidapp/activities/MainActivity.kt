@@ -12,6 +12,7 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.FavorietenlijstFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglijstFragment
+import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -56,19 +57,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.ab_opties_groot -> {
-                val meetinglijstFragment = MeetinglijstFragment.newInstance("groot")
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, meetinglijstFragment)
-                    .commit()
-                setLayoutVoorMeetinglijst(false)
+                setLayoutLijstDesgin("groot")
                 return super.onOptionsItemSelected(item)
             }
 
             R.id.ab_opties_klein -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, MeetinglijstFragment())
-                    .commit()
-                setLayoutVoorMeetinglijst(false)
+                setLayoutLijstDesgin("klein")
                 return super.onOptionsItemSelected(item)
             }
 
@@ -174,6 +168,30 @@ class MainActivity : AppCompatActivity() {
         }
         //het is nooit gelijk geweest
         return false
+    }
+
+    private fun setLayoutLijstDesgin(lijstDesgin : String ) {
+        var index = supportFragmentManager.backStackEntryCount - 1
+
+        if (index >= 0) {
+            val huidigFragmentType = supportFragmentManager.getBackStackEntryAt(index).name
+            when (huidigFragmentType) {
+                getString(R.string.fragtag_favorietenlijst)-> {
+                    var fragment = FavorietenlijstFragment.newInstance(lijstDesgin)
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .addToBackStack(getString(R.string.fragtag_favorietenlijst))
+                        .commit()
+                }
+                getString(R.string.fragtag_meetinglijst)-> {
+                    var fragment = MeetinglijstFragment.newInstance(lijstDesgin)
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .addToBackStack(getString(R.string.fragtag_meetinglijst))
+                        .commit()
+                }
+            }
+        }
     }
 
     private fun onBackStackChangedListener() {
