@@ -33,14 +33,9 @@
     <string name="item_meeting_locatie">9260, Schellebelle</string>
     <string name="item_meeting_dateday">23</string>
     <string name="item_meeting_datemonth">Dec</string>
-    <string name="item_meeting_beschrijving">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus, enim
-        eget gravida eleifend, enim nisl tempor sem, quis tempor libero quam eu nunc. Integer a egestas nibh.
-        Suspendisse malesuada sollicitudin pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-        per inceptos himenaeos. Duis malesuada non nibh quis gravida. Donec in mi quis tortor pretium fringilla. Aenean
-        vehicula ullamcorper elementum. Praesent pellentesque lacinia urna, ultrices fermentum leo luctus sed. Mauris at
-        egestas nibh, in ultrices eros. Etiam interdum porta elementum. Mauris vitae sem elit. Sed convallis dolor
-        ligula, sagittis volutpat est mattis a. Quisque finibus rhoncus eleifend. Duis sed justo eget lorem pharetra
-        sagittis. Integer accumsan rutrum dolor, viverra mollis sapien semper volutpat.
+    <string name="item_meeting_beschrijving">Niet alleen is Lennert zijn GTI eindelijk af, ook zijn studies zijn bijna
+        afgerond! Dankzij deze android app zou hij namelijk een stap dichter moeten komen naar zijn diploma! als dat
+        maar goed afloopt.
     </string>
 
 
@@ -49,7 +44,6 @@
     <string name="button_meeting_agenda">Opslaan in kalender</string>
     <string name="button_meeting_routebeschrijving">Routebeschrijving</string>
     <string name="button_meeting_website">Website</string>
-
 
 
 </resources>
