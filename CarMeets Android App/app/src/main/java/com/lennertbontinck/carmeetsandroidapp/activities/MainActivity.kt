@@ -21,7 +21,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initApp()
+        setSupportActionBar(toolbar)
+
+        //initieel is er geen back knop
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+        //initieel meeting lijst
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, MeetinglijstFragment())
+            .addToBackStack(getString(R.string.fragtag_meetinglijst))
+            .commit()
     }
 
     override fun onStart() {
@@ -76,37 +85,9 @@ class MainActivity : AppCompatActivity() {
 
         var index = supportFragmentManager.backStackEntryCount - 1
 
-        if (index >= 0) {
-            val huidigFragmentType = supportFragmentManager.getBackStackEntryAt(index).name
-            when (huidigFragmentType) {
-                getString(R.string.fragtag_meetinglijst) -> setLayoutVoorMeetinglijst()
-                getString(R.string.fragtag_favorietenlijst)-> setLayoutVoorFavorietenlijst()
-                getString(R.string.fragtag_account) -> setLayoutVoorAccount()
-                else -> setLayoutVoorMeetinglijst()
-            }
-        }
         //indien er geen items meer zijn in stack en je bent al op home moet de app gesloten worden
-        else if (index == -1 && bottom_navigation.selectedItemId == R.id.nav_meetings) finish()
-        else setLayoutVoorMeetinglijst()
+        if (index == -1 && bottom_navigation.selectedItemId == R.id.nav_meetings) finish()
     }
-
-    private fun initApp() {
-        setSupportActionBar(toolbar)
-        //initieel is er geen back knop
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-
-        //initieel meetinglijst fragment tonen
-        supportActionBar?.title = getString(R.string.ab_meetings_titel)
-        supportActionBar?.subtitle = getString(R.string.ab_meetings_subtitel)
-
-        //fragment tonen
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container, MeetinglijstFragment())
-            .addToBackStack(getString(R.string.fragtag_meetinglijst))
-            .commit()
-
-    }
-
 
     private fun initListeners() {
         bottom_navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
@@ -125,35 +106,6 @@ class MainActivity : AppCompatActivity() {
             ?.actionView?.findViewById<TextView>(R.id.nav_notificatiebel_aantal)
 
         notificatieAantal?.text = (notificatieAantal?.text.toString().toInt() + 1).toString()
-
-        setLayoutVoorFavorietenlijst()
-    }
-
-    private fun setLayoutVoorMeetinglijst(isNietNavClick: Boolean = true) {
-        supportActionBar?.title = getString(R.string.ab_meetings_titel)
-        supportActionBar?.subtitle = getString(R.string.ab_meetings_subtitel)
-        weergaveOptiesZichtbaar(true)
-        if (isNietNavClick) {
-            bottom_navigation.selectedItemId = R.id.nav_meetings
-        }
-    }
-
-    private fun setLayoutVoorFavorietenlijst(isNietNavClick: Boolean = true) {
-        supportActionBar?.title = getString(R.string.ab_favorieten_titel)
-        supportActionBar?.subtitle = getString(R.string.ab_favorieten_subtitel)
-        weergaveOptiesZichtbaar(true)
-        if (isNietNavClick) {
-            bottom_navigation.selectedItemId = R.id.nav_favorieten
-        }
-    }
-
-    private fun setLayoutVoorAccount(isNietNavClick: Boolean = true) {
-        supportActionBar?.title = getString(R.string.ab_account_titel)
-        supportActionBar?.subtitle = getString(R.string.ab_account_subtitel)
-        weergaveOptiesZichtbaar(false)
-        if (isNietNavClick) {
-            bottom_navigation.selectedItemId = R.id.nav_account
-        }
     }
 
     private fun checkFragmentEqualsNavItem(item: MenuItem?): Boolean {
@@ -212,7 +164,6 @@ class MainActivity : AppCompatActivity() {
                     .replace(R.id.fragment_container, MeetinglijstFragment())
                     .addToBackStack(getString(R.string.fragtag_meetinglijst))
                     .commit()
-                setLayoutVoorMeetinglijst(false)
                 return@OnNavigationItemSelectedListener true
             }
             //favorieten geselecteerd
@@ -221,7 +172,6 @@ class MainActivity : AppCompatActivity() {
                     .replace(R.id.fragment_container, FavorietenlijstFragment())
                     .addToBackStack(getString(R.string.fragtag_favorietenlijst))
                     .commit()
-                setLayoutVoorFavorietenlijst(false)
                 return@OnNavigationItemSelectedListener true
             }
             //account geselecteerd
@@ -230,16 +180,9 @@ class MainActivity : AppCompatActivity() {
                     .replace(R.id.fragment_container, AccountFragment())
                     .addToBackStack(getString(R.string.fragtag_account))
                     .commit()
-                setLayoutVoorAccount(false)
                 return@OnNavigationItemSelectedListener true
             }
         }
         return@OnNavigationItemSelectedListener false
     }
-
-    private fun weergaveOptiesZichtbaar(boolean: Boolean) {
-        toolbar.menu.findItem(R.id.ab_opties_klein).isVisible = boolean
-        toolbar.menu.findItem(R.id.ab_opties_groot).isVisible = boolean
-        }
-
 }

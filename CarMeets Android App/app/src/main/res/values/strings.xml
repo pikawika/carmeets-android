@@ -24,6 +24,8 @@
     <string name="fragtag_meetinglijst">meetinglijst</string>
     <string name="fragtag_favorietenlijst">favorietenlijst</string>
     <string name="fragtag_account">account</string>
+    <string name="fragtag_meetingdetail">account</string>
+
 
     <!-- meeting -->
     <string name="item_meeting_titel">Android app celibration</string>

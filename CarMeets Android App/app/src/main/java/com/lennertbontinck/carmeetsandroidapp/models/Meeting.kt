@@ -1,7 +1,10 @@
 package com.lennertbontinck.carmeetsandroidapp.models
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
+@Parcelize
 data class Meeting(
     val meetingId: String,
     val titel: String,
@@ -18,4 +21,4 @@ data class Meeting(
     //tijelijk int voor dummy data
     val afbeeldingNaam: Int,
     val site: String
-)
+): Parcelable

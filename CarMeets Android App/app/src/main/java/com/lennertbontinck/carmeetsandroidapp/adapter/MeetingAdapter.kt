@@ -1,5 +1,6 @@
 package com.lennertbontinck.carmeetsandroidapp.adapter
 
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +10,34 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
+import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import kotlinx.android.synthetic.main.item_meeting_groot.view.*
 
 class MeetingAdapter(
-    private val parentActivity: MainActivity,
-    private val lijst: List<Meeting>,
-    private val lijstDesgin: String
+    private val parentActivity: MainActivity, private val lijst: List<Meeting>, private val lijstDesgin: String
 ) :
     RecyclerView.Adapter<MeetingAdapter.ViewHolder>() {
+
+    private val onClickListener: View.OnClickListener
+
+    init {
+        onClickListener = View.OnClickListener { v ->
+            val item = v.tag as Meeting
+            val detailFragment = MeetingDetailFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable(MeetingDetailFragment.ARG_MEETING_TAG, item)
+                }
+            }
+
+            parentActivity.supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, detailFragment)
+                .addToBackStack(parentActivity.getString(R.string.fragtag_meetingdetail))
+                .commit()
+
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -42,6 +62,7 @@ class MeetingAdapter(
 
         with(holder.itemView) {
             tag = item
+            setOnClickListener(onClickListener)
         }
     }
 

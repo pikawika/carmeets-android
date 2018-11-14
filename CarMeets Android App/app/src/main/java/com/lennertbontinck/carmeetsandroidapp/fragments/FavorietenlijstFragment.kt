@@ -2,6 +2,7 @@ package com.lennertbontinck.carmeetsandroidapp.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.adapter.MeetingAdapter
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
+import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import kotlinx.android.synthetic.main.fragment_meetinglijst.view.*
 import java.sql.Date
 import java.util.*
@@ -17,6 +19,10 @@ class FavorietenlijstFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_meetinglijst, container, false)
+
+        //set action bar and bottom nav bar
+        var parentActivity = (activity as AppCompatActivity)
+        LayoutUtil.setMainLayout(parentActivity, getString(R.string.ab_favorieten_titel), getString(R.string.ab_favorieten_subtitel), true, R.id.nav_favorieten)
 
         val meetings = dummyDataMeetingLijst()
 
