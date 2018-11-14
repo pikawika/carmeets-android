@@ -31,5 +31,7 @@
     <string name="item_meeting_titel">Android app celibration</string>
     <string name="item_meeting_subtitel">Een android app vieren met een gepaste meeting</string>
     <string name="item_meeting_locatie">9260, Schellebelle</string>
+    <string name="item_meeting_dateday">23</string>
+    <string name="item_meeting_datemonth">Dec</string>
 
 </resources>
