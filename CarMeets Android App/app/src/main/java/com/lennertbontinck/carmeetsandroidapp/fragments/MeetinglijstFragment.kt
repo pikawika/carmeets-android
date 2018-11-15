@@ -25,13 +25,19 @@ class MeetinglijstFragment : Fragment() {
 
         var lijstDesgin = "klein"
 
+        var parentActivity = (activity as AppCompatActivity)
+
         //kijkt of container er is want dan is het een tablet (width > 600 en moet detail in fragment ipv in activity
         if (rootView.container_meeting_detail != null) {
             isTablet = true
+            parentActivity.supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.container_meeting_detail, LogoFragment())
+                .commit()
         }
 
         //set action bar and bottom nav bar
-        var parentActivity = (activity as AppCompatActivity)
+
         LayoutUtil.setMainLayout(parentActivity, getString(R.string.ab_meetings_titel), getString(R.string.ab_meetings_subtitel), true, R.id.nav_meetings)
 
         when (arguments?.getString("lijstDesgin")) {

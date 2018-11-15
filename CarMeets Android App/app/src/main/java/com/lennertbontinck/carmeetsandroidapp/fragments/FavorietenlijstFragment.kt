@@ -35,6 +35,10 @@ class FavorietenlijstFragment : Fragment() {
 
         if (rootView.container_meeting_detail != null) {
             isTablet = true
+            parentActivity.supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.container_meeting_detail, LogoFragment())
+                .commit()
         }
 
         rootView.recyclerview_meeting_lijst.adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, lijstDesgin, isTablet)
