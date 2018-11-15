@@ -8,7 +8,7 @@
         android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/meeting_lijst"
+            android:id="@+id/recyclerview_meeting_lijst"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/item_meeting_klein"

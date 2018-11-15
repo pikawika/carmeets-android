@@ -15,7 +15,7 @@ import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import kotlinx.android.synthetic.main.item_meeting_groot.view.*
 
 class MeetingAdapter(
-    private val parentActivity: MainActivity, private val lijst: List<Meeting>, private val lijstDesgin: String
+    private val parentActivity: MainActivity, private val lijst: List<Meeting>, private val lijstDesgin: String, val isTablet : Boolean
 ) :
     RecyclerView.Adapter<MeetingAdapter.ViewHolder>() {
 
@@ -30,11 +30,21 @@ class MeetingAdapter(
                 }
             }
 
-            parentActivity.supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_container, detailFragment)
-                .addToBackStack(parentActivity.getString(R.string.fragtag_meetingdetail))
-                .commit()
+            if (isTablet){
+                parentActivity.supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.container_meeting_detail, detailFragment)
+                    .addToBackStack(parentActivity.getString(R.string.fragtag_meetingdetail))
+                    .commit()
+            }
+            else {
+                parentActivity.supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, detailFragment)
+                    .addToBackStack(parentActivity.getString(R.string.fragtag_meetingdetail))
+                    .commit()
+            }
+
 
         }
     }

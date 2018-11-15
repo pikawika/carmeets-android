@@ -180,6 +180,7 @@ class MainActivity : AppCompatActivity() {
                     .replace(R.id.fragment_container, AccountFragment())
                     .addToBackStack(getString(R.string.fragtag_account))
                     .commit()
+                Toast.makeText(this, "Er is op zoeken geklikt", Toast.LENGTH_SHORT).show()
                 return@OnNavigationItemSelectedListener true
             }
         }

@@ -13,9 +13,10 @@ import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import kotlinx.android.synthetic.main.fragment_meetinglijst.view.*
 import java.sql.Date
-import java.util.*
 
 class MeetinglijstFragment : Fragment() {
+
+    private var isTablet: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_meetinglijst, container, false)
@@ -23,6 +24,11 @@ class MeetinglijstFragment : Fragment() {
         val meetings = dummyDataMeetingLijst()
 
         var lijstDesgin = "klein"
+
+        //kijkt of container er is want dan is het een tablet (width > 600 en moet detail in fragment ipv in activity
+        if (rootView.container_meeting_detail != null) {
+            isTablet = true
+        }
 
         //set action bar and bottom nav bar
         var parentActivity = (activity as AppCompatActivity)
@@ -32,7 +38,7 @@ class MeetinglijstFragment : Fragment() {
             "groot" -> lijstDesgin = "groot"
         }
 
-        rootView.meeting_lijst.adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, lijstDesgin)
+        rootView.recyclerview_meeting_lijst.adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, lijstDesgin, isTablet)
 
         return rootView
     }
