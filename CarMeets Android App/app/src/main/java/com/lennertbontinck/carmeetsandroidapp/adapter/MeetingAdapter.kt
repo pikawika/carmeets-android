@@ -34,7 +34,6 @@ class MeetingAdapter(
                 parentActivity.supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.container_meeting_detail, detailFragment)
-                    .addToBackStack(parentActivity.getString(R.string.fragtag_meetingdetail))
                     .commit()
             }
             else {
@@ -44,8 +43,6 @@ class MeetingAdapter(
                     .addToBackStack(parentActivity.getString(R.string.fragtag_meetingdetail))
                     .commit()
             }
-
-
         }
     }
 
