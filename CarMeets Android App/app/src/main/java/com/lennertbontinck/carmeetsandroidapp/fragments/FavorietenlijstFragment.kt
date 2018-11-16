@@ -25,22 +25,25 @@ class FavorietenlijstFragment : Fragment() {
         var parentActivity = (activity as AppCompatActivity)
         LayoutUtil.setMainLayout(parentActivity, getString(R.string.ab_favorieten_titel), getString(R.string.ab_favorieten_subtitel), true, R.id.nav_favorieten)
 
+        //lijst vullen met meetings
         val meetings = dummyDataMeetingLijst()
 
+        //default kleine weergave
         var lijstDesgin = "klein"
-
         when (arguments?.getString("lijstDesgin")) {
             "groot" -> lijstDesgin = "groot"
         }
 
-        if (rootView.frame_meetinglijst_meetingdetail != null) {
+        //indien een een detailcontainer is, is het een tablet en wordt er in die container een placeholder gezet
+        if (rootView.frame_meetinglijst_meetingdetailcontainer != null) {
             isTablet = true
             parentActivity.supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.frame_meetinglijst_meetingdetail, LogoFragment())
+                .replace(R.id.frame_meetinglijst_meetingdetailcontainer, LogoFragment())
                 .commit()
         }
 
+        //recyclerview vullen
         rootView.recyclerview_meetinglijst.adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, lijstDesgin, isTablet)
 
         return rootView
@@ -254,6 +257,7 @@ class FavorietenlijstFragment : Fragment() {
 
     companion object {
         fun newInstance(design: String): MeetinglijstFragment {
+            //bij he aanmaken van de fragment wordt een param meegegeven voor de layout van de lijst
             val args = Bundle()
             args.putString("lijstDesgin", design)
             val fragment = MeetinglijstFragment()

@@ -24,8 +24,7 @@
     <string name="fragtag_meetinglijst">meetinglijst</string>
     <string name="fragtag_favorietenlijst">favorietenlijst</string>
     <string name="fragtag_account">account</string>
-    <string name="fragtag_meetingdetail">account</string>
-
+    <string name="fragtag_meetingdetail">meetingdetail</string>
 
     <!-- meeting -->
     <string name="item_meeting_titel">Android app celibration</string>
@@ -38,13 +37,11 @@
         maar goed afloopt.
     </string>
 
-
     <!-- meeting buttons -->
     <string name="button_meeting_notificatie">Notificatie toevoegen</string>
     <string name="button_meeting_agenda">Opslaan in kalender</string>
     <string name="button_meeting_routebeschrijving">Routebeschrijving</string>
     <string name="button_meeting_website">Website</string>
-
 
     <!-- carmeets -->
     <string name="about_carmeets_over">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik

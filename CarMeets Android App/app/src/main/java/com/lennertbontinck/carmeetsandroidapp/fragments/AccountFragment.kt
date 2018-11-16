@@ -19,6 +19,7 @@ class AccountFragment : Fragment() {
         var parentActivity = (activity as AppCompatActivity)
         LayoutUtil.setMainLayout(parentActivity, getString(R.string.ab_account_titel), getString(R.string.ab_account_subtitel), false, R.id.nav_account)
 
+        //temp tekst als poc
         fragment.text_account_temptekst.text = "hallo van account!"
 
         return fragment

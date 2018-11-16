@@ -21,29 +21,29 @@ class MeetinglijstFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_meetinglijst, container, false)
 
-        val meetings = dummyDataMeetingLijst()
-
-        var lijstDesgin = "klein"
-
-        var parentActivity = (activity as AppCompatActivity)
-
-        //kijkt of container er is want dan is het een tablet (width > 600 en moet detail in fragment ipv in activity
-        if (rootView.frame_meetinglijst_meetingdetail != null) {
-            isTablet = true
-            parentActivity.supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.frame_meetinglijst_meetingdetail, LogoFragment())
-                .commit()
-        }
-
         //set action bar and bottom nav bar
-
+        var parentActivity = (activity as AppCompatActivity)
         LayoutUtil.setMainLayout(parentActivity, getString(R.string.ab_meetings_titel), getString(R.string.ab_meetings_subtitel), true, R.id.nav_meetings)
 
+        //lijst vullen met meetings
+        val meetings = dummyDataMeetingLijst()
+
+        //default kleine weergave
+        var lijstDesgin = "klein"
         when (arguments?.getString("lijstDesgin")) {
             "groot" -> lijstDesgin = "groot"
         }
 
+        //indien een een detailcontainer is, is het een tablet en wordt er in die container een placeholder gezet
+        if (rootView.frame_meetinglijst_meetingdetailcontainer != null) {
+            isTablet = true
+            parentActivity.supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.frame_meetinglijst_meetingdetailcontainer, LogoFragment())
+                .commit()
+        }
+
+        //recyclerview vullen
         rootView.recyclerview_meetinglijst.adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, lijstDesgin, isTablet)
 
         return rootView
@@ -257,6 +257,7 @@ class MeetinglijstFragment : Fragment() {
 
     companion object {
         fun newInstance(design: String): MeetinglijstFragment {
+            //bij he aanmaken van de fragment wordt een param meegegeven voor de layout van de lijst
             val args = Bundle()
             args.putString("lijstDesgin", design)
             val fragment = MeetinglijstFragment()

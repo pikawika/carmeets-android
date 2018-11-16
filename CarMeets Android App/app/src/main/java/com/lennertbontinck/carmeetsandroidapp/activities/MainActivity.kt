@@ -7,25 +7,27 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.FavorietenlijstFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglijstFragment
+import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        //bij het laden van de app de mainactivity instellen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //supportbar instellen zodat hij toolbar gebruikt
         setSupportActionBar(menu_main_toolbar)
 
         //initieel is er geen back knop
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
-        //initieel meeting lijst
+        //initieel wordt meetinglijst weergegeven
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
             .addToBackStack(getString(R.string.fragtag_meetinglijst))
@@ -35,16 +37,26 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        initListeners()
+        //listener op de bottomnav
+        menu_main_bottomnavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+        //listener op de backstack voor
+        supportFragmentManager.addOnBackStackChangedListener { onBackStackChangedListener() }
+
+        //listener wanneer back button uit de toolbar -> zelfde als hardware back button
+        menu_main_toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
-    //bel en zoek toevoegen aan app bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        //menu van de toolbar instellen
         menuInflater.inflate(R.menu.toolbar, menu)
 
-        //manueel listener event voor notificatiebel met badge adhv actionLayout
+        //listener voor het klikken op noticaties uit de actionbar
         val notificaties = menu?.findItem(R.id.nav_notificaties)?.actionView
-        notificaties?.findViewById<ImageView>(R.id.image_partialnotificaties_bel)?.setOnClickListener({ notificatiesClicked() })
+        notificaties?.findViewById<ImageView>(R.id.image_partialnotificaties_bel)
+            ?.setOnClickListener({ notificatiesClicked() })
         notificaties?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
             ?.setOnClickListener({ notificatiesClicked() })
 
@@ -52,15 +64,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        //het item dat gelklikt is uit de toolbar
+        //dit id moet in theorie altijd ingevuld zijn want enkel dan weet je wat aangeduid en kan je bijhorende actie uitvoeren
         when (item?.itemId) {
-            //bel icoon ga naar liked meetings
             R.id.nav_notificaties -> {
                 notificatiesClicked()
                 return super.onOptionsItemSelected(item)
             }
 
             R.id.nav_zoek -> {
-                Toast.makeText(this, "Er is op zoeken geklikt", Toast.LENGTH_SHORT).show()
+                MessageUtil.toonToast(this, "Er is op zoeken geklikt")
                 return super.onOptionsItemSelected(item)
             }
 
@@ -74,6 +87,7 @@ class MainActivity : AppCompatActivity() {
                 return super.onOptionsItemSelected(item)
             }
 
+            //default
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -82,21 +96,9 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
 
-        var index = supportFragmentManager.backStackEntryCount - 1
-
-        //indien er geen items meer zijn in stack en je bent al op home moet de app gesloten worden
-        if (index == -1 && menu_main_bottomnavigation.selectedItemId == R.id.nav_meetings) finish()
-    }
-
-    private fun initListeners() {
-        menu_main_bottomnavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-
-        supportFragmentManager.addOnBackStackChangedListener { onBackStackChangedListener() }
-
-        //toolbar back button ingedrukt
-        menu_main_toolbar.setNavigationOnClickListener {
-            onBackPressed()
-        }
+        //indien er geen items meer zijn in stack mag je afsluiten
+        //manueel anders gaat hij eerts ook de initiele fragmentinlading ongedaan maken wat niet moet
+        if (supportFragmentManager.backStackEntryCount == 0) finish()
     }
 
     private fun notificatiesClicked() {
@@ -108,33 +110,36 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkFragmentEqualsNavItem(item: MenuItem?): Boolean {
-        var index = supportFragmentManager.backStackEntryCount - 1
-        if (index >= 0) {
-            val huidigFragmentType = supportFragmentManager.getBackStackEntryAt(index).name
-            when (huidigFragmentType) {
+        //huidige item in de backstack zijn fragtag
+        var huidigeFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
+        if (huidigeFragTag != null && huidigeFragTag != "") {
+            //kijken of huidige fragtag de selected item al niet reeds heeft ingesteld
+            when (huidigeFragTag) {
                 getString(R.string.fragtag_meetinglijst) -> if (item?.itemId == R.id.nav_meetings) return true
                 getString(R.string.fragtag_favorietenlijst) -> if (item?.itemId == R.id.nav_favorieten) return true
                 getString(R.string.fragtag_account) -> if (item?.itemId == R.id.nav_account) return true
             }
         }
-        //het is nooit gelijk geweest
+        //default
         return false
     }
 
-    private fun setLayoutLijstDesgin(lijstDesgin : String ) {
-        var index = supportFragmentManager.backStackEntryCount - 1
+    private fun setLayoutLijstDesgin(lijstDesgin: String) {
+        //huidige item in de backstack zijn fragtag
+        var huidigeFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
 
-        if (index >= 0) {
-            val huidigFragmentType = supportFragmentManager.getBackStackEntryAt(index).name
-            when (huidigFragmentType) {
-                getString(R.string.fragtag_favorietenlijst)-> {
+        if (huidigeFragTag != null && huidigeFragTag != "") {
+            //afhankelijk van op welke fragment je zit de layout opnieuw laden met nieuwe layoutdesign
+            //moet naar backstack anders gaat hij op back press de fragment laten staan
+            when (huidigeFragTag) {
+                getString(R.string.fragtag_favorietenlijst) -> {
                     var fragment = FavorietenlijstFragment.newInstance(lijstDesgin)
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame_main_fragmentcontainer, fragment)
                         .addToBackStack(getString(R.string.fragtag_favorietenlijst))
                         .commit()
                 }
-                getString(R.string.fragtag_meetinglijst)-> {
+                getString(R.string.fragtag_meetinglijst) -> {
                     var fragment = MeetinglijstFragment.newInstance(lijstDesgin)
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame_main_fragmentcontainer, fragment)
@@ -146,7 +151,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onBackStackChangedListener() {
-        //indien nog 1 open staat is het de initiele fragment en moet er softwarematisch niet meer op back geduwd worden
+        //indien je op initieel fragment zit geen back knop tonen
         if (supportFragmentManager.backStackEntryCount <= 1) {
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
         } else supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -154,10 +159,11 @@ class MainActivity : AppCompatActivity() {
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         //indien zelfde nav item geselecteerd als het reeds is, doe niets.
+        //vermijd loops en spam clicks
         if (checkFragmentEqualsNavItem(item)) return@OnNavigationItemSelectedListener true
 
+        //afhankelijk van geselecteerde nav item actie uitvoeren
         when (item?.itemId) {
-            //meetinglijst geselecteerd
             R.id.nav_meetings -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
@@ -165,7 +171,6 @@ class MainActivity : AppCompatActivity() {
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
-            //favorieten geselecteerd
             R.id.nav_favorieten -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, FavorietenlijstFragment())
@@ -173,13 +178,11 @@ class MainActivity : AppCompatActivity() {
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
-            //account geselecteerd
             R.id.nav_account -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
                     .addToBackStack(getString(R.string.fragtag_account))
                     .commit()
-                Toast.makeText(this, "Er is op zoeken geklikt", Toast.LENGTH_SHORT).show()
                 return@OnNavigationItemSelectedListener true
             }
         }

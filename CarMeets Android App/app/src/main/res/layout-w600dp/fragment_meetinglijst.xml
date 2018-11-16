@@ -47,7 +47,7 @@
             android:layout_marginBottom="8dp"/>
 
     <FrameLayout
-            android:id="@+id/frame_meetinglijst_meetingdetail"
+            android:id="@+id/frame_meetinglijst_meetingdetailcontainer"
             android:layout_width="0dp"
             android:layout_height="match_parent"
 

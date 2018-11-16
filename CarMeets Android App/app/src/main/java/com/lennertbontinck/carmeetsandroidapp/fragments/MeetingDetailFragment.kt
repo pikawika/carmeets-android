@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.DateUtil
@@ -28,20 +29,22 @@ class MeetingDetailFragment : Fragment() {
         //set action bar and bottom nav bar
         var parentActivity = (activity as AppCompatActivity)
 
-
+        //fragment gegevens instellen
         if (meeting != null) {
             LayoutUtil.setActionBar(parentActivity, meeting!!.titel, meeting!!.subtitel)
+
+            Glide.with(parentActivity).load(meeting!!.afbeeldingNaam).into(fragment.image_meetingdetail_header)
 
             fragment.text_meetingdetail_titel.text = meeting!!.titel
             fragment.text_meetingdetail_subtitel.text = meeting!!.subtitel
 
             fragment.text_meetingdetail_beschrijving.text = meeting!!.beschrijving
 
-            fragment.text_meetingdetail_dateday.text = DateUtil.getDay(meeting!!.datum)
+            fragment.text_meetingdetail_dateday.text = DateUtil.getDayInMonth(meeting!!.datum)
             fragment.textView_meetingdetail_datemonth.text = DateUtil.getShortMonthName(meeting!!.datum)
 
         } else {
-            LayoutUtil.setActionBar(parentActivity, "ERROR", "Meeting not found")
+            LayoutUtil.setActionBar(parentActivity, "ERROR", "Meeting niet gevonden")
         }
 
         return fragment
