@@ -11,6 +11,8 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.DateUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
+import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import kotlinx.android.synthetic.main.fragment_meetingdetail.*
 import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
 
 class MeetingDetailFragment : Fragment() {
@@ -47,7 +49,27 @@ class MeetingDetailFragment : Fragment() {
             LayoutUtil.setActionBar(parentActivity, "ERROR", "Meeting niet gevonden")
         }
 
+        setListeners(fragment)
+
         return fragment
+    }
+
+    fun setListeners(fragment: View) {
+        fragment.button_meetingdetail_notificatie.setOnClickListener {
+            MessageUtil.toonToast(requireContext(), "notificatie")
+        }
+
+        fragment.button_meetingdetail_agenda.setOnClickListener {
+            MessageUtil.toonToast(requireContext(), "agenda")
+        }
+
+        fragment.button_meetingdetail_route.setOnClickListener {
+            MessageUtil.toonToast(requireContext(), "route")
+        }
+
+        fragment.button_meetingdetail_website.setOnClickListener {
+            MessageUtil.toonToast(requireContext(), "website")
+        }
     }
 
     companion object {
