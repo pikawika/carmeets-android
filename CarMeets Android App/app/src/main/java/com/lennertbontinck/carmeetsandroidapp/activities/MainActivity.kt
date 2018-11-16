@@ -11,6 +11,7 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.FavorietenlijstFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglijstFragment
+import com.lennertbontinck.carmeetsandroidapp.utils.FragmentUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -109,21 +110,6 @@ class MainActivity : AppCompatActivity() {
         notificatieAantal?.text = (notificatieAantal?.text.toString().toInt() + 1).toString()
     }
 
-    private fun checkFragmentEqualsNavItem(item: MenuItem?): Boolean {
-        //huidige item in de backstack zijn fragtag
-        var huidigeFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
-        if (huidigeFragTag != null && huidigeFragTag != "") {
-            //kijken of huidige fragtag de selected item al niet reeds heeft ingesteld
-            when (huidigeFragTag) {
-                getString(R.string.fragtag_meetinglijst) -> if (item?.itemId == R.id.nav_meetings) return true
-                getString(R.string.fragtag_favorietenlijst) -> if (item?.itemId == R.id.nav_favorieten) return true
-                getString(R.string.fragtag_account) -> if (item?.itemId == R.id.nav_account) return true
-            }
-        }
-        //default
-        return false
-    }
-
     private fun setLayoutLijstDesgin(lijstDesgin: String) {
         //huidige item in de backstack zijn fragtag
         var huidigeFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
@@ -160,7 +146,7 @@ class MainActivity : AppCompatActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         //indien zelfde nav item geselecteerd als het reeds is, doe niets.
         //vermijd loops en spam clicks
-        if (checkFragmentEqualsNavItem(item)) return@OnNavigationItemSelectedListener true
+        if (FragmentUtil.checkFragmentEqualsNavItem(this, item, supportFragmentManager)) return@OnNavigationItemSelectedListener true
 
         //afhankelijk van geselecteerde nav item actie uitvoeren
         when (item?.itemId) {
