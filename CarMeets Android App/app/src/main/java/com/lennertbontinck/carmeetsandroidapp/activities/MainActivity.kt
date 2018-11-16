@@ -12,7 +12,6 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.FavorietenlijstFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglijstFragment
-import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,14 +20,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(menu_main_toolbar)
 
         //initieel is er geen back knop
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         //initieel meeting lijst
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, MeetinglijstFragment())
+            .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
             .addToBackStack(getString(R.string.fragtag_meetinglijst))
             .commit()
     }
@@ -45,8 +44,8 @@ class MainActivity : AppCompatActivity() {
 
         //manueel listener event voor notificatiebel met badge adhv actionLayout
         val notificaties = menu?.findItem(R.id.nav_notificaties)?.actionView
-        notificaties?.findViewById<ImageView>(R.id.nav_notificatiebel)?.setOnClickListener({ notificatiesClicked() })
-        notificaties?.findViewById<TextView>(R.id.nav_notificatiebel_aantal)
+        notificaties?.findViewById<ImageView>(R.id.image_partialnotificaties_bel)?.setOnClickListener({ notificatiesClicked() })
+        notificaties?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
             ?.setOnClickListener({ notificatiesClicked() })
 
         return true
@@ -86,24 +85,24 @@ class MainActivity : AppCompatActivity() {
         var index = supportFragmentManager.backStackEntryCount - 1
 
         //indien er geen items meer zijn in stack en je bent al op home moet de app gesloten worden
-        if (index == -1 && bottom_navigation.selectedItemId == R.id.nav_meetings) finish()
+        if (index == -1 && menu_main_bottomnavigation.selectedItemId == R.id.nav_meetings) finish()
     }
 
     private fun initListeners() {
-        bottom_navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        menu_main_bottomnavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
         supportFragmentManager.addOnBackStackChangedListener { onBackStackChangedListener() }
 
         //toolbar back button ingedrukt
-        toolbar.setNavigationOnClickListener {
+        menu_main_toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
     }
 
     private fun notificatiesClicked() {
         //POC dat je aantal kan aanpassen, +1 op click
-        val notificatieAantal = toolbar.menu.findItem(R.id.nav_notificaties)
-            ?.actionView?.findViewById<TextView>(R.id.nav_notificatiebel_aantal)
+        val notificatieAantal = menu_main_toolbar.menu.findItem(R.id.nav_notificaties)
+            ?.actionView?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
 
         notificatieAantal?.text = (notificatieAantal?.text.toString().toInt() + 1).toString()
     }
@@ -131,14 +130,14 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.fragtag_favorietenlijst)-> {
                     var fragment = FavorietenlijstFragment.newInstance(lijstDesgin)
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, fragment)
+                        .replace(R.id.frame_main_fragmentcontainer, fragment)
                         .addToBackStack(getString(R.string.fragtag_favorietenlijst))
                         .commit()
                 }
                 getString(R.string.fragtag_meetinglijst)-> {
                     var fragment = MeetinglijstFragment.newInstance(lijstDesgin)
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, fragment)
+                        .replace(R.id.frame_main_fragmentcontainer, fragment)
                         .addToBackStack(getString(R.string.fragtag_meetinglijst))
                         .commit()
                 }
@@ -161,7 +160,7 @@ class MainActivity : AppCompatActivity() {
             //meetinglijst geselecteerd
             R.id.nav_meetings -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, MeetinglijstFragment())
+                    .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
                     .addToBackStack(getString(R.string.fragtag_meetinglijst))
                     .commit()
                 return@OnNavigationItemSelectedListener true
@@ -169,7 +168,7 @@ class MainActivity : AppCompatActivity() {
             //favorieten geselecteerd
             R.id.nav_favorieten -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, FavorietenlijstFragment())
+                    .replace(R.id.frame_main_fragmentcontainer, FavorietenlijstFragment())
                     .addToBackStack(getString(R.string.fragtag_favorietenlijst))
                     .commit()
                 return@OnNavigationItemSelectedListener true
@@ -177,7 +176,7 @@ class MainActivity : AppCompatActivity() {
             //account geselecteerd
             R.id.nav_account -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, AccountFragment())
+                    .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
                     .addToBackStack(getString(R.string.fragtag_account))
                     .commit()
                 Toast.makeText(this, "Er is op zoeken geklikt", Toast.LENGTH_SHORT).show()

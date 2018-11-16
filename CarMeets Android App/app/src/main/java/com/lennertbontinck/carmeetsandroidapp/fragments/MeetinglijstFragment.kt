@@ -28,11 +28,11 @@ class MeetinglijstFragment : Fragment() {
         var parentActivity = (activity as AppCompatActivity)
 
         //kijkt of container er is want dan is het een tablet (width > 600 en moet detail in fragment ipv in activity
-        if (rootView.container_meeting_detail != null) {
+        if (rootView.frame_meetinglijst_meetingdetail != null) {
             isTablet = true
             parentActivity.supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.container_meeting_detail, LogoFragment())
+                .replace(R.id.frame_meetinglijst_meetingdetail, LogoFragment())
                 .commit()
         }
 
@@ -44,7 +44,7 @@ class MeetinglijstFragment : Fragment() {
             "groot" -> lijstDesgin = "groot"
         }
 
-        rootView.recyclerview_meeting_lijst.adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, lijstDesgin, isTablet)
+        rootView.recyclerview_meetinglijst.adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, lijstDesgin, isTablet)
 
         return rootView
     }

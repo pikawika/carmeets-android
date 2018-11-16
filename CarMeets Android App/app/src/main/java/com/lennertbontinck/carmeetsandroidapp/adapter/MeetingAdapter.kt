@@ -12,7 +12,7 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
-import kotlinx.android.synthetic.main.item_meeting_groot.view.*
+import kotlinx.android.synthetic.main.item_meeting_klein.view.*
 
 class MeetingAdapter(
     private val parentActivity: MainActivity, private val lijst: List<Meeting>, private val lijstDesgin: String, val isTablet : Boolean
@@ -33,13 +33,13 @@ class MeetingAdapter(
             if (isTablet){
                 parentActivity.supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.container_meeting_detail, detailFragment)
+                    .replace(R.id.frame_meetinglijst_meetingdetail, detailFragment)
                     .commit()
             }
             else {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.fragment_container, detailFragment)
+                    .replace(R.id.frame_main_fragmentcontainer, detailFragment)
                     .addToBackStack(parentActivity.getString(R.string.fragtag_meetingdetail))
                     .commit()
             }
@@ -76,9 +76,9 @@ class MeetingAdapter(
     override fun getItemCount() = lijst.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val afbeeldingView: ImageView = view.item_meeting_afbeelding
-        val titelView: TextView = view.item_meeting_titel
-        val subtitelView: TextView = view.item_meeting_subtitel
-        val locatieView: TextView = view.item_meeting_locatie
+        val afbeeldingView: ImageView = view.image_itemmeeting
+        val titelView: TextView = view.text_itemmeeting_titel
+        val subtitelView: TextView = view.text_itemmeeting_subtitel
+        val locatieView: TextView = view.text_itemmeeting_locatie
     }
 }

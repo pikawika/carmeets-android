@@ -32,12 +32,12 @@ class MeetingDetailFragment : Fragment() {
         if (meeting != null) {
             LayoutUtil.setActionBar(parentActivity, meeting!!.titel, meeting!!.subtitel)
 
-            fragment.textView_meetingdetail_titel.text = meeting!!.titel
-            fragment.textView_meetingdetail_subtitel.text = meeting!!.subtitel
+            fragment.text_meetingdetail_titel.text = meeting!!.titel
+            fragment.text_meetingdetail_subtitel.text = meeting!!.subtitel
 
-            fragment.textView_meetingdetail_beschrijving.text = meeting!!.beschrijving
+            fragment.text_meetingdetail_beschrijving.text = meeting!!.beschrijving
 
-            fragment.textView_meetingdetail_dateday.text = DateUtil.getDay(meeting!!.datum)
+            fragment.text_meetingdetail_dateday.text = DateUtil.getDay(meeting!!.datum)
             fragment.textView_meetingdetail_datemonth.text = DateUtil.getShortMonthName(meeting!!.datum)
 
         } else {

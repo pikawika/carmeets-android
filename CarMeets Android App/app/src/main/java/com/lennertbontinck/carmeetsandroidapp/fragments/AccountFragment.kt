@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_account.view.*
 
 class AccountFragment : Fragment() {
@@ -20,7 +19,7 @@ class AccountFragment : Fragment() {
         var parentActivity = (activity as AppCompatActivity)
         LayoutUtil.setMainLayout(parentActivity, getString(R.string.ab_account_titel), getString(R.string.ab_account_subtitel), false, R.id.nav_account)
 
-        fragment.textview_account_temptekst.text = "hallo van account!"
+        fragment.text_account_temptekst.text = "hallo van account!"
 
         return fragment
     }

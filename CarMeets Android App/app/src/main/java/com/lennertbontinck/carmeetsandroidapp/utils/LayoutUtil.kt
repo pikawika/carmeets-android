@@ -12,11 +12,11 @@ object LayoutUtil {
         parentActivity.supportActionBar?.title =  titel
         parentActivity.supportActionBar?.subtitle = subtitel
 
-        parentActivity.toolbar.menu.findItem(R.id.ab_opties_klein)?.isVisible = listLayoutOptiesVisible
-        parentActivity.toolbar.menu.findItem(R.id.ab_opties_groot)?.isVisible = listLayoutOptiesVisible
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_klein)?.isVisible = listLayoutOptiesVisible
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_groot)?.isVisible = listLayoutOptiesVisible
 
-        if (parentActivity.bottom_navigation.selectedItemId != bottomNavId) {
-            parentActivity.bottom_navigation.selectedItemId = bottomNavId
+        if (parentActivity.menu_main_bottomnavigation.selectedItemId != bottomNavId) {
+            parentActivity.menu_main_bottomnavigation.selectedItemId = bottomNavId
         }
     }
 
