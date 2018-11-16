@@ -30,7 +30,7 @@
             app:layout_constraintGuide_percent="0.5"/>
 
     <TextView
-            android:text="@string/abouttext_carmeets_over"
+            android:text="@string/about_carmeets_over"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
