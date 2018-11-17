@@ -96,25 +96,25 @@ Onderaan de detailpagina zal je knoppen vinden met dezelfde functionaliteit van 
 ### Brainstormsessie schetsen
 
 #### Bel icoon
-<img src="assets/img/feature1/draft-belicoon.jpg" height="300" />
+<img src="assets/img/feature1/draft/draft-belicoon.jpg" height="300" />
 
 #### Detailscherm
-<img src="assets/img/feature1/draft-detail.jpg" height="300" />
+<img src="assets/img/feature1/draft/draft-detail.jpg" height="300" />
 
 #### Homelijst
-<img src="assets/img/feature1/draft-home.jpg" height="300" />
+<img src="assets/img/feature1/draft/draft-home.jpg" height="300" />
 
 #### Lijstitem v1
-<img src="assets/img/feature1/draft-listitema.jpg" height="300" />
+<img src="assets/img/feature1/draft/draft-listitema.jpg" height="300" />
 
 #### Lijstitem v2
-<img src="assets/img/feature1/draft-listitemb.jpg" height="300" />
+<img src="assets/img/feature1/draft/draft-listitemb.jpg" height="300" />
 
 #### Optiesmenu
-<img src="assets/img/feature1/draft-opties.jpg" height="300" />
+<img src="assets/img/feature1/draft/draft-opties.jpg" height="300" />
 
 #### Zoekscherm
-<img src="assets/img/feature1/draft-zoekscherm.jpg" height="300" />
+<img src="assets/img/feature1/draft/draft-zoekscherm.jpg" height="300" />
 
 ## De uitwerking
 
@@ -141,10 +141,18 @@ De zoekpagina is voorlopig nog niet geïmplementeerd.
 ### Screenshots
 
 #### Home - meetingslijst en favorieten
+<img src="assets/img/feature1/screenshot/home.jpg" height="300" />
+<img src="assets/img/feature1/screenshot/favoriet.jpg" height="300" />
 
 #### Meerdere layouts voor lijst
+<img src="assets/img/feature1/screenshot/layoutmenu.jpg" height="300" />
+<img src="assets/img/feature1/screenshot/groot.jpg" height="300" />
 
 #### Detailpagina
+<img src="assets/img/feature1/screenshot/detail.jpg" height="300" />
+<img src="assets/img/feature1/screenshot/detail2.jpg" height="300" />
 
 #### Tablet layout
-
+<img src="assets/img/feature1/screenshot/tablet.png" height="300" />
+<img src="assets/img/feature1/screenshot/tablet2.png" height="300" />
+<img src="assets/img/feature1/screenshot/tablet3.png" height="300" />
