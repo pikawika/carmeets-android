@@ -6,6 +6,7 @@ Dit is de GitHub repository voor de Android App van CarMeets. U kan hier steeds 
 
 > - [Wat is de CarMeets app](#wat-is-de-carmeets-app)
 > - [Ontwikkelaar](#ontwikkelaar)
+> - [Documentatie in de code](#documentatie-in-de-code)
 > - [Documentatie per Feature](#documentatie-per-feature)
 > - [GitHub Repository van de backend](#github-repository-van-de-backend)
 > - [Gebruikte bronnen](#gebruikte-bronnen)
@@ -18,6 +19,10 @@ Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik weer
 | Naam     | GitHub                        | E-mail                               |
 | :---     | :---                          | :---                                |
 | Bontinck Lennert | <https://github.com/pikawika> | [lennert.bontinck.y9785@student.hogent.be](mailto:lennert.bontinck.y9785@student.hogent.be) |
+
+## Documentatie in de code
+
+Er zijn in de code inline comments voorzien met uitleg wat bepaalde regels code juist doen en waarom ze nodig zijn. Overigens is voor de utils en tal van andere functies documentation voorzien zodanig dat deze uitleg over de functie en de parameters verschijnt bij het aanroepen van de functies.
 
 ## Documentatie per Feature
 
