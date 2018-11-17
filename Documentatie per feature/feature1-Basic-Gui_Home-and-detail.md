@@ -24,11 +24,11 @@ Een goed idee van hoe de GUI er zal uitzien is het begin van een goede app. Daar
 >         - [Optiesmenu](#optiesmenu)
 >         - [Zoekscherm](#zoekscherm)
 > - [De uitwerking](#de-uitwerking)
->     - [Zaken die anders zijn dan het initiële idee](#zaken-die-anders-zijn-dan-het-initiele-idee)
+>     - [Zaken die anders zijn dan het initiële idee](#zaken-die-anders-zijn-dan-het-initiële-idee)
 >         - [Toolbar en bottom navigation](#toolbar-en-bottom-navigation)
 >         - [De layout van de lijst](#de-layout-van-de-lijst)
 >         - [De detail pagina](#de-detail-pagina)
->         - [Zoekpagina - niet geïmplementeerd](#zoekpagina-niet-geimplementeerd)
+>         - [Zoekpagina - niet geïmplementeerd](#zoekpagina---niet-geïmplementeerd)
 >     - [Sreenshots](#screenshots)
 >         - [Home - meetingslijst en favorieten](#home-meetinglijst-en-favorieten)
 >         - [Meerdere layouts voor lijst](#meerdere-layouts-voor-lijst)
@@ -138,7 +138,7 @@ De detail pagina is buiten de opties bolletjes rechtsboven de image identiek aan
 
 De zoekpagina is voorlopig nog niet geïmplementeerd.
 
-### Sreenshots
+### Screenshots
 
 #### Home - meetingslijst en favorieten
 
