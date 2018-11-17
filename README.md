@@ -8,6 +8,7 @@ Dit is de GitHub repository voor de Android App van CarMeets. U kan hier steeds 
 > - [Ontwikkelaar](#ontwikkelaar)
 > - [Documentatie in de code](#documentatie-in-de-code)
 > - [Documentatie per Feature](#documentatie-per-feature)
+> - [Releases en APKs](#releases-en-apks)
 > - [GitHub Repository van de backend](#github-repository-van-de-backend)
 > - [Gebruikte bronnen](#gebruikte-bronnen)
 
@@ -29,6 +30,13 @@ Er zijn in de code inline comments voorzien met uitleg wat bepaalde regels code 
 Er is voor elke feature een beschrijving van wat de feauture juist implementeert met extra uitleg waar nodig voorzien. Deze documenten dienen als verduidelijking van de commentaar die reeds in de code voorzien is. U vindt het volledige overzicht [hier.](Documentatie%20per%20feature/README.md)
 
 > 1. [Meer info over Feature 1 - Basic Layout](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
+
+## Releases en APKs
+
+> 1. Feature 1: Layout van de toolbar, bottom navigation, meetinglijst en detail pagina. Basic werking met dummy data en poc op onclicks.
+>     - [Meer info over Feature 1 - Basic Layout](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
+>     - [Release](releases/tag/Feature1)
+>     - [APK](apks/carmeets-feature1.apk)
 
 ## GitHub Repository van de backend
 Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaakt met de MEAN-stack zal ik de bestaande backend hergebruik en aanvullen waar nodig.
