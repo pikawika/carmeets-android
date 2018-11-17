@@ -35,7 +35,7 @@ Er is voor elke feature een beschrijving van wat de feauture juist implementeert
 
 > 1. Feature 1: Layout van de toolbar, bottom navigation, meetinglijst en detail pagina. Basic werking met dummy data en poc op onclicks.
 >     - [Meer info over Feature 1 - Basic Layout](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
->     - [Release](releases/tag/Feature1)
+>     - [Release](releases/tag/V1.0)
 >     - [APK](apks/carmeets-feature1.apk)
 
 ## GitHub Repository van de backend
