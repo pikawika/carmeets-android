@@ -30,7 +30,7 @@ Een goed idee van hoe de GUI er zal uitzien is het begin van een goede app. Daar
 >         - [De detail pagina](#de-detail-pagina)
 >         - [Zoekpagina - niet geïmplementeerd](#zoekpagina---niet-geïmplementeerd)
 >     - [Screenshots](#screenshots)
->         - [Home - meetingslijst en favorieten](#home---meetinglijst-en-favorieten)
+>         - [Home - meetingslijst en favorieten](#home---meetingslijst-en-favorieten)
 >         - [Meerdere layouts voor lijst](#meerdere-layouts-voor-lijst)
 >         - [Detailpagina](#detailpagina)
 >         - [Tablet layout](#tablet-layout)
