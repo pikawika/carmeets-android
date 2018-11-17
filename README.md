@@ -33,8 +33,8 @@ Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaa
 
 Buiten het in de les ter beschikking gestelde boek heb volgende bronnen geraadpleegd voor mijn project:
 
-> - [Allerlei info omtrent kotlin functies](https://kotlinlang.org/docs/reference/)
+> - [Kotlin documentatie](https://kotlinlang.org/docs/reference/)
 > - [Naming conventions](https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md) 
-> - [Gebruik van documentatie](https://kotlinlang.org/docs/reference/kotlin-doc.html)
+> - [Hoe schrijf je zelf documentatie](https://kotlinlang.org/docs/reference/kotlin-doc.html)
 > - [Notificatie icoon met aantal](https://stackoverflow.com/questions/17696486/actionbar-notification-count-icon-badge-like-google-has)
-
+> - [Support voor meerdere screen sizes](https://developer.android.com/training/multiscreen/screensizes)
