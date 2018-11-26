@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.lennertbontinck.carmeetsandroidapp.R
-import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesign
+import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.FavorietenlijstFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglijstFragment
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         //initieel wordt meetinglijst weergegeven
         supportFragmentManager.beginTransaction()
-            .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment.newInstance(LijstDesign.KLEIN))
+            .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment.newInstance(LijstDesignEnum.KLEIN))
             .addToBackStack(getString(R.string.fragtag_meetinglijst))
             .commit()
     }
@@ -83,12 +83,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.ab_opties_groot -> {
-                setLayoutLijstDesgin(LijstDesign.GROOT)
+                setLayoutLijstDesgin(LijstDesignEnum.GROOT)
                 return super.onOptionsItemSelected(item)
             }
 
             R.id.ab_opties_klein -> {
-                setLayoutLijstDesgin(LijstDesign.KLEIN)
+                setLayoutLijstDesgin(LijstDesignEnum.KLEIN)
                 return super.onOptionsItemSelected(item)
             }
 
@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         notificatieAantal?.text = (notificatieAantal?.text.toString().toInt() + 1).toString()
     }
 
-    private fun setLayoutLijstDesgin(lijstDesgin: LijstDesign) {
+    private fun setLayoutLijstDesgin(lijstDesginEnum: LijstDesignEnum) {
         //huidige item in de backstack zijn fragtag
         var huidigeFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
 
@@ -123,14 +123,14 @@ class MainActivity : AppCompatActivity() {
             //moet naar backstack anders gaat hij op back press de fragment laten staan
             when (huidigeFragTag) {
                 getString(R.string.fragtag_favorietenlijst) -> {
-                    var fragment = FavorietenlijstFragment.newInstance(lijstDesgin)
+                    var fragment = FavorietenlijstFragment.newInstance(lijstDesginEnum)
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame_main_fragmentcontainer, fragment)
                         .addToBackStack(getString(R.string.fragtag_favorietenlijst))
                         .commit()
                 }
                 getString(R.string.fragtag_meetinglijst) -> {
-                    var fragment = MeetinglijstFragment.newInstance(lijstDesgin)
+                    var fragment = MeetinglijstFragment.newInstance(lijstDesginEnum)
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame_main_fragmentcontainer, fragment)
                         .addToBackStack(getString(R.string.fragtag_meetinglijst))
@@ -156,14 +156,14 @@ class MainActivity : AppCompatActivity() {
         when (item?.itemId) {
             R.id.nav_meetings -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment.newInstance(LijstDesign.KLEIN))
+                    .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment.newInstance(LijstDesignEnum.KLEIN))
                     .addToBackStack(getString(R.string.fragtag_meetinglijst))
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_favorieten -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame_main_fragmentcontainer, FavorietenlijstFragment.newInstance(LijstDesign.KLEIN))
+                    .replace(R.id.frame_main_fragmentcontainer, FavorietenlijstFragment.newInstance(LijstDesignEnum.KLEIN))
                     .addToBackStack(getString(R.string.fragtag_favorietenlijst))
                     .commit()
                 return@OnNavigationItemSelectedListener true

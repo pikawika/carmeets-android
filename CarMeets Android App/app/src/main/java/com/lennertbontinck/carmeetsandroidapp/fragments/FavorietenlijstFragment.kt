@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.adapters.MeetingAdapter
-import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesign
+import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import kotlinx.android.synthetic.main.fragment_meetinglijst.view.*
@@ -19,7 +19,7 @@ import java.sql.Date
  * Een [Fragment] die alle gelikete en going meetings van een gebruiker laat zien.
  * Hiervoor moet de gebruiker uiteraard een account hebben en ingelogd zijn.
  *
- * Gebruik [FavorietenlijstFragment.newInstance] om een [LijstDesign] type mee te geven.
+ * Gebruik [FavorietenlijstFragment.newInstance] om een [LijstDesignEnum] type mee te geven.
  */
 class FavorietenlijstFragment : Fragment() {
 
@@ -36,7 +36,7 @@ class FavorietenlijstFragment : Fragment() {
         val meetings = dummyDataMeetingLijst()
 
         //haal weergave uit companion
-        var lijstDesgin = arguments!!.getSerializable("lijstDesgin") as LijstDesign
+        var lijstDesgin = arguments!!.getSerializable("lijstDesgin") as LijstDesignEnum
 
         //indien een een detailcontainer is, is het een tablet en wordt er in die container een placeholder gezet
         if (rootView.frame_meetinglijst_meetingdetailcontainer != null) {
@@ -260,10 +260,10 @@ class FavorietenlijstFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(design: LijstDesign): FavorietenlijstFragment {
+        fun newInstance(designEnum: LijstDesignEnum): FavorietenlijstFragment {
             //bij he aanmaken van de fragment wordt een param meegegeven voor de layout van de lijst
             val args = Bundle()
-            args.putSerializable("lijstDesgin", design)
+            args.putSerializable("lijstDesgin", designEnum)
             val fragment = FavorietenlijstFragment()
             fragment.arguments = args
             return fragment

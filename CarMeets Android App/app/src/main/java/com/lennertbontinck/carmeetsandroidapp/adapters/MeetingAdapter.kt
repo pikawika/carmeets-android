@@ -10,8 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
-import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
-import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesign
+import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import kotlinx.android.synthetic.main.item_meeting_klein.view.*
@@ -23,12 +22,12 @@ import kotlinx.android.synthetic.main.item_meeting_klein.view.*
  *
  * @param[lijst] De lijst van meetings die de adapter moet verwerken. Required of type List<Meeting>
  *
- * @param[lijstDesgin] De stijl waarin de lijst weergegeven moet worden. Required of enum type LijstDesign
+ * @param[lijstDesginEnum] De stijl waarin de lijst weergegeven moet worden. Required of enum type LijstDesignEnum
  *
  * @param[isTablet] Of de layout al dan niet tablet is (TwoPane). Required of type Boolean
  */
 class MeetingAdapter(
-    private val parentActivity: AppCompatActivity, private val lijst: List<Meeting>, private val lijstDesgin: LijstDesign, val isTablet : Boolean
+    private val parentActivity: AppCompatActivity, private val lijst: List<Meeting>, private val lijstDesginEnum: LijstDesignEnum, val isTablet : Boolean
 ) :
     RecyclerView.Adapter<MeetingAdapter.ViewHolder>() {
 
@@ -66,7 +65,7 @@ class MeetingAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //Stelt de juiste lijstdesign in
         var view = LayoutInflater.from(parent.context)
-            .inflate(lijstDesgin.type, parent, false)
+            .inflate(lijstDesginEnum.type, parent, false)
 
         return ViewHolder(view)
     }

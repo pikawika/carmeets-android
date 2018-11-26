@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.adapters.MeetingAdapter
-import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesign
+import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import kotlinx.android.synthetic.main.fragment_meetinglijst.view.*
@@ -18,7 +18,7 @@ import java.sql.Date
 /**
  * Een [Fragment] die alle meetings laat zien.
  *
- * Gebruik [MeetinglijstFragment.newInstance] om een [LijstDesign] type mee te geven.
+ * Gebruik [MeetinglijstFragment.newInstance] om een [LijstDesignEnum] type mee te geven.
  */
 class MeetinglijstFragment : Fragment() {
 
@@ -35,7 +35,7 @@ class MeetinglijstFragment : Fragment() {
         val meetings = dummyDataMeetingLijst()
 
         //haal weergave uit companion
-        var lijstDesgin = arguments!!.getSerializable("lijstDesgin") as LijstDesign
+        var lijstDesgin = arguments!!.getSerializable("lijstDesgin") as LijstDesignEnum
 
         //indien een een detailcontainer is, is het een tablet en wordt er in die container een placeholder gezet
         if (rootView.frame_meetinglijst_meetingdetailcontainer != null) {
@@ -259,10 +259,10 @@ class MeetinglijstFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(design: LijstDesign): MeetinglijstFragment {
+        fun newInstance(designEnum: LijstDesignEnum): MeetinglijstFragment {
             //bij he aanmaken van de fragment wordt een param meegegeven voor de layout van de lijst
             val args = Bundle()
-            args.putSerializable("lijstDesgin", design)
+            args.putSerializable("lijstDesgin", designEnum)
             val fragment = MeetinglijstFragment()
             fragment.arguments = args
             return fragment
