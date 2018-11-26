@@ -4,6 +4,9 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
+/**
+ * Een Data [Class] die de informatie van 1 meeting bevat.
+ */
 @Parcelize
 data class Meeting(
     val meetingId: String,

@@ -8,12 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
-import com.lennertbontinck.carmeetsandroidapp.adapter.MeetingAdapter
+import com.lennertbontinck.carmeetsandroidapp.adapters.MeetingAdapter
+import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesign
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import kotlinx.android.synthetic.main.fragment_meetinglijst.view.*
 import java.sql.Date
 
+/**
+ * Een [Fragment] die alle meetings laat zien.
+ *
+ * Gebruik [MeetinglijstFragment.newInstance] om een [LijstDesign] type mee te geven.
+ */
 class MeetinglijstFragment : Fragment() {
 
     private var isTablet: Boolean = false
@@ -28,11 +34,8 @@ class MeetinglijstFragment : Fragment() {
         //lijst vullen met meetings
         val meetings = dummyDataMeetingLijst()
 
-        //default kleine weergave
-        var lijstDesgin = "klein"
-        when (arguments?.getString("lijstDesgin")) {
-            "groot" -> lijstDesgin = "groot"
-        }
+        //haal weergave uit companion
+        var lijstDesgin = arguments!!.getSerializable("lijstDesgin") as LijstDesign
 
         //indien een een detailcontainer is, is het een tablet en wordt er in die container een placeholder gezet
         if (rootView.frame_meetinglijst_meetingdetailcontainer != null) {
@@ -256,10 +259,10 @@ class MeetinglijstFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(design: String): MeetinglijstFragment {
+        fun newInstance(design: LijstDesign): MeetinglijstFragment {
             //bij he aanmaken van de fragment wordt een param meegegeven voor de layout van de lijst
             val args = Bundle()
-            args.putString("lijstDesgin", design)
+            args.putSerializable("lijstDesgin", design)
             val fragment = MeetinglijstFragment()
             fragment.arguments = args
             return fragment

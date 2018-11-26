@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesign
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.FavorietenlijstFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglijstFragment
@@ -15,6 +16,9 @@ import com.lennertbontinck.carmeetsandroidapp.utils.FragmentUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * De *mainactivity* van de applicatie. Er is maar 1 activity doorheen de app.
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         //initieel wordt meetinglijst weergegeven
         supportFragmentManager.beginTransaction()
-            .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
+            .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment.newInstance(LijstDesign.KLEIN))
             .addToBackStack(getString(R.string.fragtag_meetinglijst))
             .commit()
     }
@@ -79,12 +83,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.ab_opties_groot -> {
-                setLayoutLijstDesgin("groot")
+                setLayoutLijstDesgin(LijstDesign.GROOT)
                 return super.onOptionsItemSelected(item)
             }
 
             R.id.ab_opties_klein -> {
-                setLayoutLijstDesgin("klein")
+                setLayoutLijstDesgin(LijstDesign.KLEIN)
                 return super.onOptionsItemSelected(item)
             }
 
@@ -110,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         notificatieAantal?.text = (notificatieAantal?.text.toString().toInt() + 1).toString()
     }
 
-    private fun setLayoutLijstDesgin(lijstDesgin: String) {
+    private fun setLayoutLijstDesgin(lijstDesgin: LijstDesign) {
         //huidige item in de backstack zijn fragtag
         var huidigeFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
 
@@ -152,14 +156,14 @@ class MainActivity : AppCompatActivity() {
         when (item?.itemId) {
             R.id.nav_meetings -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
+                    .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment.newInstance(LijstDesign.KLEIN))
                     .addToBackStack(getString(R.string.fragtag_meetinglijst))
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_favorieten -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame_main_fragmentcontainer, FavorietenlijstFragment())
+                    .replace(R.id.frame_main_fragmentcontainer, FavorietenlijstFragment.newInstance(LijstDesign.KLEIN))
                     .addToBackStack(getString(R.string.fragtag_favorietenlijst))
                     .commit()
                 return@OnNavigationItemSelectedListener true

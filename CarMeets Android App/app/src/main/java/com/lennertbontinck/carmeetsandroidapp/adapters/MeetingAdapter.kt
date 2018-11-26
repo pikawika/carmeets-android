@@ -1,6 +1,7 @@
-package com.lennertbontinck.carmeetsandroidapp.adapter
+package com.lennertbontinck.carmeetsandroidapp.adapters
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +11,24 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
+import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesign
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import kotlinx.android.synthetic.main.item_meeting_klein.view.*
 
+/**
+ * De *adapter* voor een het vullen van een recyclerview met een meegegeven lijst van meetings ahdv een meegegeven stijl. Al dan niet een twopane design.
+ *
+ * @param[parentActivity] De parentactivity waarin de supportfragmentmanager zit en dat gebruikt wordt voor glide. Required of type AppCompatActivity
+ *
+ * @param[lijst] De lijst van meetings die de adapter moet verwerken. Required of type List<Meeting>
+ *
+ * @param[lijstDesgin] De stijl waarin de lijst weergegeven moet worden. Required of enum type LijstDesign
+ *
+ * @param[isTablet] Of de layout al dan niet tablet is (TwoPane). Required of type Boolean
+ */
 class MeetingAdapter(
-    private val parentActivity: MainActivity, private val lijst: List<Meeting>, private val lijstDesgin: String, val isTablet : Boolean
+    private val parentActivity: AppCompatActivity, private val lijst: List<Meeting>, private val lijstDesgin: LijstDesign, val isTablet : Boolean
 ) :
     RecyclerView.Adapter<MeetingAdapter.ViewHolder>() {
 
@@ -51,14 +64,9 @@ class MeetingAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        //default een kleine lijstDesign
+        //Stelt de juiste lijstdesign in
         var view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_meeting_klein, parent, false)
-
-        //kijken of ander, kon bool maar indien er nog derde design komt beter string en onderstaand
-        when (lijstDesgin) {
-            "groot" -> view = LayoutInflater.from(parent.context).inflate(R.layout.item_meeting_groot, parent, false)
-        }
+            .inflate(lijstDesgin.type, parent, false)
 
         return ViewHolder(view)
     }

@@ -15,6 +15,11 @@ import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import kotlinx.android.synthetic.main.fragment_meetingdetail.*
 import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
 
+/**
+ * Een [Fragment] die de details van een meeting laat zien.
+ *
+ * Gebruik [MeetingDetailFragment.newInstance] om een [ARG_MEETING_TAG] mee te geven (welke meeting het is).
+ */
 class MeetingDetailFragment : Fragment() {
 
     private var meeting: Meeting? = null

@@ -8,12 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
-import com.lennertbontinck.carmeetsandroidapp.adapter.MeetingAdapter
+import com.lennertbontinck.carmeetsandroidapp.adapters.MeetingAdapter
+import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesign
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import kotlinx.android.synthetic.main.fragment_meetinglijst.view.*
 import java.sql.Date
 
+/**
+ * Een [Fragment] die alle gelikete en going meetings van een gebruiker laat zien.
+ * Hiervoor moet de gebruiker uiteraard een account hebben en ingelogd zijn.
+ *
+ * Gebruik [FavorietenlijstFragment.newInstance] om een [LijstDesign] type mee te geven.
+ */
 class FavorietenlijstFragment : Fragment() {
 
     private var isTablet: Boolean = false
@@ -28,11 +35,8 @@ class FavorietenlijstFragment : Fragment() {
         //lijst vullen met meetings
         val meetings = dummyDataMeetingLijst()
 
-        //default kleine weergave
-        var lijstDesgin = "klein"
-        when (arguments?.getString("lijstDesgin")) {
-            "groot" -> lijstDesgin = "groot"
-        }
+        //haal weergave uit companion
+        var lijstDesgin = arguments!!.getSerializable("lijstDesgin") as LijstDesign
 
         //indien een een detailcontainer is, is het een tablet en wordt er in die container een placeholder gezet
         if (rootView.frame_meetinglijst_meetingdetailcontainer != null) {
@@ -256,11 +260,11 @@ class FavorietenlijstFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(design: String): MeetinglijstFragment {
+        fun newInstance(design: LijstDesign): FavorietenlijstFragment {
             //bij he aanmaken van de fragment wordt een param meegegeven voor de layout van de lijst
             val args = Bundle()
-            args.putString("lijstDesgin", design)
-            val fragment = MeetinglijstFragment()
+            args.putSerializable("lijstDesgin", design)
+            val fragment = FavorietenlijstFragment()
             fragment.arguments = args
             return fragment
         }
