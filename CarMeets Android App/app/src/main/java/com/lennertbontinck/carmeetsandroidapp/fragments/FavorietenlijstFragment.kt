@@ -58,7 +58,7 @@ class FavorietenlijstFragment : Fragment() {
         return listOf(
             Meeting(
                 meetingId = "5bbd254ba1468a0013f104c6",
-                titel = "Meet the 106",
+                titel = "Meet the 106 F",
                 subtitel = "Lennert's car is finally done!",
                 beschrijving = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus, enim eget gravida " +
                         "eleifend, enim nisl tempor sem, quis tempor libero quam eu nunc. Integer a egestas nibh. " +
@@ -83,7 +83,7 @@ class FavorietenlijstFragment : Fragment() {
             ),
             Meeting(
                 meetingId = "5bbd254ba1468a0013f104c6",
-                titel = "Meet the 106",
+                titel = "Meet the 106 F",
                 subtitel = "Lennert's car is finally done!",
                 beschrijving = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus, enim eget gravida " +
                         "eleifend, enim nisl tempor sem, quis tempor libero quam eu nunc. Integer a egestas nibh. " +
@@ -108,7 +108,7 @@ class FavorietenlijstFragment : Fragment() {
             ),
             Meeting(
                 meetingId = "5bbd254ba1468a0013f104c6",
-                titel = "Meet the 106",
+                titel = "Meet the 106 F",
                 subtitel = "Lennert's car is finally done!",
                 beschrijving = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus, enim eget gravida " +
                         "eleifend, enim nisl tempor sem, quis tempor libero quam eu nunc. Integer a egestas nibh. " +
@@ -133,7 +133,7 @@ class FavorietenlijstFragment : Fragment() {
             ),
             Meeting(
                 meetingId = "5bbd254ba1468a0013f104c6",
-                titel = "Meet the 106",
+                titel = "Meet the 106 F",
                 subtitel = "Lennert's car is finally done!",
                 beschrijving = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus, enim eget gravida " +
                         "eleifend, enim nisl tempor sem, quis tempor libero quam eu nunc. Integer a egestas nibh. " +
@@ -158,7 +158,7 @@ class FavorietenlijstFragment : Fragment() {
             ),
             Meeting(
                 meetingId = "5bbd254ba1468a0013f104c6",
-                titel = "Meet the 106",
+                titel = "Meet the 106 F",
                 subtitel = "Lennert's car is finally done!",
                 beschrijving = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus, enim eget gravida " +
                         "eleifend, enim nisl tempor sem, quis tempor libero quam eu nunc. Integer a egestas nibh. " +
@@ -183,7 +183,7 @@ class FavorietenlijstFragment : Fragment() {
             ),
             Meeting(
                 meetingId = "5bbd254ba1468a0013f104c6",
-                titel = "Meet the 106",
+                titel = "Meet the 106 F",
                 subtitel = "Lennert's car is finally done!",
                 beschrijving = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus, enim eget gravida " +
                         "eleifend, enim nisl tempor sem, quis tempor libero quam eu nunc. Integer a egestas nibh. " +
@@ -208,7 +208,7 @@ class FavorietenlijstFragment : Fragment() {
             ),
             Meeting(
                 meetingId = "5bbd254ba1468a0013f104c6",
-                titel = "Meet the 106",
+                titel = "Meet the 106 F",
                 subtitel = "Lennert's car is finally done!",
                 beschrijving = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus, enim eget gravida " +
                         "eleifend, enim nisl tempor sem, quis tempor libero quam eu nunc. Integer a egestas nibh. " +
@@ -233,7 +233,7 @@ class FavorietenlijstFragment : Fragment() {
             ),
             Meeting(
                 meetingId = "5bbd254ba1468a0013f104c6",
-                titel = "Meet the 106",
+                titel = "Meet the 106 F",
                 subtitel = "Lennert's car is finally done!",
                 beschrijving = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus, enim eget gravida " +
                         "eleifend, enim nisl tempor sem, quis tempor libero quam eu nunc. Integer a egestas nibh. " +
