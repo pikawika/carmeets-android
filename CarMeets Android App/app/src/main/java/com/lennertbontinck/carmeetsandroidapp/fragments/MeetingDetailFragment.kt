@@ -13,35 +13,37 @@ import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.DateUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
-import kotlinx.android.synthetic.main.fragment_meetingdetail.*
 import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
 
 /**
  * Een [Fragment] die de details van een meeting laat zien.
  *
- * Gebruik [MeetingDetailFragment.newInstance] om een [ARG_MEETING_TAG] mee te geven (welke meeting het is).
+ * Gebruik [MeetingDetailFragment.newInstance] om een parcable [ARG_MEETING_TAG] mee te geven (welke meeting het is).
  */
 class MeetingDetailFragment : Fragment() {
 
+    /**
+     * De [Meeting] die in deze detail pagina weergegeven wordt
+     */
+    //globaal mits in functions button onCreateView mogelijks willen te gebruiken
     private var meeting: Meeting? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        meeting = arguments?.getParcelable(ARG_MEETING_TAG)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val fragment = inflater.inflate(R.layout.fragment_meetingdetail, container, false)
 
-        //set action bar and bottom nav bar
+        //meeting uit companion halen halen
+        meeting = arguments?.getParcelable(ARG_MEETING_TAG)
+
+        //Action bar en bottombar
         var parentActivity = (activity as AppCompatActivity)
 
-        //fragment gegevens instellen
-        if (meeting != null) {
-            LayoutUtil.setActionBar(parentActivity, meeting!!.titel, meeting!!.subtitel)
+        //shared layout instellen
+        LayoutUtil.clearActionBarOptions(parentActivity)
 
-            LayoutUtil.hideListLayoutOpties(parentActivity)
+        //fragment gegevens instellen indien niet null, anders error tonen
+        if (meeting != null) {
+            //shared layout instellen
+            LayoutUtil.setActionBar(parentActivity, meeting!!.titel, meeting!!.subtitel)
 
             Glide.with(parentActivity).load(IMG_URL_BACKEND + meeting!!.afbeeldingNaam).into(fragment.image_meetingdetail_header)
 
@@ -54,15 +56,24 @@ class MeetingDetailFragment : Fragment() {
             fragment.textView_meetingdetail_datemonth.text = DateUtil.getShortMonthName(meeting!!.datum)
 
         } else {
+            //shared layout instellen
             LayoutUtil.setActionBar(parentActivity, "ERROR", "Meeting niet gevonden")
         }
 
-        setListeners(fragment)
+        //listeners instellen voor de knoppen etc
+        configureButtons(fragment)
 
         return fragment
     }
 
-    fun setListeners(fragment: View) {
+    /**
+     * Stelt de knoppen onderaan de meeting detail pagina in.
+     *
+     * Toont enkel de knoppen die van toepassing zijn (velden die meegegeven zijn met meeting)
+     *
+     * Voorziet listeners voor onlick van de knoppen te verwerken.
+     */
+    fun configureButtons(fragment: View) {
         fragment.button_meetingdetail_notificatie.setOnClickListener {
             MessageUtil.toonToast(requireContext(), "notificatie")
         }

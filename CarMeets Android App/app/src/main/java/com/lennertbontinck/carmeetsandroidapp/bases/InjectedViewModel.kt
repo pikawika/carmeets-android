@@ -8,12 +8,14 @@ import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 
 /**
  * Een implementeerbare basis [ViewModel] klasse voor viewmodels die injectie nodig hebben via dagger.
+ *
+ * Er zal adhv het viewmodel type de juiste injectie voorzien worden
+ *
+ * momenteel compatibel met: [MeetingViewModel]
  */
 abstract class InjectedViewModel : ViewModel() {
     /**
-     * An MeetingViewModelComponent is required to do the actual injecting.
-     * Every Component has a default builder to which you can add all
-     * modules that will be needed for the injection.
+     * Er is een instance nodig van de dagger [MeetingViewModelComponent] om de injectie mee uit te voeren
      */
     private val meetingInjector: MeetingViewModelComponent = DaggerMeetingViewModelComponent
         .builder()
@@ -21,17 +23,14 @@ abstract class InjectedViewModel : ViewModel() {
         .build()
 
     /**
-     * Perform the injection when the ViewModel is created
+     * Injecteren zodra de viewmodel aangemaakt wordt
      */
     init {
         inject()
     }
 
     /**
-     * Injects the required dependencies.
-     * We need the 'when(this)' construct for each new ViewModel as the 'this' reference should
-     * refer to an instance of that specific ViewModel.
-     * Just injecting into a generic InjectedViewModel is not specific enough for Dagger.
+     * Injecteren adhvd de reeds aangemaakte dagger instantie van de klasse die de [InjectedViewModel] overerft.
      */
     private fun inject() {
         when (this) {

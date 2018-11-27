@@ -9,34 +9,6 @@ import kotlinx.android.synthetic.main.activity_main.*
  * Een util om je te helpen met het instellen van de *layout*
  */
 object LayoutUtil {
-
-    /**
-     * Stelt de actionbar zijn titel en subtitel in, of de listlayoutopties al dan niet zichtbaar zijn en stel de selected bottomnav in
-     *
-     * @param[parentActivity] De parentactivity waarin de actionbar zicht bevind. Required of type AppCompatActivity
-     *
-     * @param[titel] De titel die in de actionbar moet komen. Required of type String
-     *
-     * @param[subtitel] De titel die in de actionbar moet komen. Required of type String
-     *
-     * @param[listLayoutOptiesVisible] Of layoutopties voor de lijst al dan niet moeten weergegeven worden. Required of type Boolean
-     *
-     * @param[bottomNavId] De id van het menuitem dat geselecteerd moet zijn in de bottomnavigation. Required of type Int
-     *
-     */
-    @JvmStatic
-    fun setMainLayout(parentActivity: AppCompatActivity, titel : String, subtitel : String, listLayoutOptiesVisible: Boolean, bottomNavId: Int) {
-        parentActivity.supportActionBar?.title =  titel
-        parentActivity.supportActionBar?.subtitle = subtitel
-
-        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_klein)?.isVisible = listLayoutOptiesVisible
-        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_groot)?.isVisible = listLayoutOptiesVisible
-
-        if (parentActivity.menu_main_bottomnavigation.selectedItemId != bottomNavId) {
-            parentActivity.menu_main_bottomnavigation.selectedItemId = bottomNavId
-        }
-    }
-
     /**
      * Stelt de actionbar zijn titel en subtitel in
      *
@@ -53,14 +25,35 @@ object LayoutUtil {
         parentActivity.supportActionBar?.subtitle = subtitel
     }
 
+    /**
+     * Stelt de bottom navigation in op het juiste item
+     *
+     * @param[parentActivity] De parentactivity waarin de actionbar zicht bevind. Required of type AppCompatActivity
+     *
+     * @param[bottomNavId] De id van het menuitem dat geselecteerd moet zijn in de bottomnavigation. Required of type Int
+     *
+     */
     @JvmStatic
-    fun hideListLayoutOpties(parentActivity: AppCompatActivity) {
+    fun setBottomNavigation(parentActivity: AppCompatActivity, bottomNavId: Int) {
+        if (parentActivity.menu_main_bottomnavigation.selectedItemId != bottomNavId) {
+            parentActivity.menu_main_bottomnavigation.selectedItemId = bottomNavId
+        }
+    }
+
+    /**
+     * zet alle toolbar optionsmenu items op visble false
+     */
+    @JvmStatic
+    fun clearActionBarOptions(parentActivity: AppCompatActivity) {
         parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_klein)?.isVisible = false
         parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_groot)?.isVisible = false
     }
 
+    /**
+     * zet de toolbar options menu items met betrekking tot de weergave opties van de lijst op visble true
+     */
     @JvmStatic
-    fun showListLayoutOpties(parentActivity: AppCompatActivity, titel : String, subtitel : String) {
+    fun showListLayoutOpties(parentActivity: AppCompatActivity) {
         parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_klein)?.isVisible = true
         parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_groot)?.isVisible = true
     }

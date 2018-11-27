@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 
 /**
- * Een [Fragment] die een placeholder toont met het carmeets logo en een tekst rond het project.
+ * Een [Fragment] die als *placeholder* gebruikt kan worden.
+ *
+ * Toont het carmeets logo met de tekst over het ontstaan van de app
  */
 class LogoFragment : Fragment() {
 

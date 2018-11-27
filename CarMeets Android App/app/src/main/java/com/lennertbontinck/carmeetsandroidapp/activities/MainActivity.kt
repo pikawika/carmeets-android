@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity() {
 
+    //veiwmodel var instellen zodat deze doorheen de mainactivity aanspreekbaar is
     private lateinit var meetingViewModel: MeetingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //de viewmodel eenmalig instellen mits die meermalig in activty gebruikt zal worden
         meetingViewModel = ViewModelProviders.of(this).get(MeetingViewModel::class.java)
 
         //supportbar instellen zodat hij toolbar gebruikt
@@ -54,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         //listener op de backstack voor
         supportFragmentManager.addOnBackStackChangedListener { onBackStackChangedListener() }
 
-        //listener wanneer back button uit de toolbar -> zelfde als hardware back button
+        //listener wanneer back button uit de toolbar -> zelfde functie als hardware back button
         menu_main_toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -112,14 +114,23 @@ class MainActivity : AppCompatActivity() {
         if (supportFragmentManager.backStackEntryCount == 0) finish()
     }
 
+    /**
+     * *POC* functie dat toont dat je een onclick van notificatiebel kan vastleggen en dat je het aantal kan aanpassen.
+     *
+     * Verhoogt het aantal naast het notificatie icoon met 1 per klik.
+     */
     private fun notificatiesClicked() {
-        //POC dat je aantal kan aanpassen, +1 op click
         val notificatieAantal = menu_main_toolbar.menu.findItem(R.id.nav_notificaties)
             ?.actionView?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
 
         notificatieAantal?.text = (notificatieAantal?.text.toString().toInt() + 1).toString()
     }
 
+    /**
+     * methode voor de *backstack* changes in de gaten te houden.
+     *
+     * zorgt er voor dat de back toest verdwijnd zodra op back geklikt wordt
+     */
     private fun onBackStackChangedListener() {
         //indien je op initieel fragment zit geen back knop tonen
         if (supportFragmentManager.backStackEntryCount <= 1) {
@@ -127,13 +138,18 @@ class MainActivity : AppCompatActivity() {
         } else supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    /**
+     * methode voor de *bottom navigation* in de gaten te houden.
+     *
+     * zorgt er voor dat bij het selecteren van een bottom navigation item gecontroleerd wordt of
+     */
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         //indien zelfde nav item geselecteerd als het reeds is, doe niets.
         //vermijd loops en spam clicks
         if (FragmentUtil.checkFragmentEqualsNavItem(this, item, supportFragmentManager)) return@OnNavigationItemSelectedListener true
 
         //afhankelijk van geselecteerde nav item actie uitvoeren
-        when (item?.itemId) {
+        when (item.itemId) {
             R.id.nav_meetings -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
