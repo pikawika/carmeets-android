@@ -1,5 +1,6 @@
 package com.lennertbontinck.carmeetsandroidapp.fragments
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -53,8 +54,14 @@ class MeetinglijstFragment : Fragment() {
                 .commit()
         }
 
+        val adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, lijstDesgin, isTablet)
+
+        meetings.observe(this, Observer {
+            adapter.notifyDataSetChanged()
+        })
+
         //recyclerview vullen
-        rootView.recyclerview_meetinglijst.adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, lijstDesgin, isTablet)
+        rootView.recyclerview_meetinglijst.adapter = adapter
 
         return rootView
     }

@@ -29,6 +29,7 @@ class MeetingViewModel() : InjectedViewModel() {
     private var subscription: Disposable
 
     init {
+        //initieel vullen met een lege lijst zodat dit niet nul os
         meetingsLijst.value = emptyList()
         subscription = carmeetsApi.getAllMeetings()
             //we tell it to fetch the data on background by
