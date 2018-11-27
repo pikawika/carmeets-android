@@ -52,4 +52,16 @@ object LayoutUtil {
         parentActivity.supportActionBar?.title =  titel
         parentActivity.supportActionBar?.subtitle = subtitel
     }
+
+    @JvmStatic
+    fun hideListLayoutOpties(parentActivity: AppCompatActivity) {
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_klein)?.isVisible = false
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_groot)?.isVisible = false
+    }
+
+    @JvmStatic
+    fun showListLayoutOpties(parentActivity: AppCompatActivity, titel : String, subtitel : String) {
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_klein)?.isVisible = true
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_groot)?.isVisible = true
+    }
 }

@@ -1,5 +1,6 @@
 package com.lennertbontinck.carmeetsandroidapp.activities
 
+import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -14,6 +15,7 @@ import com.lennertbontinck.carmeetsandroidapp.fragments.FavorietenlijstFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglijstFragment
 import com.lennertbontinck.carmeetsandroidapp.utils.FragmentUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -21,10 +23,14 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var meetingViewModel: MeetingViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         //bij het laden van de app de mainactivity instellen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        meetingViewModel = ViewModelProviders.of(this).get(MeetingViewModel::class.java)
 
         //supportbar instellen zodat hij toolbar gebruikt
         setSupportActionBar(menu_main_toolbar)
@@ -34,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         //initieel wordt meetinglijst weergegeven
         supportFragmentManager.beginTransaction()
-            .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment.newInstance(LijstDesignEnum.KLEIN))
+            .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
             .addToBackStack(getString(R.string.fragtag_meetinglijst))
             .commit()
     }
@@ -82,13 +88,13 @@ class MainActivity : AppCompatActivity() {
                 return super.onOptionsItemSelected(item)
             }
 
-            R.id.ab_opties_groot -> {
-                setLayoutLijstDesgin(LijstDesignEnum.GROOT)
+            R.id.ab_opties_klein -> {
+                meetingViewModel.setLijstDesign(LijstDesignEnum.KLEIN)
                 return super.onOptionsItemSelected(item)
             }
 
-            R.id.ab_opties_klein -> {
-                setLayoutLijstDesgin(LijstDesignEnum.KLEIN)
+            R.id.ab_opties_groot -> {
+                meetingViewModel.setLijstDesign(LijstDesignEnum.GROOT)
                 return super.onOptionsItemSelected(item)
             }
 
@@ -114,32 +120,6 @@ class MainActivity : AppCompatActivity() {
         notificatieAantal?.text = (notificatieAantal?.text.toString().toInt() + 1).toString()
     }
 
-    private fun setLayoutLijstDesgin(lijstDesginEnum: LijstDesignEnum) {
-        //huidige item in de backstack zijn fragtag
-        var huidigeFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
-
-        if (huidigeFragTag != null && huidigeFragTag != "") {
-            //afhankelijk van op welke fragment je zit de layout opnieuw laden met nieuwe layoutdesign
-            //moet naar backstack anders gaat hij op back press de fragment laten staan
-            when (huidigeFragTag) {
-                getString(R.string.fragtag_favorietenlijst) -> {
-                    var fragment = FavorietenlijstFragment.newInstance(lijstDesginEnum)
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame_main_fragmentcontainer, fragment)
-                        .addToBackStack(getString(R.string.fragtag_favorietenlijst))
-                        .commit()
-                }
-                getString(R.string.fragtag_meetinglijst) -> {
-                    var fragment = MeetinglijstFragment.newInstance(lijstDesginEnum)
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame_main_fragmentcontainer, fragment)
-                        .addToBackStack(getString(R.string.fragtag_meetinglijst))
-                        .commit()
-                }
-            }
-        }
-    }
-
     private fun onBackStackChangedListener() {
         //indien je op initieel fragment zit geen back knop tonen
         if (supportFragmentManager.backStackEntryCount <= 1) {
@@ -156,14 +136,14 @@ class MainActivity : AppCompatActivity() {
         when (item?.itemId) {
             R.id.nav_meetings -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment.newInstance(LijstDesignEnum.KLEIN))
+                    .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
                     .addToBackStack(getString(R.string.fragtag_meetinglijst))
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_favorieten -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame_main_fragmentcontainer, FavorietenlijstFragment.newInstance(LijstDesignEnum.KLEIN))
+                    .replace(R.id.frame_main_fragmentcontainer, FavorietenlijstFragment())
                     .addToBackStack(getString(R.string.fragtag_favorietenlijst))
                     .commit()
                 return@OnNavigationItemSelectedListener true

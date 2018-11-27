@@ -2,6 +2,7 @@ package com.lennertbontinck.carmeetsandroidapp.viewmodels
 
 import android.arch.lifecycle.MutableLiveData
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
+import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,6 +16,8 @@ import javax.inject.Inject
 class MeetingViewModel() : InjectedViewModel() {
 
     private val meetingsLijst = MutableLiveData<List<Meeting>>()
+
+    private val lijstDesign = MutableLiveData<LijstDesignEnum>()
 
     /**
      * The instance of the MetarApi class
@@ -31,6 +34,8 @@ class MeetingViewModel() : InjectedViewModel() {
     init {
         //initieel vullen met een lege lijst zodat dit niet nul os
         meetingsLijst.value = emptyList()
+        //initieel is layout klein
+        lijstDesign.value = LijstDesignEnum.KLEIN
         subscription = carmeetsApi.getAllMeetings()
             //we tell it to fetch the data on background by
             .subscribeOn(Schedulers.io())
@@ -74,6 +79,14 @@ class MeetingViewModel() : InjectedViewModel() {
 
     fun getMeetings(): MutableLiveData<List<Meeting>> {
         return meetingsLijst
+    }
+
+    fun getLijstDesgin(): MutableLiveData<LijstDesignEnum> {
+        return lijstDesign
+    }
+
+    fun setLijstDesign(lijstDesignEnum: LijstDesignEnum) {
+        lijstDesign.value = lijstDesignEnum
     }
 
 }

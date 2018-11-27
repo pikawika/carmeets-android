@@ -41,6 +41,8 @@ class MeetingDetailFragment : Fragment() {
         if (meeting != null) {
             LayoutUtil.setActionBar(parentActivity, meeting!!.titel, meeting!!.subtitel)
 
+            LayoutUtil.hideListLayoutOpties(parentActivity)
+
             Glide.with(parentActivity).load(IMG_URL_BACKEND + meeting!!.afbeeldingNaam).into(fragment.image_meetingdetail_header)
 
             fragment.text_meetingdetail_titel.text = meeting!!.titel

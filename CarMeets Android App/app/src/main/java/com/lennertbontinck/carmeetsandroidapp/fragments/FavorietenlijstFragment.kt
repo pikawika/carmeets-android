@@ -32,7 +32,7 @@ class FavorietenlijstFragment : Fragment() {
     /**
      * The [MeetingViewModel] we will use to display the data
      */
-    private lateinit var viewModel: MeetingViewModel
+    private lateinit var meetingViewModel: MeetingViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_meetinglijst, container, false)
@@ -42,13 +42,13 @@ class FavorietenlijstFragment : Fragment() {
         LayoutUtil.setMainLayout(parentActivity, getString(R.string.ab_favorieten_titel), getString(R.string.ab_favorieten_subtitel), true, R.id.nav_favorieten)
 
         //viewmodel vullen
-        viewModel = ViewModelProviders.of(requireActivity()).get(MeetingViewModel::class.java)
+        meetingViewModel = ViewModelProviders.of(requireActivity()).get(MeetingViewModel::class.java)
 
         //lijst vullen met meetings
-        val meetings = viewModel.getMeetings()
+        val meetings = meetingViewModel.getMeetings()
 
         //haal weergave uit companion
-        var lijstDesgin = arguments!!.getSerializable("lijstDesgin") as LijstDesignEnum
+        var lijstDesgin = meetingViewModel.getLijstDesgin()
 
         //indien een een detailcontainer is, is het een tablet en wordt er in die container een placeholder gezet
         if (rootView.frame_meetinglijst_meetingdetailcontainer != null) {
@@ -65,21 +65,13 @@ class FavorietenlijstFragment : Fragment() {
             adapter.notifyDataSetChanged()
         })
 
+        lijstDesgin.observe(this, Observer {
+            rootView.recyclerview_meetinglijst.adapter = adapter
+        })
+
         //recyclerview vullen
         rootView.recyclerview_meetinglijst.adapter = adapter
 
         return rootView
     }
-
-    companion object {
-        fun newInstance(designEnum: LijstDesignEnum): FavorietenlijstFragment {
-            //bij he aanmaken van de fragment wordt een param meegegeven voor de layout van de lijst
-            val args = Bundle()
-            args.putSerializable("lijstDesgin", designEnum)
-            val fragment = FavorietenlijstFragment()
-            fragment.arguments = args
-            return fragment
-        }
-    }
-
 }

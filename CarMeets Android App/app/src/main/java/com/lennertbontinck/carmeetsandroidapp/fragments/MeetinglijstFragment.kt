@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +28,7 @@ class MeetinglijstFragment : Fragment() {
 
     private var isTablet: Boolean = false
 
-    private lateinit var viewModel: MeetingViewModel
+    private lateinit var meetingViewModel: MeetingViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_meetinglijst, container, false)
@@ -37,13 +38,13 @@ class MeetinglijstFragment : Fragment() {
         LayoutUtil.setMainLayout(parentActivity, getString(R.string.ab_meetings_titel), getString(R.string.ab_meetings_subtitel), true, R.id.nav_meetings)
 
         //viewmodel vullen
-        viewModel = ViewModelProviders.of(requireActivity()).get(MeetingViewModel::class.java)
+        meetingViewModel = ViewModelProviders.of(requireActivity()).get(MeetingViewModel::class.java)
 
         //lijst vullen met meetings
-        val meetings = viewModel.getMeetings()
+        val meetings = meetingViewModel.getMeetings()
 
         //haal weergave uit companion
-        var lijstDesgin = arguments!!.getSerializable("lijstDesgin") as LijstDesignEnum
+        var lijstDesgin = meetingViewModel.getLijstDesgin()
 
         //indien een een detailcontainer is, is het een tablet en wordt er in die container een placeholder gezet
         if (rootView.frame_meetinglijst_meetingdetailcontainer != null) {
@@ -60,21 +61,13 @@ class MeetinglijstFragment : Fragment() {
             adapter.notifyDataSetChanged()
         })
 
+        lijstDesgin.observe(this, Observer {
+            rootView.recyclerview_meetinglijst.adapter = adapter
+        })
+
         //recyclerview vullen
         rootView.recyclerview_meetinglijst.adapter = adapter
 
         return rootView
     }
-
-    companion object {
-        fun newInstance(designEnum: LijstDesignEnum): MeetinglijstFragment {
-            //bij he aanmaken van de fragment wordt een param meegegeven voor de layout van de lijst
-            val args = Bundle()
-            args.putSerializable("lijstDesgin", designEnum)
-            val fragment = MeetinglijstFragment()
-            fragment.arguments = args
-            return fragment
-        }
-    }
-
 }

@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,7 @@ import kotlinx.android.synthetic.main.item_meeting_klein.view.*
  * @param[isTablet] Of de layout al dan niet tablet is (TwoPane). Required of type Boolean
  */
 class MeetingAdapter(
-    private val parentActivity: AppCompatActivity, private val lijst: MutableLiveData<List<Meeting>>, private val lijstDesginEnum: LijstDesignEnum, val isTablet : Boolean
+    private val parentActivity: AppCompatActivity, private val lijst: MutableLiveData<List<Meeting>>, private val lijstDesginEnum: MutableLiveData<LijstDesignEnum>, val isTablet : Boolean
 ) :
     RecyclerView.Adapter<MeetingAdapter.ViewHolder>() {
 
@@ -67,7 +68,7 @@ class MeetingAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //Stelt de juiste lijstdesign in
         var view = LayoutInflater.from(parent.context)
-            .inflate(lijstDesginEnum.type, parent, false)
+            .inflate(lijstDesginEnum.value!!.layoutId, parent, false)
 
         return ViewHolder(view)
     }
