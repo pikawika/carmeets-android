@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.constants.IMG_URL_BACKEND
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.DateUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
@@ -40,7 +41,7 @@ class MeetingDetailFragment : Fragment() {
         if (meeting != null) {
             LayoutUtil.setActionBar(parentActivity, meeting!!.titel, meeting!!.subtitel)
 
-            Glide.with(parentActivity).load(meeting!!.afbeeldingNaam).into(fragment.image_meetingdetail_header)
+            Glide.with(parentActivity).load(IMG_URL_BACKEND + meeting!!.afbeeldingNaam).into(fragment.image_meetingdetail_header)
 
             fragment.text_meetingdetail_titel.text = meeting!!.titel
             fragment.text_meetingdetail_subtitel.text = meeting!!.subtitel

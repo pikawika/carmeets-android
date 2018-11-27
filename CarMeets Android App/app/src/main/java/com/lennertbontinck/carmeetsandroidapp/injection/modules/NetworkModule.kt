@@ -1,7 +1,7 @@
 package com.lennertbontinck.carmeetsandroidapp.injection.modules
 
 import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND
-import com.lennertbontinck.carmeetsandroidapp.network.CarmeetsApi
+import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -11,6 +11,11 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.squareup.moshi.Rfc3339DateJsonAdapter
+import java.util.*
+
 
 /**
  * Module which provides all required dependencies for the network.
@@ -85,10 +90,14 @@ object NetworkModule {
      * Currently we choose to use a MoshiConverterFactory,
      * but this choice can easily be changed without needing any further changes.
      */
+    val moshi = Moshi.Builder()
+        .add(Date::class.java, Rfc3339DateJsonAdapter().nullSafe())
+        .build()
+
     @Provides
     @Singleton
     internal fun provideJSONConverter(): retrofit2.Converter.Factory {
-        return MoshiConverterFactory.create()
+        return MoshiConverterFactory.create(moshi)
     }
 
     /**

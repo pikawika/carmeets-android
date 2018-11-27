@@ -1,5 +1,6 @@
 package com.lennertbontinck.carmeetsandroidapp.adapters
 
+import android.arch.lifecycle.MutableLiveData
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
@@ -10,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.constants.IMG_URL_BACKEND
 import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
@@ -20,14 +22,14 @@ import kotlinx.android.synthetic.main.item_meeting_klein.view.*
  *
  * @param[parentActivity] De parentactivity waarin de supportfragmentmanager zit en dat gebruikt wordt voor glide. Required of type AppCompatActivity
  *
- * @param[lijst] De lijst van meetings die de adapter moet verwerken. Required of type List<Meeting>
+ * @param[lijst] De lijst van meetings die de adapter moet verwerken. Required of type MutableLiveData<List<Meeting>>
  *
  * @param[lijstDesginEnum] De stijl waarin de lijst weergegeven moet worden. Required of enum type LijstDesignEnum
  *
  * @param[isTablet] Of de layout al dan niet tablet is (TwoPane). Required of type Boolean
  */
 class MeetingAdapter(
-    private val parentActivity: AppCompatActivity, private val lijst: List<Meeting>, private val lijstDesginEnum: LijstDesignEnum, val isTablet : Boolean
+    private val parentActivity: AppCompatActivity, private val lijst: MutableLiveData<List<Meeting>>, private val lijstDesginEnum: LijstDesignEnum, val isTablet : Boolean
 ) :
     RecyclerView.Adapter<MeetingAdapter.ViewHolder>() {
 
@@ -71,8 +73,8 @@ class MeetingAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = lijst[position]
-        Glide.with(parentActivity).load(item.afbeeldingNaam).into(holder.afbeelding)
+        val item = lijst.value!![position]
+        Glide.with(parentActivity).load(IMG_URL_BACKEND + item.afbeeldingNaam).into(holder.afbeelding)
         holder.titel.text = item.titel
         holder.subtitel.text = item.subtitel
         holder.locatie.text = item.postcode + ", " + item.gemeente
@@ -84,7 +86,7 @@ class MeetingAdapter(
         }
     }
 
-    override fun getItemCount() = lijst.size
+    override fun getItemCount() = lijst.value!!.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val afbeelding: ImageView = view.image_itemmeeting

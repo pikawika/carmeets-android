@@ -36,6 +36,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$versions.suport"
     implementation "com.android.support.constraint:constraint-layout:$versions.constraint"
     implementation "com.android.support:design:$versions.suport"
+    implementation "com.android.support:support-v4:$versions.suport"
 
     //testen
     testImplementation "junit:junit:$versions.junit"
@@ -61,6 +62,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
     implementation "com.squareup.moshi:moshi-kotlin:$versions.moshi"
+    implementation "com.squareup.moshi:moshi-adapters:$versions.moshi"
 
     //OkHttp
     implementation "com.squareup.okhttp3:okhttp:$versions.okHttp"

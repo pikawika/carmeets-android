@@ -3,7 +3,7 @@ package com.lennertbontinck.carmeetsandroidapp.viewmodels
 import android.arch.lifecycle.MutableLiveData
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
-import com.lennertbontinck.carmeetsandroidapp.network.CarmeetsApi
+import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -24,16 +24,12 @@ class MeetingViewModel() : InjectedViewModel() {
     lateinit var carmeetsApi: CarmeetsApi
 
     /**
-     * Indicates whether the loading view should be displayed.
-     */
-    val loadingVisibility: MutableLiveData<Boolean> = MutableLiveData()
-
-    /**
      * Represents a disposable resources
      */
     private var subscription: Disposable
 
     init {
+        meetingsLijst.value = emptyList()
         subscription = carmeetsApi.getAllMeetings()
             //we tell it to fetch the data on background by
             .subscribeOn(Schedulers.io())

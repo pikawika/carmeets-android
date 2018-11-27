@@ -1,6 +1,7 @@
 package com.lennertbontinck.carmeetsandroidapp.models
 
 import android.os.Parcelable
+import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
@@ -10,18 +11,17 @@ import java.util.*
 @Parcelize
 data class Meeting(
     val meetingId: String,
-    val titel: String,
-    val subtitel: String,
-    val beschrijving: String,
-    val categorien: List<String>,
-    val gebruikerIdsGoing: List<String>,
-    val gebruikerIdsLiked: List<String>,
-    val datum: Date,
+    @field:Json(name = "name") val titel: String,
+    @field:Json(name = "shortDescription") val subtitel: String,
+    @field:Json(name = "fullDescription") val beschrijving: String,
+    @field:Json(name = "categories") val categorien: List<String>,
+    @field:Json(name = "listUsersGoing") val gebruikerIdsGoing: List<String>,
+    @field:Json(name = "listUsersLiked") val gebruikerIdsLiked: List<String>,
+    @field:Json(name = "date") val datum: Date,
     val gemeente: String,
     val postcode: String,
     val straatnaam: String,
     val straatnr: String,
-    //tijelijk int voor dummy data
-    val afbeeldingNaam: Int,
+    val afbeeldingNaam: String,
     val site: String
 ): Parcelable

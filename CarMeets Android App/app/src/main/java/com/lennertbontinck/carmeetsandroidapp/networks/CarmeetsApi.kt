@@ -1,4 +1,4 @@
-package com.lennertbontinck.carmeetsandroidapp.network
+package com.lennertbontinck.carmeetsandroidapp.networks
 
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import io.reactivex.Observable
