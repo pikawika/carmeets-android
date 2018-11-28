@@ -54,18 +54,18 @@ class MeetingDetailFragment : Fragment() {
         //fragment gegevens instellen indien niet null, anders error tonen
         if (meeting != null) {
             //shared layout instellen
-            LayoutUtil.setActionBar(parentActivity, meeting!!.titel, meeting!!.subtitel)
+            LayoutUtil.setActionBar(parentActivity, meeting!!.title, meeting!!.subtitle)
 
             Glide.with(parentActivity).load(IMG_URL_BACKEND + meeting!!.afbeeldingNaam)
                 .into(fragment.image_meetingdetail_header)
 
-            fragment.text_meetingdetail_titel.text = meeting!!.titel
-            fragment.text_meetingdetail_subtitel.text = meeting!!.subtitel
+            fragment.text_meetingdetail_titel.text = meeting!!.title
+            fragment.text_meetingdetail_subtitel.text = meeting!!.subtitle
 
-            fragment.text_meetingdetail_beschrijving.text = meeting!!.beschrijving
+            fragment.text_meetingdetail_beschrijving.text = meeting!!.description
 
-            fragment.text_meetingdetail_dateday.text = DateUtil.getDayInMonth(meeting!!.datum)
-            fragment.textView_meetingdetail_datemonth.text = DateUtil.getShortMonthName(meeting!!.datum)
+            fragment.text_meetingdetail_dateday.text = DateUtil.getDayInMonth(meeting!!.date)
+            fragment.textView_meetingdetail_datemonth.text = DateUtil.getShortMonthName(meeting!!.date)
 
         } else {
             //shared layout instellen

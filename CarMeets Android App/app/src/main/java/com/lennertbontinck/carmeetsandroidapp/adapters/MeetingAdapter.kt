@@ -79,8 +79,8 @@ class MeetingAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = lijst.value!![position]
         Glide.with(parentActivity).load(IMG_URL_BACKEND + item.afbeeldingNaam).into(holder.afbeelding)
-        holder.titel.text = item.titel
-        holder.subtitel.text = item.subtitel
+        holder.titel.text = item.title
+        holder.subtitel.text = item.subtitle
         val locatie = item.postcode + ", " + item.gemeente
         holder.locatie.text = locatie
 

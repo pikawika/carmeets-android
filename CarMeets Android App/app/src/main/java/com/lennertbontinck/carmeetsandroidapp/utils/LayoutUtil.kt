@@ -10,13 +10,13 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 object LayoutUtil {
     /**
-     * Stelt de actionbar zijn titel en subtitel in
+     * Stelt de actionbar zijn title en subtitle in
      *
      * @param[parentActivity] De parentactivity waarin de actionbar zicht bevind. Required of type AppCompatActivity
      *
-     * @param[titel] De titel die in de actionbar moet komen. Required of type String
+     * @param[titel] De title die in de actionbar moet komen. Required of type String
      *
-     * @param[subtitel] De titel die in de actionbar moet komen. Required of type String
+     * @param[subtitel] De title die in de actionbar moet komen. Required of type String
      *
      */
     @JvmStatic
