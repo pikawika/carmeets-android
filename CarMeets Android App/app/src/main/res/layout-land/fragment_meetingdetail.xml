@@ -126,7 +126,7 @@
             android:layout_height="wrap_content"
 
 
-            android:text="@string/item_meeting_titel"
+            android:text="@string/item_meeting_title"
             android:textSize="24sp"
             android:textColor="@android:color/black"
 
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
 
             android:textSize="18sp"
-            android:text="@string/item_meeting_subtitel"
+            android:text="@string/item_meeting_subtitle"
 
             app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_titel"
             app:layout_constraintStart_toStartOf="parent"
@@ -190,7 +190,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:text="@string/item_meeting_beschrijving"
+                    android:text="@string/item_meeting_description"
 
                     app:layout_constraintTop_toTopOf="parent"/>
 
@@ -201,7 +201,7 @@
 
                     android:drawableLeft="@drawable/ic_add_alert_pink_18dp"
                     android:drawableRight="@drawable/ic_add_alert_pink_18dp"
-                    android:text="@string/button_meeting_notificatie"
+                    android:text="@string/button_meeting_notification"
 
                     app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_beschrijving"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -235,7 +235,7 @@
 
                     android:drawableLeft="@drawable/ic_navigation_pink_18dp"
                     android:drawableRight="@drawable/ic_navigation_pink_18dp"
-                    android:text="@string/button_meeting_routebeschrijving"
+                    android:text="@string/button_meeting_route"
 
                     app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_agenda"
                     app:layout_constraintEnd_toEndOf="parent"

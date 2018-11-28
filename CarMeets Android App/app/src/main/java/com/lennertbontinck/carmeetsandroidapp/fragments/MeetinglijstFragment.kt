@@ -40,7 +40,7 @@ class MeetinglijstFragment : Fragment() {
 
         //shared layout instellen
         val parentActivity = (activity as AppCompatActivity)
-        LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_meetings_titel), getString(R.string.ab_meetings_subtitel))
+        LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_meetings_title), getString(R.string.ab_meetings_subtitle))
         LayoutUtil.clearActionBarOptions(parentActivity)
         LayoutUtil.showListLayoutOpties(parentActivity)
         LayoutUtil.setBottomNavigation(parentActivity, R.id.nav_meetings)

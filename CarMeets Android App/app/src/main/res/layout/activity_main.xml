@@ -25,8 +25,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
-            app:title="@string/ab_meetings_titel"
-            app:subtitle="@string/ab_meetings_subtitel"/>
+            app:title="@string/ab_meetings_title"
+            app:subtitle="@string/ab_meetings_subtitle"/>
 
     <FrameLayout
             android:id="@+id/frame_main_fragmentcontainer"

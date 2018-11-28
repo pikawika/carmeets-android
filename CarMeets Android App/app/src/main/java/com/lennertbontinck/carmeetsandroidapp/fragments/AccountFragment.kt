@@ -20,7 +20,7 @@ class AccountFragment : Fragment() {
 
         //shared layout instellen
         val parentActivity = (activity as AppCompatActivity)
-        LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_account_titel), getString(R.string.ab_account_subtitel))
+        LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_account_title), getString(R.string.ab_account_subtitle))
         LayoutUtil.clearActionBarOptions(parentActivity)
         LayoutUtil.setBottomNavigation(parentActivity, R.id.nav_account)
 

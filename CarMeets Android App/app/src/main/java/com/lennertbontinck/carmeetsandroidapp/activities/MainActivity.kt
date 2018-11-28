@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         //initieel wordt meetinglijst weergegeven
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
-            .addToBackStack(getString(R.string.fragtag_meetinglijst))
+            .addToBackStack(getString(R.string.fragtag_meetinglist))
             .commit()
     }
 
@@ -158,14 +158,14 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_meetings -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
-                    .addToBackStack(getString(R.string.fragtag_meetinglijst))
+                    .addToBackStack(getString(R.string.fragtag_meetinglist))
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_favorieten -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, FavorietenlijstFragment())
-                    .addToBackStack(getString(R.string.fragtag_favorietenlijst))
+                    .addToBackStack(getString(R.string.fragtag_favouriteslist))
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }

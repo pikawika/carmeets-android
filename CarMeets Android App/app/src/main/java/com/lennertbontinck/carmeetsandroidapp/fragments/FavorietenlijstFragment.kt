@@ -41,7 +41,7 @@ class FavorietenlijstFragment : Fragment() {
 
         //shared layout instellen
         val parentActivity = (activity as AppCompatActivity)
-        LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_favorieten_titel), getString(R.string.ab_favorieten_subtitel))
+        LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_favourites_title), getString(R.string.ab_favourite_subtitle))
         LayoutUtil.clearActionBarOptions(parentActivity)
         LayoutUtil.showListLayoutOpties(parentActivity)
         LayoutUtil.setBottomNavigation(parentActivity, R.id.nav_favorieten)

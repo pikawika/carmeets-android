@@ -4,48 +4,48 @@
 
     <!-- bottom navigation bar -->
     <string name="menu_home">Meetings</string>
-    <string name="menu_favorieten">Favorieten</string>
+    <string name="menu_favourites">Favorieten</string>
     <string name="menu_account">Account</string>
 
     <!-- toolbar -->
-    <string name="ab_meetings_titel">Meetings</string>
-    <string name="ab_meetings_subtitel">Alle meetings</string>
+    <string name="ab_meetings_title">Meetings</string>
+    <string name="ab_meetings_subtitle">Alle meetings</string>
 
-    <string name="ab_favorieten_titel">Favorieten</string>
-    <string name="ab_favorieten_subtitel">Liked en going meetings</string>
+    <string name="ab_favourites_title">Favorieten</string>
+    <string name="ab_favourite_subtitle">Liked en going meetings</string>
 
-    <string name="ab_account_titel">Account</string>
-    <string name="ab_account_subtitel">Instellingen aanpassen</string>
+    <string name="ab_account_title">Account</string>
+    <string name="ab_account_subtitle">Instellingen aanpassen</string>
 
-    <string name="ab_opties_groot">Klassieke weergave</string>
-    <string name="ab_opties_klein">Grotere weegave</string>
+    <string name="ab_options_listdesign_big">Klassieke weergave</string>
+    <string name="ab_options_listdesign_small">Grotere weegave</string>
 
     <!-- fragment tags -->
-    <string name="fragtag_meetinglijst">meetinglijst</string>
-    <string name="fragtag_favorietenlijst">favorietenlijst</string>
+    <string name="fragtag_meetinglist">meetinglijst</string>
+    <string name="fragtag_favouriteslist">favorietenlijst</string>
     <string name="fragtag_account">account</string>
     <string name="fragtag_meetingdetail">meetingdetail</string>
 
     <!-- meeting -->
-    <string name="item_meeting_titel">Android app celibration</string>
-    <string name="item_meeting_afbeelding">Afbeelding van meeting</string>
-    <string name="item_meeting_subtitel">Een android app vieren met een gepaste meeting</string>
-    <string name="item_meeting_locatie">9260, Schellebelle</string>
+    <string name="item_meeting_title">Android app celibration</string>
+    <string name="item_meeting_img_description">Afbeelding van meeting</string>
+    <string name="item_meeting_subtitle">Een android app vieren met een gepaste meeting</string>
+    <string name="item_meeting_location">9260, Schellebelle</string>
     <string name="item_meeting_dateday">23</string>
     <string name="item_meeting_datemonth">Dec</string>
-    <string name="item_meeting_beschrijving">Niet alleen is Lennert zijn GTI eindelijk af, ook zijn studies zijn bijna
+    <string name="item_meeting_description">Niet alleen is Lennert zijn GTI eindelijk af, ook zijn studies zijn bijna
         afgerond! Dankzij deze android app zou hij namelijk een stap dichter moeten komen naar zijn diploma! als dat
         maar goed afloopt.
     </string>
 
     <!-- meeting buttons -->
-    <string name="button_meeting_notificatie">Notificatie toevoegen</string>
+    <string name="button_meeting_notification">Notificatie toevoegen</string>
     <string name="button_meeting_agenda">Opslaan in kalender</string>
-    <string name="button_meeting_routebeschrijving">Routebeschrijving</string>
+    <string name="button_meeting_route">Routebeschrijving</string>
     <string name="button_meeting_website">Website</string>
 
     <!-- carmeets -->
-    <string name="about_carmeets_over">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik
+    <string name="about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik
         weer een kwaliteitsmeeting gemist had omdat ik niet wist wanneer deze plaatsvond. Daarom besloot ik, Lennert
         Bontinck, een app te maken waar je snel en eenvoudig alle meetings naar jouw smaak kan terugvinden en
         bewaren in je agenda.

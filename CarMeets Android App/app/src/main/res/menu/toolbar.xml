@@ -16,13 +16,13 @@
             app:showAsAction="always"/>
 
     <item
-            android:title="@string/ab_opties_groot"
+            android:title="@string/ab_options_listdesign_big"
             android:id="@+id/ab_opties_klein"
             android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="never"/>
 
     <item
-            android:title="@string/ab_opties_klein"
+            android:title="@string/ab_options_listdesign_small"
             android:id="@+id/ab_opties_groot"
             android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="never"/>
