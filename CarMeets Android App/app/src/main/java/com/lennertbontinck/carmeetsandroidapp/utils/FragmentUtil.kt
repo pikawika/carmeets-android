@@ -1,6 +1,7 @@
 package com.lennertbontinck.carmeetsandroidapp.utils
 
-import android.content.Context
+
+import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import android.support.v4.app.FragmentManager
 import android.view.MenuItem
 import com.lennertbontinck.carmeetsandroidapp.R
@@ -12,7 +13,7 @@ object FragmentUtil {
     /**
      * Kijkt of de net aangemaakte fragment van hetzelfde type fragment die wordt aangemaakt bij het klikken op het meegeven menuitem.
      *
-     * @param[context] De context. Required of type Context.
+     * Context word uit [MainActivity] gehaald.
      *
      * @param[item] De aangeklikte menu item. Required of type MenuItem.
      *
@@ -20,7 +21,9 @@ object FragmentUtil {
      *
      */
     @JvmStatic
-    fun checkFragmentEqualsNavItem(context: Context, item: MenuItem?, supportFragmentManager : FragmentManager) : Boolean {
+    fun checkFragmentEqualsNavItem(item: MenuItem?, supportFragmentManager : FragmentManager) : Boolean {
+        //Context ophalen
+        val context = MainActivity.getContext()
         //huidige item in de backstack zijn fragtag
         val currentFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
         if (currentFragTag != null && currentFragTag != "") {

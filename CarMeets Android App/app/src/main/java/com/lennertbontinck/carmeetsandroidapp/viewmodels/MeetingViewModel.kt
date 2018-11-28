@@ -5,6 +5,7 @@ import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
+import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -51,7 +52,6 @@ class MeetingViewModel : InjectedViewModel() {
                 { result -> onRetrieveMeetingsSuccess(result) },
                 { error -> onRetrieveError(error) }
             )
-
     }
 
 
@@ -61,7 +61,7 @@ class MeetingViewModel : InjectedViewModel() {
      */
     private fun onRetrieveError(error: Throwable) {
         //voorlopig harde crash, niet goed want throwt dus bij gewoon geen internet etc
-        throw Exception(error.message)
+        MessageUtil.showToast("Er ging iets mis met het ophalen van de data!")
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.lennertbontinck.carmeetsandroidapp.activities
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -30,6 +31,9 @@ class MainActivity : AppCompatActivity() {
         //bij het laden van de app de mainactivity instellen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //context instellen voor globaal gebruik
+        instance = this
 
         //de viewmodel eenmalig instellen mits die meermalig in activty gebruikt zal worden
         meetingViewModel = ViewModelProviders.of(this).get(MeetingViewModel::class.java)
@@ -86,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.nav_search -> {
-                MessageUtil.showToast(this, "Er is op zoeken geklikt")
+                MessageUtil.showToast("Er is op zoeken geklikt")
                 return super.onOptionsItemSelected(item)
             }
 
@@ -147,7 +151,6 @@ class MainActivity : AppCompatActivity() {
         //indien zelfde nav item geselecteerd als het reeds is, doe niets.
         //vermijd loops en spam clicks
         if (FragmentUtil.checkFragmentEqualsNavItem(
-                this,
                 item,
                 supportFragmentManager
             )
@@ -178,5 +181,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return@OnNavigationItemSelectedListener false
+    }
+
+    companion object {
+        //voor globaal gebruik van context
+        //handig om toasts van eender waar te doen en gebruik in andere utils
+        private var instance: MainActivity? = null
+
+        /**
+         * returnt de [Context] van de app zijn MainActivity
+         */
+        fun getContext(): Context {
+            return instance!!.applicationContext
+        }
     }
 }

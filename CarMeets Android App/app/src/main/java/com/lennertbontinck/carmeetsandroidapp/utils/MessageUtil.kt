@@ -1,16 +1,14 @@
 package com.lennertbontinck.carmeetsandroidapp.utils
 
-import android.content.Context
 import android.widget.Toast
+import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 
 /**
  * Een util om je te helpen met het weergeven van *berichten* aan de gebruiker.
  */
 object MessageUtil {
     /**
-     * Toont een toast op het scherm.
-     *
-     * @param[context] De context waarin de toast moet weergegeven worden. Required of type Context
+     * Toont een toast op het scherm. Context is voorzien door de [MainActivity]
      *
      * @param[bericht] Het bericht dat weergegeven moet worden. Required of type String
      *
@@ -18,7 +16,7 @@ object MessageUtil {
      *
      */
     @JvmStatic
-    fun showToast(context: Context, bericht: String, tijd: Int = Toast.LENGTH_LONG) {
-        Toast.makeText(context, bericht, tijd).show()
+    fun showToast(bericht: String, tijd: Int = Toast.LENGTH_LONG) {
+        Toast.makeText(MainActivity.getContext(), bericht, tijd).show()
     }
 }

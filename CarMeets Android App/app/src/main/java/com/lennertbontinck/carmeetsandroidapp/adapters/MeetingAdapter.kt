@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.constants.IMG_URL_BACKEND
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
@@ -70,7 +71,7 @@ class MeetingAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //Stelt de juiste lijstdesign in
-        val view = LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(MainActivity.getContext())
             .inflate(listDesignEnum.value!!.layoutId, parent, false)
 
         return ViewHolder(view)
