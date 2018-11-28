@@ -13,7 +13,7 @@ import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.adapters.MeetingAdapter
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
-import kotlinx.android.synthetic.main.fragment_meetinglijst.view.*
+import kotlinx.android.synthetic.main.fragment_meetinglist.view.*
 
 /**
  * Een [Fragment] die alle gelikete en going meetings van een gebruiker laat zien.
@@ -37,7 +37,7 @@ class FavorietenlijstFragment : Fragment() {
     private lateinit var meetingViewModel: MeetingViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val fragment = inflater.inflate(R.layout.fragment_meetinglijst, container, false)
+        val fragment = inflater.inflate(R.layout.fragment_meetinglist, container, false)
 
         //shared layout instellen
         val parentActivity = (activity as AppCompatActivity)

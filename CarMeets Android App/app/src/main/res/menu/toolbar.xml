@@ -6,7 +6,7 @@
             android:title="notificaties"
             android:id="@+id/nav_notificaties"
             android:icon="@drawable/ic_notifications_white_24dp"
-            app:actionLayout="@layout/partial_notificatiebel"
+            app:actionLayout="@layout/partial_notificationbell"
             app:showAsAction="always"/>
 
     <item

@@ -15,7 +15,7 @@ import com.lennertbontinck.carmeetsandroidapp.constants.IMG_URL_BACKEND
 import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
-import kotlinx.android.synthetic.main.item_meeting_klein.view.*
+import kotlinx.android.synthetic.main.item_meeting_small.view.*
 
 /**
  * De *adapter* voor een het vullen van een recyclerview met een meegegeven lijst van meetings ahdv een meegegeven stijl. Al dan niet een twopane design.

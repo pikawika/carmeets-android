@@ -67,10 +67,10 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.toolbar, menu)
 
         //listener voor het klikken op noticaties uit de actionbar
-        val notificaties = menu?.findItem(R.id.nav_notificaties)?.actionView
-        notificaties?.findViewById<ImageView>(R.id.image_partialnotificaties_bel)
+        val Notifications = menu?.findItem(R.id.nav_notificaties)?.actionView
+        Notifications?.findViewById<ImageView>(R.id.image_partialnotificaties_bel)
             ?.setOnClickListener { notificatiesClicked() }
-        notificaties?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
+        Notifications?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
             ?.setOnClickListener { notificatiesClicked() }
 
         return true
