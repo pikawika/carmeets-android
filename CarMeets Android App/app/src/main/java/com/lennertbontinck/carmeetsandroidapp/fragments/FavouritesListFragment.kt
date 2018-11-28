@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_meetinglist.view.*
  *
  * Maakt gebruik van de MVVM voor meetings op te halen en de geselecteerde lijstLayout te gebruiken.
  */
-class FavorietenlijstFragment : Fragment() {
+class FavouritesListFragment : Fragment() {
 
     /**
      * [Boolean] of het huidige device al dan niet een tablet is/ of al dan niet twopane design gebruikt moet worden.
@@ -55,7 +55,7 @@ class FavorietenlijstFragment : Fragment() {
 
         //haal weergave uit de viewmodel
         //We doen niet direct .value maar behouden het als mutueablelivedata mits we hier op willen op observen
-        val lijstDesgin = meetingViewModel.getLijstDesgin()
+        val listDesgin = meetingViewModel.getListDesgin()
 
         //Bepalen of er al dan niet een detailcontainer is
         //->indien deze er is weet men dat het over een tablet (twoPane) gaat
@@ -69,7 +69,7 @@ class FavorietenlijstFragment : Fragment() {
         }
 
         //adapter aanmaken
-        val adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, lijstDesgin, isTablet)
+        val adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, listDesgin, isTablet)
 
         //indien de meetinglijst veranderd moet de adapter opnieuw zijn cards genereren met nieuwe data
         meetings.observe(this, Observer {
@@ -79,7 +79,7 @@ class FavorietenlijstFragment : Fragment() {
         //indien lijstDesign veranderd moet de adapter opnieuw zijn cards genereren met nieuwe stijl
         //hier kan je momenteel enkel adapter opnieuw toekennen mits notifyDataSetChanged etc niet
         //      opnieuw inflate methode aanroept waar je itemstijl meegeeft
-        lijstDesgin.observe(this, Observer {
+        listDesgin.observe(this, Observer {
             fragment.recyclerview_meetinglijst.adapter = adapter
         })
 

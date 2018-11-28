@@ -18,7 +18,7 @@ object MessageUtil {
      *
      */
     @JvmStatic
-    fun toonToast(context: Context, bericht: String, tijd: Int = Toast.LENGTH_LONG) {
+    fun showToast(context: Context, bericht: String, tijd: Int = Toast.LENGTH_LONG) {
         Toast.makeText(context, bericht, tijd).show()
     }
 }

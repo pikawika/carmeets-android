@@ -9,10 +9,10 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.lennertbontinck.carmeetsandroidapp.R
-import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesignEnum
+import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
-import com.lennertbontinck.carmeetsandroidapp.fragments.FavorietenlijstFragment
-import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglijstFragment
+import com.lennertbontinck.carmeetsandroidapp.fragments.FavouritesListFragment
+import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglistFragment
 import com.lennertbontinck.carmeetsandroidapp.utils.FragmentUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         //initieel wordt meetinglijst weergegeven
         supportFragmentManager.beginTransaction()
-            .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
+            .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
             .addToBackStack(getString(R.string.fragtag_meetinglist))
             .commit()
     }
@@ -67,11 +67,11 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.toolbar, menu)
 
         //listener voor het klikken op noticaties uit de actionbar
-        val Notifications = menu?.findItem(R.id.nav_notificaties)?.actionView
-        Notifications?.findViewById<ImageView>(R.id.image_partialnotificaties_bel)
-            ?.setOnClickListener { notificatiesClicked() }
-        Notifications?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
-            ?.setOnClickListener { notificatiesClicked() }
+        val notifications = menu?.findItem(R.id.nav_notificaties)?.actionView
+        notifications?.findViewById<ImageView>(R.id.image_partialnotificaties_bel)
+            ?.setOnClickListener { notificationsClicked() }
+        notifications?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
+            ?.setOnClickListener { notificationsClicked() }
 
         return true
     }
@@ -81,22 +81,22 @@ class MainActivity : AppCompatActivity() {
         //dit id moet in theorie altijd ingevuld zijn want enkel dan weet je wat aangeduid en kan je bijhorende actie uitvoeren
         when (item?.itemId) {
             R.id.nav_notificaties -> {
-                notificatiesClicked()
+                notificationsClicked()
                 return super.onOptionsItemSelected(item)
             }
 
             R.id.nav_zoek -> {
-                MessageUtil.toonToast(this, "Er is op zoeken geklikt")
+                MessageUtil.showToast(this, "Er is op zoeken geklikt")
                 return super.onOptionsItemSelected(item)
             }
 
             R.id.ab_opties_klein -> {
-                meetingViewModel.setLijstDesign(LijstDesignEnum.KLEIN)
+                meetingViewModel.setListDesign(ListDesignEnum.SMALL)
                 return super.onOptionsItemSelected(item)
             }
 
             R.id.ab_opties_groot -> {
-                meetingViewModel.setLijstDesign(LijstDesignEnum.GROOT)
+                meetingViewModel.setListDesign(ListDesignEnum.BIG)
                 return super.onOptionsItemSelected(item)
             }
 
@@ -119,11 +119,11 @@ class MainActivity : AppCompatActivity() {
      *
      * Verhoogt het aantal naast het notificatie icoon met 1 per klik.
      */
-    private fun notificatiesClicked() {
-        val notificatieAantal = menu_main_toolbar.menu.findItem(R.id.nav_notificaties)
+    private fun notificationsClicked() {
+        val notificationAmount = menu_main_toolbar.menu.findItem(R.id.nav_notificaties)
             ?.actionView?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
 
-        notificatieAantal?.text = (notificatieAantal?.text.toString().toInt() + 1).toString()
+        notificationAmount?.text = (notificationAmount?.text.toString().toInt() + 1).toString()
     }
 
     /**
@@ -157,14 +157,14 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.nav_meetings -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
+                    .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
                     .addToBackStack(getString(R.string.fragtag_meetinglist))
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_favourites -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame_main_fragmentcontainer, FavorietenlijstFragment())
+                    .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
                     .addToBackStack(getString(R.string.fragtag_favouriteslist))
                     .commit()
                 return@OnNavigationItemSelectedListener true

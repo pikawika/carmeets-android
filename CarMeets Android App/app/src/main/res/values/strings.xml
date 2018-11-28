@@ -24,8 +24,8 @@
     <string name="ab_notifications">Notificaties</string>
 
     <!-- fragment tags -->
-    <string name="fragtag_meetinglist">meetinglijst</string>
-    <string name="fragtag_favouriteslist">favorietenlijst</string>
+    <string name="fragtag_meetinglist">meetinglist</string>
+    <string name="fragtag_favouriteslist">favouriteslist</string>
     <string name="fragtag_account">account</string>
     <string name="fragtag_meetingdetail">meetingdetail</string>
 

@@ -7,6 +7,6 @@ package com.lennertbontinck.carmeetsandroidapp.constants
  * */
 const val BASE_URL_BACKEND: String = "https://carmeets-backend.herokuapp.com/"
 /**
- * De url van de *CarMeets backend images*. Vervolg deze url met de bestandsnaam van de afbeelding.
+ * De url van de *CarMeets backend images*. Vervolg deze url met de bestandsnaam van de image.
  * */
 const val IMG_URL_BACKEND: String = "https://carmeets-backend.herokuapp.com/uploadImages/"

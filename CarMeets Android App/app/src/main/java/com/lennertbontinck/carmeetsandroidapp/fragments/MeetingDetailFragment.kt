@@ -87,19 +87,19 @@ class MeetingDetailFragment : Fragment() {
      */
     private fun configureButtons(fragment: View) {
         fragment.button_meetingdetail_notificatie.setOnClickListener {
-            MessageUtil.toonToast(requireContext(), "notificatie")
+            MessageUtil.showToast(requireContext(), "notificatie")
         }
 
         fragment.button_meetingdetail_agenda.setOnClickListener {
-            MessageUtil.toonToast(requireContext(), "agenda")
+            MessageUtil.showToast(requireContext(), "agenda")
         }
 
         fragment.button_meetingdetail_route.setOnClickListener {
-            MessageUtil.toonToast(requireContext(), "route")
+            MessageUtil.showToast(requireContext(), "route")
         }
 
         fragment.button_meetingdetail_website.setOnClickListener {
-            MessageUtil.toonToast(requireContext(), "website")
+            MessageUtil.showToast(requireContext(), "website")
         }
     }
 
