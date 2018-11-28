@@ -17,23 +17,18 @@ import java.util.*
 
 
 /**
- * Module which provides all required dependencies for the network.
+ * Dit [Object] is een dagger [Module] die alle nodige dependency voor de netwerkconnectie voorziet
  *
- * Object: Singleton Instance see [The Kotlin reference](https://kotlinlang.org/docs/reference/object-declarations.html)
- * Retrofit: Library used for REST connections. See [The Retrofit reference](https://square.github.io/retrofit/)
- * What is Dependency Injection? See this [video](https://www.youtube.com/watch?v=IKD2-MAkXyQ)
- *
- * Methods annotated with @Provides informs Dagger that this method can provide a certain dependency.
- * Methods annotated with @Singleton indicate that Dagger should only instantiate the dependency
- *  once and provide that some object on further requests.
+ * Alle functies in dit object zijn singletons aangezien dezelfde dependency opnieuw gebruikt moet worden voor volgende
+ * interacties.
  */
 @Module
 object NetworkModule {
 
 
     /**
-     * Provides the Metar Service implemenation
-     * @param retrofit the retrofit object used to instantiate the service
+     * Returnt de [CarmeetsApi] om met de Carmeets backend te communiceren
+     * @param retrofit het retrofit object dat gebruikt zal worden om de carmeets api te instantieren
      */
     @Provides
     @Singleton
@@ -43,14 +38,10 @@ object NetworkModule {
 
 
     /**
-     * Return the Retrofit object.
-     * To fully configure Retrofit we require a HTTP client (okHTTP),
-     * a converterFactory that can create a converter that parses JSON into model objects, and
-     * a callAdapterFactory that can create an Adapter that allows us to use RxJava
-     *  to handle async requests instead of the Calls that Retrofit provides itself.
-     *
-     * The function paramaters are interfaces, not the types of the specific kind of factories.
-     * This allows us to easily swap out different kind of factories.
+     * Returnt het [Retrofit] object dat voorzien is van
+     * een [OkHttpClient] om de effectieve connectie met de backend te doen (http requests)
+     * een [retrofit2.Converter.Factory] om de gereturnde json om te zetten naar een model object
+     * een [retrofit2.CallAdapter.Factory] om de management van de calls voor zich te nemen. (volgorde, executie en response handling)
      */
     @Provides
     @Singleton
@@ -66,15 +57,13 @@ object NetworkModule {
     }
 
     /**
-     * Returns the OkHttpClient.
-     * RetroFit uses OkHTTP by default and we normally don't have to add the client explicitly
-     * to the builder. We slightly modify the client however to intercept calls and log them
-     * for easier debugging.
+     * Return een [OkHttpClient] die momenteel de body logt voor debugging redenen
+     *
+     * Hier kan mogelijk later een methode voorzien worden om header te voorzien van token
      */
     @Provides
     @Singleton
     internal fun provideOkHttpClient(): OkHttpClient {
-        //To debug Retrofit/OkHttp we can intercept the calls and log them.
         val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY
         }
@@ -84,25 +73,27 @@ object NetworkModule {
         }.build()
     }
 
-    /**
-     * The return type specifies the Factory interface.
-     * Currently we choose to use a MoshiConverterFactory,
-     * but this choice can easily be changed without needing any further changes.
-     */
-    val moshi = Moshi.Builder()
-        .add(Date::class.java, Rfc3339DateJsonAdapter().nullSafe())
-        .build()
 
+
+
+    /**
+     * Returnt een [Moshi] object als [retrofit2.Converter.Factory] dat de json van de server omzet naar een model object.
+     *
+     * Is voorzien van een custom date parser.
+     *
+     * Meer info op [https://github.com/square/moshi/tree/master/adapters] (wordt door moshi aangeraden dus depricated?)
+     */
     @Provides
     @Singleton
     internal fun provideJSONConverter(): retrofit2.Converter.Factory {
+        val moshi = Moshi.Builder()
+            .add(Date::class.java, Rfc3339DateJsonAdapter().nullSafe())
+            .build()
         return MoshiConverterFactory.create(moshi)
     }
 
     /**
-     * Here the return type is the interface as well.
-     * We choose to create an RxJavaCallAdapterFactory, but changing this is easily done
-     * without requiring further changes.
+     * Return [retrofit2.CallAdapter.Factory] object als een [retrofit2.CallAdapter.Factory] dat de calls naar de api managed.
      */
     @Provides
     @Singleton
