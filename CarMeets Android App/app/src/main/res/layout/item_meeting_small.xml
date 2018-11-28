@@ -44,7 +44,7 @@
 
 
         <TextView
-                android:id="@+id/text_itemmeeting_titel"
+                android:id="@+id/text_itemmeeting_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
@@ -61,7 +61,7 @@
                 android:layout_marginTop="8dp"/>
 
         <TextView
-                android:id="@+id/text_itemmeeting_subtitel"
+                android:id="@+id/text_itemmeeting_subtitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
@@ -69,16 +69,16 @@
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline_itemmeetingklein_40percent_vertical"
                 app:layout_constraintStart_toEndOf="@+id/image_itemmeeting"
-                app:layout_constraintTop_toBottomOf="@+id/text_itemmeeting_titel"
+                app:layout_constraintTop_toBottomOf="@+id/text_itemmeeting_title"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/text_itemmeeting_locatie"
+                app:layout_constraintBottom_toTopOf="@+id/text_itemmeeting_location"
 
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="8dp" />
 
         <TextView
-                android:id="@+id/text_itemmeeting_locatie"
+                android:id="@+id/text_itemmeeting_location"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 

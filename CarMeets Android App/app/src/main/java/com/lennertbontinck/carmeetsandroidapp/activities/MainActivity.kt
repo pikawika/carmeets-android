@@ -68,9 +68,9 @@ class MainActivity : AppCompatActivity() {
 
         //listener voor het klikken op noticaties uit de actionbar
         val notifications = menu?.findItem(R.id.nav_notificaties)?.actionView
-        notifications?.findViewById<ImageView>(R.id.image_partialnotificaties_bel)
+        notifications?.findViewById<ImageView>(R.id.image_partialnotification_bell)
             ?.setOnClickListener { notificationsClicked() }
-        notifications?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
+        notifications?.findViewById<TextView>(R.id.text_partialnotification_amount)
             ?.setOnClickListener { notificationsClicked() }
 
         return true
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun notificationsClicked() {
         val notificationAmount = menu_main_toolbar.menu.findItem(R.id.nav_notificaties)
-            ?.actionView?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
+            ?.actionView?.findViewById<TextView>(R.id.text_partialnotification_amount)
 
         notificationAmount?.text = (notificationAmount?.text.toString().toInt() + 1).toString()
     }

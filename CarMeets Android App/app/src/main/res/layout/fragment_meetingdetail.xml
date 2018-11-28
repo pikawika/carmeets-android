@@ -120,7 +120,7 @@
 
 
     <TextView
-            android:id="@+id/text_meetingdetail_titel"
+            android:id="@+id/text_meetingdetail_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
@@ -138,14 +138,14 @@
             android:layout_marginEnd="8dp"/>
 
     <TextView
-            android:id="@+id/text_meetingdetail_subtitel"
+            android:id="@+id/text_meetingdetail_subtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
             android:textSize="18sp"
             android:text="@string/item_meeting_subtitle"
 
-            app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_titel"
+            app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/partial_meetingdetail_date"
 
@@ -153,7 +153,7 @@
             android:layout_marginEnd="8dp"/>
 
     <View
-            android:id="@+id/divider_meetingdetail_ondersubtitel"
+            android:id="@+id/divider_meetingdetail_undersubtitle"
             android:layout_width="0dp"
             android:layout_height="1dp"
 
@@ -161,7 +161,7 @@
             android:background="@android:color/darker_gray"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_subtitel"
+            app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_subtitle"
             app:layout_constraintEnd_toStartOf="@+id/partial_meetingdetail_date"
 
             android:layout_marginTop="8dp"
@@ -176,7 +176,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/partial_meetingdetail_date"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider_meetingdetail_ondersubtitel"
+            app:layout_constraintTop_toBottomOf="@+id/divider_meetingdetail_undersubtitle"
 
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
@@ -190,7 +190,7 @@
                 android:layout_height="match_parent">
 
             <TextView
-                    android:id="@+id/text_meetingdetail_beschrijving"
+                    android:id="@+id/text_meetingdetail_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
@@ -199,7 +199,7 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
-                    android:id="@+id/button_meetingdetail_notificatie"
+                    android:id="@+id/button_meetingdetail_notification"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
 
@@ -207,7 +207,7 @@
                     android:drawableRight="@drawable/ic_add_alert_pink_18dp"
                     android:text="@string/button_meeting_notification"
 
-                    app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_beschrijving"
+                    app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_description"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
 
@@ -224,7 +224,7 @@
                     android:drawableRight="@drawable/ic_add_agenda_pink_18dp"
                     android:text="@string/button_meeting_agenda"
 
-                    app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_notificatie"
+                    app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_notification"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
 

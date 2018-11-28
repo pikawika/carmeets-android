@@ -59,11 +59,11 @@ class MeetinglistFragment : Fragment() {
         //Bepalen of er al dan niet een detailcontainer is
         //->indien deze er is weet men dat het over een tablet (twoPane) gaat
         //->initieel vullen met ene placeholder logofragment om geen blake pagina te hebbenæ
-        if (fragment.frame_meetinglijst_meetingdetailcontainer != null) {
+        if (fragment.frame_meetinglist_meetingdetailcontainer != null) {
             isTablet = true
             parentActivity.supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.frame_meetinglijst_meetingdetailcontainer, LogoFragment())
+                .replace(R.id.frame_meetinglist_meetingdetailcontainer, LogoFragment())
                 .commit()
         }
 
@@ -79,11 +79,11 @@ class MeetinglistFragment : Fragment() {
         //hier kan je momenteel enkel adapter opnieuw toekennen mits notifyDataSetChanged etc niet
         //      opnieuw inflate methode aanroept waar je itemstijl meegeeft
         listDesgin.observe(this, Observer {
-            fragment.recyclerview_meetinglijst.adapter = adapter
+            fragment.recyclerview_meetinglist.adapter = adapter
         })
 
         //recyclerview vullen door adapter toe te kennen
-        fragment.recyclerview_meetinglijst.adapter = adapter
+        fragment.recyclerview_meetinglist.adapter = adapter
 
         return fragment
     }

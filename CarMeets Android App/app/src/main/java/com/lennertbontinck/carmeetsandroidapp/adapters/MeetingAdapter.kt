@@ -56,7 +56,7 @@ class MeetingAdapter(
             if (isTablet) {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.frame_meetinglijst_meetingdetailcontainer, detailFragment)
+                    .replace(R.id.frame_meetinglist_meetingdetailcontainer, detailFragment)
                     .commit()
             } else {
                 parentActivity.supportFragmentManager
@@ -95,8 +95,8 @@ class MeetingAdapter(
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView = view.image_itemmeeting
-        val title: TextView = view.text_itemmeeting_titel
-        val subtitle: TextView = view.text_itemmeeting_subtitel
-        val location: TextView = view.text_itemmeeting_locatie
+        val title: TextView = view.text_itemmeeting_title
+        val subtitle: TextView = view.text_itemmeeting_subtitle
+        val location: TextView = view.text_itemmeeting_location
     }
 }

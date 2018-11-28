@@ -59,10 +59,10 @@ class MeetingDetailFragment : Fragment() {
             Glide.with(parentActivity).load(IMG_URL_BACKEND + meeting!!.afbeeldingNaam)
                 .into(fragment.image_meetingdetail_header)
 
-            fragment.text_meetingdetail_titel.text = meeting!!.title
-            fragment.text_meetingdetail_subtitel.text = meeting!!.subtitle
+            fragment.text_meetingdetail_title.text = meeting!!.title
+            fragment.text_meetingdetail_subtitle.text = meeting!!.subtitle
 
-            fragment.text_meetingdetail_beschrijving.text = meeting!!.description
+            fragment.text_meetingdetail_description.text = meeting!!.description
 
             fragment.text_meetingdetail_dateday.text = DateUtil.getDayInMonth(meeting!!.date)
             fragment.textView_meetingdetail_datemonth.text = DateUtil.getShortMonthName(meeting!!.date)
@@ -86,7 +86,7 @@ class MeetingDetailFragment : Fragment() {
      * Voorziet listeners voor onlick van de knoppen te verwerken.
      */
     private fun configureButtons(fragment: View) {
-        fragment.button_meetingdetail_notificatie.setOnClickListener {
+        fragment.button_meetingdetail_notification.setOnClickListener {
             MessageUtil.showToast(requireContext(), "notificatie")
         }
 

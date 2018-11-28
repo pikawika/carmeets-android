@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
     <android.support.constraint.Guideline
-            android:id="@+id/guide_meetinglijst_45percent_vertical"
+            android:id="@+id/guide_meetinglist_45percent_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -18,7 +18,7 @@
             app:layout_constraintGuide_percent="0.45"/>
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview_meetinglijst"
+            android:id="@+id/recyclerview_meetinglist"
             android:layout_width="0dp"
             android:layout_height="match_parent"
 
@@ -28,18 +28,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guide_meetinglijst_45percent_vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guide_meetinglist_45percent_vertical"
 
             android:layout_marginEnd="8dp"/>
 
 
     <View
-            android:id="@+id/divider_meetinglijst_45percent"
+            android:id="@+id/divider_meetinglist_45percent"
             android:layout_width="2dp"
             android:layout_height="0dp"
             android:background="@android:color/darker_gray"
 
-            app:layout_constraintEnd_toStartOf="@+id/guide_meetinglijst_45percent_vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guide_meetinglist_45percent_vertical"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
 
@@ -47,14 +47,14 @@
             android:layout_marginBottom="8dp"/>
 
     <FrameLayout
-            android:id="@+id/frame_meetinglijst_meetingdetailcontainer"
+            android:id="@+id/frame_meetinglist_meetingdetailcontainer"
             android:layout_width="0dp"
             android:layout_height="match_parent"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/divider_meetinglijst_45percent"
+            app:layout_constraintStart_toStartOf="@+id/divider_meetinglist_45percent"
 
             android:layout_marginStart="8dp"/>
 </android.support.constraint.ConstraintLayout>

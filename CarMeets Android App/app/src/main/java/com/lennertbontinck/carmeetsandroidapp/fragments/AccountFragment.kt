@@ -25,7 +25,7 @@ class AccountFragment : Fragment() {
         LayoutUtil.setBottomNavigation(parentActivity, R.id.nav_account)
 
         //temp tekst als POC
-        fragment.text_account_temptekst.text = "hallo van account!"
+        fragment.text_account_temptext.text = "hallo van account!"
 
         return fragment
     }
