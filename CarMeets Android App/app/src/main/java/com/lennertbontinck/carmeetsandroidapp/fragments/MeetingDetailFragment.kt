@@ -1,6 +1,7 @@
 package com.lennertbontinck.carmeetsandroidapp.fragments
 
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.DateUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import kotlinx.android.synthetic.main.fragment_meetingdetail.*
 import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
 
 /**
@@ -39,6 +41,9 @@ class MeetingDetailFragment : Fragment() {
 
         //shared layout instellen
         LayoutUtil.clearActionBarOptions(parentActivity)
+
+        //fragment.scroll_meetingdetail_description.getLayoutParams().
+
 
         //fragment gegevens instellen indien niet null, anders error tonen
         if (meeting != null) {

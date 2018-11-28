@@ -28,6 +28,7 @@
 
     <!-- meeting -->
     <string name="item_meeting_titel">Android app celibration</string>
+    <string name="item_meeting_afbeelding">Afbeelding van meeting</string>
     <string name="item_meeting_subtitel">Een android app vieren met een gepaste meeting</string>
     <string name="item_meeting_locatie">9260, Schellebelle</string>
     <string name="item_meeting_dateday">23</string>
@@ -49,6 +50,5 @@
         Bontinck, een app te maken waar je snel en eenvoudig alle meetings naar jouw smaak kan terugvinden en
         bewaren in je agenda.
     </string>
-
 
 </resources>
