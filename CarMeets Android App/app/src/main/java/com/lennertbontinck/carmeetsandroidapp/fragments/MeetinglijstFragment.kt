@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.adapters.MeetingAdapter
-import com.lennertbontinck.carmeetsandroidapp.enums.LijstDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.fragment_meetinglijst.view.*
@@ -19,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_meetinglijst.view.*
 /**
  * Een [Fragment] die alle meetings laat zien.
  *
- * Gebruik [MeetinglijstFragment.newInstance] om een [LijstDesignEnum] type mee te geven.
+ * Maakt gebruik van de MVVM voor meetings op te halen en de geselecteerde lijstLayout te gebruiken.
  */
 class MeetinglijstFragment : Fragment() {
 
@@ -40,7 +39,7 @@ class MeetinglijstFragment : Fragment() {
         val fragment = inflater.inflate(R.layout.fragment_meetinglijst, container, false)
 
         //shared layout instellen
-        var parentActivity = (activity as AppCompatActivity)
+        val parentActivity = (activity as AppCompatActivity)
         LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_meetings_titel), getString(R.string.ab_meetings_subtitel))
         LayoutUtil.clearActionBarOptions(parentActivity)
         LayoutUtil.showListLayoutOpties(parentActivity)
@@ -55,7 +54,7 @@ class MeetinglijstFragment : Fragment() {
 
         //haal weergave uit de viewmodel
         //We doen niet direct .value maar behouden het als mutueablelivedata mits we hier op willen op observen
-        var lijstDesgin = meetingViewModel.getLijstDesgin()
+        val lijstDesgin = meetingViewModel.getLijstDesgin()
 
         //Bepalen of er al dan niet een detailcontainer is
         //->indien deze er is weet men dat het over een tablet (twoPane) gaat

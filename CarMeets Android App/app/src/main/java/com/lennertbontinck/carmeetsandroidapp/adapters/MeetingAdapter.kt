@@ -4,7 +4,6 @@ import android.arch.lifecycle.MutableLiveData
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +29,10 @@ import kotlinx.android.synthetic.main.item_meeting_klein.view.*
  * @param[isTablet] Of de layout al dan niet tablet is (TwoPane). Required of type Boolean
  */
 class MeetingAdapter(
-    private val parentActivity: AppCompatActivity, private val lijst: MutableLiveData<List<Meeting>>, private val lijstDesginEnum: MutableLiveData<LijstDesignEnum>, val isTablet : Boolean
+    private val parentActivity: AppCompatActivity,
+    private val lijst: MutableLiveData<List<Meeting>>,
+    private val lijstDesginEnum: MutableLiveData<LijstDesignEnum>,
+    private val isTablet: Boolean
 ) :
     RecyclerView.Adapter<MeetingAdapter.ViewHolder>() {
 
@@ -51,13 +53,12 @@ class MeetingAdapter(
 
             //indien tablet moet het in in de voorziene detailframe binnen de fragment
             //anders gewoon naar de mainactivity zijn container
-            if (isTablet){
+            if (isTablet) {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_meetinglijst_meetingdetailcontainer, detailFragment)
                     .commit()
-            }
-            else {
+            } else {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, detailFragment)
@@ -69,7 +70,7 @@ class MeetingAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //Stelt de juiste lijstdesign in
-        var view = LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(parent.context)
             .inflate(lijstDesginEnum.value!!.layoutId, parent, false)
 
         return ViewHolder(view)
@@ -80,7 +81,8 @@ class MeetingAdapter(
         Glide.with(parentActivity).load(IMG_URL_BACKEND + item.afbeeldingNaam).into(holder.afbeelding)
         holder.titel.text = item.titel
         holder.subtitel.text = item.subtitel
-        holder.locatie.text = item.postcode + ", " + item.gemeente
+        val locatie = item.postcode + ", " + item.gemeente
+        holder.locatie.text = locatie
 
         with(holder.itemView) {
             //item instellen als tag en clicklistener instellen die deze tag meegeeft aan detail

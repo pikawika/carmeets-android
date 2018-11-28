@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
 /**
  * Een [Fragment] die de details van een meeting laat zien.
  *
- * Gebruik [MeetingDetailFragment.newInstance] om een parcable [ARG_MEETING_TAG] mee te geven (welke meeting het is).
+ * Gebruik *MeetingDetailFragment.newInstance* om een parcable *ARG_MEETING_TAG* mee te geven (welke meeting het is) en isTablet boolean.
  */
 class MeetingDetailFragment : Fragment() {
 
@@ -43,7 +43,7 @@ class MeetingDetailFragment : Fragment() {
         isTablet = arguments?.getBoolean(IS_TABLET)
 
         //Action bar en bottombar
-        var parentActivity = (activity as AppCompatActivity)
+        val parentActivity = (activity as AppCompatActivity)
 
 
         //shared layout instellen -> indien tablet moet er niets veranderd
@@ -85,7 +85,7 @@ class MeetingDetailFragment : Fragment() {
      *
      * Voorziet listeners voor onlick van de knoppen te verwerken.
      */
-    fun configureButtons(fragment: View) {
+    private fun configureButtons(fragment: View) {
         fragment.button_meetingdetail_notificatie.setOnClickListener {
             MessageUtil.toonToast(requireContext(), "notificatie")
         }

@@ -3,7 +3,6 @@ package com.lennertbontinck.carmeetsandroidapp.utils
 import android.content.Context
 import android.support.v4.app.FragmentManager
 import android.view.MenuItem
-import android.widget.Toast
 import com.lennertbontinck.carmeetsandroidapp.R
 
 /**
@@ -23,7 +22,7 @@ object FragmentUtil {
     @JvmStatic
     fun checkFragmentEqualsNavItem(context: Context, item: MenuItem?, supportFragmentManager : FragmentManager) : Boolean {
         //huidige item in de backstack zijn fragtag
-        var huidigeFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
+        val huidigeFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
         if (huidigeFragTag != null && huidigeFragTag != "") {
             //kijken of huidige fragtag de selected item al niet reeds heeft ingesteld
             when (huidigeFragTag) {

@@ -3,7 +3,6 @@ package com.lennertbontinck.carmeetsandroidapp.fragments
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,7 @@ class AccountFragment : Fragment() {
         val fragment =  inflater.inflate(R.layout.fragment_account, container, false)
 
         //shared layout instellen
-        var parentActivity = (activity as AppCompatActivity)
+        val parentActivity = (activity as AppCompatActivity)
         LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_account_titel), getString(R.string.ab_account_subtitel))
         LayoutUtil.clearActionBarOptions(parentActivity)
         LayoutUtil.setBottomNavigation(parentActivity, R.id.nav_account)

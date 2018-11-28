@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.lennertbontinck.carmeetsandroidapp.injection.modules
 
 import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND

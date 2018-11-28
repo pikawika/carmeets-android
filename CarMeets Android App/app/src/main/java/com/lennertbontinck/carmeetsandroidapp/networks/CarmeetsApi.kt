@@ -5,7 +5,7 @@ import io.reactivex.Observable
 import retrofit2.http.GET
 
 /**
- * Een [interface] die de methoden voorziet om objecten van de *carmeets-backend server* te halen.
+ * Een *interface* die de methoden voorziet om objecten van de *carmeets-backend server* te halen.
  */
 interface CarmeetsApi {
 

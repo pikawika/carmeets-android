@@ -69,9 +69,9 @@ class MainActivity : AppCompatActivity() {
         //listener voor het klikken op noticaties uit de actionbar
         val notificaties = menu?.findItem(R.id.nav_notificaties)?.actionView
         notificaties?.findViewById<ImageView>(R.id.image_partialnotificaties_bel)
-            ?.setOnClickListener({ notificatiesClicked() })
+            ?.setOnClickListener { notificatiesClicked() }
         notificaties?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
-            ?.setOnClickListener({ notificatiesClicked() })
+            ?.setOnClickListener { notificatiesClicked() }
 
         return true
     }
@@ -146,7 +146,12 @@ class MainActivity : AppCompatActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         //indien zelfde nav item geselecteerd als het reeds is, doe niets.
         //vermijd loops en spam clicks
-        if (FragmentUtil.checkFragmentEqualsNavItem(this, item, supportFragmentManager)) return@OnNavigationItemSelectedListener true
+        if (FragmentUtil.checkFragmentEqualsNavItem(
+                this,
+                item,
+                supportFragmentManager
+            )
+        ) return@OnNavigationItemSelectedListener true
 
         //afhankelijk van geselecteerde nav item actie uitvoeren
         when (item.itemId) {

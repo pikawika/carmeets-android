@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +40,7 @@ class FavorietenlijstFragment : Fragment() {
         val fragment = inflater.inflate(R.layout.fragment_meetinglijst, container, false)
 
         //shared layout instellen
-        var parentActivity = (activity as AppCompatActivity)
+        val parentActivity = (activity as AppCompatActivity)
         LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_favorieten_titel), getString(R.string.ab_favorieten_subtitel))
         LayoutUtil.clearActionBarOptions(parentActivity)
         LayoutUtil.showListLayoutOpties(parentActivity)
@@ -56,7 +55,7 @@ class FavorietenlijstFragment : Fragment() {
 
         //haal weergave uit de viewmodel
         //We doen niet direct .value maar behouden het als mutueablelivedata mits we hier op willen op observen
-        var lijstDesgin = meetingViewModel.getLijstDesgin()
+        val lijstDesgin = meetingViewModel.getLijstDesgin()
 
         //Bepalen of er al dan niet een detailcontainer is
         //->indien deze er is weet men dat het over een tablet (twoPane) gaat

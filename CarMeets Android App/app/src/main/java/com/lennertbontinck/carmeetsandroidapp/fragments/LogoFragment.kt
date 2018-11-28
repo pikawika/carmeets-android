@@ -15,9 +15,7 @@ import com.lennertbontinck.carmeetsandroidapp.R
 class LogoFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val fragment =  inflater.inflate(R.layout.fragment_placeholder_logo, container, false)
-
-        return fragment
+        return inflater.inflate(R.layout.fragment_placeholder_logo, container, false)
     }
 
 }
