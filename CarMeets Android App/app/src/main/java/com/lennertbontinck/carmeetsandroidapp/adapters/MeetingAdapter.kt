@@ -40,10 +40,12 @@ class MeetingAdapter(
     init {
         onClickListener = View.OnClickListener { v ->
             //geselecteerde meeting meegeven aan detail pagina als parcable tag
+            //istablet meegeven als boolean
             val item = v.tag as Meeting
             val detailFragment = MeetingDetailFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(MeetingDetailFragment.ARG_MEETING_TAG, item)
+                    putBoolean(MeetingDetailFragment.IS_TABLET, isTablet)
                 }
             }
 

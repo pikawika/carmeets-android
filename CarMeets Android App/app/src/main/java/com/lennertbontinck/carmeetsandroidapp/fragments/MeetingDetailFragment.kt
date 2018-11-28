@@ -1,7 +1,6 @@
 package com.lennertbontinck.carmeetsandroidapp.fragments
 
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -14,7 +13,6 @@ import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.DateUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
-import kotlinx.android.synthetic.main.fragment_meetingdetail.*
 import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
 
 /**
@@ -30,24 +28,36 @@ class MeetingDetailFragment : Fragment() {
     //globaal mits in functions button onCreateView mogelijks willen te gebruiken
     private var meeting: Meeting? = null
 
+    /**
+     * [Boolean] of het huidige device al dan niet een tablet is/ of al dan niet twopane design gebruikt moet worden.
+     * Default is dit false
+     */
+    //Globaal ter beschikking gesteld aangezien het mogeiljks later nog in andere functie dan onCreateView wenst te worden
+    private var isTablet: Boolean? = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val fragment = inflater.inflate(R.layout.fragment_meetingdetail, container, false)
 
-        //meeting uit companion halen halen
+        //meeting en istablet uit companion halen halen
         meeting = arguments?.getParcelable(ARG_MEETING_TAG)
+        isTablet = arguments?.getBoolean(IS_TABLET)
 
         //Action bar en bottombar
         var parentActivity = (activity as AppCompatActivity)
 
-        //shared layout instellen
-        LayoutUtil.clearActionBarOptions(parentActivity)
+
+        //shared layout instellen -> indien tablet moet er niets veranderd
+        //default false dus kan niet null zijn
+        if (!isTablet!!)
+            LayoutUtil.clearActionBarOptions(parentActivity)
 
         //fragment gegevens instellen indien niet null, anders error tonen
         if (meeting != null) {
             //shared layout instellen
             LayoutUtil.setActionBar(parentActivity, meeting!!.titel, meeting!!.subtitel)
 
-            Glide.with(parentActivity).load(IMG_URL_BACKEND + meeting!!.afbeeldingNaam).into(fragment.image_meetingdetail_header)
+            Glide.with(parentActivity).load(IMG_URL_BACKEND + meeting!!.afbeeldingNaam)
+                .into(fragment.image_meetingdetail_header)
 
             fragment.text_meetingdetail_titel.text = meeting!!.titel
             fragment.text_meetingdetail_subtitel.text = meeting!!.subtitel
@@ -95,5 +105,6 @@ class MeetingDetailFragment : Fragment() {
 
     companion object {
         const val ARG_MEETING_TAG = "meetingItem"
+        const val IS_TABLET = "isTablet"
     }
 }
