@@ -42,9 +42,6 @@ class MeetingDetailFragment : Fragment() {
         //shared layout instellen
         LayoutUtil.clearActionBarOptions(parentActivity)
 
-        //fragment.scroll_meetingdetail_description.getLayoutParams().
-
-
         //fragment gegevens instellen indien niet null, anders error tonen
         if (meeting != null) {
             //shared layout instellen
