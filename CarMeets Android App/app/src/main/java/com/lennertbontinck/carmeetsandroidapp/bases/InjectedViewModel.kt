@@ -12,6 +12,9 @@ import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
  * Er zal adhv het viewmodel type de juiste injectie voorzien worden
  *
  * momenteel compatibel met: [MeetingViewModel]
+ *
+ * Special thanks to Harm De Weirdt for base code and clear explanation of innerworkings
+ * https://github.com/hdeweirdt/metar
  */
 abstract class InjectedViewModel : ViewModel() {
     /**

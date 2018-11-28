@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- een partial view voor de notificatiebel met aantal -->
+<!-- Special thanks to AndrewS and Pang for the base document: https://stackoverflow.com/questions/17696486/actionbar-notification-count-icon-badge-like-google-has -->
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
 

@@ -23,6 +23,9 @@ import java.util.*
  *
  * Alle functies in dit object zijn singletons aangezien dezelfde dependency opnieuw gebruikt moet worden voor volgende
  * interacties.
+ *
+ * Special thanks to Harm De Weirdt for base code and clear explanation of innerworkings
+ * https://github.com/hdeweirdt/metar
  */
 @Module
 object NetworkModule {
