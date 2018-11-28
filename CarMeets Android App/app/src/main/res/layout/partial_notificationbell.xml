@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- een partial view voor de notificatiebel met aantal -->
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
 
@@ -15,6 +16,7 @@
 
         android:orientation="vertical">
 
+    <!-- de bel -->
     <ImageView
             android:id="@+id/image_partialnotification_bell"
             android:layout_width="wrap_content"
@@ -26,6 +28,7 @@
 
             android:layout_margin="0dp"/>
 
+    <!-- het aantal -->
     <TextView
             android:id="@+id/text_partialnotification_amount"
             android:layout_width="wrap_content"

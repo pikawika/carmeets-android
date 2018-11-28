@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Meeting detail voor portret -->
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,7 +9,7 @@
 
         android:orientation="vertical">
 
-
+    <!-- de foto van de meeting -->
     <ImageView
             android:id="@+id/image_meetingdetail_header"
             android:layout_width="match_parent"
@@ -22,6 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- het liked en going icoon -->
     <android.support.constraint.ConstraintLayout
             android:id="@+id/partial_meetingdetail_likedgoing"
             android:layout_width="0px"
@@ -39,6 +41,7 @@
             android:paddingTop="8dp"
             android:layout_marginEnd="10dp">
 
+        <!-- het liked icoon -->
         <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/image_meetingdetail_like"
                 android:layout_width="wrap_content"
@@ -50,6 +53,7 @@
 
                 android:layout_marginStart="8dp"/>
 
+        <!-- het going icoon -->
         <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/image_meetingdetail_going"
                 android:layout_width="wrap_content"
@@ -64,6 +68,7 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <!-- de datum van de meeting -->
     <android.support.constraint.ConstraintLayout
             android:id="@+id/partial_meetingdetail_date"
             android:layout_width="wrap_content"
@@ -81,6 +86,7 @@
             android:paddingRight="10dp"
             android:paddingBottom="8dp">
 
+        <!-- de dag van de datum -->
         <TextView
                 android:id="@+id/text_meetingdetail_dateday"
                 android:layout_width="match_parent"
@@ -97,6 +103,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"/>
 
+        <!-- de maand van de datum -->
         <TextView
                 android:id="@+id/textView_meetingdetail_datemonth"
                 android:layout_width="match_parent"
@@ -118,7 +125,7 @@
 
     </android.support.constraint.ConstraintLayout>
 
-
+    <!-- de titel van de meeting -->
     <TextView
             android:id="@+id/text_meetingdetail_title"
             android:layout_width="0dp"
@@ -137,6 +144,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"/>
 
+    <!-- de subtitel van de meeting -->
     <TextView
             android:id="@+id/text_meetingdetail_subtitle"
             android:layout_width="0dp"
@@ -151,7 +159,7 @@
 
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"/>
-
+    <!-- een mooie scheidingslijn tussen de subtitel en beschrijving -->
     <View
             android:id="@+id/divider_meetingdetail_undersubtitle"
             android:layout_width="0dp"
@@ -169,6 +177,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"/>
 
+    <!-- de beschrijving scrollview -->
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -189,6 +198,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+            <!-- de beschrijving -->
             <TextView
                     android:id="@+id/text_meetingdetail_description"
                     android:layout_width="match_parent"
@@ -198,6 +208,7 @@
 
                     app:layout_constraintTop_toTopOf="parent"/>
 
+            <!-- notificatie knop -->
             <Button
                     android:id="@+id/button_meetingdetail_notification"
                     android:layout_width="0dp"
@@ -215,6 +226,7 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"/>
 
+            <!-- opslaan in agenda knop -->
             <Button
                     android:id="@+id/button_meetingdetail_agenda"
                     android:layout_width="0dp"
@@ -232,6 +244,7 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"/>
 
+            <!-- opslaan in routebeschrijving knop -->
             <Button
                     android:id="@+id/button_meetingdetail_route"
                     android:layout_width="0dp"
@@ -249,6 +262,7 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"/>
 
+            <!-- ga naar website knop -->
             <Button
                     android:id="@+id/button_meetingdetail_website"
                     android:layout_width="0dp"

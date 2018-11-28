@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- de menu voor toolbar met notificatie bel, zoeken en extra opties -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- notificaties -->
     <item
             android:title="@string/ab_notifications"
             android:id="@+id/nav_notificaties"
@@ -9,18 +11,21 @@
             app:actionLayout="@layout/partial_notificationbell"
             app:showAsAction="always"/>
 
+    <!-- zoeken -->
     <item
             android:title="@string/ab_search"
             android:id="@+id/nav_zoek"
             android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="always"/>
 
+    <!-- kleine lijst weergave -->
     <item
             android:title="@string/ab_options_listdesign_big"
             android:id="@+id/ab_opties_klein"
             android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="never"/>
 
+    <!-- grote lijstweergave -->
     <item
             android:title="@string/ab_options_listdesign_small"
             android:id="@+id/ab_opties_groot"
