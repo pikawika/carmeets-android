@@ -162,7 +162,7 @@ class MainActivity : AppCompatActivity() {
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.nav_favorieten -> {
+            R.id.nav_favourites -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, FavorietenlijstFragment())
                     .addToBackStack(getString(R.string.fragtag_favouriteslist))

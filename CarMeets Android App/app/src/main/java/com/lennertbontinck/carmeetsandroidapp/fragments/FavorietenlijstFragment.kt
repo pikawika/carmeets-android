@@ -44,7 +44,7 @@ class FavorietenlijstFragment : Fragment() {
         LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_favourites_title), getString(R.string.ab_favourite_subtitle))
         LayoutUtil.clearActionBarOptions(parentActivity)
         LayoutUtil.showListLayoutOpties(parentActivity)
-        LayoutUtil.setBottomNavigation(parentActivity, R.id.nav_favorieten)
+        LayoutUtil.setBottomNavigation(parentActivity, R.id.nav_favourites)
 
         //viewmodel vullen
         meetingViewModel = ViewModelProviders.of(requireActivity()).get(MeetingViewModel::class.java)

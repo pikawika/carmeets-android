@@ -20,6 +20,9 @@
     <string name="ab_options_listdesign_big">Klassieke weergave</string>
     <string name="ab_options_listdesign_small">Grotere weegave</string>
 
+    <string name="ab_search">Zoeken</string>
+    <string name="ab_notifications">Notificaties</string>
+
     <!-- fragment tags -->
     <string name="fragtag_meetinglist">meetinglijst</string>
     <string name="fragtag_favouriteslist">favorietenlijst</string>

@@ -27,7 +27,7 @@ object FragmentUtil {
             //kijken of huidige fragtag de selected item al niet reeds heeft ingesteld
             when (huidigeFragTag) {
                 context.getString(R.string.fragtag_meetinglist) -> if (item?.itemId == R.id.nav_meetings) return true
-                context.getString(R.string.fragtag_favouriteslist) -> if (item?.itemId == R.id.nav_favorieten) return true
+                context.getString(R.string.fragtag_favouriteslist) -> if (item?.itemId == R.id.nav_favourites) return true
                 context.getString(R.string.fragtag_account) -> if (item?.itemId == R.id.nav_account) return true
             }
         }
