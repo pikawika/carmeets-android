@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.toolbar, menu)
 
         //listener voor het klikken op noticaties uit de actionbar
-        val notifications = menu?.findItem(R.id.nav_notificaties)?.actionView
+        val notifications = menu?.findItem(R.id.nav_notifications)?.actionView
         notifications?.findViewById<ImageView>(R.id.image_partialnotification_bell)
             ?.setOnClickListener { notificationsClicked() }
         notifications?.findViewById<TextView>(R.id.text_partialnotification_amount)
@@ -80,22 +80,22 @@ class MainActivity : AppCompatActivity() {
         //het item dat gelklikt is uit de toolbar
         //dit id moet in theorie altijd ingevuld zijn want enkel dan weet je wat aangeduid en kan je bijhorende actie uitvoeren
         when (item?.itemId) {
-            R.id.nav_notificaties -> {
+            R.id.nav_notifications -> {
                 notificationsClicked()
                 return super.onOptionsItemSelected(item)
             }
 
-            R.id.nav_zoek -> {
+            R.id.nav_search -> {
                 MessageUtil.showToast(this, "Er is op zoeken geklikt")
                 return super.onOptionsItemSelected(item)
             }
 
-            R.id.ab_opties_klein -> {
+            R.id.ab_options_small -> {
                 meetingViewModel.setListDesign(ListDesignEnum.SMALL)
                 return super.onOptionsItemSelected(item)
             }
 
-            R.id.ab_opties_groot -> {
+            R.id.ab_options_big -> {
                 meetingViewModel.setListDesign(ListDesignEnum.BIG)
                 return super.onOptionsItemSelected(item)
             }
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
      * Verhoogt het aantal naast het notificatie icoon met 1 per klik.
      */
     private fun notificationsClicked() {
-        val notificationAmount = menu_main_toolbar.menu.findItem(R.id.nav_notificaties)
+        val notificationAmount = menu_main_toolbar.menu.findItem(R.id.nav_notifications)
             ?.actionView?.findViewById<TextView>(R.id.text_partialnotification_amount)
 
         notificationAmount?.text = (notificationAmount?.text.toString().toInt() + 1).toString()

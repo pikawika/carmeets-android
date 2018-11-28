@@ -45,8 +45,8 @@ object LayoutUtil {
      */
     @JvmStatic
     fun clearActionBarOptions(parentActivity: AppCompatActivity) {
-        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_klein)?.isVisible = false
-        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_groot)?.isVisible = false
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_small)?.isVisible = false
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_big)?.isVisible = false
     }
 
     /**
@@ -54,7 +54,7 @@ object LayoutUtil {
      */
     @JvmStatic
     fun showListLayoutOpties(parentActivity: AppCompatActivity) {
-        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_klein)?.isVisible = true
-        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_opties_groot)?.isVisible = true
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_small)?.isVisible = true
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_big)?.isVisible = true
     }
 }
