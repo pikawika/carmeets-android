@@ -60,7 +60,7 @@ class MeetingViewModel : InjectedViewModel() {
      * Functie voor het behandelen van het mislukken van het ophalen van data van de server
      */
     private fun onRetrieveError(error: Throwable) {
-        //voorlopig harde crash, niet goed want throwt dus bij gewoon geen internet etc
+        //voorlopig toastje zou mooier zijn als er fragment toont
         MessageUtil.showToast("Er ging iets mis met het ophalen van de data!")
     }
 
