@@ -3,7 +3,7 @@
 buildscript {
     ext.versions = [
             //default
-            'suport'        : '28.0.0',
+            'support'       : '28.0.0',
             'kotlin'        : '1.2.71',
             'constraint'    : '1.1.3',
             'gradle'        : '3.2.1',
