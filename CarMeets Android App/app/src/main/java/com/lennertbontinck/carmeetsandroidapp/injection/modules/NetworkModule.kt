@@ -3,6 +3,7 @@
 package com.lennertbontinck.carmeetsandroidapp.injection.modules
 
 import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND
+import com.lennertbontinck.carmeetsandroidapp.extensions.DateParser
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import dagger.Module
 import dagger.Provides
@@ -14,7 +15,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Rfc3339DateJsonAdapter
 import java.util.*
 
 
@@ -92,7 +92,7 @@ object NetworkModule {
     @Singleton
     internal fun provideJSONConverter(): retrofit2.Converter.Factory {
         val moshi = Moshi.Builder()
-            .add(Date::class.java, Rfc3339DateJsonAdapter().nullSafe())
+            .add(Date::class.java, DateParser().nullSafe())
             .build()
         return MoshiConverterFactory.create(moshi)
     }
