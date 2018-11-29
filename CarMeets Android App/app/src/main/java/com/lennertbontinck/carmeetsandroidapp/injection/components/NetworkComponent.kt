@@ -6,14 +6,16 @@ import dagger.Component
 import javax.inject.Singleton
 
 /**
- * Deze [MeetingViewModelComponent] dient als tussenlaag tussen de [NetworkModule] en de effectieve [MeetingViewModel]
+ * Deze [NetworkComponent] dient als tussenlaag tussen de [NetworkModule] en de effectieve [MeetingViewModel]
+ *
+ * Momenteel compatibel met: [MeetingViewModel]
  */
 @Singleton
 /**
  * We hebben de netwerkmodule nodig voor het ophalen van de data
  */
 @Component(modules = [NetworkModule::class])
-interface MeetingViewModelComponent {
+interface NetworkComponent {
 
     /**
      * Doet dependency injection op de meegegeven MeetingViewModel
@@ -21,4 +23,6 @@ interface MeetingViewModelComponent {
      * @param meetingViewModel De [MeetingViewModel] dat je wilt voorzien van dependency injection. Verplicht van type [MeetingViewModel].
      */
     fun inject(meetingViewModel: MeetingViewModel)
+
+    //soortgelijke functies aanmaken voor alle andere injecties van models
 }

@@ -1,8 +1,8 @@
 package com.lennertbontinck.carmeetsandroidapp.bases
 
 import android.arch.lifecycle.ViewModel
-import com.lennertbontinck.carmeetsandroidapp.injection.components.DaggerMeetingViewModelComponent
-import com.lennertbontinck.carmeetsandroidapp.injection.components.MeetingViewModelComponent
+import com.lennertbontinck.carmeetsandroidapp.injection.components.DaggerNetworkComponent
+import com.lennertbontinck.carmeetsandroidapp.injection.components.NetworkComponent
 import com.lennertbontinck.carmeetsandroidapp.injection.modules.NetworkModule
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 
@@ -18,9 +18,11 @@ import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
  */
 abstract class InjectedViewModel : ViewModel() {
     /**
-     * Er is een instance nodig van de dagger [MeetingViewModelComponent] om de injectie mee uit te voeren
+     * Er is een instance nodig van de dagger [NetworkComponent] om de injectie mee uit te voeren
+     *
+     * Deze injector zal alle viewmodels injecten en moet dus voorzien worden
      */
-    private val meetingInjector: MeetingViewModelComponent = DaggerMeetingViewModelComponent
+    private val injector: NetworkComponent = DaggerNetworkComponent
         .builder()
         .networkModule(NetworkModule)
         .build()
@@ -34,10 +36,12 @@ abstract class InjectedViewModel : ViewModel() {
 
     /**
      * Injecteren adhvd de reeds aangemaakte dagger instantie van de klasse die de [InjectedViewModel] overerft.
+     *
+     * Hier zullen nieuwe viewModels toegevoegd moeten worden alsook in de [NetworkComponent]
      */
     private fun inject() {
         when (this) {
-            is MeetingViewModel -> meetingInjector.inject(this)
+            is MeetingViewModel -> injector.inject(this)
         }
     }
 
