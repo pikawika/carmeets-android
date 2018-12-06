@@ -1,5 +1,6 @@
 package com.lennertbontinck.carmeetsandroidapp.viewmodels
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
@@ -23,7 +24,7 @@ class MeetingViewModel : InjectedViewModel() {
     /**
      * Het huidige door de gebruiker geselecteerde design van lijstitems
      */
-    private val listDesign = MutableLiveData<ListDesignEnum>()
+    val listDesign = MutableLiveData<ListDesignEnum>()
 
     /**
      * een instantie van de carmeetsApi om data van de server op te halen
@@ -104,22 +105,8 @@ class MeetingViewModel : InjectedViewModel() {
     /**
      * returnt de lijst van alle meetings als MutableLiveData
      */
-    fun getMeetings(): MutableLiveData<List<Meeting>> {
+    fun getMeetings(): LiveData<List<Meeting>> {
         return meetingsList
-    }
-
-    /**
-     * returnt de enum van de door de gebruiker gekozen layout stijl als MutableLiveData
-     */
-    fun getListDesgin(): MutableLiveData<ListDesignEnum> {
-        return listDesign
-    }
-
-    /**
-     * stelt de door de gebruiker gekozen layout stijl in
-     */
-    fun setListDesign(listDesignEnum: ListDesignEnum) {
-        listDesign.value = listDesignEnum
     }
 
 }

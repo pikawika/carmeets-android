@@ -54,7 +54,7 @@ class MeetinglistFragment : Fragment() {
 
         //haal weergave uit de viewmodel
         //We doen niet direct .value maar behouden het als mutueablelivedata mits we hier op willen op observen
-        val listDesgin = meetingViewModel.getListDesgin()
+        val listDesgin = meetingViewModel.listDesign
 
         //Bepalen of er al dan niet een detailcontainer is
         //->indien deze er is weet men dat het over een tablet (twoPane) gaat

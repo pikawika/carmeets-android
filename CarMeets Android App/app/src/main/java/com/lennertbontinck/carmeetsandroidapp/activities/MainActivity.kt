@@ -95,12 +95,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.ab_options_small -> {
-                meetingViewModel.setListDesign(ListDesignEnum.SMALL)
+                meetingViewModel.listDesign.value = ListDesignEnum.SMALL
                 return super.onOptionsItemSelected(item)
             }
 
             R.id.ab_options_big -> {
-                meetingViewModel.setListDesign(ListDesignEnum.BIG)
+                meetingViewModel.listDesign.value = ListDesignEnum.BIG
                 return super.onOptionsItemSelected(item)
             }
 

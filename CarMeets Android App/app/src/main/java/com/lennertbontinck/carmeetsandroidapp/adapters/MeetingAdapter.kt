@@ -1,5 +1,6 @@
 package com.lennertbontinck.carmeetsandroidapp.adapters
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -31,7 +32,7 @@ import kotlinx.android.synthetic.main.item_meeting_small.view.*
  */
 class MeetingAdapter(
     private val parentActivity: AppCompatActivity,
-    private val list: MutableLiveData<List<Meeting>>,
+    private val list: LiveData<List<Meeting>>,
     private val listDesignEnum: MutableLiveData<ListDesignEnum>,
     private val isTablet: Boolean
 ) :
