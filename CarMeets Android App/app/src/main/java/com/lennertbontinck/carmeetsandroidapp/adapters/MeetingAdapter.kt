@@ -1,10 +1,9 @@
 package com.lennertbontinck.carmeetsandroidapp.adapters
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.os.Bundle
+import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +13,9 @@ import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.constants.IMG_URL_BACKEND
-import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.item_meeting_small.view.*
 
 /**
@@ -30,40 +29,36 @@ import kotlinx.android.synthetic.main.item_meeting_small.view.*
  *
  * @param[isTablet] Of de layout al dan niet tablet is (TwoPane). Required of type Boolean
  */
-class MeetingAdapter(
-    private val parentActivity: AppCompatActivity,
-    private val list: LiveData<List<Meeting>>,
-    private val listDesignEnum: MutableLiveData<ListDesignEnum>,
-    private val isTablet: Boolean
-) :
+class MeetingAdapter(private val parentActivity: AppCompatActivity) :
     RecyclerView.Adapter<MeetingAdapter.ViewHolder>() {
+
+    /**
+     * [MeetingViewModel] met de data over account
+     */
+    //Globaal ter beschikking gesteld aangezien het mogeiljks later nog in andere functie dan onCreateView wenst te worden
+    private var meetingViewModel: MeetingViewModel = ViewModelProviders.of(parentActivity).get(MeetingViewModel::class.java)
+
 
     //click listener wanneer bepaalde item van list geslecteerd wordt
     private val onClickListener: View.OnClickListener
 
     init {
         onClickListener = View.OnClickListener { v ->
-            //geselecteerde meeting meegeven aan detail pagina als parcable tag
-            //istablet meegeven als boolean
-            val item = v.tag as Meeting
-            val detailFragment = MeetingDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(MeetingDetailFragment.ARG_MEETING_TAG, item)
-                    putBoolean(MeetingDetailFragment.IS_TABLET, isTablet)
-                }
-            }
+            //selected meeting instellen in vm
+            val selectedMeeting = v.tag as Meeting
+            meetingViewModel.setSelectedMeeting(selectedMeeting.meetingId)
 
             //indien tablet moet het in in de voorziene detailframe binnen de fragment
             //anders gewoon naar de mainactivity zijn container
-            if (isTablet) {
+            if (meetingViewModel.getIsTwoPane().value!!) {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.frame_meetinglist_meetingdetailcontainer, detailFragment)
+                    .replace(R.id.frame_meetinglist_meetingdetailcontainer, MeetingDetailFragment())
                     .commit()
             } else {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.frame_main_fragmentcontainer, detailFragment)
+                    .replace(R.id.frame_main_fragmentcontainer, MeetingDetailFragment())
                     .addToBackStack(parentActivity.getString(R.string.fragtag_meetingdetail))
                     .commit()
             }
@@ -73,13 +68,13 @@ class MeetingAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //Stelt de juiste lijstdesign in
         val view = LayoutInflater.from(MainActivity.getContext())
-            .inflate(listDesignEnum.value!!.layoutId, parent, false)
+            .inflate(meetingViewModel.listDesign.value!!.layoutId, parent, false)
 
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = list.value!![position]
+        val item = meetingViewModel.getMeetings().value!![position]
         Glide.with(parentActivity).load(IMG_URL_BACKEND + item.afbeeldingNaam).into(holder.image)
         holder.title.text = item.title
         holder.subtitle.text = item.subtitle
@@ -93,7 +88,7 @@ class MeetingAdapter(
         }
     }
 
-    override fun getItemCount() = list.value!!.size
+    override fun getItemCount() = meetingViewModel.getMeetings().value!!.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView = view.image_itemmeeting

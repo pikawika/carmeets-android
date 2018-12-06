@@ -8,6 +8,9 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId "com.lennertbontinck.carmeetsandroidapp"
         minSdkVersion 21
@@ -71,7 +74,7 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$versions.architecture"
 
     // Data binding
-    annotationProcessor "com.android.databinding:compiler:3.1.4"
+    annotationProcessor "com.android.databinding:compiler:$versions.databinding"
 
     // RxJava
     implementation "io.reactivex.rxjava2:rxjava:$versions.rx"

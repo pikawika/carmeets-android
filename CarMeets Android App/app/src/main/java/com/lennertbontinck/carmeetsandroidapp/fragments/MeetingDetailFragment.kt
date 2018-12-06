@@ -1,5 +1,7 @@
 package com.lennertbontinck.carmeetsandroidapp.fragments
 
+import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -9,10 +11,12 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.constants.IMG_URL_BACKEND
+import com.lennertbontinck.carmeetsandroidapp.databinding.FragmentMeetingdetailBinding
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.DateUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
 
 /**
@@ -23,24 +27,25 @@ import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
 class MeetingDetailFragment : Fragment() {
 
     /**
-     * De [Meeting] die in deze detail pagina weergegeven wordt
-     */
-    //globaal mits in functions button onCreateView mogelijks willen te gebruiken
-    private var meeting: Meeting? = null
-
-    /**
-     * [Boolean] of het huidige device al dan niet een tablet is/ of al dan niet twopane design gebruikt moet worden.
-     * Default is dit false
+     * [LunchViewModel] met de data over account
      */
     //Globaal ter beschikking gesteld aangezien het mogeiljks later nog in andere functie dan onCreateView wenst te worden
-    private var isTablet: Boolean? = false
+    private lateinit var meetingViewModel: MeetingViewModel
+
+    /**
+     * De [FragmentProfileBinding] dat we gebruiken voor de effeciteve databinding
+     */
+    private lateinit var binding: FragmentMeetingdetailBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val fragment = inflater.inflate(R.layout.fragment_meetingdetail, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_meetingdetail, container, false)
 
-        //meeting en istablet uit companion halen halen
-        meeting = arguments?.getParcelable(ARG_MEETING_TAG)
-        isTablet = arguments?.getBoolean(IS_TABLET)
+        //viewmodel vullen
+        meetingViewModel = ViewModelProviders.of(activity!!).get(MeetingViewModel::class.java)
+
+        val fragment = binding.root
+        binding.meetingViewModel = meetingViewModel
+        binding.setLifecycleOwner(activity)
 
         //Action bar en bottombar
         val parentActivity = (activity as AppCompatActivity)
@@ -48,29 +53,8 @@ class MeetingDetailFragment : Fragment() {
 
         //shared layout instellen -> indien tablet moet er niets veranderd
         //default false dus kan niet null zijn
-        if (!isTablet!!)
+        if (!meetingViewModel.getIsTwoPane().value!!)
             LayoutUtil.clearActionBarOptions(parentActivity)
-
-        //fragment gegevens instellen indien niet null, anders error tonen
-        if (meeting != null) {
-            //shared layout instellen
-            LayoutUtil.setActionBar(parentActivity, meeting!!.title, meeting!!.subtitle)
-
-            Glide.with(parentActivity).load(IMG_URL_BACKEND + meeting!!.afbeeldingNaam)
-                .into(fragment.image_meetingdetail_header)
-
-            fragment.text_meetingdetail_title.text = meeting!!.title
-            fragment.text_meetingdetail_subtitle.text = meeting!!.subtitle
-
-            fragment.text_meetingdetail_description.text = meeting!!.description
-
-            fragment.text_meetingdetail_dateday.text = DateUtil.getDayInMonth(meeting!!.date)
-            fragment.textView_meetingdetail_datemonth.text = DateUtil.getShortMonthName(meeting!!.date)
-
-        } else {
-            //shared layout instellen
-            LayoutUtil.setActionBar(parentActivity, "ERROR", "Meeting niet gevonden")
-        }
 
         //listeners instellen voor de knoppen etc
         configureButtons(fragment)
@@ -101,10 +85,5 @@ class MeetingDetailFragment : Fragment() {
         fragment.button_meetingdetail_website.setOnClickListener {
             MessageUtil.showToast("website")
         }
-    }
-
-    companion object {
-        const val ARG_MEETING_TAG = "meetingItem"
-        const val IS_TABLET = "isTablet"
     }
 }

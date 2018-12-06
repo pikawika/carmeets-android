@@ -37,7 +37,10 @@ buildscript {
 
             //javarx
             'rx'            : "2.2.3",
-            'rxandroid'     : "2.1.0"
+            'rxandroid'     : "2.1.0",
+
+            //databinding
+            'databinding'    : "3.1.4"
     ]
     repositories {
         google()

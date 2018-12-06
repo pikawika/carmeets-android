@@ -2,6 +2,8 @@ package com.lennertbontinck.carmeetsandroidapp.viewmodels
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.Transformations
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
@@ -22,9 +24,19 @@ class MeetingViewModel : InjectedViewModel() {
     private val meetingsList = MutableLiveData<List<Meeting>>()
 
     /**
+     * De de geselecteerde meeting
+     */
+    private val selectedMeeting = MutableLiveData<Meeting>()
+
+    /**
      * Het huidige door de gebruiker geselecteerde design van lijstitems
      */
     val listDesign = MutableLiveData<ListDesignEnum>()
+
+    /**
+     * Of de huidige omgeving al dan niet in TwoPane is
+     */
+    private val isTwoPane = MutableLiveData<Boolean>()
 
     /**
      * een instantie van de carmeetsApi om data van de server op te halen
@@ -42,6 +54,10 @@ class MeetingViewModel : InjectedViewModel() {
         meetingsList.value = emptyList()
         //initieel is layout klein
         listDesign.value = ListDesignEnum.SMALL
+        //initieel niet TwoPane
+        isTwoPane.value = false
+
+        //alle meetings van de server halen
         getAllMeetingsSubscription = carmeetsApi.getAllMeetings()
             //we tell it to fetch the data on background by
             .subscribeOn(Schedulers.io())
@@ -103,10 +119,38 @@ class MeetingViewModel : InjectedViewModel() {
     }
 
     /**
-     * returnt de lijst van alle meetings als MutableLiveData
+     * returnt de lijst van alle meetings als [LiveData]
      */
     fun getMeetings(): LiveData<List<Meeting>> {
         return meetingsList
+    }
+
+    /**
+     * Returnt de geselecteerde meeting als [LiveData]
+     */
+    fun getSelectedMeeting(): LiveData<Meeting> {
+        return selectedMeeting
+    }
+
+    /**
+     * Stelt de geselecteerde meeting zijn Id in
+     */
+    fun setSelectedMeeting(meetingId: String) {
+        selectedMeeting.value = meetingsList.value!!.firstOrNull { it.meetingId == meetingId }
+    }
+
+    /**
+     * Stelt in of huidige omgeving al dan niet twopane is
+     */
+    fun setIsTwoPane(meetingId: String) {
+
+    }
+
+    /**
+     * Returnt of huidige omgeving al dan niet twopane is
+     */
+    fun getIsTwoPane() : MutableLiveData<Boolean>{
+        return isTwoPane
     }
 
 }

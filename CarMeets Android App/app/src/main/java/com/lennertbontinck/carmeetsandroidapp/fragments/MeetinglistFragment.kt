@@ -68,7 +68,7 @@ class MeetinglistFragment : Fragment() {
         }
 
         //adapter aanmaken
-        val adapter = MeetingAdapter(this.requireActivity() as MainActivity, meetings, listDesgin, isTablet)
+        val adapter = MeetingAdapter(this.requireActivity() as MainActivity)
 
         //indien de meetinglijst veranderd moet de adapter opnieuw zijn cards genereren met nieuwe data
         meetings.observe(this, Observer {

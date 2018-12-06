@@ -22,6 +22,7 @@
 
     <string name="ab_search">Zoeken</string>
     <string name="ab_notifications">Notificaties</string>
+    <string name="ab_notifications_default_amount">0</string>
 
     <!-- fragment tags -->
     <string name="fragtag_meetinglist">meetinglist</string>
@@ -30,16 +31,7 @@
     <string name="fragtag_meetingdetail">meetingdetail</string>
 
     <!-- meeting -->
-    <string name="item_meeting_title">Android app celibration</string>
-    <string name="item_meeting_img_description">Afbeelding van meeting</string>
-    <string name="item_meeting_subtitle">Een android app vieren met een gepaste meeting</string>
-    <string name="item_meeting_location">9260, Schellebelle</string>
-    <string name="item_meeting_dateday">23</string>
-    <string name="item_meeting_datemonth">Dec</string>
-    <string name="item_meeting_description">Niet alleen is Lennert zijn GTI eindelijk af, ook zijn studies zijn bijna
-        afgerond! Dankzij deze android app zou hij namelijk een stap dichter moeten komen naar zijn diploma! als dat
-        maar goed afloopt.
-    </string>
+    <string name="item_meeting_img_alt">Afbeelding van meeting</string>
 
     <!-- meeting buttons -->
     <string name="button_meeting_notification">Notificatie toevoegen</string>
@@ -53,5 +45,7 @@
         Bontinck, een app te maken waar je snel en eenvoudig alle meetings naar jouw smaak kan terugvinden en
         bewaren in je agenda.
     </string>
+    <string name="carmeets_logo_alt">Het carmeets logo</string>
+
 
 </resources>

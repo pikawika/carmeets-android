@@ -10,7 +10,7 @@ import java.util.*
  */
 @Parcelize
 data class Meeting(
-    val meetingId: String,
+    @field:Json(name = "_id") val meetingId: String,
     @field:Json(name = "name") val title: String,
     @field:Json(name = "shortDescription") val subtitle: String,
     @field:Json(name = "fullDescription") val description: String,

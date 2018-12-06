@@ -3,6 +3,7 @@
 <!-- Special thanks to AndrewS and Pang for the base document: https://stackoverflow.com/questions/17696486/actionbar-notification-count-icon-badge-like-google-has -->
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
 
         style="@android:style/Widget.ActionButton"
 
@@ -15,7 +16,8 @@
         android:clickable="true"
         android:background="@android:color/transparent"
 
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusable="true">
 
     <!-- de bel -->
     <ImageView
@@ -27,7 +29,9 @@
             android:gravity="center"
             android:clickable="true"
 
-            android:layout_margin="0dp"/>
+            android:layout_margin="0dp"
+            android:contentDescription="@string/ab_notifications"
+            android:focusable="true"/>
 
     <!-- het aantal -->
     <TextView
@@ -36,7 +40,7 @@
             android:layout_height="wrap_content"
             android:minWidth="17sp"
 
-            android:text="2"
+            android:text="@string/ab_notifications_default_amount"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
 
@@ -44,7 +48,8 @@
             android:gravity="center"
             android:clickable="true"
 
-            android:layout_marginLeft="18dp"
-            android:paddingBottom="5dp"/>
+            android:layout_marginStart="18dp"
+            android:paddingBottom="5dp"
+            android:focusable="true"/>
 
 </RelativeLayout>
