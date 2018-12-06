@@ -1,29 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- de menu voor toolbar met notificatie bel, zoeken en extra opties -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- notificaties -->
     <item
-            android:title="notificaties"
-            android:id="@+id/nav_notificaties"
+            android:id="@+id/nav_notifications"
+            android:title="@string/ab_notifications"
             android:icon="@drawable/ic_notifications_white_24dp"
-            app:actionLayout="@layout/partial_notificatiebel"
+            app:actionLayout="@layout/partial_notificationbell"
             app:showAsAction="always"/>
 
+    <!-- zoeken -->
     <item
-            android:title="zoeken"
-            android:id="@+id/nav_zoek"
+            android:id="@+id/nav_search"
+            android:title="@string/ab_search"
             android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="always"/>
 
+    <!-- kleine lijst weergave -->
     <item
-            android:title="@string/ab_opties_groot"
-            android:id="@+id/ab_opties_klein"
+            android:id="@+id/ab_options_small"
+            android:title="@string/ab_options_listdesign_big"
             android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="never"/>
 
+    <!-- grote lijstweergave -->
     <item
-            android:title="@string/ab_opties_klein"
-            android:id="@+id/ab_opties_groot"
+            android:id="@+id/ab_options_big"
+            android:title="@string/ab_options_listdesign_small"
             android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="never"/>
 </menu>

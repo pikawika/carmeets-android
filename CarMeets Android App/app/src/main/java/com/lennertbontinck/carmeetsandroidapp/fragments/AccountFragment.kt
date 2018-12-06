@@ -10,17 +10,22 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import kotlinx.android.synthetic.main.fragment_account.view.*
 
+/**
+ * Een [Fragment] die de accountpagina van een aangemelde gebruiker laat zien.
+ */
 class AccountFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val fragment =  inflater.inflate(R.layout.fragment_account, container, false)
 
-        //set action bar and bottom nav bar
-        var parentActivity = (activity as AppCompatActivity)
-        LayoutUtil.setMainLayout(parentActivity, getString(R.string.ab_account_titel), getString(R.string.ab_account_subtitel), false, R.id.nav_account)
+        //shared layout instellen
+        val parentActivity = (activity as AppCompatActivity)
+        LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_account_title), getString(R.string.ab_account_subtitle))
+        LayoutUtil.clearActionBarOptions(parentActivity)
+        LayoutUtil.setBottomNavigation(parentActivity, R.id.nav_account)
 
-        //temp tekst als poc
-        fragment.text_account_temptekst.text = "hallo van account!"
+        //temp tekst als POC
+        fragment.text_account_temptext.text = "hallo van account!"
 
         return fragment
     }

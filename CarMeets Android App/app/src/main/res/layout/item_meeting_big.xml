@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 1 lijst item BIG -->
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="10dp"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="5dp"
+
+        android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <!-- afbeelding -->
+        <ImageView
+                android:id="@+id/image_itemmeeting"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                app:layout_constraintDimensionRatio="H,16:9"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/auto"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop ="15dp"
+                android:contentDescription="@string/item_meeting_img_alt"/>
+
+        <!-- titel -->
+        <TextView
+                android:id="@+id/text_itemmeeting_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                tools:text="Android app celibration"
+                android:textSize="24sp"
+                android:textColor="@android:color/black"
+
+                app:layout_constraintTop_toBottomOf="@+id/image_itemmeeting"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="8dp"/>
+
+        <!-- subtitel -->
+        <TextView
+                android:id="@+id/text_itemmeeting_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                tools:text="Een android app vieren met een gepaste meeting"
+                android:textSize="18sp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_itemmeeting_title"
+
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+
+        <!-- locatie -->
+        <TextView
+                android:id="@+id/text_itemmeeting_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                tools:text="9260, Schellebelle"
+                android:drawableLeft="@drawable/ic_location_pink_20dp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_itemmeeting_subtitle"
+
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
+
+

@@ -1,5 +1,7 @@
 package com.lennertbontinck.carmeetsandroidapp.activities
 
+import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -8,19 +10,33 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
-import com.lennertbontinck.carmeetsandroidapp.fragments.FavorietenlijstFragment
-import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglijstFragment
+import com.lennertbontinck.carmeetsandroidapp.fragments.FavouritesListFragment
+import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglistFragment
 import com.lennertbontinck.carmeetsandroidapp.utils.FragmentUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * De *mainactivity* van de applicatie. Er is maar 1 activity doorheen de app.
+ */
 class MainActivity : AppCompatActivity() {
+
+    //veiwmodel var instellen zodat deze doorheen de mainactivity aanspreekbaar is
+    private lateinit var meetingViewModel: MeetingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //bij het laden van de app de mainactivity instellen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //context instellen voor globaal gebruik
+        instance = this
+
+        //de viewmodel eenmalig instellen mits die meermalig in activty gebruikt zal worden
+        meetingViewModel = ViewModelProviders.of(this).get(MeetingViewModel::class.java)
 
         //supportbar instellen zodat hij toolbar gebruikt
         setSupportActionBar(menu_main_toolbar)
@@ -30,8 +46,8 @@ class MainActivity : AppCompatActivity() {
 
         //initieel wordt meetinglijst weergegeven
         supportFragmentManager.beginTransaction()
-            .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
-            .addToBackStack(getString(R.string.fragtag_meetinglijst))
+            .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
+            .addToBackStack(getString(R.string.fragtag_meetinglist))
             .commit()
     }
 
@@ -44,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         //listener op de backstack voor
         supportFragmentManager.addOnBackStackChangedListener { onBackStackChangedListener() }
 
-        //listener wanneer back button uit de toolbar -> zelfde als hardware back button
+        //listener wanneer back button uit de toolbar -> zelfde functie als hardware back button
         menu_main_toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -55,11 +71,11 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.toolbar, menu)
 
         //listener voor het klikken op noticaties uit de actionbar
-        val notificaties = menu?.findItem(R.id.nav_notificaties)?.actionView
-        notificaties?.findViewById<ImageView>(R.id.image_partialnotificaties_bel)
-            ?.setOnClickListener({ notificatiesClicked() })
-        notificaties?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
-            ?.setOnClickListener({ notificatiesClicked() })
+        val notifications = menu?.findItem(R.id.nav_notifications)?.actionView
+        notifications?.findViewById<ImageView>(R.id.image_partialnotification_bell)
+            ?.setOnClickListener { notificationsClicked() }
+        notifications?.findViewById<TextView>(R.id.text_partialnotification_amount)
+            ?.setOnClickListener { notificationsClicked() }
 
         return true
     }
@@ -68,23 +84,23 @@ class MainActivity : AppCompatActivity() {
         //het item dat gelklikt is uit de toolbar
         //dit id moet in theorie altijd ingevuld zijn want enkel dan weet je wat aangeduid en kan je bijhorende actie uitvoeren
         when (item?.itemId) {
-            R.id.nav_notificaties -> {
-                notificatiesClicked()
+            R.id.nav_notifications -> {
+                notificationsClicked()
                 return super.onOptionsItemSelected(item)
             }
 
-            R.id.nav_zoek -> {
-                MessageUtil.toonToast(this, "Er is op zoeken geklikt")
+            R.id.nav_search -> {
+                MessageUtil.showToast("Er is op zoeken geklikt")
                 return super.onOptionsItemSelected(item)
             }
 
-            R.id.ab_opties_groot -> {
-                setLayoutLijstDesgin("groot")
+            R.id.ab_options_small -> {
+                meetingViewModel.listDesign.value = ListDesignEnum.SMALL
                 return super.onOptionsItemSelected(item)
             }
 
-            R.id.ab_opties_klein -> {
-                setLayoutLijstDesgin("klein")
+            R.id.ab_options_big -> {
+                meetingViewModel.listDesign.value = ListDesignEnum.BIG
                 return super.onOptionsItemSelected(item)
             }
 
@@ -102,40 +118,23 @@ class MainActivity : AppCompatActivity() {
         if (supportFragmentManager.backStackEntryCount == 0) finish()
     }
 
-    private fun notificatiesClicked() {
-        //POC dat je aantal kan aanpassen, +1 op click
-        val notificatieAantal = menu_main_toolbar.menu.findItem(R.id.nav_notificaties)
-            ?.actionView?.findViewById<TextView>(R.id.text_partialnotificaties_aantal)
+    /**
+     * *POC* functie dat toont dat je een onclick van notificatiebel kan vastleggen en dat je het aantal kan aanpassen.
+     *
+     * Verhoogt het aantal naast het notificatie icoon met 1 per klik.
+     */
+    private fun notificationsClicked() {
+        val notificationAmount = menu_main_toolbar.menu.findItem(R.id.nav_notifications)
+            ?.actionView?.findViewById<TextView>(R.id.text_partialnotification_amount)
 
-        notificatieAantal?.text = (notificatieAantal?.text.toString().toInt() + 1).toString()
+        notificationAmount?.text = (notificationAmount?.text.toString().toInt() + 1).toString()
     }
 
-    private fun setLayoutLijstDesgin(lijstDesgin: String) {
-        //huidige item in de backstack zijn fragtag
-        var huidigeFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
-
-        if (huidigeFragTag != null && huidigeFragTag != "") {
-            //afhankelijk van op welke fragment je zit de layout opnieuw laden met nieuwe layoutdesign
-            //moet naar backstack anders gaat hij op back press de fragment laten staan
-            when (huidigeFragTag) {
-                getString(R.string.fragtag_favorietenlijst) -> {
-                    var fragment = FavorietenlijstFragment.newInstance(lijstDesgin)
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame_main_fragmentcontainer, fragment)
-                        .addToBackStack(getString(R.string.fragtag_favorietenlijst))
-                        .commit()
-                }
-                getString(R.string.fragtag_meetinglijst) -> {
-                    var fragment = MeetinglijstFragment.newInstance(lijstDesgin)
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame_main_fragmentcontainer, fragment)
-                        .addToBackStack(getString(R.string.fragtag_meetinglijst))
-                        .commit()
-                }
-            }
-        }
-    }
-
+    /**
+     * methode voor de *backstack* changes in de gaten te houden.
+     *
+     * zorgt er voor dat de back toest verdwijnd zodra op back geklikt wordt
+     */
     private fun onBackStackChangedListener() {
         //indien je op initieel fragment zit geen back knop tonen
         if (supportFragmentManager.backStackEntryCount <= 1) {
@@ -143,24 +142,33 @@ class MainActivity : AppCompatActivity() {
         } else supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    /**
+     * methode voor de *bottom navigation* in de gaten te houden.
+     *
+     * zorgt er voor dat bij het selecteren van een bottom navigation item gecontroleerd wordt of
+     */
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         //indien zelfde nav item geselecteerd als het reeds is, doe niets.
         //vermijd loops en spam clicks
-        if (FragmentUtil.checkFragmentEqualsNavItem(this, item, supportFragmentManager)) return@OnNavigationItemSelectedListener true
+        if (FragmentUtil.checkFragmentEqualsNavItem(
+                item,
+                supportFragmentManager
+            )
+        ) return@OnNavigationItemSelectedListener true
 
         //afhankelijk van geselecteerde nav item actie uitvoeren
-        when (item?.itemId) {
+        when (item.itemId) {
             R.id.nav_meetings -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame_main_fragmentcontainer, MeetinglijstFragment())
-                    .addToBackStack(getString(R.string.fragtag_meetinglijst))
+                    .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
+                    .addToBackStack(getString(R.string.fragtag_meetinglist))
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.nav_favorieten -> {
+            R.id.nav_favourites -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame_main_fragmentcontainer, FavorietenlijstFragment())
-                    .addToBackStack(getString(R.string.fragtag_favorietenlijst))
+                    .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
+                    .addToBackStack(getString(R.string.fragtag_favouriteslist))
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
@@ -173,5 +181,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return@OnNavigationItemSelectedListener false
+    }
+
+    companion object {
+        //voor globaal gebruik van context
+        //handig om toasts van eender waar te doen en gebruik in andere utils
+        private var instance: MainActivity? = null
+
+        /**
+         * returnt de [Context] van de app zijn MainActivity
+         */
+        fun getContext(): Context {
+            return instance!!.applicationContext
+        }
     }
 }

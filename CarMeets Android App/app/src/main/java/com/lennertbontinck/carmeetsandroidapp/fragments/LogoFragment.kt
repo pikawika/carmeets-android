@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 
+/**
+ * Een [Fragment] die als *placeholder* gebruikt kan worden.
+ *
+ * Toont het carmeets logo met de tekst over het ontstaan van de app
+ */
 class LogoFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val fragment =  inflater.inflate(R.layout.fragment_placeholder_logo, container, false)
-
-        return fragment
+        return inflater.inflate(R.layout.fragment_placeholder_logo, container, false)
     }
 
 }

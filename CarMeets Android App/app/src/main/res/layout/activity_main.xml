@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- de main activity met toolbar en bottom navigation en holder voor fragment -->
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,7 +12,9 @@
     <android.support.v7.widget.Toolbar
             android:id="@+id/menu_main_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:minHeight="60dp"
+            app:layout_constrainedHeight="true"
             android:background="?attr/colorPrimary"
 
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
@@ -23,8 +26,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
-            app:title="@string/ab_meetings_titel"
-            app:subtitle="@string/ab_meetings_subtitel"/>
+            app:title="@string/ab_meetings_title"
+            app:subtitle="@string/ab_meetings_subtitle"/>
 
     <FrameLayout
             android:id="@+id/frame_main_fragmentcontainer"
