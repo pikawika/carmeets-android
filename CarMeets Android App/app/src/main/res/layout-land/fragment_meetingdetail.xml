@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Data binding voorzien -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+                name="meetingViewModel"
+                type="com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel"/>
+    </data>
+
+    <!-- de meetingdetail pagina voor landschap -->
+    <ScrollView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    >
+
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <!-- De meeting afbeelding -->
+            <ImageView
+                    android:id="@+id/image_meetingdetail_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+
+                    app:layout_constraintDimensionRatio="H,16:9"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/auto"
+                    android:src="@{meetingViewModel.getSelectedMeeting().afbeeldingNaam}"
+                    android:contentDescription="@string/item_meeting_img_alt"
+
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <!-- liked going iconen -->
+            <android.support.constraint.ConstraintLayout
+                    android:id="@+id/partial_meetingdetail_likedgoing"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentTop="true"
+                    android:background="@android:color/white"
+                    app:layout_constraintHorizontal_weight="1"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/partial_meetingdetail_date"
+                    app:layout_constraintStart_toStartOf="@+id/partial_meetingdetail_date"
+
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:layout_marginEnd="10dp">
+
+                <!-- like icoon -->
+                <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/image_meetingdetail_like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:src="@drawable/ic_heart_black_24dp"
+
+                        app:layout_constraintStart_toStartOf="parent"
+
+                        android:layout_marginStart="8dp"/>
+
+                <!-- going icoon -->
+                <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/image_meetingdetail_going"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:src="@drawable/ic_check_black_24dp"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+
+                        android:layout_marginEnd="8dp"/>
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <!-- de dag en maand -->
+            <android.support.constraint.ConstraintLayout
+                    android:id="@+id/partial_meetingdetail_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentTop="true"
+                    android:background="@color/colorPrimary"
+
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintTop_toBottomOf="@+id/image_meetingdetail_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    android:layout_marginEnd="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="8dp">
+
+                <!-- de dag -->
+                <TextView
+                        android:id="@+id/text_meetingdetail_dateday"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:textColor="@android:color/white"
+                        android:textAlignment="center"
+                        android:textSize="34sp"
+                        tools:text="23"
+                        android:dayInMonth="@{meetingViewModel.getSelectedMeeting().date}"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"/>
+
+                <!-- de maand -->
+                <TextView
+                        android:id="@+id/textView_meetingdetail_datemonth"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:textColor="@android:color/white"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+
+                        tools:text="Dec"
+                        android:shortMonthName="@{meetingViewModel.getSelectedMeeting().date}"
+
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_dateday"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <!-- titel -->
+            <TextView
+                    android:id="@+id/text_meetingdetail_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+
+                    tools:text="Android app celibration"
+                    android:text="@{meetingViewModel.getSelectedMeeting().title}"
+                    android:textSize="24sp"
+                    android:textColor="@android:color/black"
+
+                    app:layout_constraintTop_toBottomOf="@+id/image_meetingdetail_header"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/partial_meetingdetail_date"
+
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+            <!-- subtitel -->
+            <TextView
+                    android:id="@+id/text_meetingdetail_subtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="18sp"
+                    tools:text="Een android app vieren met een gepaste meeting"
+                    android:text="@{meetingViewModel.getSelectedMeeting().subtitle}"
+
+                    app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/partial_meetingdetail_date"
+
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+            <!-- mooie scheidingslijn tussen subtitel en beschrijving -->
+            <View
+                    android:id="@+id/divider_meetingdetail_undersubtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+
+
+                    android:background="@android:color/darker_gray"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_subtitle"
+                    app:layout_constraintEnd_toStartOf="@+id/partial_meetingdetail_date"
+
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+            <!-- beschrijving + knoppen -->
+            <android.support.constraint.ConstraintLayout
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/partial_meetingdetail_date"
+                    app:layout_constraintTop_toBottomOf="@+id/divider_meetingdetail_undersubtitle"
+
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <!-- beschrijving -->
+                <TextView
+                        android:id="@+id/text_meetingdetail_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        tools:text="Niet alleen is Lennert zijn GTI eindelijk af, ook zijn studies zijn bijna afgerond! Dankzij deze android app zou hij namelijk een stap dichter moeten komen naar zijn diploma! als dat maar goed afloopt."
+                        android:text="@{meetingViewModel.getSelectedMeeting().description}"
+
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                <!-- notificaties -->
+                <Button
+                        android:id="@+id/button_meetingdetail_notification"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:drawableLeft="@drawable/ic_add_alert_pink_18dp"
+                        android:drawableRight="@drawable/ic_add_alert_pink_18dp"
+                        android:text="@string/button_meeting_notification"
+
+                        app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_description"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"/>
+
+                <!-- agenda -->
+                <Button
+                        android:id="@+id/button_meetingdetail_agenda"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:drawableLeft="@drawable/ic_add_agenda_pink_18dp"
+                        android:drawableRight="@drawable/ic_add_agenda_pink_18dp"
+                        android:text="@string/button_meeting_agenda"
+
+                        app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_notification"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"/>
+
+                <!-- route -->
+                <Button
+                        android:id="@+id/button_meetingdetail_route"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:drawableLeft="@drawable/ic_navigation_pink_18dp"
+                        android:drawableRight="@drawable/ic_navigation_pink_18dp"
+                        android:text="@string/button_meeting_route"
+
+                        app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_agenda"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"/>
+                <!-- website -->
+                <Button
+                        android:id="@+id/button_meetingdetail_website"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:drawableLeft="@drawable/ic_link_pink_18dp"
+                        android:drawableRight="@drawable/ic_link_pink_18dp"
+                        android:text="@string/button_meeting_website"
+
+                        app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_route"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+</layout>

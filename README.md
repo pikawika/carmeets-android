@@ -2,6 +2,8 @@
 
 Dit is de GitHub repository voor de Android App van CarMeets. U kan hier steeds alle broncode raadplegen en clonen. Ik heb gebruik gemaakt van Trello boards als todo lijstjes, ook deze kan u hier raadplegen
 
+IMPORTANT: De backend is gratis gehost op heroku, hierdoor kunnen er af en toe langere wachtijden zijn. Voornamelijk bij het initieel laden kan het even duren tegen de server opgestart is. Dit is omdat de heroku server na enige minuten inactiviteit in slaapstand gaat. 
+
 ## Inhoudsopgave
 
 > - [Wat is de CarMeets app](#wat-is-de-carmeets-app)
@@ -30,6 +32,7 @@ Er zijn in de code inline comments voorzien met uitleg wat bepaalde regels code 
 Er is voor elke feature een beschrijving van wat de feauture juist implementeert met extra uitleg waar nodig voorzien. Deze documenten dienen als verduidelijking van de commentaar die reeds in de code voorzien is. U vindt het volledige overzicht [hier.](Documentatie%20per%20feature/README.md)
 
 > 1. [Meer info over Feature 1 - Basic Layout](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
+> 2. [Meer info over Feature 2 - MVVM en basic rest](#)
 
 ## Releases en APKs
 
@@ -37,6 +40,10 @@ Er is voor elke feature een beschrijving van wat de feauture juist implementeert
 >     - [Meer info over Feature 1 - Basic Layout](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
 >     - [Release](https://github.com/HoGentTIN/native-apps-1-android-creative-app-pikawika/releases/tag/V1.0)
 >     - [APK](apks/carmeets-feature1.apk)
+> 1. Feature 2: MVVM structuur en meetinglijst + detail via rest api verkregen
+>     - [Meer info over Feature 2 - MVVM en basic rest](Documentatie%20per%20feature/feature2-mvvm_basic-rest.md)
+>     - [Release](https://github.com/HoGentTIN/native-apps-1-android-creative-app-pikawika/releases/tag/V2.0)
+>     - [APK](apks/carmeets-feature2.apk) 
 
 ## GitHub Repository van de backend
 Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaakt met de MEAN-stack zal ik de bestaande backend hergebruik en aanvullen waar nodig.
@@ -51,3 +58,5 @@ Buiten het in de les ter beschikking gestelde boek heb volgende bronnen geraadpl
 > - [Hoe schrijf je zelf documentatie](https://kotlinlang.org/docs/reference/kotlin-doc.html)
 > - [Notificatie icoon met aantal](https://stackoverflow.com/questions/17696486/actionbar-notification-count-icon-badge-like-google-has)
 > - [Support voor meerdere screen sizes](https://developer.android.com/training/multiscreen/screensizes)
+> - [Metar project dat MVVM en retrofit gebruik uitlegd](https://github.com/hdeweirdt/Metar)
+> - [Moshi Rfc3339DateJsonAdapter.java](https://github.com/square/moshi/blob/master/adapters/src/main/java/com/squareup/moshi/Rfc3339DateJsonAdapter.java)

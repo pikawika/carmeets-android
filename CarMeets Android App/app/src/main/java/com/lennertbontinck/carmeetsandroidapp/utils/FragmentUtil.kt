@@ -1,9 +1,9 @@
 package com.lennertbontinck.carmeetsandroidapp.utils
 
-import android.content.Context
+
+import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import android.support.v4.app.FragmentManager
 import android.view.MenuItem
-import android.widget.Toast
 import com.lennertbontinck.carmeetsandroidapp.R
 
 /**
@@ -13,7 +13,7 @@ object FragmentUtil {
     /**
      * Kijkt of de net aangemaakte fragment van hetzelfde type fragment die wordt aangemaakt bij het klikken op het meegeven menuitem.
      *
-     * @param[context] De context. Required of type Context.
+     * Context word uit [MainActivity] gehaald.
      *
      * @param[item] De aangeklikte menu item. Required of type MenuItem.
      *
@@ -21,14 +21,16 @@ object FragmentUtil {
      *
      */
     @JvmStatic
-    fun checkFragmentEqualsNavItem(context: Context, item: MenuItem?, supportFragmentManager : FragmentManager) : Boolean {
+    fun checkFragmentEqualsNavItem(item: MenuItem?, supportFragmentManager : FragmentManager) : Boolean {
+        //Context ophalen
+        val context = MainActivity.getContext()
         //huidige item in de backstack zijn fragtag
-        var huidigeFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
-        if (huidigeFragTag != null && huidigeFragTag != "") {
+        val currentFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
+        if (currentFragTag != null && currentFragTag != "") {
             //kijken of huidige fragtag de selected item al niet reeds heeft ingesteld
-            when (huidigeFragTag) {
-                context.getString(R.string.fragtag_meetinglijst) -> if (item?.itemId == R.id.nav_meetings) return true
-                context.getString(R.string.fragtag_favorietenlijst) -> if (item?.itemId == R.id.nav_favorieten) return true
+            when (currentFragTag) {
+                context.getString(R.string.fragtag_meetinglist) -> if (item?.itemId == R.id.nav_meetings) return true
+                context.getString(R.string.fragtag_favouriteslist) -> if (item?.itemId == R.id.nav_favourites) return true
                 context.getString(R.string.fragtag_account) -> if (item?.itemId == R.id.nav_account) return true
             }
         }
