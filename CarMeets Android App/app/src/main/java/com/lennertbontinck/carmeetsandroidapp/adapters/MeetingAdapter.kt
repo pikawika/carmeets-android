@@ -22,12 +22,6 @@ import kotlinx.android.synthetic.main.item_meeting_small.view.*
  * De *adapter* voor een het vullen van een recyclerview met een meegegeven list van meetings ahdv een meegegeven stijl. Al dan niet een twopane design.
  *
  * @param[parentActivity] De parentactivity waarin de supportfragmentmanager zit en dat gebruikt wordt voor glide. Required of type AppCompatActivity
- *
- * @param[list] De list van meetings die de adapter moet verwerken. Required of type MutableLiveData<List<Meeting>>
- *
- * @param[listDesignEnum] De stijl waarin de list weergegeven moet worden. Required of enum type ListDesignEnum
- *
- * @param[isTablet] Of de layout al dan niet tablet is (TwoPane). Required of type Boolean
  */
 class MeetingAdapter(private val parentActivity: AppCompatActivity) :
     RecyclerView.Adapter<MeetingAdapter.ViewHolder>() {

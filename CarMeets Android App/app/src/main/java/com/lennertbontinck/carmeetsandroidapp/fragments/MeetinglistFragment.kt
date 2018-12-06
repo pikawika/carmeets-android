@@ -17,18 +17,8 @@ import kotlinx.android.synthetic.main.fragment_meetinglist.view.*
 
 /**
  * Een [Fragment] die alle meetings laat zien.
- *
- * Maakt gebruik van de MVVM voor meetings op te halen en de geselecteerde lijstLayout te gebruiken.
  */
 class MeetinglistFragment : Fragment() {
-
-    /**
-     * [Boolean] of het huidige device al dan niet een tablet is/ of al dan niet twopane design gebruikt moet worden.
-     * Default is dit false
-     */
-    //Globaal ter beschikking gesteld aangezien het mogeiljks later nog in andere functie dan onCreateView wenst te worden
-    private var isTablet: Boolean = false
-
     /**
      * [MeetingViewModel] met de data van alle meetings
      */
@@ -60,7 +50,7 @@ class MeetinglistFragment : Fragment() {
         //->indien deze er is weet men dat het over een tablet (twoPane) gaat
         //->initieel vullen met ene placeholder logofragment om geen blake pagina te hebbenæ
         if (fragment.frame_meetinglist_meetingdetailcontainer != null) {
-            isTablet = true
+            meetingViewModel.setIsTwoPane(true)
             parentActivity.supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.frame_meetinglist_meetingdetailcontainer, LogoFragment())

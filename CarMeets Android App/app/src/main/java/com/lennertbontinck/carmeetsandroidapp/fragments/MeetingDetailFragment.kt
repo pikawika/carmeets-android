@@ -21,8 +21,6 @@ import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
 
 /**
  * Een [Fragment] die de details van een meeting laat zien.
- *
- * Gebruik *MeetingDetailFragment.newInstance* om een parcable *ARG_MEETING_TAG* mee te geven (welke meeting het is) en isTablet boolean.
  */
 class MeetingDetailFragment : Fragment() {
 

@@ -72,7 +72,6 @@ class MeetingViewModel : InjectedViewModel() {
     }
 
 
-
     /**
      * Functie voor het behandelen van het mislukken van het ophalen van data van de server
      */
@@ -142,14 +141,14 @@ class MeetingViewModel : InjectedViewModel() {
     /**
      * Stelt in of huidige omgeving al dan niet twopane is
      */
-    fun setIsTwoPane(meetingId: String) {
-
+    fun setIsTwoPane(bool: Boolean) {
+        isTwoPane.value = bool
     }
 
     /**
      * Returnt of huidige omgeving al dan niet twopane is
      */
-    fun getIsTwoPane() : MutableLiveData<Boolean>{
+    fun getIsTwoPane(): MutableLiveData<Boolean> {
         return isTwoPane
     }
 
