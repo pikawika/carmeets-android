@@ -4,15 +4,16 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.adapters.MeetingAdapter
-import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
+import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
+import kotlinx.android.synthetic.main.fragment_meetinglist.*
 import kotlinx.android.synthetic.main.fragment_meetinglist.view.*
 
 /**
@@ -24,59 +25,85 @@ class FavouritesListFragment : Fragment() {
     /**
      * [MeetingViewModel] met de data van alle meetings
      */
-    //Globaal ter beschikking gesteld aangezien het mogeiljks later nog in andere functie dan onCreateView wenst te worden
     private lateinit var meetingViewModel: MeetingViewModel
+
+    /**
+     * [GuiViewModel] met de data over de GUI instellingen
+     */
+    private lateinit var guiViewModel: GuiViewModel
+
+    /**
+     * [MeetingAdapter] voor het vullen van de favorieten lijst
+     */
+    private lateinit var meetingAdapter: MeetingAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val fragment = inflater.inflate(R.layout.fragment_meetinglist, container, false)
 
-        //shared layout instellen
-        val parentActivity = (activity as AppCompatActivity)
-        LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_favourites_title), getString(R.string.ab_favourite_subtitle))
-        LayoutUtil.clearActionBarOptions(parentActivity)
-        LayoutUtil.showListLayoutOpties(parentActivity)
-        LayoutUtil.setBottomNavigation(parentActivity, R.id.nav_favourites)
-
         //viewmodel vullen
         meetingViewModel = ViewModelProviders.of(requireActivity()).get(MeetingViewModel::class.java)
-
-        //lijst vullen met meetings uit viewmodel.
-        //We doen niet direct .value maar behouden het als mutueablelivedata mits we hier op willen op observen
-        val meetings = meetingViewModel.getMeetings()
-
-        //haal weergave uit de viewmodel
-        //We doen niet direct .value maar behouden het als mutueablelivedata mits we hier op willen op observen
-        val listDesgin = meetingViewModel.listDesign
+        guiViewModel = ViewModelProviders.of(requireActivity()).get(GuiViewModel::class.java)
 
         //Bepalen of er al dan niet een detailcontainer is
         //->indien deze er is weet men dat het over een tablet (twoPane) gaat
         //->initieel vullen met ene placeholder logofragment om geen blake pagina te hebbenæ
         if (fragment.frame_meetinglist_meetingdetailcontainer != null) {
-            meetingViewModel.setIsTwoPane(true)
-            parentActivity.supportFragmentManager
+            guiViewModel.isTwoPaneEnvironment.value = true
+            requireActivity().supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.frame_meetinglist_meetingdetailcontainer, LogoFragment())
                 .commit()
+        } else {
+            guiViewModel.isTwoPaneEnvironment.value = false
         }
 
         //adapter aanmaken
-        val adapter = MeetingAdapter(this.requireActivity() as MainActivity)
+        meetingAdapter = MeetingAdapter(requireActivity() as MainActivity)
 
+        //recyclerview vullen door adapter toe te kennen
+        fragment.recyclerview_meetinglist.adapter = meetingAdapter
+
+        return fragment
+    }
+
+    /**
+     * Functie voor het instantiëren van de listeners.
+     */
+    private fun initListeners() {
         //indien de meetinglijst veranderd moet de adapter opnieuw zijn cards genereren met nieuwe data
-        meetings.observe(this, Observer {
-            adapter.notifyDataSetChanged()
+        meetingViewModel.meetingList.observe(this, Observer {
+            meetingAdapter.notifyDataSetChanged()
         })
 
         //indien lijstDesign veranderd moet de adapter opnieuw zijn cards genereren met nieuwe stijl
         //hier kan je momenteel enkel adapter opnieuw toekennen mits notifyDataSetChanged etc niet
-        //      opnieuw inflate methode aanroept waar je itemstijl meegeeft
-        listDesgin.observe(this, Observer {
-            fragment.recyclerview_meetinglist.adapter = adapter
+        //opnieuw inflate methode aanroept waar je itemstijl meegeeft
+        guiViewModel.listDesign.observe(this, Observer {
+            recyclerview_meetinglist.adapter = meetingAdapter
         })
+    }
 
-        //recyclerview vullen door adapter toe te kennen
-        fragment.recyclerview_meetinglist.adapter = adapter
+    /**
+     * Functie voor het stoppen van de listeners
+     */
+    @Suppress("UNUSED_EXPRESSION")
+    private fun stopListeners() {
+        meetingViewModel.meetingList.removeObservers(requireActivity())
+        guiViewModel.listDesign.removeObservers(requireActivity())
+    }
 
-        return fragment
+    override fun onStart() {
+        super.onStart()
+        initListeners()
+        guiViewModel.actionBarTitle.value = getString(R.string.ab_favourites_title)
+        guiViewModel.actionBarSubTitle.value = getString(R.string.ab_favourite_subtitle)
+        guiViewModel.activeMenuItem.value = MenuItemEnum.FAVOURITES
+        guiViewModel.isListDesignOptionsVisible.value = true
+    }
+
+    override fun onStop() {
+        super.onStop()
+        stopListeners()
+        guiViewModel.resetLayout()
     }
 }
