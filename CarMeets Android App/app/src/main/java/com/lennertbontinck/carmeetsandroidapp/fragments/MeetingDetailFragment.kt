@@ -97,7 +97,15 @@ class MeetingDetailFragment : Fragment() {
         }
 
         fragment.button_meetingdetail_website.setOnClickListener {
-            MessageUtil.showToast("website")
+            val browserIntent = Intent(Intent.ACTION_VIEW)
+            browserIntent.data = Uri.parse(meetingViewModel.getSelectedMeeting().value!!.website)
+            //kijk of er browser app is op de gsm
+            val packageManager = requireActivity().packageManager
+            if (browserIntent.resolveActivity(packageManager) != null) {
+                startActivity(browserIntent)
+            } else {
+                MessageUtil.showToast(getString(R.string.error_no_browser_app))
+            }
         }
     }
 }

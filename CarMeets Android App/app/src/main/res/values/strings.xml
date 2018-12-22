@@ -1,6 +1,7 @@
 <resources>
     <!-- errors -->
     <string name="error_no_navigation_app">U heeft geen navigatie applicatie geïnstalleerd op uw toestel.</string>
+    <string name="error_no_browser_app">U heeft geen internet browser applicatie geïnstalleerd op uw toestel.</string>
 
     <!-- warnings -->
 
