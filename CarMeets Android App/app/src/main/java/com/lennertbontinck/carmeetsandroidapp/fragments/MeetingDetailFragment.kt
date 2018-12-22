@@ -53,7 +53,7 @@ class MeetingDetailFragment : Fragment() {
 
         //shared layout instellen -> indien tablet moet er niets veranderd
         //default false dus kan niet null zijn
-        if (!meetingViewModel.getIsTwoPane().value!!)
+        if (!meetingViewModel.isTwoPane.value!!)
             LayoutUtil.clearActionBarOptions(parentActivity)
 
         //listeners instellen voor de knoppen etc
@@ -73,14 +73,14 @@ class MeetingDetailFragment : Fragment() {
         fragment.button_meetingdetail_agenda.setOnClickListener {
             val calenderIntent = Intent(Intent.ACTION_INSERT).apply {
                 data = CalendarContract.Events.CONTENT_URI
-                putExtra(CalendarContract.Events.TITLE, meetingViewModel.getSelectedMeeting().value!!.title)
-                putExtra(CalendarContract.Events.DESCRIPTION, meetingViewModel.getSelectedMeeting().value!!.description)
+                putExtra(CalendarContract.Events.TITLE, meetingViewModel.selectedMeeting.value!!.title)
+                putExtra(CalendarContract.Events.DESCRIPTION, meetingViewModel.selectedMeeting.value!!.description)
                 putExtra(
                     CalendarContract.Events.EVENT_LOCATION,
-                    LocationUtil.getAddressNotation(meetingViewModel.getSelectedMeeting().value!!.location)
+                    LocationUtil.getAddressNotation(meetingViewModel.selectedMeeting.value!!.location)
                 )
-                putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, meetingViewModel.getSelectedMeeting().value!!.date)
-                putExtra(CalendarContract.EXTRA_EVENT_END_TIME, meetingViewModel.getSelectedMeeting().value!!.date)
+                putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, meetingViewModel.selectedMeeting.value!!.date)
+                putExtra(CalendarContract.EXTRA_EVENT_END_TIME, meetingViewModel.selectedMeeting.value!!.date)
                 putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
             }
             //kijk of er agenda app is op de gsm
@@ -97,7 +97,7 @@ class MeetingDetailFragment : Fragment() {
                 //adres moet omgezet worden naar een url string dus encode (spatie en andere speciale tekens encoden)
                 data = Uri.parse(
                     "geo:0,0?q=" + URLEncoder.encode(
-                        LocationUtil.getAddressNotation(meetingViewModel.getSelectedMeeting().value!!.location),
+                        LocationUtil.getAddressNotation(meetingViewModel.selectedMeeting.value!!.location),
                         "UTF-8"
                     )
 
@@ -113,7 +113,7 @@ class MeetingDetailFragment : Fragment() {
 
         fragment.button_meetingdetail_website.setOnClickListener {
             val browserIntent = Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse(meetingViewModel.getSelectedMeeting().value!!.website)
+                data = Uri.parse(meetingViewModel.selectedMeeting.value!!.website)
             }
             //kijk of er browser app is op de gsm
             if (browserIntent.resolveActivity(requireActivity().packageManager) != null) {

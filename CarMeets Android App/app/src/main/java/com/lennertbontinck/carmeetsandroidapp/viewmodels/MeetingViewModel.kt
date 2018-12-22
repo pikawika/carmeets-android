@@ -1,9 +1,6 @@
 package com.lennertbontinck.carmeetsandroidapp.viewmodels
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.Transformations
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
@@ -19,39 +16,43 @@ import javax.inject.Inject
  */
 class MeetingViewModel : InjectedViewModel() {
     /**
-     * De lijst van alle meetings zoals die van de server gehaald is
+     * De lijst van alle meetings zoals die van de server gehaald is.
      */
-    private val meetingsList = MutableLiveData<List<Meeting>>()
+    var meetingList = MutableLiveData<List<Meeting>>()
+        private set
 
     /**
-     * De de geselecteerde meeting
+     * De huidige door de gebruiker geselecteerde meeting.
      */
-    private val selectedMeeting = MutableLiveData<Meeting>()
+    var selectedMeeting = MutableLiveData<Meeting>()
+        private set
 
     /**
-     * Het huidige door de gebruiker geselecteerde design van lijstitems
+     * Het huidige door de gebruiker geselecteerde design van lijstitems.
      */
-    val listDesign = MutableLiveData<ListDesignEnum>()
+    var listDesign = MutableLiveData<ListDesignEnum>()
+        private set
 
     /**
-     * Of de huidige omgeving al dan niet in TwoPane is
+     * Returnt of de huidige omgeving al dan niet two pane is.
      */
-    private val isTwoPane = MutableLiveData<Boolean>()
+    var isTwoPane = MutableLiveData<Boolean>()
+        private set
 
     /**
-     * een instantie van de carmeetsApi om data van de server op te halen
+     * een instantie van de carmeetsApi om data van de server op te halen.
      */
     @Inject
     lateinit var carmeetsApi: CarmeetsApi
 
     /**
-     * De subscription op het getAllMeetings verzoek
+     * De subscription op het getAllMeetings verzoek.
      */
     private var getAllMeetingsSubscription: Disposable
 
     init {
-        //initieel vullen met een lege lijst zodat dit niet nul os
-        meetingsList.value = emptyList()
+        //initieel vullen met een lege lijst zodat dit niet nul is
+        meetingList.value = emptyList()
         //initieel is layout klein
         listDesign.value = ListDesignEnum.SMALL
         //initieel niet TwoPane
@@ -71,19 +72,8 @@ class MeetingViewModel : InjectedViewModel() {
             )
     }
 
-
     /**
-     * Functie voor het behandelen van het mislukken van het ophalen van data van de server
-     */
-    private fun onRetrieveError(error: Throwable) {
-        //voorlopig toastje zou mooier zijn als er fragment toont
-        MessageUtil.showToast("Er ging iets mis met het ophalen van de data!")
-    }
-
-    /**
-     * Functie voor het behandelen van het starten van een rest api call
-     *
-     * Zal een loading fragment tonen of dergelijke
+     * Functie voor het behandelen van het starten van een rest api call.
      */
     private fun onRetrieveStart() {
         //hier begint api call
@@ -91,9 +81,7 @@ class MeetingViewModel : InjectedViewModel() {
     }
 
     /**
-     * Functie voor het behandelen van het eindigen van een rest api call
-     *
-     * Sluit het loading fragment of dergelijke
+     * Functie voor het behandelen van het eindigen van een rest api call.
      */
     private fun onRetrieveFinish() {
         //hier eindigt api call
@@ -101,12 +89,47 @@ class MeetingViewModel : InjectedViewModel() {
     }
 
     /**
-     * Functie voor het behandelen van het succesvol ophalen van de meetings
+     * Functie voor het behandelen van het mislukken van het ophalen van data van de server.
+     */
+    private fun onRetrieveError(error: Throwable) {
+        //voorlopig toastje zou mooier zijn als er fragment toont
+        MessageUtil.showToast("Er ging iets mis met het ophalen van de data!")
+    }
+
+    /**
+     * Functie voor het behandelen van het succesvol ophalen van de meetings.
      *
-     * Zal de lijst van meetings gelijkstellen met het results
+     * Zal de lijst van meetings gelijkstellen met het results.
      */
     private fun onRetrieveMeetingsSuccess(result: List<Meeting>) {
-        meetingsList.value = result
+        meetingList.value = result
+    }
+
+    /**
+     * Stelt de door de gebruiker geselecteerde meeting in.
+     *
+     * @param meetingId : meetingId van meeting die als selected meeting moet ingesteld worden, verplicht van type [String].
+     */
+    fun setSelectedMeeting(meetingId: String) {
+        selectedMeeting.value = meetingList.value!!.firstOrNull { it.meetingId == meetingId }
+    }
+
+    /**
+     * Stelt de door de gebruiker geselecteerde lijst design in.
+     *
+     * @param listDesignEnum : layout van de lijst, verplicht van type [ListDesignEnum].
+     */
+    fun setListDesign(listDesign: ListDesignEnum) {
+        this.listDesign.value = listDesign
+    }
+
+    /**
+     * Stelt de door de gebruiker geselecteerde lijst design in.
+     *
+     * @param listDesignEnum : layout van de lijst, verplicht van type [ListDesignEnum].
+     */
+    fun setIsDesign(isTwoPane: Boolean) {
+        this.isTwoPane.value = isTwoPane
     }
 
     /**
@@ -115,41 +138,6 @@ class MeetingViewModel : InjectedViewModel() {
     override fun onCleared() {
         super.onCleared()
         getAllMeetingsSubscription.dispose()
-    }
-
-    /**
-     * returnt de lijst van alle meetings als [LiveData]
-     */
-    fun getMeetings(): LiveData<List<Meeting>> {
-        return meetingsList
-    }
-
-    /**
-     * Returnt de geselecteerde meeting als [LiveData]
-     */
-    fun getSelectedMeeting(): LiveData<Meeting> {
-        return selectedMeeting
-    }
-
-    /**
-     * Stelt de geselecteerde meeting zijn Id in
-     */
-    fun setSelectedMeeting(meetingId: String) {
-        selectedMeeting.value = meetingsList.value!!.firstOrNull { it.meetingId == meetingId }
-    }
-
-    /**
-     * Stelt in of huidige omgeving al dan niet twopane is
-     */
-    fun setIsTwoPane(bool: Boolean) {
-        isTwoPane.value = bool
-    }
-
-    /**
-     * Returnt of huidige omgeving al dan niet twopane is
-     */
-    fun getIsTwoPane(): MutableLiveData<Boolean> {
-        return isTwoPane
     }
 
 }

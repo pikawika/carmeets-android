@@ -40,7 +40,7 @@ class MeetinglistFragment : Fragment() {
 
         //lijst vullen met meetings uit viewmodel.
         //We doen niet direct .value maar behouden het als mutueablelivedata mits we hier op willen op observen
-        val meetings = meetingViewModel.getMeetings()
+        val meetings = meetingViewModel.selectedMeeting
 
         //haal weergave uit de viewmodel
         //We doen niet direct .value maar behouden het als mutueablelivedata mits we hier op willen op observen
@@ -50,7 +50,7 @@ class MeetinglistFragment : Fragment() {
         //->indien deze er is weet men dat het over een tablet (twoPane) gaat
         //->initieel vullen met ene placeholder logofragment om geen blake pagina te hebbenæ
         if (fragment.frame_meetinglist_meetingdetailcontainer != null) {
-            meetingViewModel.setIsTwoPane(true)
+            meetingViewModel.isTwoPane.value = true
             parentActivity.supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.frame_meetinglist_meetingdetailcontainer, LogoFragment())

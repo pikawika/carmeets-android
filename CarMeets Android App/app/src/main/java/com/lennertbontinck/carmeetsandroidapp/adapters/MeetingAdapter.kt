@@ -44,7 +44,7 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
 
             //indien tablet moet het in in de voorziene detailframe binnen de fragment
             //anders gewoon naar de mainactivity zijn container
-            if (meetingViewModel.getIsTwoPane().value!!) {
+            if (meetingViewModel.isTwoPane.value!!) {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_meetinglist_meetingdetailcontainer, MeetingDetailFragment())
@@ -68,7 +68,7 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = meetingViewModel.getMeetings().value!![position]
+        val item = meetingViewModel.meetingList.value!![position]
         Glide.with(parentActivity).load(IMG_URL_BACKEND + item.imageName).into(holder.image)
         holder.title.text = item.title
         holder.subtitle.text = item.subtitle
@@ -81,7 +81,7 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
         }
     }
 
-    override fun getItemCount() = meetingViewModel.getMeetings().value!!.size
+    override fun getItemCount() = meetingViewModel.meetingList.value!!.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView = view.image_itemmeeting
