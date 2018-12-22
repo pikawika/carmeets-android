@@ -23,6 +23,8 @@ class MeetingViewModel : InjectedViewModel() {
 
     /**
      * De huidige door de gebruiker geselecteerde meeting.
+     *
+     * Maak gebruik van [setSelectedMeeting] voor de value in te stellen.
      */
     var selectedMeeting = MutableLiveData<Meeting>()
         private set
