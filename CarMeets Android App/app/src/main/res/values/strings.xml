@@ -6,6 +6,9 @@
 
     <!-- warnings -->
 
+    <!-- questions -->
+    <string name="question_exit_app">Wilt u CarMeets afsluiten?</string>
+
     <!-- shared -->
     <string name="txt_meeting">Meeting</string>
 

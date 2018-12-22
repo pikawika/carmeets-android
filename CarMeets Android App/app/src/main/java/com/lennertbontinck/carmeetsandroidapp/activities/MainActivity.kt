@@ -4,12 +4,14 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.databinding.ActivityMainBinding
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
@@ -42,6 +44,11 @@ class MainActivity : AppCompatActivity() {
      * De [ActivityMainBinding] dat we gebruiken voor de effeciteve databinding
      */
     private lateinit var binding: ActivityMainBinding
+
+    /**
+     * [Boolean] of backknop al dan niet al is ingedrukt.
+     */
+    private var backClickedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //bij het laden van de app de mainactivity instellen
@@ -113,8 +120,22 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (guiViewModel.isBackButtonVisible.value!!)
             super.onBackPressed()
-        else
-            finish()
+        else if (backClickedOnce) {
+                finish()
+                return
+            }
+        else {
+            backClickedOnce = true
+            MessageUtil.showToast(getString(R.string.question_exit_app), Toast.LENGTH_SHORT)
+            //indien binnen de 2 sec niet nogmaals geklikt
+            Handler().postDelayed({ backClickedOnce = false }, 2000)
+        }
+
+
+
+
+
+
     }
 
     /**
