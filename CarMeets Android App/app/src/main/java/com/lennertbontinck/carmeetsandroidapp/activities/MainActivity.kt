@@ -130,12 +130,6 @@ class MainActivity : AppCompatActivity() {
             //indien binnen de 2 sec niet nogmaals geklikt
             Handler().postDelayed({ backClickedOnce = false }, 2000)
         }
-
-
-
-
-
-
     }
 
     /**
