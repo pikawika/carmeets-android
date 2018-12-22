@@ -1,9 +1,8 @@
 package com.lennertbontinck.carmeetsandroidapp.bases
 
 import android.arch.lifecycle.ViewModel
-import com.lennertbontinck.carmeetsandroidapp.injection.components.DaggerNetworkComponent
+import com.lennertbontinck.carmeetsandroidapp.context.App.Companion.injector
 import com.lennertbontinck.carmeetsandroidapp.injection.components.NetworkComponent
-import com.lennertbontinck.carmeetsandroidapp.injection.modules.NetworkModule
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 
 /**
@@ -17,15 +16,6 @@ import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
  * https://github.com/hdeweirdt/metar
  */
 abstract class InjectedViewModel : ViewModel() {
-    /**
-     * Er is een instance nodig van de dagger [NetworkComponent] om de injectie mee uit te voeren
-     *
-     * Deze injector zal alle viewmodels injecten en moet dus voorzien worden
-     */
-    private val injector: NetworkComponent = DaggerNetworkComponent
-        .builder()
-        .networkModule(NetworkModule)
-        .build()
 
     /**
      * Injecteren zodra de viewmodel aangemaakt wordt

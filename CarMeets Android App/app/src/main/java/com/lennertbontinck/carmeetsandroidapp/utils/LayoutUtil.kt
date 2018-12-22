@@ -10,27 +10,11 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 object LayoutUtil {
     /**
-     * Stelt de actionbar zijn title en subtitle in
+     * Stelt de bottom navigation in op het gewenste item
      *
-     * @param[parentActivity] De parentactivity waarin de actionbar zicht bevind. Required of type AppCompatActivity
+     * @param parentActivity : de parentactivity waarin de actionbar zicht bevind. Required of type [AppCompatActivity].
      *
-     * @param[titel] De title die in de actionbar moet komen. Required of type String
-     *
-     * @param[subtitel] De title die in de actionbar moet komen. Required of type String
-     *
-     */
-    @JvmStatic
-    fun setActionBar(parentActivity: AppCompatActivity, titel : String, subtitel : String) {
-        parentActivity.supportActionBar?.title =  titel
-        parentActivity.supportActionBar?.subtitle = subtitel
-    }
-
-    /**
-     * Stelt de bottom navigation in op het juiste item
-     *
-     * @param[parentActivity] De parentactivity waarin de actionbar zicht bevind. Required of type AppCompatActivity
-     *
-     * @param[bottomNavId] De id van het menuitem dat geselecteerd moet zijn in de bottomnavigation. Required of type Int
+     * @param bottomNavId : de id van het menuitem dat geselecteerd moet zijn in de bottomnavigation. Required of type [Int].
      *
      */
     @JvmStatic
@@ -41,20 +25,15 @@ object LayoutUtil {
     }
 
     /**
-     * zet alle toolbar optionsmenu items op visble false
+     * zet de toolbar options menu items met betrekking tot de weergave opties van de lijst in
+     *
+     * @param parentActivity : de parentactivity waarin de actionbar zicht bevind. Required of type [AppCompatActivity].
+     *
+     * @param isVisible : of de items al dan niet moeten zichtbaar zijn. Required of type [Boolean]
      */
     @JvmStatic
-    fun clearActionBarOptions(parentActivity: AppCompatActivity) {
-        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_small)?.isVisible = false
-        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_big)?.isVisible = false
-    }
-
-    /**
-     * zet de toolbar options menu items met betrekking tot de weergave opties van de lijst op visble true
-     */
-    @JvmStatic
-    fun showListLayoutOpties(parentActivity: AppCompatActivity) {
-        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_small)?.isVisible = true
-        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_big)?.isVisible = true
+    fun setListDesignOptionsVisibiltiy(parentActivity: AppCompatActivity , isVisible: Boolean) {
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_small)?.isVisible = isVisible
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_big)?.isVisible = isVisible
     }
 }

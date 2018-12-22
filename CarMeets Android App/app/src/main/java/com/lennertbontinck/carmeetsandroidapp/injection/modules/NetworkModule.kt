@@ -2,9 +2,11 @@
 
 package com.lennertbontinck.carmeetsandroidapp.injection.modules
 
+import android.content.Context
 import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND
 import com.lennertbontinck.carmeetsandroidapp.extensions.DateParser
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -13,9 +15,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Singleton
-import com.squareup.moshi.Moshi
 import java.util.*
+import javax.inject.Singleton
 
 
 /**
@@ -28,8 +29,7 @@ import java.util.*
  * https://github.com/hdeweirdt/metar
  */
 @Module
-object NetworkModule {
-
+class NetworkModule(private val context: Context) {
 
     /**
      * Returnt de [CarmeetsApi] om met de Carmeets backend te communiceren
@@ -50,9 +50,11 @@ object NetworkModule {
      */
     @Provides
     @Singleton
-    internal fun provideRetrofitInterface(okHttpClient: OkHttpClient,
-                                          converterFactory: retrofit2.Converter.Factory,
-                                          callAdapterFactory: retrofit2.CallAdapter.Factory): Retrofit {
+    internal fun provideRetrofitInterface(
+        okHttpClient: OkHttpClient,
+        converterFactory: retrofit2.Converter.Factory,
+        callAdapterFactory: retrofit2.CallAdapter.Factory
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL_BACKEND)
             .client(okHttpClient)
@@ -79,8 +81,6 @@ object NetworkModule {
     }
 
 
-
-
     /**
      * Returnt een [Moshi] object als [retrofit2.Converter.Factory] dat de json van de server omzet naar een model object.
      *
@@ -104,5 +104,11 @@ object NetworkModule {
     @Singleton
     internal fun provideCallAdapterFactory(): retrofit2.CallAdapter.Factory {
         return RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io())
+    }
+
+    @Provides
+    @Singleton
+    fun provideApplicationContext(): Context {
+        return context.applicationContext
     }
 }

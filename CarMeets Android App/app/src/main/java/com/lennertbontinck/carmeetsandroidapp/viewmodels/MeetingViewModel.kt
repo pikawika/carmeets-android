@@ -2,7 +2,6 @@ package com.lennertbontinck.carmeetsandroidapp.viewmodels
 
 import android.arch.lifecycle.MutableLiveData
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
-import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
@@ -30,18 +29,6 @@ class MeetingViewModel : InjectedViewModel() {
         private set
 
     /**
-     * Het huidige door de gebruiker geselecteerde design van lijstitems.
-     */
-    var listDesign = MutableLiveData<ListDesignEnum>()
-        private set
-
-    /**
-     * Returnt of de huidige omgeving al dan niet two pane is.
-     */
-    var isTwoPane = MutableLiveData<Boolean>()
-        private set
-
-    /**
      * een instantie van de carmeetsApi om data van de server op te halen.
      */
     @Inject
@@ -55,10 +42,6 @@ class MeetingViewModel : InjectedViewModel() {
     init {
         //initieel vullen met een lege lijst zodat dit niet nul is
         meetingList.value = emptyList()
-        //initieel is layout klein
-        listDesign.value = ListDesignEnum.SMALL
-        //initieel niet TwoPane
-        isTwoPane.value = false
 
         //alle meetings van de server halen
         getAllMeetingsSubscription = carmeetsApi.getAllMeetings()

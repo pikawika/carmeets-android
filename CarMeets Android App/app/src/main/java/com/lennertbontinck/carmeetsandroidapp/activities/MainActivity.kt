@@ -1,21 +1,25 @@
 package com.lennertbontinck.carmeetsandroidapp.activities
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
-import android.support.v7.app.AppCompatActivity
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.databinding.ActivityMainBinding
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.FavouritesListFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglistFragment
 import com.lennertbontinck.carmeetsandroidapp.utils.FragmentUtil
+import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,25 +28,36 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity() {
 
-    //veiwmodel var instellen zodat deze doorheen de mainactivity aanspreekbaar is
+    /**
+     * [MeetingViewModel] met de data over alle meetings
+     */
     private lateinit var meetingViewModel: MeetingViewModel
+
+    /**
+     * [GuiViewModel] met de data over de GUI instellingen
+     */
+    private lateinit var guiViewModel: GuiViewModel
+
+    /**
+     * De [ActivityMainBinding] dat we gebruiken voor de effeciteve databinding
+     */
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //bij het laden van de app de mainactivity instellen
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        //context instellen voor globaal gebruik
-        instance = this
-
-        //de viewmodel eenmalig instellen mits die meermalig in activty gebruikt zal worden
+        //de viewmodels instantieren
         meetingViewModel = ViewModelProviders.of(this).get(MeetingViewModel::class.java)
+        guiViewModel = ViewModelProviders.of(this).get(GuiViewModel::class.java)
 
-        //supportbar instellen zodat hij toolbar gebruikt
+        //main activity binden
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.guiViewModel = guiViewModel
+        binding.setLifecycleOwner(this)
+
+        //supportbar instellen zodat hij menu_toolbar gebruikt
         setSupportActionBar(menu_main_toolbar)
-
-        //initieel is er geen back knop
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         //initieel wordt meetinglijst weergegeven
         supportFragmentManager.beginTransaction()
@@ -57,18 +72,27 @@ class MainActivity : AppCompatActivity() {
         //listener op de bottomnav
         menu_main_bottomnavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
-        //listener op de backstack voor
-        supportFragmentManager.addOnBackStackChangedListener { onBackStackChangedListener() }
-
-        //listener wanneer back button uit de toolbar -> zelfde functie als hardware back button
+        //listener wanneer back button uit de menu_toolbar -> zelfde functie als hardware back button
         menu_main_toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
+
+        guiViewModel.isListDesignOptionsVisible.observe(this, Observer {
+            LayoutUtil.setListDesignOptionsVisibiltiy(this, guiViewModel.isListDesignOptionsVisible.value!!)
+        })
+
+        guiViewModel.activeMenuItem.observe(this, Observer {
+            LayoutUtil.setBottomNavigation(this, guiViewModel.activeMenuItem.value!!.menuId)
+        })
+
+        guiViewModel.isBackButtonVisible.observe(this, Observer {
+            supportActionBar?.setDisplayHomeAsUpEnabled(guiViewModel.isBackButtonVisible.value!!)
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        //menu van de toolbar instellen
-        menuInflater.inflate(R.menu.toolbar, menu)
+        //menu van de menu_toolbar instellen
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
 
         //listener voor het klikken op noticaties uit de actionbar
         val notifications = menu?.findItem(R.id.nav_notifications)?.actionView
@@ -81,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        //het item dat gelklikt is uit de toolbar
+        //het item dat gelklikt is uit de menu_toolbar
         //dit id moet in theorie altijd ingevuld zijn want enkel dan weet je wat aangeduid en kan je bijhorende actie uitvoeren
         when (item?.itemId) {
             R.id.nav_notifications -> {
@@ -95,12 +119,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.ab_options_small -> {
-                meetingViewModel.listDesign.value = ListDesignEnum.SMALL
+                guiViewModel.listDesign.value = ListDesignEnum.SMALL
                 return super.onOptionsItemSelected(item)
             }
 
             R.id.ab_options_big -> {
-                meetingViewModel.listDesign.value = ListDesignEnum.BIG
+                guiViewModel.listDesign.value = ListDesignEnum.BIG
                 return super.onOptionsItemSelected(item)
             }
 
@@ -111,11 +135,10 @@ class MainActivity : AppCompatActivity() {
 
     //fysieke back button ingedruk
     override fun onBackPressed() {
-        super.onBackPressed()
-
-        //indien er geen items meer zijn in stack mag je afsluiten
-        //manueel anders gaat hij eerts ook de initiele fragmentinlading ongedaan maken wat niet moet
-        if (supportFragmentManager.backStackEntryCount == 0) finish()
+        if (guiViewModel.isBackButtonVisible.value!!)
+            super.onBackPressed()
+        else
+            finish()
     }
 
     /**
@@ -128,18 +151,6 @@ class MainActivity : AppCompatActivity() {
             ?.actionView?.findViewById<TextView>(R.id.text_partialnotification_amount)
 
         notificationAmount?.text = (notificationAmount?.text.toString().toInt() + 1).toString()
-    }
-
-    /**
-     * methode voor de *backstack* changes in de gaten te houden.
-     *
-     * zorgt er voor dat de back toest verdwijnd zodra op back geklikt wordt
-     */
-    private fun onBackStackChangedListener() {
-        //indien je op initieel fragment zit geen back knop tonen
-        if (supportFragmentManager.backStackEntryCount <= 1) {
-            supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        } else supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     /**
@@ -181,18 +192,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return@OnNavigationItemSelectedListener false
-    }
-
-    companion object {
-        //voor globaal gebruik van context
-        //handig om toasts van eender waar te doen en gebruik in andere utils
-        private var instance: MainActivity? = null
-
-        /**
-         * returnt de [Context] van de app zijn MainActivity
-         */
-        fun getContext(): Context {
-            return instance!!.applicationContext
-        }
     }
 }

@@ -6,6 +6,9 @@
 
     <!-- warnings -->
 
+    <!-- shared -->
+    <string name="txt_meeting">Meeting</string>
+
     <!-- app -->
     <string name="app_name">CarMeets</string>
 
@@ -14,7 +17,7 @@
     <string name="menu_favourites">Favorieten</string>
     <string name="menu_account">Account</string>
 
-    <!-- toolbar -->
+    <!-- menu_toolbar -->
     <string name="ab_meetings_title">Meetings</string>
     <string name="ab_meetings_subtitle">Alle meetings</string>
 

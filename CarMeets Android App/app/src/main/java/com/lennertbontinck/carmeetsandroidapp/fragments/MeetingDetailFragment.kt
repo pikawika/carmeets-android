@@ -7,17 +7,16 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.databinding.FragmentMeetingdetailBinding
-import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LocationUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
-import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
+import kotlinx.android.synthetic.main.fragment_meetingdetail.*
 import java.net.URLEncoder
 
 
@@ -27,10 +26,14 @@ import java.net.URLEncoder
 class MeetingDetailFragment : Fragment() {
 
     /**
-     * [MeetingViewModel] met de data over de meetings
+     * [MeetingViewModel] met de data van alle meetings
      */
-    //Globaal ter beschikking gesteld aangezien het mogeiljks later nog in andere functie dan onCreateView wenst te worden
     private lateinit var meetingViewModel: MeetingViewModel
+
+    /**
+     * [GuiViewModel] met de data over de GUI instellingen
+     */
+    private lateinit var guiViewModel: GuiViewModel
 
     /**
      * De [FragmentMeetingdetailBinding] dat we gebruiken voor de effeciteve databinding
@@ -40,87 +43,110 @@ class MeetingDetailFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_meetingdetail, container, false)
 
-        //viewmodel vullen
-        meetingViewModel = ViewModelProviders.of(activity!!).get(MeetingViewModel::class.java)
+        //viewmodels vullen
+        meetingViewModel = ViewModelProviders.of(requireActivity()).get(MeetingViewModel::class.java)
+        guiViewModel = ViewModelProviders.of(requireActivity()).get(GuiViewModel::class.java)
 
         val fragment = binding.root
         binding.meetingViewModel = meetingViewModel
         binding.setLifecycleOwner(activity)
 
-        //Action bar en bottombar
-        val parentActivity = (activity as AppCompatActivity)
-
-
-        //shared layout instellen -> indien tablet moet er niets veranderd
-        //default false dus kan niet null zijn
-        if (!meetingViewModel.isTwoPane.value!!)
-            LayoutUtil.clearActionBarOptions(parentActivity)
-
-        //listeners instellen voor de knoppen etc
-        configureButtons(fragment)
-
         return fragment
     }
 
+    private fun addToCalander() {
+        val calenderIntent = Intent(Intent.ACTION_INSERT).apply {
+            data = CalendarContract.Events.CONTENT_URI
+            putExtra(CalendarContract.Events.TITLE, meetingViewModel.selectedMeeting.value!!.title)
+            putExtra(CalendarContract.Events.DESCRIPTION, meetingViewModel.selectedMeeting.value!!.description)
+            putExtra(
+                CalendarContract.Events.EVENT_LOCATION,
+                LocationUtil.getAddressNotation(meetingViewModel.selectedMeeting.value!!.location)
+            )
+            putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, meetingViewModel.selectedMeeting.value!!.date)
+            putExtra(CalendarContract.EXTRA_EVENT_END_TIME, meetingViewModel.selectedMeeting.value!!.date)
+            putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
+        }
+        //kijk of er agenda app is op de gsm
+        if (calenderIntent.resolveActivity(requireActivity().packageManager) != null) {
+            startActivity(calenderIntent)
+        } else {
+            MessageUtil.showToast(getString(R.string.error_no_calander_app))
+        }
+    }
+
+    private fun getDirections() {
+        val mapIntent = Intent(Intent.ACTION_VIEW).apply {
+            //geen long en lat dus 0,0 maar wel adres
+            //adres moet omgezet worden naar een url string dus encode (spatie en andere speciale tekens encoden)
+            data = Uri.parse(
+                "geo:0,0?q=" + URLEncoder.encode(
+                    LocationUtil.getAddressNotation(meetingViewModel.selectedMeeting.value!!.location),
+                    "UTF-8"
+                )
+
+            )
+        }
+        //kijk of er gps app is op de gsm
+        if (mapIntent.resolveActivity(requireActivity().packageManager) != null) {
+            startActivity(mapIntent)
+        } else {
+            MessageUtil.showToast(getString(R.string.error_no_navigation_app))
+        }
+    }
+
+    private fun goToWebsite() {
+        val browserIntent = Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(meetingViewModel.selectedMeeting.value!!.website)
+        }
+        //kijk of er browser app is op de gsm
+        if (browserIntent.resolveActivity(requireActivity().packageManager) != null) {
+            startActivity(browserIntent)
+        } else {
+            MessageUtil.showToast(getString(R.string.error_no_browser_app))
+        }
+    }
+
     /**
-     * Stelt de knoppen onderaan de meeting detail pagina in.
-     *
-     * Toont enkel de knoppen die van toepassing zijn (velden die meegegeven zijn met meeting)
-     *
-     * Voorziet listeners voor onlick van de knoppen te verwerken.
+     * Functie voor het instantiëren van de listeners.
      */
-    private fun configureButtons(fragment: View) {
-        fragment.button_meetingdetail_agenda.setOnClickListener {
-            val calenderIntent = Intent(Intent.ACTION_INSERT).apply {
-                data = CalendarContract.Events.CONTENT_URI
-                putExtra(CalendarContract.Events.TITLE, meetingViewModel.selectedMeeting.value!!.title)
-                putExtra(CalendarContract.Events.DESCRIPTION, meetingViewModel.selectedMeeting.value!!.description)
-                putExtra(
-                    CalendarContract.Events.EVENT_LOCATION,
-                    LocationUtil.getAddressNotation(meetingViewModel.selectedMeeting.value!!.location)
-                )
-                putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, meetingViewModel.selectedMeeting.value!!.date)
-                putExtra(CalendarContract.EXTRA_EVENT_END_TIME, meetingViewModel.selectedMeeting.value!!.date)
-                putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
-            }
-            //kijk of er agenda app is op de gsm
-            if (calenderIntent.resolveActivity(requireActivity().packageManager) != null) {
-                startActivity(calenderIntent)
-            } else {
-                MessageUtil.showToast(getString(R.string.error_no_calander_app))
-            }
+    private fun initListeners() {
+        button_meetingdetail_agenda.setOnClickListener {
+            addToCalander()
         }
 
-        fragment.button_meetingdetail_route.setOnClickListener {
-            val mapIntent = Intent(Intent.ACTION_VIEW).apply {
-                //geen long en lat dus 0,0 maar wel adres
-                //adres moet omgezet worden naar een url string dus encode (spatie en andere speciale tekens encoden)
-                data = Uri.parse(
-                    "geo:0,0?q=" + URLEncoder.encode(
-                        LocationUtil.getAddressNotation(meetingViewModel.selectedMeeting.value!!.location),
-                        "UTF-8"
-                    )
-
-                )
-            }
-            //kijk of er gps app is op de gsm
-            if (mapIntent.resolveActivity(requireActivity().packageManager) != null) {
-                startActivity(mapIntent)
-            } else {
-                MessageUtil.showToast(getString(R.string.error_no_navigation_app))
-            }
+        button_meetingdetail_route.setOnClickListener {
+            getDirections()
         }
 
-        fragment.button_meetingdetail_website.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse(meetingViewModel.selectedMeeting.value!!.website)
-            }
-            //kijk of er browser app is op de gsm
-            if (browserIntent.resolveActivity(requireActivity().packageManager) != null) {
-                startActivity(browserIntent)
-            } else {
-                MessageUtil.showToast(getString(R.string.error_no_browser_app))
-            }
+        button_meetingdetail_website.setOnClickListener {
+            goToWebsite()
         }
+    }
+
+    /**
+     * Functie voor het stoppen van de listeners
+     */
+    @Suppress("UNUSED_EXPRESSION")
+    private fun stopListeners() {
+        button_meetingdetail_agenda.setOnClickListener { null }
+
+        button_meetingdetail_route.setOnClickListener { null }
+
+        button_meetingdetail_website.setOnClickListener { null }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initListeners()
+        guiViewModel.actionBarTitle.value = getString(R.string.txt_meeting)
+        guiViewModel.actionBarSubTitle.value = meetingViewModel.selectedMeeting.value!!.title
+        guiViewModel.isBackButtonVisible.value = true
+    }
+
+    override fun onStop() {
+        super.onStop()
+        stopListeners()
+        guiViewModel.resetLayout()
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- de menu voor toolbar met notificatie bel, zoeken en extra opties -->
+<!-- de menu voor menu_toolbar met notificatie bel, zoeken en extra opties -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 

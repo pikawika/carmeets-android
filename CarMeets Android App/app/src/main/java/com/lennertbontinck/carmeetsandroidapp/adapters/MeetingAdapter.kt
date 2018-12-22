@@ -12,25 +12,31 @@ import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.constants.IMG_URL_BACKEND
+import com.lennertbontinck.carmeetsandroidapp.context.App
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.LocationUtil
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.item_meeting_small.view.*
 
 /**
- * De *adapter* voor een het vullen van een recyclerview met een meegegeven list van meetings ahdv een meegegeven stijl. Al dan niet een twopane design.
+ * De *adapter* voor een het vullen van een recyclerview
  *
- * @param[parentActivity] De parentactivity waarin de supportfragmentmanager zit en dat gebruikt wordt voor glide. Required of type AppCompatActivity
+ * @param parentActivity : de actieve activity. Required of type AppCompatActivity
  */
 class MeetingAdapter(private val parentActivity: AppCompatActivity) :
     RecyclerView.Adapter<MeetingAdapter.ViewHolder>() {
 
     /**
-     * [MeetingViewModel] met de data over account
+     * [MeetingViewModel] met de data over alle meetings
      */
-    //Globaal ter beschikking gesteld aangezien het mogeiljks later nog in andere functie dan onCreateView wenst te worden
     private var meetingViewModel: MeetingViewModel = ViewModelProviders.of(parentActivity).get(MeetingViewModel::class.java)
+
+    /**
+     * [GuiViewModel] met de data over de GUI instellingen
+     */
+    private var guiViewModel : GuiViewModel = ViewModelProviders.of(parentActivity).get(GuiViewModel::class.java)
 
 
     //click listener wanneer bepaalde item van list geslecteerd wordt
@@ -44,10 +50,11 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
 
             //indien tablet moet het in in de voorziene detailframe binnen de fragment
             //anders gewoon naar de mainactivity zijn container
-            if (meetingViewModel.isTwoPane.value!!) {
+            if (guiViewModel.isTwoPaneEnvironment.value!!) {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_meetinglist_meetingdetailcontainer, MeetingDetailFragment())
+                    .addToBackStack(parentActivity.getString(R.string.fragtag_meetingdetail))
                     .commit()
             } else {
                 parentActivity.supportFragmentManager
@@ -61,8 +68,8 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //Stelt de juiste lijstdesign in
-        val view = LayoutInflater.from(MainActivity.getContext())
-            .inflate(meetingViewModel.listDesign.value!!.layoutId, parent, false)
+        val view = LayoutInflater.from(App.getContext())
+            .inflate(guiViewModel.listDesign.value!!.layoutId, parent, false)
 
         return ViewHolder(view)
     }
