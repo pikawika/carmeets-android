@@ -3,6 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
 
         <variable
                 name="meetingViewModel"
@@ -287,6 +288,8 @@
                         android:drawableLeft="@drawable/ic_link_pink_18dp"
                         android:drawableRight="@drawable/ic_link_pink_18dp"
                         android:text="@string/btn_meeting_website"
+
+                        android:visibility='@{TextUtils.isEmpty(meetingViewModel.getSelectedMeeting().website) ? View.GONE : View.VISIBLE}'
 
                         app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_route"
                         app:layout_constraintEnd_toEndOf="parent"

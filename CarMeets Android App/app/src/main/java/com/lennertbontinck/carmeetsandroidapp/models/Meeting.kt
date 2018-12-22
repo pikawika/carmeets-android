@@ -23,7 +23,7 @@ data class Meeting(
     @field:Json(name = "straatnaam") val streetName: String,
     @field:Json(name = "straatnr") val houseNumber: String,
     @field:Json(name = "afbeeldingNaam") val imageName: String,
-    val site: String
+    @field:Json(name = "site") val website: String
 ) : Parcelable {
     val location: Location
         get() {
