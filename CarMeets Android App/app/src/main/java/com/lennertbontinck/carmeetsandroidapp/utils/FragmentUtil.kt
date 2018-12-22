@@ -25,6 +25,8 @@ object FragmentUtil {
     fun checkFragmentEqualsNavItem(item: MenuItem?, supportFragmentManager : FragmentManager) : Boolean {
         //Context ophalen
         val context = CarMeetsApplication.getContext()
+        //indien nog geen in de backstack kan het ook niet gelijk zijn
+        if (supportFragmentManager.backStackEntryCount <= 1) return false
         //huidige item in de backstack zijn fragtag
         val currentFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
         if (currentFragTag != null && currentFragTag != "") {

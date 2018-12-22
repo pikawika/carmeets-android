@@ -11,13 +11,13 @@ object MessageUtil {
     /**
      * Toont een toast op het scherm. Context is voorzien door de [MainActivity]
      *
-     * @param[bericht] Het bericht dat weergegeven moet worden. Required of type String
+     * @param[message] Het message dat weergegeven moet worden. Required of type String
      *
-     * @param[tijd] Hoe lang de toast op het scherm moet blijven. Optional of type Int (Toast Length), default Toast.LENGTH_LONG.
+     * @param[time] Hoe lang de toast op het scherm moet blijven. Optional of type Int (Toast Length), default Toast.LENGTH_LONG.
      *
      */
     @JvmStatic
-    fun showToast(bericht: String, tijd: Int = Toast.LENGTH_LONG) {
-        Toast.makeText(CarMeetsApplication.getContext(), bericht, tijd).show()
+    fun showToast(message: String, time: Int = Toast.LENGTH_LONG) {
+        Toast.makeText(CarMeetsApplication.getContext(), message, time).show()
     }
 }

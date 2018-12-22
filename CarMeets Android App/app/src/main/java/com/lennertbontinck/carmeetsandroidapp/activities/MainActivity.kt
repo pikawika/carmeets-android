@@ -65,12 +65,6 @@ class MainActivity : AppCompatActivity() {
 
         //supportbar instellen zodat hij menu_toolbar gebruikt
         setSupportActionBar(menu_main_toolbar)
-
-        //initieel wordt meetinglijst weergegeven
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
-            .addToBackStack(getString(R.string.fragtag_meetinglist))
-            .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -231,6 +225,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         initListeners()
+        menu_main_bottomnavigation.selectedItemId = guiViewModel.bootMenuItem.value!!.menuId
     }
 
     override fun onStop() {
