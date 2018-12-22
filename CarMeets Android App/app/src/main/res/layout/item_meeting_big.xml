@@ -35,7 +35,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop ="15dp"
-                android:contentDescription="@string/item_meeting_img_alt"/>
+                android:contentDescription="@string/alt_item_meeting_img"/>
 
         <!-- titel -->
         <TextView

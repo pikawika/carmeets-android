@@ -1,7 +1,9 @@
 package com.lennertbontinck.carmeetsandroidapp.fragments
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -25,13 +27,13 @@ import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
 class MeetingDetailFragment : Fragment() {
 
     /**
-     * [LunchViewModel] met de data over account
+     * [MeetingViewModel] met de data over de meetings
      */
     //Globaal ter beschikking gesteld aangezien het mogeiljks later nog in andere functie dan onCreateView wenst te worden
     private lateinit var meetingViewModel: MeetingViewModel
 
     /**
-     * De [FragmentProfileBinding] dat we gebruiken voor de effeciteve databinding
+     * De [FragmentMeetingdetailBinding] dat we gebruiken voor de effeciteve databinding
      */
     private lateinit var binding: FragmentMeetingdetailBinding
 
@@ -77,7 +79,21 @@ class MeetingDetailFragment : Fragment() {
         }
 
         fragment.button_meetingdetail_route.setOnClickListener {
-            MessageUtil.showToast( "route")
+            val mapIntent = Intent(Intent.ACTION_VIEW)
+            mapIntent.data = Uri.parse(
+                "geo:" + "?q=" +
+                        meetingViewModel.getSelectedMeeting().value!!.streetName + "+" +
+                        meetingViewModel.getSelectedMeeting().value!!.houseNumber + "+" +
+                        meetingViewModel.getSelectedMeeting().value!!.postalCode + "+" +
+                        meetingViewModel.getSelectedMeeting().value!!.city
+            )
+            //kijk of er gps app is op de gsm
+            val packageManager = requireActivity().packageManager
+            if (mapIntent.resolveActivity(packageManager) != null) {
+                startActivity(mapIntent)
+            } else {
+                MessageUtil.showToast(getString(R.string.error_no_navigation_app))
+            }
         }
 
         fragment.button_meetingdetail_website.setOnClickListener {
