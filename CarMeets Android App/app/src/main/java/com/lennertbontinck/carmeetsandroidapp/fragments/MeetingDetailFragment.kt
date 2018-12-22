@@ -10,16 +10,13 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
-import com.lennertbontinck.carmeetsandroidapp.constants.IMG_URL_BACKEND
 import com.lennertbontinck.carmeetsandroidapp.databinding.FragmentMeetingdetailBinding
-import com.lennertbontinck.carmeetsandroidapp.models.Meeting
-import com.lennertbontinck.carmeetsandroidapp.utils.DateUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
+import java.net.URLEncoder
 
 /**
  * Een [Fragment] die de details van een meeting laat zien.
@@ -79,14 +76,19 @@ class MeetingDetailFragment : Fragment() {
         }
 
         fragment.button_meetingdetail_route.setOnClickListener {
-            val mapIntent = Intent(Intent.ACTION_VIEW)
-            mapIntent.data = Uri.parse(
-                "geo:" + "?q=" +
-                        meetingViewModel.getSelectedMeeting().value!!.streetName + "+" +
-                        meetingViewModel.getSelectedMeeting().value!!.houseNumber + "+" +
-                        meetingViewModel.getSelectedMeeting().value!!.postalCode + "+" +
-                        meetingViewModel.getSelectedMeeting().value!!.city
-            )
+            val mapIntent = Intent(Intent.ACTION_VIEW).apply {
+                //geen long en lat dus 0,0 maar wel adres
+                //adres moet omgezet worden naar een parsable url string dus encode
+                data = Uri.parse(
+                    "geo:0,0?q=" + URLEncoder.encode(
+                        meetingViewModel.getSelectedMeeting().value!!.streetName + " " +
+                                meetingViewModel.getSelectedMeeting().value!!.houseNumber + " " +
+                                meetingViewModel.getSelectedMeeting().value!!.postalCode + " " +
+                                meetingViewModel.getSelectedMeeting().value!!.city, "UTF-8"
+                    )
+
+                )
+            }
             //kijk of er gps app is op de gsm
             val packageManager = requireActivity().packageManager
             if (mapIntent.resolveActivity(packageManager) != null) {
@@ -97,8 +99,9 @@ class MeetingDetailFragment : Fragment() {
         }
 
         fragment.button_meetingdetail_website.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW)
-            browserIntent.data = Uri.parse(meetingViewModel.getSelectedMeeting().value!!.website)
+            val browserIntent = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse(meetingViewModel.getSelectedMeeting().value!!.website)
+            }
             //kijk of er browser app is op de gsm
             val packageManager = requireActivity().packageManager
             if (browserIntent.resolveActivity(packageManager) != null) {
