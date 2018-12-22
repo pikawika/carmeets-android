@@ -1,13 +1,14 @@
 package com.lennertbontinck.carmeetsandroidapp.fragments
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
-import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
+import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import kotlinx.android.synthetic.main.fragment_account.view.*
 
 /**
@@ -15,19 +16,33 @@ import kotlinx.android.synthetic.main.fragment_account.view.*
  */
 class AccountFragment : Fragment() {
 
+    /**
+     * [GuiViewModel] met de data over de GUI instellingen
+     */
+    private lateinit var guiViewModel: GuiViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val fragment =  inflater.inflate(R.layout.fragment_account, container, false)
 
-        //shared layout instellen
-        val parentActivity = (activity as AppCompatActivity)
-        LayoutUtil.setActionBar(parentActivity, getString(R.string.ab_account_title), getString(R.string.ab_account_subtitle))
-        LayoutUtil.clearActionBarOptions(parentActivity)
-        LayoutUtil.setBottomNavigation(parentActivity, R.id.nav_account)
+        //viewmodel vullen
+        guiViewModel = ViewModelProviders.of(requireActivity()).get(GuiViewModel::class.java)
 
         //temp tekst als POC
         fragment.text_account_temptext.text = "hallo van account!"
 
         return fragment
+    }
+
+    override fun onStart() {
+        super.onStart()
+        guiViewModel.actionBarTitle.value = getString(R.string.ab_account_title)
+        guiViewModel.actionBarSubTitle.value = getString(R.string.ab_account_subtitle)
+        guiViewModel.activeMenuItem.value = MenuItemEnum.ACCOUNT
+    }
+
+    override fun onStop() {
+        super.onStop()
+        guiViewModel.resetLayout()
     }
 
 }

@@ -14,7 +14,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <!-- toolbar (topbar) thema -->
+    <!-- menu_toolbar (topbar) thema -->
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <item name="colorControlNormal">@android:color/white</item>
         <item name="navigationIcon">@drawable/ic_back_white_24dp</item>

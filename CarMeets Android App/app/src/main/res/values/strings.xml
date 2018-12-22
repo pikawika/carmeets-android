@@ -1,4 +1,17 @@
 <resources>
+    <!-- errors -->
+    <string name="error_no_navigation_app">U heeft geen navigatie applicatie geïnstalleerd op uw toestel.</string>
+    <string name="error_no_browser_app">U heeft geen internet browser applicatie geïnstalleerd op uw toestel.</string>
+    <string name="error_no_calander_app">U heeft geen agenda applicatie geïnstalleerd op uw toestel.</string>
+
+    <!-- warnings -->
+
+    <!-- questions -->
+    <string name="question_exit_app">Wilt u CarMeets afsluiten?</string>
+
+    <!-- shared -->
+    <string name="txt_meeting">Meeting</string>
+
     <!-- app -->
     <string name="app_name">CarMeets</string>
 
@@ -7,7 +20,7 @@
     <string name="menu_favourites">Favorieten</string>
     <string name="menu_account">Account</string>
 
-    <!-- toolbar -->
+    <!-- menu_toolbar -->
     <string name="ab_meetings_title">Meetings</string>
     <string name="ab_meetings_subtitle">Alle meetings</string>
 
@@ -31,21 +44,21 @@
     <string name="fragtag_meetingdetail">meetingdetail</string>
 
     <!-- meeting -->
-    <string name="item_meeting_img_alt">Afbeelding van meeting</string>
+    <string name="alt_item_meeting_img">Afbeelding van meeting</string>
 
     <!-- meeting buttons -->
-    <string name="button_meeting_notification">Notificatie toevoegen</string>
-    <string name="button_meeting_agenda">Opslaan in kalender</string>
-    <string name="button_meeting_route">Routebeschrijving</string>
-    <string name="button_meeting_website">Website</string>
+    <string name="btn_meeting_notification">Notificatie toevoegen</string>
+    <string name="btn_meeting_agenda">Opslaan in kalender</string>
+    <string name="btn_meeting_route">Routebeschrijving</string>
+    <string name="btn_meeting_website">Website</string>
 
     <!-- carmeets -->
-    <string name="about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik
+    <string name="txt_about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik
         weer een kwaliteitsmeeting gemist had omdat ik niet wist wanneer deze plaatsvond. Daarom besloot ik, Lennert
         Bontinck, een app te maken waar je snel en eenvoudig alle meetings naar jouw smaak kan terugvinden en
         bewaren in je agenda.
     </string>
-    <string name="carmeets_logo_alt">Het carmeets logo</string>
+    <string name="alt_carmeets_logo">Het carmeets logo</string>
 
 
 </resources>

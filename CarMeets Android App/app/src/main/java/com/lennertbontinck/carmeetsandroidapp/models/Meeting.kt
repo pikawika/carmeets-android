@@ -18,10 +18,15 @@ data class Meeting(
     val listUsersGoing: List<String>,
     val listUsersLiked: List<String>,
     val date: Date,
-    val gemeente: String,
-    val postcode: String,
-    val straatnaam: String,
-    val straatnr: String,
-    val afbeeldingNaam: String,
-    val site: String
-): Parcelable
+    @field:Json(name = "gemeente") val city: String,
+    @field:Json(name = "postcode") val postalCode: String,
+    @field:Json(name = "straatnaam") val streetName: String,
+    @field:Json(name = "straatnr") val houseNumber: String,
+    @field:Json(name = "afbeeldingNaam") val imageName: String,
+    @field:Json(name = "site") val website: String
+) : Parcelable {
+    val location: Location
+        get() {
+            return Location(city, postalCode, streetName, houseNumber)
+        }
+}

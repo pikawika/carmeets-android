@@ -3,6 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
 
         <variable
                 name="meetingViewModel"
@@ -27,9 +28,9 @@
 
                 app:layout_constraintDimensionRatio="H,16:9"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/auto"
-                android:src="@{meetingViewModel.getSelectedMeeting().afbeeldingNaam}"
-                android:contentDescription="@string/item_meeting_img_alt"
+                tools:src="@tools:sample/backgrounds/scenic"
+                android:src="@{meetingViewModel.selectedMeeting.imageName}"
+                android:contentDescription="@string/alt_item_meeting_img"
 
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +110,7 @@
                     android:textAlignment="center"
                     android:textSize="34sp"
                     tools:text="23"
-                    android:dayInMonth="@{meetingViewModel.getSelectedMeeting().date}"
+                    android:dayInMonth="@{meetingViewModel.selectedMeeting.date}"
 
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +128,7 @@
                     android:textAlignment="center"
                     android:textSize="18sp"
                     tools:text="Dec"
-                    android:shortMonthName="@{meetingViewModel.getSelectedMeeting().date}"
+                    android:shortMonthName="@{meetingViewModel.selectedMeeting.date}"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -146,7 +147,7 @@
                 android:layout_height="wrap_content"
 
                 tools:text="Android app celibration"
-                android:text="@{meetingViewModel.getSelectedMeeting().title}"
+                android:text="@{meetingViewModel.selectedMeeting.title}"
                 android:textSize="24sp"
                 android:textColor="@android:color/black"
 
@@ -166,7 +167,7 @@
 
                 android:textSize="18sp"
                 tools:text="Een android app vieren met een gepaste meeting"
-                android:text="@{meetingViewModel.getSelectedMeeting().subtitle}"
+                android:text="@{meetingViewModel.selectedMeeting.subtitle}"
 
                 app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_title"
                 app:layout_constraintStart_toStartOf="parent"
@@ -220,27 +221,9 @@
                         android:layout_height="wrap_content"
 
                         tools:text="Niet alleen is Lennert zijn GTI eindelijk af, ook zijn studies zijn bijna afgerond! Dankzij deze android app zou hij namelijk een stap dichter moeten komen naar zijn diploma! als dat maar goed afloopt."
-                        android:text="@{meetingViewModel.getSelectedMeeting().description}"
+                        android:text="@{meetingViewModel.selectedMeeting.description}"
 
                         app:layout_constraintTop_toTopOf="parent"/>
-
-                <!-- notificatie knop -->
-                <Button
-                        android:id="@+id/button_meetingdetail_notification"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-
-                        android:drawableLeft="@drawable/ic_add_alert_pink_18dp"
-                        android:drawableRight="@drawable/ic_add_alert_pink_18dp"
-                        android:text="@string/button_meeting_notification"
-
-                        app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_description"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginRight="50dp"/>
 
                 <!-- opslaan in agenda knop -->
                 <Button
@@ -248,15 +231,15 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:drawableLeft="@drawable/ic_add_agenda_pink_18dp"
-                        android:drawableRight="@drawable/ic_add_agenda_pink_18dp"
-                        android:text="@string/button_meeting_agenda"
+                        android:drawableStart="@drawable/ic_add_agenda_pink_18dp"
+                        android:drawableEnd="@drawable/ic_add_agenda_pink_18dp"
+                        android:text="@string/btn_meeting_agenda"
 
-                        app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_notification"
+                        app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_description"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
 
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:layout_marginLeft="50dp"
                         android:layout_marginRight="50dp"/>
 
@@ -266,9 +249,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:drawableLeft="@drawable/ic_navigation_pink_18dp"
-                        android:drawableRight="@drawable/ic_navigation_pink_18dp"
-                        android:text="@string/button_meeting_route"
+                        android:drawableStart="@drawable/ic_navigation_pink_18dp"
+                        android:drawableEnd="@drawable/ic_navigation_pink_18dp"
+                        android:text="@string/btn_meeting_route"
 
                         app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_agenda"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -284,9 +267,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:drawableLeft="@drawable/ic_link_pink_18dp"
-                        android:drawableRight="@drawable/ic_link_pink_18dp"
-                        android:text="@string/button_meeting_website"
+                        android:drawableStart="@drawable/ic_link_pink_18dp"
+                        android:drawableEnd="@drawable/ic_link_pink_18dp"
+                        android:text="@string/btn_meeting_website"
+
+                        android:visibility='@{TextUtils.isEmpty(meetingViewModel.selectedMeeting.website) ? View.GONE : View.VISIBLE}'
 
                         app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_route"
                         app:layout_constraintEnd_toEndOf="parent"
