@@ -5,6 +5,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.net.Uri
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.databinding.FragmentMeetingdetailBinding
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
+import com.lennertbontinck.carmeetsandroidapp.utils.LocationUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
@@ -72,26 +74,40 @@ class MeetingDetailFragment : Fragment() {
         }
 
         fragment.button_meetingdetail_agenda.setOnClickListener {
-            MessageUtil.showToast("agenda")
+            val calanderIntent = Intent(Intent.ACTION_INSERT).apply {
+                data = CalendarContract.Events.CONTENT_URI
+                putExtra(CalendarContract.Events.TITLE, meetingViewModel.getSelectedMeeting().value!!.title)
+                putExtra(CalendarContract.Events.DESCRIPTION, meetingViewModel.getSelectedMeeting().value!!.description)
+                putExtra(
+                    CalendarContract.Events.EVENT_LOCATION,
+                    LocationUtil.getAddressNotation(meetingViewModel.getSelectedMeeting().value!!.location)
+                )
+                putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, meetingViewModel.getSelectedMeeting().value!!.date)
+                putExtra(CalendarContract.EXTRA_EVENT_END_TIME, meetingViewModel.getSelectedMeeting().value!!.date)
+                putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
+            }
+            //kijk of er gps app is op de gsm
+            if (calanderIntent.resolveActivity(requireActivity().packageManager) != null) {
+                startActivity(calanderIntent)
+            } else {
+                MessageUtil.showToast(getString(R.string.error_no_calander_app))
+            }
         }
 
         fragment.button_meetingdetail_route.setOnClickListener {
             val mapIntent = Intent(Intent.ACTION_VIEW).apply {
                 //geen long en lat dus 0,0 maar wel adres
-                //adres moet omgezet worden naar een parsable url string dus encode
+                //adres moet omgezet worden naar een url string dus encode (spatie en andere speciale tekens encoden)
                 data = Uri.parse(
                     "geo:0,0?q=" + URLEncoder.encode(
-                        meetingViewModel.getSelectedMeeting().value!!.streetName + " " +
-                                meetingViewModel.getSelectedMeeting().value!!.houseNumber + " " +
-                                meetingViewModel.getSelectedMeeting().value!!.postalCode + " " +
-                                meetingViewModel.getSelectedMeeting().value!!.city, "UTF-8"
+                        LocationUtil.getAddressNotation(meetingViewModel.getSelectedMeeting().value!!.location),
+                        "UTF-8"
                     )
 
                 )
             }
             //kijk of er gps app is op de gsm
-            val packageManager = requireActivity().packageManager
-            if (mapIntent.resolveActivity(packageManager) != null) {
+            if (mapIntent.resolveActivity(requireActivity().packageManager) != null) {
                 startActivity(mapIntent)
             } else {
                 MessageUtil.showToast(getString(R.string.error_no_navigation_app))
@@ -103,8 +119,7 @@ class MeetingDetailFragment : Fragment() {
                 data = Uri.parse(meetingViewModel.getSelectedMeeting().value!!.website)
             }
             //kijk of er browser app is op de gsm
-            val packageManager = requireActivity().packageManager
-            if (browserIntent.resolveActivity(packageManager) != null) {
+            if (browserIntent.resolveActivity(requireActivity().packageManager) != null) {
                 startActivity(browserIntent)
             } else {
                 MessageUtil.showToast(getString(R.string.error_no_browser_app))
