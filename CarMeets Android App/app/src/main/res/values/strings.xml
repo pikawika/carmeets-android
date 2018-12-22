@@ -5,12 +5,22 @@
     <string name="error_no_calander_app">U heeft geen agenda applicatie geïnstalleerd op uw toestel.</string>
 
     <!-- warnings -->
+    <string name="warning_empty_fields">Gelieve alle velden in te vullen.</string>
+    <string name="warning_passwords_not_equal">Ingevulde wachtwoorden komen niet overeen.</string>
 
     <!-- questions -->
     <string name="question_exit_app">Wilt u CarMeets afsluiten?</string>
 
-    <!-- shared -->
+    <!-- shared txt -->
     <string name="txt_meeting">Meeting</string>
+    <string name="text_hello">Hallo</string>
+
+    <!-- shared alt -->
+    <string name="alt_logo">Logo van CarMeets</string>
+
+    <!-- shared alt -->
+    <string name="placeholder_username">Gebruikersnaam</string>
+    <string name="placeholder_password">Wachtwoord</string>
 
     <!-- app -->
     <string name="app_name">CarMeets</string>
@@ -42,6 +52,8 @@
     <string name="fragtag_favouriteslist">favouriteslist</string>
     <string name="fragtag_account">account</string>
     <string name="fragtag_meetingdetail">meetingdetail</string>
+    <string name="fragtag_login">login</string>
+    <string name="fragtag_register">register</string>
 
     <!-- meeting -->
     <string name="alt_item_meeting_img">Afbeelding van meeting</string>
@@ -51,6 +63,23 @@
     <string name="btn_meeting_agenda">Opslaan in kalender</string>
     <string name="btn_meeting_route">Routebeschrijving</string>
     <string name="btn_meeting_website">Website</string>
+
+    <!-- fragment_login -->
+    <string name="txt_login">Aanmelden</string>
+    <string name="txt_login_register">Nog geen account? Registreer hier gratis!</string>
+
+    <!-- fragment_register -->
+    <string name="txt_register">Registreren</string>
+    <string name="txt_register_login">Al een account? Meld aan!</string>
+    <string name="placeholder_register_confirm_password">Bevestig wachtwoord</string>
+    <string name="placeholder_register_email">E-mailadres</string>
+
+    <!-- fragment_account -->
+    <string name="txt_account">Account</string>
+    <string name="txt_account_change_password">Wachtwoord wijzigen</string>
+    <string name="txt_account_change_username">Gebruikersnaam wijzigen</string>
+    <string name="txt_account_change_email">E-mailadres wijzigen</string>
+    <string name="btn_account_logoff">Afmelden</string>
 
     <!-- carmeets -->
     <string name="txt_about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik

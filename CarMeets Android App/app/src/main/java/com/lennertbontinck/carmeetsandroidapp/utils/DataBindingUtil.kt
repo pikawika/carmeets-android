@@ -4,7 +4,7 @@ import android.databinding.BindingAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.lennertbontinck.carmeetsandroidapp.constants.IMG_URL_BACKEND
+import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND_IMAGES
 import java.util.*
 
 /**
@@ -19,7 +19,7 @@ object DataBindingUtil {
     fun setImageUrl(view: ImageView, url: String?) {
         if (url != null)
         {
-            Glide.with(view.context).load(IMG_URL_BACKEND + url).into(view)
+            Glide.with(view.context).load(BASE_URL_BACKEND_IMAGES + url).into(view)
         }
     }
 

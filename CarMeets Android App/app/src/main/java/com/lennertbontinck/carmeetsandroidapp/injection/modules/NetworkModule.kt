@@ -3,7 +3,7 @@
 package com.lennertbontinck.carmeetsandroidapp.injection.modules
 
 import android.content.Context
-import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND
+import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND_API
 import com.lennertbontinck.carmeetsandroidapp.extensions.DateParser
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import com.squareup.moshi.Moshi
@@ -56,7 +56,7 @@ class NetworkModule(private val context: Context) {
         callAdapterFactory: retrofit2.CallAdapter.Factory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL_BACKEND)
+            .baseUrl(BASE_URL_BACKEND_API)
             .client(okHttpClient)
             .addConverterFactory(converterFactory)
             .addCallAdapterFactory(callAdapterFactory)

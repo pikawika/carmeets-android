@@ -113,17 +113,20 @@ class MainActivity : AppCompatActivity() {
 
     //fysieke back button ingedruk
     override fun onBackPressed() {
-        if (guiViewModel.isBackButtonVisible.value!!)
-            super.onBackPressed()
-        else if (backClickedOnce) {
+        when {
+            //gebruiker mag teruggaan dus popt backstack
+            guiViewModel.isBackButtonVisible.value!! -> super.onBackPressed()
+            //gebruiker wilt app sluiten en heeft dat bevestigd
+            backClickedOnce -> {
                 finish()
-                return
             }
-        else {
-            backClickedOnce = true
-            MessageUtil.showToast(getString(R.string.question_exit_app), Toast.LENGTH_SHORT)
-            //indien binnen de 2 sec niet nogmaals geklikt
-            Handler().postDelayed({ backClickedOnce = false }, 2000)
+            //gebruiker wilt app sluiten, er wordt om bevestiging gevraagd
+            else -> {
+                backClickedOnce = true
+                MessageUtil.showToast(getString(R.string.question_exit_app), Toast.LENGTH_SHORT)
+                //indien binnen de 2 sec niet nogmaals geklikt
+                Handler().postDelayed({ backClickedOnce = false }, 2000)
+            }
         }
     }
 
@@ -226,6 +229,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         initListeners()
+        //haal de boot page uit shared pref en laad ze door het instellen van de bottom nav zijn selected id
         menu_main_bottomnavigation.selectedItemId = PreferenceUtil.getDefaultBootPage().menuId
     }
 

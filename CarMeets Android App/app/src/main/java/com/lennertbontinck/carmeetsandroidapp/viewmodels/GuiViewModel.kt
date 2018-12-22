@@ -6,7 +6,6 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
-import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
 
 class GuiViewModel : ViewModel() {
     /**
