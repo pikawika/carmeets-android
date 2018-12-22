@@ -28,7 +28,7 @@
                 app:layout_constraintDimensionRatio="H,16:9"
                 android:scaleType="centerCrop"
                 tools:src="@drawable/auto"
-                android:src="@{meetingViewModel.getSelectedMeeting().afbeeldingNaam}"
+                android:src="@{meetingViewModel.getSelectedMeeting().imageName}"
                 android:contentDescription="@string/item_meeting_img_alt"
 
                 app:layout_constraintTop_toTopOf="parent"

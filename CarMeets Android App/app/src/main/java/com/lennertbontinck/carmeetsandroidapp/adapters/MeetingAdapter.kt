@@ -3,7 +3,6 @@ package com.lennertbontinck.carmeetsandroidapp.adapters
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.constants.IMG_URL_BACKEND
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
+import com.lennertbontinck.carmeetsandroidapp.utils.LocationUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.item_meeting_small.view.*
 
@@ -69,11 +69,10 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = meetingViewModel.getMeetings().value!![position]
-        Glide.with(parentActivity).load(IMG_URL_BACKEND + item.afbeeldingNaam).into(holder.image)
+        Glide.with(parentActivity).load(IMG_URL_BACKEND + item.imageName).into(holder.image)
         holder.title.text = item.title
         holder.subtitle.text = item.subtitle
-        val location = item.postcode + ", " + item.gemeente
-        holder.location.text = location
+        holder.location.text = LocationUtil.getCityNotation(item.location)
 
         with(holder.itemView) {
             //item instellen als tag en clicklistener instellen die deze tag meegeeft aan detail
