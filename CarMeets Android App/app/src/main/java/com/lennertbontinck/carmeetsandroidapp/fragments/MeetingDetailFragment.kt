@@ -63,8 +63,8 @@ class MeetingDetailFragment : Fragment() {
                 CalendarContract.Events.EVENT_LOCATION,
                 LocationUtil.getAddressNotation(meetingViewModel.selectedMeeting.value!!.location)
             )
-            putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, meetingViewModel.selectedMeeting.value!!.date)
-            putExtra(CalendarContract.EXTRA_EVENT_END_TIME, meetingViewModel.selectedMeeting.value!!.date)
+            putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, meetingViewModel.selectedMeeting.value!!.date.time)
+            putExtra(CalendarContract.EXTRA_EVENT_END_TIME, meetingViewModel.selectedMeeting.value!!.date.time)
             putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
         }
         //kijk of er agenda app is op de gsm
