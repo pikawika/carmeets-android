@@ -115,24 +115,6 @@ class MeetingViewModel : InjectedViewModel() {
     }
 
     /**
-     * Stelt de door de gebruiker geselecteerde lijst design in.
-     *
-     * @param listDesignEnum : layout van de lijst, verplicht van type [ListDesignEnum].
-     */
-    fun setListDesign(listDesign: ListDesignEnum) {
-        this.listDesign.value = listDesign
-    }
-
-    /**
-     * Stelt de door de gebruiker geselecteerde lijst design in.
-     *
-     * @param listDesignEnum : layout van de lijst, verplicht van type [ListDesignEnum].
-     */
-    fun setIsDesign(isTwoPane: Boolean) {
-        this.isTwoPane.value = isTwoPane
-    }
-
-    /**
      * Disposed alle subscriptions wanneer de [MeetingViewModel] niet meer gebruikt wordt.
      */
     override fun onCleared() {
