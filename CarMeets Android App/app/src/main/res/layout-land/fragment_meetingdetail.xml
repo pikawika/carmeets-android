@@ -31,7 +31,7 @@
 
                     app:layout_constraintDimensionRatio="H,16:9"
                     android:scaleType="centerCrop"
-                    tools:src="@drawable/auto"
+                    tools:src="@tools:sample/backgrounds/scenic"
                     android:src="@{meetingViewModel.getSelectedMeeting().imageName}"
                     android:contentDescription="@string/alt_item_meeting_img"
 
