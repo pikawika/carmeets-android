@@ -53,6 +53,8 @@ class MeetinglistFragment : Fragment() {
                 .beginTransaction()
                 .replace(R.id.frame_meetinglist_meetingdetailcontainer, LogoFragment())
                 .commit()
+        } else {
+            guiViewModel.isTwoPaneEnvironment.value = false
         }
 
         //adapter aanmaken

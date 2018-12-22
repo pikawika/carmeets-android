@@ -3,13 +3,11 @@ package com.lennertbontinck.carmeetsandroidapp.fragments
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
-import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import kotlinx.android.synthetic.main.fragment_account.view.*
 

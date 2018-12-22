@@ -66,30 +66,6 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        //listener op de bottomnav
-        menu_main_bottomnavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-
-        //listener wanneer back button uit de menu_toolbar -> zelfde functie als hardware back button
-        menu_main_toolbar.setNavigationOnClickListener {
-            onBackPressed()
-        }
-
-        guiViewModel.isListDesignOptionsVisible.observe(this, Observer {
-            LayoutUtil.setListDesignOptionsVisibiltiy(this, guiViewModel.isListDesignOptionsVisible.value!!)
-        })
-
-        guiViewModel.activeMenuItem.observe(this, Observer {
-            LayoutUtil.setBottomNavigation(this, guiViewModel.activeMenuItem.value!!.menuId)
-        })
-
-        guiViewModel.isBackButtonVisible.observe(this, Observer {
-            supportActionBar?.setDisplayHomeAsUpEnabled(guiViewModel.isBackButtonVisible.value!!)
-        })
-    }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         //menu van de menu_toolbar instellen
         menuInflater.inflate(R.menu.menu_toolbar, menu)
@@ -192,5 +168,58 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return@OnNavigationItemSelectedListener false
+    }
+
+    /**
+     * Functie voor het instantiëren van de listeners.
+     */
+    private fun initListeners() {
+        //listener op de bottomnav
+        menu_main_bottomnavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+        //listener wanneer back button uit de menu_toolbar -> zelfde functie als hardware back button
+        menu_main_toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
+        guiViewModel.isListDesignOptionsVisible.observe(this, Observer {
+            LayoutUtil.setListDesignOptionsVisibiltiy(this, guiViewModel.isListDesignOptionsVisible.value!!)
+        })
+
+        guiViewModel.activeMenuItem.observe(this, Observer {
+            LayoutUtil.setBottomNavigation(this, guiViewModel.activeMenuItem.value!!.menuId)
+        })
+
+        guiViewModel.isBackButtonVisible.observe(this, Observer {
+            supportActionBar?.setDisplayHomeAsUpEnabled(guiViewModel.isBackButtonVisible.value!!)
+        })
+    }
+
+    /**
+     * Functie voor het stoppen van de listeners
+     */
+    @Suppress("UNUSED_EXPRESSION")
+    private fun stopListeners() {
+        //listener op de bottomnav
+        menu_main_bottomnavigation.setOnNavigationItemSelectedListener(null)
+
+        //listener wanneer back button uit de menu_toolbar -> zelfde functie als hardware back button
+        menu_main_toolbar.setNavigationOnClickListener { null }
+
+        guiViewModel.isListDesignOptionsVisible.removeObservers(this)
+
+        guiViewModel.activeMenuItem.removeObservers(this)
+
+        guiViewModel.isBackButtonVisible.removeObservers(this)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initListeners()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        stopListeners()
     }
 }

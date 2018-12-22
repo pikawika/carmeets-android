@@ -6,23 +6,23 @@ import com.lennertbontinck.carmeetsandroidapp.injection.components.DaggerNetwork
 import com.lennertbontinck.carmeetsandroidapp.injection.components.NetworkComponent
 import com.lennertbontinck.carmeetsandroidapp.injection.modules.NetworkModule
 
-class App: Application() {
+class CarMeetsApplication: Application() {
 
     /**
-     * Er is een instance nodig van de dagger [NetworkComponent] om de injectie mee uit te voeren
+     * Er is een instance nodig van de dagger [NetworkComponent] om de injectie mee uit te voeren.
      *
-     * Deze injector zal alle viewmodels injecten en moet dus voorzien worden
+     * Deze injector zal alle viewmodels injecten en moet dus voorzien worden.
      */
     companion object {
         lateinit var injector: NetworkComponent
 
         /**
-         * een instantie van de [MainActivity] voor system wide gebruik van de context
+         * een instantie van de [Application] voor system wide gebruik van de context
          */
         private var instance: Application? = null
 
         /**
-         * returnt de [Context] van de app zijn [MainActivity]
+         * returnt de [Context] van de [Application]
          */
         fun getContext(): Context {
             return instance!!.applicationContext

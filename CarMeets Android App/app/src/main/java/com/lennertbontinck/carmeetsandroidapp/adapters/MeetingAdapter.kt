@@ -10,9 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
-import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.constants.IMG_URL_BACKEND
-import com.lennertbontinck.carmeetsandroidapp.context.App
+import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.LocationUtil
@@ -21,9 +20,10 @@ import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.item_meeting_small.view.*
 
 /**
- * De *adapter* voor een het vullen van een recyclerview
+ * [RecyclerView.Adapter] voor het vullen van een recyclerview met meeting items. Gebruikt hiervoor de
+ * [MeetingViewModel.meetingList] en [GuiViewModel.listDesign] ingesteld in de [MeetingViewModel].
  *
- * @param parentActivity : de actieve activity. Required of type AppCompatActivity
+ * @param parentActivity : de actieve activity. Required of type AppCompatActivity.
  */
 class MeetingAdapter(private val parentActivity: AppCompatActivity) :
     RecyclerView.Adapter<MeetingAdapter.ViewHolder>() {
@@ -31,12 +31,13 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
     /**
      * [MeetingViewModel] met de data over alle meetings
      */
-    private var meetingViewModel: MeetingViewModel = ViewModelProviders.of(parentActivity).get(MeetingViewModel::class.java)
+    private var meetingViewModel: MeetingViewModel =
+        ViewModelProviders.of(parentActivity).get(MeetingViewModel::class.java)
 
     /**
      * [GuiViewModel] met de data over de GUI instellingen
      */
-    private var guiViewModel : GuiViewModel = ViewModelProviders.of(parentActivity).get(GuiViewModel::class.java)
+    private var guiViewModel: GuiViewModel = ViewModelProviders.of(parentActivity).get(GuiViewModel::class.java)
 
 
     //click listener wanneer bepaalde item van list geslecteerd wordt
@@ -68,7 +69,7 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //Stelt de juiste lijstdesign in
-        val view = LayoutInflater.from(App.getContext())
+        val view = LayoutInflater.from(CarMeetsApplication.getContext())
             .inflate(guiViewModel.listDesign.value!!.layoutId, parent, false)
 
         return ViewHolder(view)

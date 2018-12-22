@@ -17,16 +17,14 @@ class MeetingViewModel : InjectedViewModel() {
     /**
      * De lijst van alle meetings zoals die van de server gehaald is.
      */
-    var meetingList = MutableLiveData<List<Meeting>>()
-        private set
+    val meetingList = MutableLiveData<List<Meeting>>()
 
     /**
      * De huidige door de gebruiker geselecteerde meeting.
      *
      * Maak gebruik van [setSelectedMeeting] voor de value in te stellen.
      */
-    var selectedMeeting = MutableLiveData<Meeting>()
-        private set
+    val selectedMeeting = MutableLiveData<Meeting>()
 
     /**
      * een instantie van de carmeetsApi om data van de server op te halen.

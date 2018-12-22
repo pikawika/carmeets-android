@@ -141,7 +141,8 @@ class MeetingDetailFragment : Fragment() {
         initListeners()
         guiViewModel.actionBarTitle.value = getString(R.string.txt_meeting)
         guiViewModel.actionBarSubTitle.value = meetingViewModel.selectedMeeting.value!!.title
-        guiViewModel.isBackButtonVisible.value = true
+        if (!guiViewModel.isTwoPaneEnvironment.value!!)
+            guiViewModel.isBackButtonVisible.value = true
     }
 
     override fun onStop() {

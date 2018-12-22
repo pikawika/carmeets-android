@@ -5,7 +5,7 @@ import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import android.support.v4.app.FragmentManager
 import android.view.MenuItem
 import com.lennertbontinck.carmeetsandroidapp.R
-import com.lennertbontinck.carmeetsandroidapp.context.App
+import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 
 /**
  * Een util om je te helpen werken met *fragments*.
@@ -24,7 +24,7 @@ object FragmentUtil {
     @JvmStatic
     fun checkFragmentEqualsNavItem(item: MenuItem?, supportFragmentManager : FragmentManager) : Boolean {
         //Context ophalen
-        val context = App.getContext()
+        val context = CarMeetsApplication.getContext()
         //huidige item in de backstack zijn fragtag
         val currentFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
         if (currentFragTag != null && currentFragTag != "") {

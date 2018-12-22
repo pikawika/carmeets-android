@@ -3,8 +3,7 @@ package com.lennertbontinck.carmeetsandroidapp.viewmodels
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.lennertbontinck.carmeetsandroidapp.R
-import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
-import com.lennertbontinck.carmeetsandroidapp.context.App
+import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 
@@ -12,38 +11,32 @@ class GuiViewModel : ViewModel() {
     /**
      * De titel die in de actionbar moet ingesteld worden.
      */
-    var actionBarTitle = MutableLiveData<String>()
-        private set
+    val actionBarTitle = MutableLiveData<String>()
 
     /**
      * De subtitel die in de actionbar moet ingesteld worden.
      */
-    var actionBarSubTitle = MutableLiveData<String>()
-        private set
+    val actionBarSubTitle = MutableLiveData<String>()
 
     /**
      * Of de backbutton al dan niet moet zichtbaar zijn
      */
-    var isBackButtonVisible = MutableLiveData<Boolean>()
-        private set
+    val isBackButtonVisible = MutableLiveData<Boolean>()
 
     /**
      * Of de huidige omgeving al dan niet two pane is
      */
-    var isTwoPaneEnvironment = MutableLiveData<Boolean>()
-        private set
+    val isTwoPaneEnvironment = MutableLiveData<Boolean>()
 
     /**
      * Of de huidige omgeving al dan niet two pane is
      */
-    var isListDesignOptionsVisible = MutableLiveData<Boolean>()
-        private set
+    val isListDesignOptionsVisible = MutableLiveData<Boolean>()
 
     /**
      * Het huidige door de gebruiker geselecteerde design van lijstitems.
      */
-    var listDesign = MutableLiveData<ListDesignEnum>()
-        private set
+    val listDesign = MutableLiveData<ListDesignEnum>()
 
     /**
      * Het huidige door de gebruiker geselecteerde menu item.
@@ -53,7 +46,7 @@ class GuiViewModel : ViewModel() {
 
     init {
         //initieel is titel de app naam
-        actionBarTitle.value = App.getContext().getString(R.string.app_name)
+        actionBarTitle.value = CarMeetsApplication.getContext().getString(R.string.app_name)
         //initieel is subtitel leeg
         actionBarSubTitle.value = ""
         //initieel is backbutton niet zichtbaar
@@ -70,14 +63,12 @@ class GuiViewModel : ViewModel() {
 
     fun resetLayout() {
         //initieel is titel de app naam
-        actionBarTitle.value = App.getContext().getString(R.string.app_name)
+        actionBarTitle.value = CarMeetsApplication.getContext().getString(R.string.app_name)
         //initieel is subtitel leeg
         actionBarSubTitle.value = ""
         //initieel is backbutton niet zichtbaar
         isBackButtonVisible.value = false
         //initieel zijn de opties voor lijst design niet zichtbaar
         isListDesignOptionsVisible.value = false
-        //initieel is omgeving niet two pane
-        isTwoPaneEnvironment.value = false
     }
 }
