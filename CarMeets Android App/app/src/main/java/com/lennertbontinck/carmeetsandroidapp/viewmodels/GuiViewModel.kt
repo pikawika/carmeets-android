@@ -45,14 +45,6 @@ class GuiViewModel : ViewModel() {
     var activeMenuItem = MutableLiveData<MenuItemEnum>()
         private set
 
-    /**
-     * De door de gebruiker ingestelde boot menu item.
-     *
-     * Gebruik [setDefaultBootPage] voor het instellen van de default boot page.
-     */
-    var bootMenuItem = MutableLiveData<MenuItemEnum>()
-        private set
-
     init {
         //initieel is titel de app naam
         actionBarTitle.value = CarMeetsApplication.getContext().getString(R.string.app_name)
@@ -68,8 +60,6 @@ class GuiViewModel : ViewModel() {
         listDesign.value = ListDesignEnum.SMALL
         //initieel is actieve menu item de lijst van meetings
         activeMenuItem.value = MenuItemEnum.MEETINGS
-        //boot menu item uit shared preferences halen
-        bootMenuItem.value = PreferenceUtil.getDefaultBootPage()
     }
 
     fun resetLayout() {
@@ -81,9 +71,5 @@ class GuiViewModel : ViewModel() {
         isBackButtonVisible.value = false
         //initieel zijn de opties voor lijst design niet zichtbaar
         isListDesignOptionsVisible.value = false
-    }
-
-    fun setDefaultBootPage(menuItemEnum: MenuItemEnum){
-        PreferenceUtil.setDefaultBootPage(menuItemEnum)
     }
 }

@@ -21,6 +21,7 @@ import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglistFragment
 import com.lennertbontinck.carmeetsandroidapp.utils.FragmentUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -225,7 +226,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         initListeners()
-        menu_main_bottomnavigation.selectedItemId = guiViewModel.bootMenuItem.value!!.menuId
+        menu_main_bottomnavigation.selectedItemId = PreferenceUtil.getDefaultBootPage().menuId
     }
 
     override fun onStop() {
