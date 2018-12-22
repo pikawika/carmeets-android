@@ -20,6 +20,7 @@ import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.fragment_meetingdetail.view.*
 import java.net.URLEncoder
 
+
 /**
  * Een [Fragment] die de details van een meeting laat zien.
  */
@@ -69,12 +70,8 @@ class MeetingDetailFragment : Fragment() {
      * Voorziet listeners voor onlick van de knoppen te verwerken.
      */
     private fun configureButtons(fragment: View) {
-        fragment.button_meetingdetail_notification.setOnClickListener {
-            MessageUtil.showToast("notificatie")
-        }
-
         fragment.button_meetingdetail_agenda.setOnClickListener {
-            val calanderIntent = Intent(Intent.ACTION_INSERT).apply {
+            val calenderIntent = Intent(Intent.ACTION_INSERT).apply {
                 data = CalendarContract.Events.CONTENT_URI
                 putExtra(CalendarContract.Events.TITLE, meetingViewModel.getSelectedMeeting().value!!.title)
                 putExtra(CalendarContract.Events.DESCRIPTION, meetingViewModel.getSelectedMeeting().value!!.description)
@@ -86,9 +83,9 @@ class MeetingDetailFragment : Fragment() {
                 putExtra(CalendarContract.EXTRA_EVENT_END_TIME, meetingViewModel.getSelectedMeeting().value!!.date)
                 putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
             }
-            //kijk of er gps app is op de gsm
-            if (calanderIntent.resolveActivity(requireActivity().packageManager) != null) {
-                startActivity(calanderIntent)
+            //kijk of er agenda app is op de gsm
+            if (calenderIntent.resolveActivity(requireActivity().packageManager) != null) {
+                startActivity(calenderIntent)
             } else {
                 MessageUtil.showToast(getString(R.string.error_no_calander_app))
             }

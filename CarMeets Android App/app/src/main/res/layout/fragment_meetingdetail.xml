@@ -225,24 +225,6 @@
 
                         app:layout_constraintTop_toTopOf="parent"/>
 
-                <!-- notificatie knop -->
-                <Button
-                        android:id="@+id/button_meetingdetail_notification"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-
-                        android:drawableLeft="@drawable/ic_add_alert_pink_18dp"
-                        android:drawableRight="@drawable/ic_add_alert_pink_18dp"
-                        android:text="@string/btn_meeting_notification"
-
-                        app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_description"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginRight="50dp"/>
-
                 <!-- opslaan in agenda knop -->
                 <Button
                         android:id="@+id/button_meetingdetail_agenda"
@@ -253,11 +235,11 @@
                         android:drawableRight="@drawable/ic_add_agenda_pink_18dp"
                         android:text="@string/btn_meeting_agenda"
 
-                        app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_notification"
+                        app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_description"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
 
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:layout_marginLeft="50dp"
                         android:layout_marginRight="50dp"/>
 
