@@ -1,5 +1,6 @@
 package com.lennertbontinck.carmeetsandroidapp.fragments
 
+import android.app.AlertDialog
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import kotlinx.android.synthetic.main.fragment_preferences.*
@@ -44,7 +46,7 @@ class PreferencesFragment : Fragment() {
     private fun initListeners() {
         //wijzig startpagina
         btn_preferences_change_boot_page.setOnClickListener {
-            MessageUtil.showToast("clicked change boot page")
+            showBootPageSelector()
         }
 
         //voorkeurscategoriën
@@ -60,6 +62,29 @@ class PreferencesFragment : Fragment() {
     private fun stopListeners() {
         btn_preferences_change_boot_page.setOnClickListener { null }
         btn_preferences_change_default_categories.setOnClickListener { null }
+    }
+
+    /**
+     * Toont het keuze menu voor de boot page en stelt de gekozen boot page in.
+     */
+    private fun showBootPageSelector() {
+        //lijst van bootpages
+        val pages = arrayOf(
+            getString(R.string.ab_meetings_title),
+            getString(R.string.ab_favourites_title),
+            getString(R.string.ab_account_title)
+        )
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(getString(R.string.txt_preferences_choose_boot_page))
+        builder.setItems(pages) { _, which ->
+            when (pages[which]) {
+                //bijhorende Pagina ophalen
+                getString(R.string.ab_meetings_title) -> PreferenceUtil.setDefaultBootPage(MenuItemEnum.MEETINGS)
+                getString(R.string.ab_favourites_title) -> PreferenceUtil.setDefaultBootPage(MenuItemEnum.FAVOURITES)
+                getString(R.string.ab_account_title) -> PreferenceUtil.setDefaultBootPage(MenuItemEnum.ACCOUNT)
+            }
+        }
+        builder.show()
     }
 
     override fun onStart() {

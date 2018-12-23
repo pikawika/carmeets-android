@@ -99,6 +99,7 @@
     <!-- fragment_preferences -->
     <string name="txt_preferences_change_boot_page">Startscherm instellen</string>
     <string name="txt_preferences_default_categories">Voorkeurscategoriën</string>
+    <string name="txt_preferences_choose_boot_page">Startscherm kiezen</string>
 
     <!-- carmeets -->
     <string name="txt_about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik

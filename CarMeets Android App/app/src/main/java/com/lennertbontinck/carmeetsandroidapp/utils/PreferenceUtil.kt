@@ -68,7 +68,8 @@ object PreferenceUtil {
      */
     @JvmStatic
     fun setDefaultBootPage(menuItem: MenuItemEnum) {
-        sharedPreferences.edit().putInt(PREFERENCE_DEFAULTBOOTPAGE, menuItem.menuId).apply()
+        //ordinal aangezien we de plaats in de enum willen voor later terug om te zetten naar de enum
+        sharedPreferences.edit().putInt(PREFERENCE_DEFAULTBOOTPAGE, menuItem.ordinal).apply()
     }
 
     /**
