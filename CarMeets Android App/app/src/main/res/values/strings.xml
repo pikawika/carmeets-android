@@ -10,10 +10,16 @@
 
     <!-- questions -->
     <string name="question_exit_app">Wilt u CarMeets afsluiten?</string>
+    <string name="question_want_to_logout">Bent u zeker dat u wilt afmelden?</string>
 
     <!-- shared txt -->
     <string name="txt_meeting">Meeting</string>
     <string name="text_hello">Hallo</string>
+    <string name="txt_manage_account">Account beheren</string>
+    <string name="txt_preferences">Voorkeuren</string>
+    <string name="txt_yes">Ja</string>
+    <string name="txt_no">Nee</string>
+    <string name="txt_logout">Afmelden</string>
 
     <!-- shared alt -->
     <string name="alt_logo">Logo van CarMeets</string>
@@ -76,10 +82,13 @@
 
     <!-- fragment_account -->
     <string name="txt_account">Account</string>
+    <string name="btn_account_logoff">Afmelden</string>
+
+    <!-- fragment_settings -->
     <string name="txt_account_change_password">Wachtwoord wijzigen</string>
     <string name="txt_account_change_username">Gebruikersnaam wijzigen</string>
     <string name="txt_account_change_email">E-mailadres wijzigen</string>
-    <string name="btn_account_logoff">Afmelden</string>
+
 
     <!-- carmeets -->
     <string name="txt_about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Fragment to show account settings -->
+<!-- Fragment voor het tonen van account opties -->
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -20,7 +20,7 @@
 
         <!-- Virtual divider vertical 10% -->
         <android.support.constraint.Guideline
-                android:id="@+id/guideline_profile_10percent_vertical"
+                android:id="@+id/guideline_account_10percent_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -30,7 +30,7 @@
 
         <!-- Virtual divider vertical 90% -->
         <android.support.constraint.Guideline
-                android:id="@+id/guideline_profile_90percent_vertical"
+                android:id="@+id/guideline_account_90percent_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -38,9 +38,9 @@
                 app:layout_constraintGuide_percent="0.9"
         />
 
-        <!-- Title -->
+        <!-- Titel -->
         <TextView
-                android:id="@+id/txt_profile_title"
+                android:id="@+id/txt_account_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -49,10 +49,10 @@
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
 
-                app:layout_constraintStart_toStartOf="@id/guideline_profile_10percent_vertical"
-                app:layout_constraintEnd_toEndOf="@id/guideline_profile_90percent_vertical"
+                app:layout_constraintStart_toStartOf="@id/guideline_account_10percent_vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline_account_90percent_vertical"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/txt_profile_username"
+                app:layout_constraintBottom_toTopOf="@+id/txt_account_username"
 
                 android:layout_marginBottom="8dp"
 
@@ -60,9 +60,9 @@
                 app:layout_constraintVertical_chainStyle="packed"
         />
 
-        <!-- Title -->
+        <!-- Gebruikersnaam -->
         <TextView
-                android:id="@+id/txt_profile_username"
+                android:id="@+id/txt_account_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -72,79 +72,59 @@
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
 
-                app:layout_constraintStart_toStartOf="@id/guideline_profile_10percent_vertical"
-                app:layout_constraintEnd_toEndOf="@id/guideline_profile_90percent_vertical"
-                app:layout_constraintTop_toBottomOf="@+id/txt_profile_title"
-                app:layout_constraintBottom_toTopOf="@+id/btn_profile_change_password"
+                app:layout_constraintStart_toStartOf="@id/guideline_account_10percent_vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline_account_90percent_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/txt_account_title"
+                app:layout_constraintBottom_toTopOf="@+id/btn_account_manage_account"
 
                 android:layout_marginTop="8dp"
 
                 app:layout_constraintHorizontal_bias="0.5"
         />
 
-        <!-- Change password -->
+        <!-- Account instellingen -->
         <Button
-                android:id="@+id/btn_profile_change_password"
+                android:id="@+id/btn_account_manage_account"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
                 android:textColor="@android:color/black"
-                android:text="@string/txt_account_change_password"
+                android:text="@string/txt_manage_account"
                 android:background="@color/lightGrey"
 
-                app:layout_constraintStart_toStartOf="@id/guideline_profile_10percent_vertical"
-                app:layout_constraintEnd_toEndOf="@id/guideline_profile_90percent_vertical"
-                app:layout_constraintTop_toBottomOf="@+id/txt_profile_username"
-                app:layout_constraintBottom_toTopOf="@+id/btn_profile_change_username"
+                app:layout_constraintStart_toStartOf="@id/guideline_account_10percent_vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline_account_90percent_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/txt_account_username"
+                app:layout_constraintBottom_toTopOf="@+id/btn_account_preferences"
 
                 android:layout_marginTop="16dp"
 
                 app:layout_constraintHorizontal_bias="0.5"
         />
 
-        <!-- change username -->
+        <!-- Voorkeuren -->
         <Button
-                android:id="@+id/btn_profile_change_username"
+                android:id="@+id/btn_account_preferences"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
                 android:textColor="@android:color/black"
-                android:text="@string/txt_account_change_username"
+                android:text="@string/txt_preferences"
                 android:background="@color/lightGrey"
 
-                app:layout_constraintStart_toStartOf="@id/guideline_profile_10percent_vertical"
-                app:layout_constraintEnd_toEndOf="@id/guideline_profile_90percent_vertical"
-                app:layout_constraintTop_toBottomOf="@+id/btn_profile_change_password"
-                app:layout_constraintBottom_toTopOf="@+id/btn_profile_change_email"
+                app:layout_constraintStart_toStartOf="@id/guideline_account_10percent_vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline_account_90percent_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/btn_account_manage_account"
+                app:layout_constraintBottom_toTopOf="@+id/btn_account_logout"
 
                 android:layout_marginTop="16dp"
 
                 app:layout_constraintHorizontal_bias="0.5"
         />
 
-        <!-- Preferences -->
+        <!-- Afmelden -->
         <Button
-                android:id="@+id/btn_profile_change_email"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
-                android:textColor="#000"
-                android:text="@string/txt_account_change_email"
-                android:background="@color/lightGrey"
-
-                app:layout_constraintStart_toStartOf="@id/guideline_profile_10percent_vertical"
-                app:layout_constraintEnd_toEndOf="@id/guideline_profile_90percent_vertical"
-                app:layout_constraintTop_toBottomOf="@+id/btn_profile_change_username"
-                app:layout_constraintBottom_toTopOf="@+id/btn_profile_logout"
-
-                android:layout_marginTop="16dp"
-
-                app:layout_constraintHorizontal_bias="0.5"
-        />
-
-        <!-- Log out -->
-        <Button
-                android:id="@+id/btn_profile_logout"
+                android:id="@+id/btn_account_logout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
@@ -152,9 +132,9 @@
                 android:text="@string/btn_account_logoff"
                 android:background="@color/lightGrey"
 
-                app:layout_constraintStart_toStartOf="@id/guideline_profile_10percent_vertical"
-                app:layout_constraintEnd_toEndOf="@id/guideline_profile_90percent_vertical"
-                app:layout_constraintTop_toBottomOf="@+id/btn_profile_change_email"
+                app:layout_constraintStart_toStartOf="@id/guideline_account_10percent_vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline_account_90percent_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/btn_account_preferences"
                 app:layout_constraintBottom_toBottomOf="parent"
 
                 android:layout_marginTop="16dp"

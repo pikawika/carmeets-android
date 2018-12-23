@@ -10,12 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.databinding.FragmentAccountBinding
-import com.lennertbontinck.carmeetsandroidapp.databinding.FragmentMeetingdetailBinding
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
+import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import kotlinx.android.synthetic.main.fragment_account.*
-import kotlinx.android.synthetic.main.fragment_account.view.*
 
 /**
  * Een [Fragment] die de accountpagina van een aangemelde gebruiker laat zien.
@@ -55,13 +54,27 @@ class AccountFragment : Fragment() {
      * Functie voor het instantiëren van de listeners.
      */
     private fun initListeners() {
-        btn_profile_logout.setOnClickListener {
-            accountViewModel.logout()
+        btn_account_manage_account.setOnClickListener {
+            MessageUtil.showToast("clicked manage account")
+        }
+
+        btn_account_preferences.setOnClickListener {
+            MessageUtil.showToast("clicked preferences")
+        }
+
+        btn_account_logout.setOnClickListener {
+            MessageUtil.showDialogYesNo(
+                requireActivity(),
+                getString(R.string.txt_logout),
+                getString(R.string.question_want_to_logout),
+                logOut()
+            )
+
         }
 
         //indien niet aangemeld login page tonen
         accountViewModel.isLoggedIn.observe(this, Observer {
-            if (!accountViewModel.isLoggedIn.value!!){
+            if (!accountViewModel.isLoggedIn.value!!) {
                 requireActivity().supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, LoginFragment())
@@ -72,11 +85,21 @@ class AccountFragment : Fragment() {
     }
 
     /**
+     * Een als parameter mee te geven functie om af te melden.
+     *
+     * Van type () -> Unit.
+     */
+    private fun logOut() = { accountViewModel.logout() }
+
+
+    /**
      * Functie voor het stoppen van de listeners
      */
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
-        btn_profile_logout.setOnClickListener { null }
+        btn_account_manage_account.setOnClickListener { null }
+        btn_account_preferences.setOnClickListener { null }
+        btn_account_logout.setOnClickListener { null }
         accountViewModel.isLoggedIn.removeObservers(this)
 
     }
