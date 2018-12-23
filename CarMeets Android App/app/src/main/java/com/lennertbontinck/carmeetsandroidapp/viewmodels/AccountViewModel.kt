@@ -16,6 +16,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
+import java.io.IOException
 import javax.inject.Inject
 
 /**
@@ -123,15 +124,19 @@ class AccountViewModel : InjectedViewModel() {
             //error body
             val errorJsonString = error.response().errorBody()?.string()
             if (errorJsonString != null) {
-                //json parser indien
-                val jsonAdapter = Moshi.Builder().build().adapter<MessageResponse>(MessageResponse::class.java)
-                val messageRes = jsonAdapter.fromJson(errorJsonString)
+                //parse kan falen indien niet juiste format
+                try {
+                    //json parser indien
+                    val jsonAdapter = Moshi.Builder().build().adapter<MessageResponse>(MessageResponse::class.java)
+                    val messageRes = jsonAdapter.fromJson(errorJsonString)
 
-                //indien message van de server toon deze anders toon universeel
-                if (messageRes?.message != null) {
-                    MessageUtil.showToast(messageRes.message)
-                    return
-                }
+                    //indien message van de server toon deze anders toon universeel
+                    if (messageRes?.message != null) {
+                        MessageUtil.showToast(messageRes.message)
+                        return
+                    }
+                } catch(e : Throwable) {}
+
             }
             //geen server error code -> toon universele http error code
             MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_httpRequest_crashed))
