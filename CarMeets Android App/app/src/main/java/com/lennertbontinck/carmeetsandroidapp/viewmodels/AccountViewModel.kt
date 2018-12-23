@@ -122,23 +122,26 @@ class AccountViewModel : InjectedViewModel() {
         if (error is HttpException) {
             //error body
             val errorJsonString = error.response().errorBody()?.string()
-            //json parser indien
-            val jsonAdapter = Moshi.Builder().build().adapter<MessageResponse>(MessageResponse::class.java)
-            val messageRes = jsonAdapter.fromJson(errorJsonString)
+            if (errorJsonString != null) {
+                //json parser indien
+                val jsonAdapter = Moshi.Builder().build().adapter<MessageResponse>(MessageResponse::class.java)
+                val messageRes = jsonAdapter.fromJson(errorJsonString)
 
-            //indien message van de server toon deze anders toon universeel
-            if (messageRes?.message != null) {
-                MessageUtil.showToast(messageRes.message)
-                return
-            } else {
-                MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_httpRequest_crashed))
-                return
+                //indien message van de server toon deze anders toon universeel
+                if (messageRes?.message != null) {
+                    MessageUtil.showToast(messageRes.message)
+                    return
+                }
             }
+            //geen server error code -> toon universele http error code
+            MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_httpRequest_crashed))
+            return
+
         } else {
+            //geen http error code -> toon universele error code
             MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
             return
         }
-
     }
 
     /**
