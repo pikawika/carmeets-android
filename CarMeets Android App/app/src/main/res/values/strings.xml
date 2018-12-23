@@ -16,7 +16,7 @@
 
     <!-- shared txt -->
     <string name="txt_meeting">Meeting</string>
-    <string name="text_hello">Hallo</string>
+    <string name="txt_hello">Hallo</string>
     <string name="txt_manage_account">Account beheren</string>
     <string name="txt_preferences">Voorkeuren</string>
     <string name="txt_yes">Ja</string>
@@ -89,11 +89,14 @@
     <string name="txt_account">Account</string>
     <string name="btn_account_logoff">Afmelden</string>
 
-    <!-- fragment_settings -->
-    <string name="txt_account_change_password">Wachtwoord wijzigen</string>
-    <string name="txt_account_change_username">Gebruikersnaam wijzigen</string>
-    <string name="txt_account_change_email">E-mailadres wijzigen</string>
+    <!-- fragment_manage_account -->
+    <string name="txt_manage_account_change_password">Wachtwoord wijzigen</string>
+    <string name="txt_manage_account_change_username">Gebruikersnaam wijzigen</string>
+    <string name="txt_manage_account_change_email">E-mailadres wijzigen</string>
 
+    <!-- fragment_preferences -->
+    <string name="txt_preferences_change_boot_page">Startscherm instellen</string>
+    <string name="txt_preferences_default_categories">Voorkeurscategoriën</string>
 
     <!-- carmeets -->
     <string name="txt_about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik

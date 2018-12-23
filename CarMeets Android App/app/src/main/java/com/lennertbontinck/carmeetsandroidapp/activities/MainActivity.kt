@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
     private var backClickedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //bij het laden van de app de mainactivity instellen
         super.onCreate(savedInstanceState)
 
         //de viewmodels instantieren
@@ -204,6 +203,8 @@ class MainActivity : AppCompatActivity() {
             LayoutUtil.setListDesignOptionsVisibiltiy(this, guiViewModel.isListDesignOptionsVisible.value!!)
         })
 
+        //Bij de init van de viewmodel wordt deze waarde ingesteld uit de shared pref
+        //En opent dus de pagina die door de gebruiker ingesteld is als default boot page
         guiViewModel.activeMenuItem.observe(this, Observer {
             LayoutUtil.setBottomNavigation(this, guiViewModel.activeMenuItem.value!!.menuId)
         })
