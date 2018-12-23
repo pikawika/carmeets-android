@@ -69,3 +69,4 @@ Buiten het in de les ter beschikking gestelde boek heb volgende bronnen geraadpl
 > - [Het gebruik van intents]( https://developer.android.com/guide/components/intents-common)
 > - [Functies meegeven als parameter](https://antonioleiva.com/function-references-kotlin/)
 > - [Auth interceptor op uitgaande requests](https://github.com/MarcinMoskala/SimpleKotlinMvpBoilerplate/blob/master/app/src/main/java/com/marcinmoskala/simplekotlinmvpboilerplate/repositories/providers/Retrofit.kt)
+> - [Doc over Kotlin Enums](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)
