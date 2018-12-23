@@ -43,6 +43,7 @@ class AccountFragment : Fragment() {
         guiViewModel = ViewModelProviders.of(requireActivity()).get(GuiViewModel::class.java)
         accountViewModel = ViewModelProviders.of(requireActivity()).get(AccountViewModel::class.java)
 
+        //binding voor gebruikersnaam te laten zien
         val fragment = binding.root
         binding.accountViewModel = accountViewModel
         binding.setLifecycleOwner(activity)
@@ -54,14 +55,17 @@ class AccountFragment : Fragment() {
      * Functie voor het instantiëren van de listeners.
      */
     private fun initListeners() {
+        // account beheren
         btn_account_manage_account.setOnClickListener {
             MessageUtil.showToast("clicked manage account")
         }
 
+        // voorkeuren
         btn_account_preferences.setOnClickListener {
             MessageUtil.showToast("clicked preferences")
         }
 
+        //afmelden
         btn_account_logout.setOnClickListener {
             MessageUtil.showDialogYesNo(
                 requireActivity(),

@@ -118,6 +118,9 @@ class NetworkModule(private val context: Context) {
         return RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io())
     }
 
+    /**
+     * Return [Context] object dat de context van de applicatie bij een heel vroeg stadium van de app al kan voorzien.
+     */
     @Provides
     @Singleton
     fun provideApplicationContext(): Context {

@@ -1,7 +1,6 @@
 package com.lennertbontinck.carmeetsandroidapp.utils
 
 import android.content.Context
-import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.constants.*
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum

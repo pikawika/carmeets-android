@@ -59,7 +59,7 @@ class LoginFragment : Fragment() {
         }
 
         btn_login_register.setOnClickListener {
-            register()
+            goToRegister()
         }
     }
 
@@ -76,9 +76,9 @@ class LoginFragment : Fragment() {
     }
 
     /**
-     * Controleert de waarden en voert registratie uit
+     * Gaat naar register fragment
      */
-    private fun register() {
+    private fun goToRegister() {
         requireActivity().supportFragmentManager
             .beginTransaction()
             .replace(R.id.frame_main_fragmentcontainer, RegisterFragment())

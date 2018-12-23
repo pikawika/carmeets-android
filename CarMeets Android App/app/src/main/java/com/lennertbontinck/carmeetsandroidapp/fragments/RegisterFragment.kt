@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_register.*
 /**
  * Een [Fragment] waarmee een gebruiker hem kan registreren.
  *
- * Gebruiker kan doorklikken naar login.
+ * Gebruiker kan doorklikken naar goToLogin.
  */
 class RegisterFragment : Fragment() {
 
@@ -56,7 +56,7 @@ class RegisterFragment : Fragment() {
         })
 
         btn_register_login.setOnClickListener {
-            login()
+            goToLogin()
         }
 
         btn_register_confirm.setOnClickListener {
@@ -105,9 +105,9 @@ class RegisterFragment : Fragment() {
     }
 
     /**
-     * Kijkt of velden ingevuld zijn en probeert aan te melden
+     * Gaat naar login fragment
      */
-    private fun login() {
+    private fun goToLogin() {
         requireActivity().supportFragmentManager
             .beginTransaction()
             .replace(R.id.frame_main_fragmentcontainer, LoginFragment())

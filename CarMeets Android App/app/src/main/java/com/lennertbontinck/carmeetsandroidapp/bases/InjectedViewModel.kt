@@ -1,6 +1,5 @@
 package com.lennertbontinck.carmeetsandroidapp.bases
 
-import android.accounts.Account
 import android.arch.lifecycle.ViewModel
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication.Companion.injector
 import com.lennertbontinck.carmeetsandroidapp.injection.components.NetworkComponent
