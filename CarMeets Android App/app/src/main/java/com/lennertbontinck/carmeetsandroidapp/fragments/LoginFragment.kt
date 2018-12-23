@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login.*
 
 /**
@@ -47,12 +45,12 @@ class LoginFragment : Fragment() {
      */
     private fun initListeners() {
         //indien aangemeld account opnieuw laden
-            accountViewModel.isLoggedIn.observe(this, Observer {
+        accountViewModel.isLoggedIn.observe(this, Observer {
             if (accountViewModel.isLoggedIn.value!!) {
-                //simuleert een button click op account om er voor te zorgen dat juiste
-                //item actief is + zet fragment etc automatisch juist
-                (requireActivity() as AppCompatActivity).menu_main_bottomnavigation.selectedItemId =
-                        R.id.nav_account
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
+                    .addToBackStack(getString(R.string.fragtag_account))
+                    .commit()
             }
         })
 
