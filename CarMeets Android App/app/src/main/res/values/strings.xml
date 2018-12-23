@@ -22,6 +22,10 @@
     <string name="txt_yes">Ja</string>
     <string name="txt_no">Nee</string>
     <string name="txt_logout">Afmelden</string>
+    <string name="txt_login_required">Aanmelden vereist</string>
+    <string name="txt_login_required_for_this_function">Voor het gebruik van deze functie en tal van andere functies moet u aangemeld zijn.</string>
+    <string name="txt_login">Aanmelden</string>
+    <string name="txt_cancel">Annuleer</string>
 
     <!-- shared alt -->
     <string name="alt_logo">Logo van CarMeets</string>
@@ -73,7 +77,6 @@
     <string name="btn_meeting_website">Website</string>
 
     <!-- fragment_login -->
-    <string name="txt_login">Aanmelden</string>
     <string name="txt_login_register">Nog geen account? Registreer hier gratis!</string>
 
     <!-- fragment_register -->

@@ -11,6 +11,8 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.adapters.MeetingAdapter
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
+import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.fragment_meetinglist.*
@@ -33,6 +35,11 @@ class FavouritesListFragment : Fragment() {
     private lateinit var guiViewModel: GuiViewModel
 
     /**
+     * [AccountViewModel] met de data over de aangemelde gebruiker
+     */
+    private lateinit var accountViewModel: AccountViewModel
+
+    /**
      * [MeetingAdapter] voor het vullen van de favorieten lijst
      */
     private lateinit var meetingAdapter: MeetingAdapter
@@ -43,6 +50,7 @@ class FavouritesListFragment : Fragment() {
         //viewmodel vullen
         meetingViewModel = ViewModelProviders.of(requireActivity()).get(MeetingViewModel::class.java)
         guiViewModel = ViewModelProviders.of(requireActivity()).get(GuiViewModel::class.java)
+        accountViewModel = ViewModelProviders.of(requireActivity()).get(AccountViewModel::class.java)
 
         //Bepalen of er al dan niet een detailcontainer is
         //->indien deze er is weet men dat het over een tablet (twoPane) gaat
@@ -94,11 +102,17 @@ class FavouritesListFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        initListeners()
-        guiViewModel.actionBarTitle.value = getString(R.string.ab_favourites_title)
-        guiViewModel.actionBarSubTitle.value = getString(R.string.ab_favourite_subtitle)
-        guiViewModel.activeMenuItem.value = MenuItemEnum.FAVOURITES
-        guiViewModel.isListDesignOptionsVisible.value = true
+        if (!accountViewModel.isLoggedIn.value!!) {
+            MessageUtil.showDialogLoginRequired(requireActivity() as MainActivity)
+            requireActivity().supportFragmentManager.popBackStack()
+
+        } else {
+            initListeners()
+            guiViewModel.actionBarTitle.value = getString(R.string.ab_favourites_title)
+            guiViewModel.actionBarSubTitle.value = getString(R.string.ab_favourite_subtitle)
+            guiViewModel.activeMenuItem.value = MenuItemEnum.FAVOURITES
+            guiViewModel.isListDesignOptionsVisible.value = true
+        }
     }
 
     override fun onStop() {

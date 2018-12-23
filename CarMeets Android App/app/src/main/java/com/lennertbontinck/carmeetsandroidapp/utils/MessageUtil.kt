@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
+import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
 
 /**
  * Een util om je te helpen met het weergeven van *berichten* aan de gebruiker.
@@ -42,12 +43,39 @@ object MessageUtil {
         builder.setTitle(title)
         builder.setMessage(message)
         builder.setPositiveButton(
-            CarMeetsApplication.getContext().getString(R.string.txt_yes)
+            parentActivity.getString(R.string.txt_yes)
         ) { _, _ ->
             func()
         }
         builder.setNegativeButton(
-            CarMeetsApplication.getContext().getString(R.string.txt_no)
+            parentActivity.getString(R.string.txt_no)
+        ) { dialog, _ -> dialog.cancel() }
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    /**
+     * Toont een dialoog die zegt dat een account nodig is voor deze functie met optie om naar account te gaan.
+     *
+     * @param parentActivity : activity van de huidige omgeving. Required of type [MainActivity].
+     */
+    @JvmStatic
+    fun showDialogLoginRequired(parentActivity: MainActivity) {
+        val builder = AlertDialog.Builder(parentActivity)
+        builder.setCancelable(true)
+        builder.setTitle(parentActivity.getString(R.string.txt_login_required))
+        builder.setMessage(parentActivity.getString(R.string.txt_login_required_for_this_function))
+        builder.setPositiveButton(
+            CarMeetsApplication.getContext().getString(R.string.txt_login)
+        ) { _, _ ->
+            parentActivity.supportFragmentManager.beginTransaction()
+                .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
+                .addToBackStack(parentActivity.getString(R.string.fragtag_account))
+                .commit()
+        }
+        builder.setNegativeButton(
+            parentActivity.getString(R.string.txt_cancel)
         ) { dialog, _ -> dialog.cancel() }
 
         val dialog = builder.create()

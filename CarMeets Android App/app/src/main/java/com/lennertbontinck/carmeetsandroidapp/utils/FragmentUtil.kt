@@ -35,6 +35,8 @@ object FragmentUtil {
                 context.getString(R.string.fragtag_meetinglist) -> if (item?.itemId == R.id.nav_meetings) return true
                 context.getString(R.string.fragtag_favouriteslist) -> if (item?.itemId == R.id.nav_favourites) return true
                 context.getString(R.string.fragtag_account) -> if (item?.itemId == R.id.nav_account) return true
+                context.getString(R.string.fragtag_login) -> if (item?.itemId == R.id.nav_account) return true
+                context.getString(R.string.fragtag_register) -> if (item?.itemId == R.id.nav_account) return true
             }
         }
         //default

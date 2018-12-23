@@ -140,6 +140,11 @@ class MainActivity : AppCompatActivity() {
             ?.actionView?.findViewById<TextView>(R.id.text_partialnotification_amount)
 
         notificationAmount?.text = (notificationAmount?.text.toString().toInt() + 1).toString()
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
+            .addToBackStack(getString(R.string.fragtag_favouriteslist))
+            .commit()
     }
 
     /**

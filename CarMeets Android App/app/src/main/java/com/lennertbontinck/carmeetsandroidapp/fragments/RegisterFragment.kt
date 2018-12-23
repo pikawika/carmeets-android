@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
@@ -120,6 +121,7 @@ class RegisterFragment : Fragment() {
         super.onStart()
         guiViewModel.actionBarTitle.value = getString(R.string.txt_register)
         guiViewModel.isBackButtonVisible.value = true
+        guiViewModel.activeMenuItem.value = MenuItemEnum.ACCOUNT
         initListeners()
     }
 
