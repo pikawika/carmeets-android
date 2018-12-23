@@ -1,16 +1,21 @@
 package com.lennertbontinck.carmeetsandroidapp.viewmodels
 
 import android.arch.lifecycle.MutableLiveData
+import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
+import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.LoginRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.RegisterRequest
+import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.TokenResponse
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
+import com.squareup.moshi.Moshi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
 import javax.inject.Inject
 
 /**
@@ -71,7 +76,7 @@ class AccountViewModel : InjectedViewModel() {
      * Registreert de gebruiker en returnt of al dan niet gelukt
      */
     fun register(email: String, username: String, password: String) {
-        val registerRequest = RegisterRequest(username,password,email)
+        val registerRequest = RegisterRequest(username, password, email)
         registerSubscription = carmeetsApi.register(registerRequest)
             //we tell it to fetch the data on background by
             .subscribeOn(Schedulers.io())
@@ -83,8 +88,6 @@ class AccountViewModel : InjectedViewModel() {
                 { result -> onRetrieveRegisterSuccess(result, username) },
                 { error -> onRetrieveError(error) }
             )
-        this.username.value = username
-        PreferenceUtil.setUsername(username)
     }
 
     /**
@@ -115,7 +118,27 @@ class AccountViewModel : InjectedViewModel() {
      * Functie voor het behandelen van het mislukken van het ophalen van data van de server
      */
     private fun onRetrieveError(error: Throwable) {
-        MessageUtil.showToast("De gevraagde actie is mislukt. " + error.message.toString())
+        //error is een http error
+        if (error is HttpException) {
+            //error body
+            val errorJsonString = error.response().errorBody()?.string()
+            //json parser indien
+            val jsonAdapter = Moshi.Builder().build().adapter<MessageResponse>(MessageResponse::class.java)
+            val messageRes = jsonAdapter.fromJson(errorJsonString)
+
+            //indien message van de server toon deze anders toon universeel
+            if (messageRes?.message != null) {
+                MessageUtil.showToast(messageRes.message)
+                return
+            } else {
+                MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_httpRequest_crashed))
+                return
+            }
+        } else {
+            MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
+            return
+        }
+
     }
 
     /**

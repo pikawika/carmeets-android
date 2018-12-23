@@ -6,10 +6,12 @@ import android.content.Context
 import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND_API
 import com.lennertbontinck.carmeetsandroidapp.extensions.DateParser
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
+import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -75,8 +77,18 @@ class NetworkModule(private val context: Context) {
             this.level = HttpLoggingInterceptor.Level.BODY
         }
 
+        val authInterceptor = Interceptor { chain ->
+            val accessToken = PreferenceUtil.getToken()
+            chain.proceed(
+                chain.request().newBuilder()
+                    .addHeader("Authorization", "Bearer $accessToken")
+                    .build()
+            )
+        }
+
         return OkHttpClient.Builder().apply {
             addInterceptor(interceptor)
+            addInterceptor(authInterceptor)
         }.build()
     }
 

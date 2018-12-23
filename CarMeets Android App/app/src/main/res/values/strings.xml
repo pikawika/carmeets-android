@@ -3,6 +3,8 @@
     <string name="error_no_navigation_app">U heeft geen navigatie applicatie geïnstalleerd op uw toestel.</string>
     <string name="error_no_browser_app">U heeft geen internet browser applicatie geïnstalleerd op uw toestel.</string>
     <string name="error_no_calander_app">U heeft geen agenda applicatie geïnstalleerd op uw toestel.</string>
+    <string name="error_something_crashed">Er liep iets mis bij het uitvoeren van de gevraagde actie.</string>
+    <string name="error_httpRequest_crashed">Er liep iets mis bij het communiceren met de server.</string>
 
     <!-- warnings -->
     <string name="warning_empty_fields">Gelieve alle velden in te vullen.</string>
