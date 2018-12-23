@@ -57,12 +57,18 @@ class AccountFragment : Fragment() {
     private fun initListeners() {
         // account beheren
         btn_account_manage_account.setOnClickListener {
-            MessageUtil.showToast("clicked manage account")
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.frame_main_fragmentcontainer, ManageAccountFragment())
+                .addToBackStack(getString(R.string.fragtag_manage_account))
+                .commit()
         }
 
         // voorkeuren
         btn_account_preferences.setOnClickListener {
-            MessageUtil.showToast("clicked preferences")
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.frame_main_fragmentcontainer, PreferencesFragment())
+                .addToBackStack(getString(R.string.fragtag_preferences))
+                .commit()
         }
 
         //afmelden
