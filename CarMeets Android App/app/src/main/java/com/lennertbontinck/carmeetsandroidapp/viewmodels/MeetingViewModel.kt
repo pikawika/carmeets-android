@@ -1,13 +1,18 @@
 package com.lennertbontinck.carmeetsandroidapp.viewmodels
 
 import android.arch.lifecycle.MutableLiveData
+import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
+import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
+import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.squareup.moshi.Moshi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
 import javax.inject.Inject
 
 /**
@@ -72,11 +77,37 @@ class MeetingViewModel : InjectedViewModel() {
     }
 
     /**
-     * Functie voor het behandelen van het mislukken van het ophalen van data van de server.
+     * Functie voor het behandelen van het mislukken van het ophalen van data van de server
      */
     private fun onRetrieveError(error: Throwable) {
-        //voorlopig toastje zou mooier zijn als er fragment toont
-        MessageUtil.showToast("Er ging iets mis met het ophalen van de data!")
+        //error is een http error
+        if (error is HttpException) {
+            //error body
+            val errorJsonString = error.response().errorBody()?.string()
+            if (errorJsonString != null) {
+                //parse kan falen indien niet juiste format
+                try {
+                    //json parser indien
+                    val jsonAdapter = Moshi.Builder().build().adapter<MessageResponse>(MessageResponse::class.java)
+                    val messageRes = jsonAdapter.fromJson(errorJsonString)
+
+                    //indien message van de server toon deze anders toon universeel
+                    if (messageRes?.message != null) {
+                        MessageUtil.showToast(messageRes.message)
+                        return
+                    }
+                } catch(e : Throwable) {}
+
+            }
+            //geen server error code -> toon universele http error code
+            MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_httpRequest_crashed))
+            return
+
+        } else {
+            //geen http error code -> toon universele error code
+            MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
+            return
+        }
     }
 
     /**

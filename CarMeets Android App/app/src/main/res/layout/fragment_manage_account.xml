@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fragment voor het tonen en bewerken van account beheer opties -->
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+>
+
+    <!-- Virtual divider vertical 10% -->
+    <android.support.constraint.Guideline
+            android:id="@+id/guideline_manage_account_10percent_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1"
+    />
+
+    <!-- Virtual divider vertical 90% -->
+    <android.support.constraint.Guideline
+            android:id="@+id/guideline_manage_account_90percent_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9"
+    />
+
+    <!-- Titel -->
+    <TextView
+            android:id="@+id/txt_manage_account_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/txt_preferences"
+            android:textSize="30sp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+
+            app:layout_constraintStart_toStartOf="@id/guideline_manage_account_10percent_vertical"
+            app:layout_constraintEnd_toEndOf="@id/guideline_manage_account_90percent_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_manage_account_change_password"
+
+            android:layout_marginBottom="8dp"
+
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_chainStyle="packed"
+    />
+
+    <!-- Wachtwoord wijzigen -->
+    <Button
+            android:id="@+id/btn_manage_account_change_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:textColor="@android:color/black"
+            android:text="@string/txt_manage_account_change_password"
+            android:background="@color/lightGrey"
+
+            app:layout_constraintStart_toStartOf="@id/guideline_manage_account_10percent_vertical"
+            app:layout_constraintEnd_toEndOf="@id/guideline_manage_account_90percent_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/txt_manage_account_title"
+            app:layout_constraintBottom_toTopOf="@+id/btn_manage_account_change_username"
+
+            android:layout_marginTop="16dp"
+
+            app:layout_constraintHorizontal_bias="0.5"
+    />
+
+    <!-- Gebruikersnaam wijzigen -->
+    <Button
+            android:id="@+id/btn_manage_account_change_username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:textColor="@android:color/black"
+            android:text="@string/txt_manage_account_change_username"
+            android:background="@color/lightGrey"
+
+            app:layout_constraintStart_toStartOf="@id/guideline_manage_account_10percent_vertical"
+            app:layout_constraintEnd_toEndOf="@id/guideline_manage_account_90percent_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/btn_manage_account_change_password"
+            app:layout_constraintBottom_toTopOf="@+id/btn_manage_account_change_email"
+
+            android:layout_marginTop="16dp"
+
+            app:layout_constraintHorizontal_bias="0.5"
+    />
+
+    <!-- E-mailadres wijzigen -->
+    <Button
+            android:id="@+id/btn_manage_account_change_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:textColor="#000"
+            android:text="@string/txt_manage_account_change_email"
+            android:background="@color/lightGrey"
+
+            app:layout_constraintStart_toStartOf="@id/guideline_manage_account_10percent_vertical"
+            app:layout_constraintEnd_toEndOf="@id/guideline_manage_account_90percent_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/btn_manage_account_change_username"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            android:layout_marginTop="16dp"
+
+            app:layout_constraintHorizontal_bias="0.5"
+    />
+
+</android.support.constraint.ConstraintLayout>

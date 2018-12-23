@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
-import com.lennertbontinck.carmeetsandroidapp.constants.IMG_URL_BACKEND
+import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND_IMAGES
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
@@ -77,7 +77,7 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = meetingViewModel.meetingList.value!![position]
-        Glide.with(parentActivity).load(IMG_URL_BACKEND + item.imageName).into(holder.image)
+        Glide.with(parentActivity).load(BASE_URL_BACKEND_IMAGES + item.imageName).into(holder.image)
         holder.title.text = item.title
         holder.subtitle.text = item.subtitle
         holder.location.text = LocationUtil.getCityNotation(item.location)

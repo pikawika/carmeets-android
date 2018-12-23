@@ -3,6 +3,7 @@ package com.lennertbontinck.carmeetsandroidapp.bases
 import android.arch.lifecycle.ViewModel
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication.Companion.injector
 import com.lennertbontinck.carmeetsandroidapp.injection.components.NetworkComponent
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 
 /**
@@ -32,6 +33,7 @@ abstract class InjectedViewModel : ViewModel() {
     private fun inject() {
         when (this) {
             is MeetingViewModel -> injector.inject(this)
+            is AccountViewModel -> injector.inject(this)
         }
     }
 

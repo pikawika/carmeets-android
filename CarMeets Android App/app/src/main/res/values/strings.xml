@@ -3,14 +3,36 @@
     <string name="error_no_navigation_app">U heeft geen navigatie applicatie geïnstalleerd op uw toestel.</string>
     <string name="error_no_browser_app">U heeft geen internet browser applicatie geïnstalleerd op uw toestel.</string>
     <string name="error_no_calander_app">U heeft geen agenda applicatie geïnstalleerd op uw toestel.</string>
+    <string name="error_something_crashed">Er liep iets mis bij het uitvoeren van de gevraagde actie.</string>
+    <string name="error_httpRequest_crashed">Er liep iets mis bij het verwerken van uw serververzoek.</string>
 
     <!-- warnings -->
+    <string name="warning_empty_fields">Gelieve alle velden in te vullen.</string>
+    <string name="warning_passwords_not_equal">Ingevulde wachtwoorden komen niet overeen.</string>
 
     <!-- questions -->
     <string name="question_exit_app">Wilt u CarMeets afsluiten?</string>
+    <string name="question_want_to_logout">Bent u zeker dat u wilt afmelden?</string>
 
-    <!-- shared -->
+    <!-- shared txt -->
     <string name="txt_meeting">Meeting</string>
+    <string name="txt_hello">Hallo</string>
+    <string name="txt_manage_account">Account beheren</string>
+    <string name="txt_preferences">Voorkeuren</string>
+    <string name="txt_yes">Ja</string>
+    <string name="txt_no">Nee</string>
+    <string name="txt_logout">Afmelden</string>
+    <string name="txt_login_required">Aanmelden vereist</string>
+    <string name="txt_login_required_for_this_function">Voor het gebruik van deze functie en tal van andere functies moet u aangemeld zijn.</string>
+    <string name="txt_login">Aanmelden</string>
+    <string name="txt_cancel">Annuleer</string>
+
+    <!-- shared alt -->
+    <string name="alt_logo">Logo van CarMeets</string>
+
+    <!-- shared alt -->
+    <string name="placeholder_username">Gebruikersnaam</string>
+    <string name="placeholder_password">Wachtwoord</string>
 
     <!-- app -->
     <string name="app_name">CarMeets</string>
@@ -42,6 +64,10 @@
     <string name="fragtag_favouriteslist">favouriteslist</string>
     <string name="fragtag_account">account</string>
     <string name="fragtag_meetingdetail">meetingdetail</string>
+    <string name="fragtag_login">login</string>
+    <string name="fragtag_register">register</string>
+    <string name="fragtag_manage_account">manageAccount</string>
+    <string name="fragtag_preferences">preferences</string>
 
     <!-- meeting -->
     <string name="alt_item_meeting_img">Afbeelding van meeting</string>
@@ -51,6 +77,29 @@
     <string name="btn_meeting_agenda">Opslaan in kalender</string>
     <string name="btn_meeting_route">Routebeschrijving</string>
     <string name="btn_meeting_website">Website</string>
+
+    <!-- fragment_login -->
+    <string name="txt_login_register">Nog geen account? Registreer hier gratis!</string>
+
+    <!-- fragment_register -->
+    <string name="txt_register">Registreren</string>
+    <string name="txt_register_login">Al een account? Meld aan!</string>
+    <string name="placeholder_register_confirm_password">Bevestig wachtwoord</string>
+    <string name="placeholder_register_email">E-mailadres</string>
+
+    <!-- fragment_account -->
+    <string name="txt_account">Account</string>
+    <string name="btn_account_logoff">Afmelden</string>
+
+    <!-- fragment_manage_account -->
+    <string name="txt_manage_account_change_password">Wachtwoord wijzigen</string>
+    <string name="txt_manage_account_change_username">Gebruikersnaam wijzigen</string>
+    <string name="txt_manage_account_change_email">E-mailadres wijzigen</string>
+
+    <!-- fragment_preferences -->
+    <string name="txt_preferences_change_boot_page">Startscherm instellen</string>
+    <string name="txt_preferences_default_categories">Voorkeurscategoriën</string>
+    <string name="txt_preferences_choose_boot_page">Startscherm kiezen</string>
 
     <!-- carmeets -->
     <string name="txt_about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik
