@@ -27,11 +27,13 @@ object MessageUtil {
     /**
      * Toont een dialoog popup met ja nee knoppen en voert de meegegeven parameterloze functie uit.
      *
+     * @param parentActivity : activity van de huidige omgeving. Required of type [Activity].
+     *
      * @param title : de gewenste titel van de popup. Required of type [String].
      *
      * @param message : de gewenste omschrijving in de popup. Required of type [String].
      *
-     * @param func : een funtie dat moet uitgevoerd worden, parameter loos. Required of type [Unit].
+     * @param func : een funtie dat moet uitgevoerd worden, parameterloos. Required of type [Unit].
      */
     @JvmStatic
     fun showDialogYesNo(parentActivity: Activity, title: String, message: String, func: () -> Unit) {
