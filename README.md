@@ -34,21 +34,22 @@ Er is voor elke feature een beschrijving van wat de feauture juist implementeert
 > 1. [Meer info over Feature 1 - Basic Layout](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
 > 2. [Meer info over Feature 2 - MVVM en basic rest](Documentatie%20per%20feature/feature2-mvvm_basic-rest.md)
 > 3. [Meer info over Feature 3 - Intents en best practices](Documentatie%20per%20feature/feature3-intents-best_practices.md)
+> 4. [Meer info over Feature 4 - Login, Registreer en Standaard startpagina](Documentatie%20per%20feature/feature4-login-registreer-standaard_start_pagina.md)
 
 ## Releases en APKs
 
 > 1. Feature 1: Layout van de toolbar, bottom navigation, meetinglijst en detail pagina. Basic werking met dummy data en poc op onclicks.
->     - [Meer info over Feature 1 - Basic Layout](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
->     - [Release](https://github.com/HoGentTIN/native-apps-1-android-creative-app-pikawika/releases/tag/V1.0)
+>     - [Meer info over Feature 1](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
 >     - [APK](apks/carmeets-feature1.apk)
 > 2. Feature 2: MVVM structuur en meetinglijst + detail via rest api verkregen
->     - [Meer info over Feature 2 - MVVM en basic rest](Documentatie%20per%20feature/feature2-mvvm_basic-rest.md)
->     - [Release](https://github.com/HoGentTIN/native-apps-1-android-creative-app-pikawika/releases/tag/V2.0)
+>     - [Meer info over Feature 2](Documentatie%20per%20feature/feature2-mvvm_basic-rest.md)
 >     - [APK](apks/carmeets-feature2.apk) 
 > 3. Feature 3: Intents + Best practices cleanup
->     - [Meer info over Feature 3 - Intents en best practices](Documentatie%20per%20feature/feature3-intents-best_practices.md)
->     - [Release](https://github.com/HoGentTIN/native-apps-1-android-creative-app-pikawika/releases/tag/V3.0)
+>     - [Meer info over Feature 3](Documentatie%20per%20feature/feature3-intents-best_practices.md)
 >     - [APK](apks/carmeets-feature3.apk) 
+> 4. Feature 4: Login, Registreer en Standaard startpagina
+>     - [Meer info over Feature 4](Documentatie%20per%20feature/feature4-login-registreer-standaard_start_pagina.md)
+>     - [APK](apks/carmeets-feature4.apk) 
 
 ## GitHub Repository van de backend
 Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaakt met de MEAN-stack zal ik de bestaande backend hergebruik en aanvullen waar nodig.
@@ -66,3 +67,6 @@ Buiten het in de les ter beschikking gestelde boek heb volgende bronnen geraadpl
 > - [Metar project dat MVVM en retrofit gebruik uitlegd](https://github.com/hdeweirdt/Metar)
 > - [Moshi Rfc3339DateJsonAdapter.java](https://github.com/square/moshi/blob/master/adapters/src/main/java/com/squareup/moshi/Rfc3339DateJsonAdapter.java)
 > - [Het gebruik van intents]( https://developer.android.com/guide/components/intents-common)
+> - [Functies meegeven als parameter](https://antonioleiva.com/function-references-kotlin/)
+> - [Auth interceptor op uitgaande requests](https://github.com/MarcinMoskala/SimpleKotlinMvpBoilerplate/blob/master/app/src/main/java/com/marcinmoskala/simplekotlinmvpboilerplate/repositories/providers/Retrofit.kt)
+> - [Doc over Kotlin Enums](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)

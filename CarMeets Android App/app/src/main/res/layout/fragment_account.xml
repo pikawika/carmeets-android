@@ -1,18 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- de account pagina -->
-<android.support.constraint.ConstraintLayout
+<!-- Fragment voor het tonen van account opties -->
+<layout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+>
+    <data>
+        <import type="android.view.View"/>
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        <variable
+                name="accountViewModel"
+                type="com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel"/>
+    </data>
 
-        android:orientation="vertical">
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    >
 
-    <TextView
-            android:id="@+id/text_account_temptext"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+        <!-- Virtual divider vertical 10% -->
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline_account_10percent_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            android:text="hallo van account"/>
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.1"
+        />
 
-</android.support.constraint.ConstraintLayout>
+        <!-- Virtual divider vertical 90% -->
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline_account_90percent_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9"
+        />
+
+        <!-- Titel -->
+        <TextView
+                android:id="@+id/txt_account_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="@string/txt_hello"
+                android:textSize="30sp"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+
+                app:layout_constraintStart_toStartOf="@id/guideline_account_10percent_vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline_account_90percent_vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/txt_account_username"
+
+                android:layout_marginBottom="8dp"
+
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_chainStyle="packed"
+        />
+
+        <!-- Gebruikersnaam -->
+        <TextView
+                android:id="@+id/txt_account_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="@{accountViewModel.username}"
+                tools:text="Lennert"
+                android:textSize="30sp"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+
+                app:layout_constraintStart_toStartOf="@id/guideline_account_10percent_vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline_account_90percent_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/txt_account_title"
+                app:layout_constraintBottom_toTopOf="@+id/btn_account_manage_account"
+
+                android:layout_marginTop="8dp"
+
+                app:layout_constraintHorizontal_bias="0.5"
+        />
+
+        <!-- Account instellingen -->
+        <Button
+                android:id="@+id/btn_account_manage_account"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:textColor="@android:color/black"
+                android:text="@string/txt_manage_account"
+                android:background="@color/lightGrey"
+
+                app:layout_constraintStart_toStartOf="@id/guideline_account_10percent_vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline_account_90percent_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/txt_account_username"
+                app:layout_constraintBottom_toTopOf="@+id/btn_account_preferences"
+
+                android:layout_marginTop="16dp"
+
+                app:layout_constraintHorizontal_bias="0.5"
+        />
+
+        <!-- Voorkeuren -->
+        <Button
+                android:id="@+id/btn_account_preferences"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:textColor="@android:color/black"
+                android:text="@string/txt_preferences"
+                android:background="@color/lightGrey"
+
+                app:layout_constraintStart_toStartOf="@id/guideline_account_10percent_vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline_account_90percent_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/btn_account_manage_account"
+                app:layout_constraintBottom_toTopOf="@+id/btn_account_logout"
+
+                android:layout_marginTop="16dp"
+
+                app:layout_constraintHorizontal_bias="0.5"
+        />
+
+        <!-- Afmelden -->
+        <Button
+                android:id="@+id/btn_account_logout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:textColor="#000"
+                android:text="@string/btn_account_logoff"
+                android:background="@color/lightGrey"
+
+                app:layout_constraintStart_toStartOf="@id/guideline_account_10percent_vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline_account_90percent_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/btn_account_preferences"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                android:layout_marginTop="16dp"
+
+                app:layout_constraintHorizontal_bias="0.5"
+        />
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

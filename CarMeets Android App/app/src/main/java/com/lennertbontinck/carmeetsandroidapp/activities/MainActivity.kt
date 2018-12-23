@@ -21,6 +21,7 @@ import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglistFragment
 import com.lennertbontinck.carmeetsandroidapp.utils.FragmentUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -51,7 +52,6 @@ class MainActivity : AppCompatActivity() {
     private var backClickedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //bij het laden van de app de mainactivity instellen
         super.onCreate(savedInstanceState)
 
         //de viewmodels instantieren
@@ -65,12 +65,6 @@ class MainActivity : AppCompatActivity() {
 
         //supportbar instellen zodat hij menu_toolbar gebruikt
         setSupportActionBar(menu_main_toolbar)
-
-        //initieel wordt meetinglijst weergegeven
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
-            .addToBackStack(getString(R.string.fragtag_meetinglist))
-            .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -118,17 +112,20 @@ class MainActivity : AppCompatActivity() {
 
     //fysieke back button ingedruk
     override fun onBackPressed() {
-        if (guiViewModel.isBackButtonVisible.value!!)
-            super.onBackPressed()
-        else if (backClickedOnce) {
+        when {
+            //gebruiker mag teruggaan dus popt backstack
+            guiViewModel.isBackButtonVisible.value!! -> super.onBackPressed()
+            //gebruiker wilt app sluiten en heeft dat bevestigd
+            backClickedOnce -> {
                 finish()
-                return
             }
-        else {
-            backClickedOnce = true
-            MessageUtil.showToast(getString(R.string.question_exit_app), Toast.LENGTH_SHORT)
-            //indien binnen de 2 sec niet nogmaals geklikt
-            Handler().postDelayed({ backClickedOnce = false }, 2000)
+            //gebruiker wilt app sluiten, er wordt om bevestiging gevraagd
+            else -> {
+                backClickedOnce = true
+                MessageUtil.showToast(getString(R.string.question_exit_app), Toast.LENGTH_SHORT)
+                //indien binnen de 2 sec niet nogmaals geklikt
+                Handler().postDelayed({ backClickedOnce = false }, 2000)
+            }
         }
     }
 
@@ -142,6 +139,11 @@ class MainActivity : AppCompatActivity() {
             ?.actionView?.findViewById<TextView>(R.id.text_partialnotification_amount)
 
         notificationAmount?.text = (notificationAmount?.text.toString().toInt() + 1).toString()
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
+            .addToBackStack(getString(R.string.fragtag_favouriteslist))
+            .commit()
     }
 
     /**
@@ -201,6 +203,8 @@ class MainActivity : AppCompatActivity() {
             LayoutUtil.setListDesignOptionsVisibiltiy(this, guiViewModel.isListDesignOptionsVisible.value!!)
         })
 
+        //Bij de init van de viewmodel wordt deze waarde ingesteld uit de shared pref
+        //En opent dus de pagina die door de gebruiker ingesteld is als default boot page
         guiViewModel.activeMenuItem.observe(this, Observer {
             LayoutUtil.setBottomNavigation(this, guiViewModel.activeMenuItem.value!!.menuId)
         })
@@ -231,6 +235,8 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         initListeners()
+        //haal de boot page uit shared pref en laad ze door het instellen van de bottom nav zijn selected id
+        menu_main_bottomnavigation.selectedItemId = PreferenceUtil.getDefaultBootPage().menuId
     }
 
     override fun onStop() {

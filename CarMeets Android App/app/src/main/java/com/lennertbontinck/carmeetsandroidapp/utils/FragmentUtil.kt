@@ -25,6 +25,8 @@ object FragmentUtil {
     fun checkFragmentEqualsNavItem(item: MenuItem?, supportFragmentManager : FragmentManager) : Boolean {
         //Context ophalen
         val context = CarMeetsApplication.getContext()
+        //indien nog geen in de backstack kan het ook niet gelijk zijn
+        if (supportFragmentManager.backStackEntryCount <= 1) return false
         //huidige item in de backstack zijn fragtag
         val currentFragTag = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
         if (currentFragTag != null && currentFragTag != "") {
@@ -33,6 +35,8 @@ object FragmentUtil {
                 context.getString(R.string.fragtag_meetinglist) -> if (item?.itemId == R.id.nav_meetings) return true
                 context.getString(R.string.fragtag_favouriteslist) -> if (item?.itemId == R.id.nav_favourites) return true
                 context.getString(R.string.fragtag_account) -> if (item?.itemId == R.id.nav_account) return true
+                context.getString(R.string.fragtag_login) -> if (item?.itemId == R.id.nav_account) return true
+                context.getString(R.string.fragtag_register) -> if (item?.itemId == R.id.nav_account) return true
             }
         }
         //default
