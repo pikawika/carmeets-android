@@ -67,17 +67,6 @@
     <string name="ab_notifications">Notificaties</string>
     <string name="ab_notifications_default_amount">0</string>
 
-    <!-- fragment tags -->
-    <string name="fragtag_meetinglist">meetinglist</string>
-    <string name="fragtag_favouriteslist">favouriteslist</string>
-    <string name="fragtag_account">account</string>
-    <string name="fragtag_meetingdetail">meetingdetail</string>
-    <string name="fragtag_login">login</string>
-    <string name="fragtag_register">register</string>
-    <string name="fragtag_manage_account">manageAccount</string>
-    <string name="fragtag_preferences">preferences</string>
-    <string name="fragtag_change_password">changePassword</string>
-
     <!-- meeting -->
     <string name="alt_item_meeting_img">Afbeelding van meeting</string>
 

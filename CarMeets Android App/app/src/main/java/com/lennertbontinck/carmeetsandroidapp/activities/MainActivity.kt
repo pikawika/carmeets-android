@@ -13,6 +13,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_ACCOUNT
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_FAVOURITES_LIST
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_MEETING_LIST
 import com.lennertbontinck.carmeetsandroidapp.databinding.ActivityMainBinding
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
@@ -141,7 +144,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
-            .addToBackStack(getString(R.string.fragtag_favouriteslist))
+            .addToBackStack(FRAGTAG_FAVOURITES_LIST)
             .commit()
     }
 
@@ -164,21 +167,21 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_meetings -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
-                    .addToBackStack(getString(R.string.fragtag_meetinglist))
+                    .addToBackStack(FRAGTAG_MEETING_LIST)
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_favourites -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
-                    .addToBackStack(getString(R.string.fragtag_favouriteslist))
+                    .addToBackStack(FRAGTAG_FAVOURITES_LIST)
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_account -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
-                    .addToBackStack(getString(R.string.fragtag_account))
+                    .addToBackStack(FRAGTAG_ACCOUNT)
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }

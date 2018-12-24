@@ -57,7 +57,7 @@ object PreferenceUtil {
      * Haalt de standaard startpagina op van de shared preferences
      */
     @JvmStatic
-    fun getDefaultBootPage() : MenuItemEnum {
+    fun getDefaultBootPage(): MenuItemEnum {
         //default enum 0 -> meetings
         return MenuItemEnum.values()[sharedPreferences.getInt(PREFERENCE_DEFAULT_BOOT_PAGE, 0)]
     }

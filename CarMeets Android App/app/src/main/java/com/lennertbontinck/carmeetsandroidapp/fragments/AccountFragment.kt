@@ -9,6 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_LOGIN
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_MANAGE_ACCOUNT
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_PREFERENCES
 import com.lennertbontinck.carmeetsandroidapp.databinding.FragmentAccountBinding
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
@@ -59,7 +62,7 @@ class AccountFragment : Fragment() {
         btn_account_manage_account.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.frame_main_fragmentcontainer, ManageAccountFragment())
-                .addToBackStack(getString(R.string.fragtag_manage_account))
+                .addToBackStack(FRAGTAG_MANAGE_ACCOUNT)
                 .commit()
         }
 
@@ -67,7 +70,7 @@ class AccountFragment : Fragment() {
         btn_account_preferences.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.frame_main_fragmentcontainer, PreferencesFragment())
-                .addToBackStack(getString(R.string.fragtag_preferences))
+                .addToBackStack(FRAGTAG_PREFERENCES)
                 .commit()
         }
 
@@ -87,7 +90,7 @@ class AccountFragment : Fragment() {
                 requireActivity().supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, LoginFragment())
-                    .addToBackStack(getString(R.string.fragtag_login))
+                    .addToBackStack(FRAGTAG_LOGIN)
                     .commit()
             }
         })

@@ -77,6 +77,7 @@ class ChangePasswordFragment : Fragment() {
         super.onStart()
         initListeners()
         guiViewModel.actionBarTitle.value = getString(R.string.txt_change_password)
+        guiViewModel.isBackButtonVisible.value = true
         guiViewModel.activeMenuItem.value = MenuItemEnum.ACCOUNT
     }
 

@@ -3,7 +3,6 @@ package com.lennertbontinck.carmeetsandroidapp.utils
 
 import android.support.v7.app.AppCompatActivity
 import com.lennertbontinck.carmeetsandroidapp.R
-import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**

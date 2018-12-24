@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_CHANGE_PASSWORD
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
@@ -46,7 +47,7 @@ class ManageAccountFragment : Fragment() {
         btn_manage_account_change_password.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.frame_main_fragmentcontainer, ChangePasswordFragment())
-                .addToBackStack(getString(R.string.fragtag_change_password))
+                .addToBackStack(FRAGTAG_CHANGE_PASSWORD)
                 .commit()
         }
 

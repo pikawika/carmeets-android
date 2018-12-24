@@ -26,6 +26,6 @@ object LocationUtil {
      */
     @JvmStatic
     fun getAddressNotation(location: Location): String {
-        return (location.streetName + " " + location.houseNumber + ", " +location.postalCode + " " + location.city)
+        return (location.streetName + " " + location.houseNumber + ", " + location.postalCode + " " + location.city)
     }
 }

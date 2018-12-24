@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.widget.Toast
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_ACCOUNT
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
 
@@ -71,7 +72,7 @@ object MessageUtil {
         ) { _, _ ->
             parentActivity.supportFragmentManager.beginTransaction()
                 .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
-                .addToBackStack(parentActivity.getString(R.string.fragtag_account))
+                .addToBackStack(FRAGTAG_ACCOUNT)
                 .commit()
         }
         builder.setNegativeButton(

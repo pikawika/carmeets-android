@@ -157,7 +157,8 @@ class AccountViewModel : InjectedViewModel() {
                         MessageUtil.showToast(messageRes.message)
                         return
                     }
-                } catch(e : Throwable) {}
+                } catch (e: Throwable) {
+                }
 
             }
             //geen server error code -> toon universele http error code
