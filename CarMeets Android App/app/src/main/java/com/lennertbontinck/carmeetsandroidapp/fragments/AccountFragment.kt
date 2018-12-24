@@ -79,7 +79,6 @@ class AccountFragment : Fragment() {
                 getString(R.string.question_want_to_logout),
                 logOut()
             )
-
         }
 
         //indien niet aangemeld login page tonen

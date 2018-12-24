@@ -14,6 +14,9 @@
     <string name="question_exit_app">Wilt u CarMeets afsluiten?</string>
     <string name="question_want_to_logout">Bent u zeker dat u wilt afmelden?</string>
 
+    <!-- notification -->
+    <string name="notification_password_change_success">Wachtwoord succesvol gewijzigd</string>
+
     <!-- shared txt -->
     <string name="txt_meeting">Meeting</string>
     <string name="txt_hello">Hallo</string>
@@ -26,6 +29,9 @@
     <string name="txt_login_required_for_this_function">Voor het gebruik van deze functie en tal van andere functies moet u aangemeld zijn.</string>
     <string name="txt_login">Aanmelden</string>
     <string name="txt_cancel">Annuleer</string>
+    <string name="txt_change_password">Wachtwoord wijzigen</string>
+    <string name="txt_change_username">Gebruikersnaam wijzigen</string>
+    <string name="txt_change_email">E-mailadres wijzigen</string>
 
     <!-- shared alt -->
     <string name="alt_logo">Logo van CarMeets</string>
@@ -33,6 +39,8 @@
     <!-- shared alt -->
     <string name="placeholder_username">Gebruikersnaam</string>
     <string name="placeholder_password">Wachtwoord</string>
+    <string name="placeholder_new_password">Nieuw wachtwoord</string>
+    <string name="placeholder_confirm_password">Bevestig wachtwoord</string>
 
     <!-- app -->
     <string name="app_name">CarMeets</string>
@@ -68,6 +76,7 @@
     <string name="fragtag_register">register</string>
     <string name="fragtag_manage_account">manageAccount</string>
     <string name="fragtag_preferences">preferences</string>
+    <string name="fragtag_change_password">changePassword</string>
 
     <!-- meeting -->
     <string name="alt_item_meeting_img">Afbeelding van meeting</string>
@@ -84,17 +93,11 @@
     <!-- fragment_register -->
     <string name="txt_register">Registreren</string>
     <string name="txt_register_login">Al een account? Meld aan!</string>
-    <string name="placeholder_register_confirm_password">Bevestig wachtwoord</string>
     <string name="placeholder_register_email">E-mailadres</string>
 
     <!-- fragment_account -->
     <string name="txt_account">Account</string>
     <string name="btn_account_logoff">Afmelden</string>
-
-    <!-- fragment_manage_account -->
-    <string name="txt_manage_account_change_password">Wachtwoord wijzigen</string>
-    <string name="txt_manage_account_change_username">Gebruikersnaam wijzigen</string>
-    <string name="txt_manage_account_change_email">E-mailadres wijzigen</string>
 
     <!-- fragment_preferences -->
     <string name="txt_preferences_change_boot_page">Startscherm instellen</string>
@@ -103,6 +106,9 @@
     <string name="txt_preferences_default_list_layout">Standaard lijstlayout</string>
     <string name="txt_preferences_choose_default_list_layout">Standaard lijstlayout kiezen</string>
 
+    <!-- Fragment_change_password -->
+    <string name="btn_change_password">Wijzig wachtwoord</string>
+
     <!-- carmeets -->
     <string name="txt_about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik
         weer een kwaliteitsmeeting gemist had omdat ik niet wist wanneer deze plaatsvond. Daarom besloot ik, Lennert
@@ -110,6 +116,8 @@
         bewaren in je agenda.
     </string>
     <string name="alt_carmeets_logo">Het carmeets logo</string>
+
+
 
 
 </resources>

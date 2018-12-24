@@ -5,6 +5,7 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
+import com.lennertbontinck.carmeetsandroidapp.networks.requests.ChangePasswordRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.LoginRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.RegisterRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
@@ -50,6 +51,11 @@ class AccountViewModel : InjectedViewModel() {
      */
     private lateinit var registerSubscription: Disposable
 
+    /**
+     * De subscription voor het wijzig wachtwoord
+     */
+    private lateinit var changePasswordSubscription: Disposable
+
     init {
         username.value = PreferenceUtil.getUsername()
         isLoggedIn.value = PreferenceUtil.getToken() != ""
@@ -86,6 +92,23 @@ class AccountViewModel : InjectedViewModel() {
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
                 { result -> onRetrieveRegisterSuccess(result, username) },
+                { error -> onRetrieveError(error) }
+            )
+    }
+
+    /**
+     * Veranderd het password van de gebruiker
+     */
+    fun changePassword(password: String) {
+        changePasswordSubscription = carmeetsApi.changePassword(ChangePasswordRequest(password))
+            //we tell it to fetch the data on background by
+            .subscribeOn(Schedulers.io())
+            //we like the fetched data to be displayed on the MainTread (UI)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onRetrieveStart() }
+            .doOnTerminate { onRetrieveFinish() }
+            .subscribe(
+                { result -> onRetrieveChangePasswordSuccess(result) },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -173,6 +196,16 @@ class AccountViewModel : InjectedViewModel() {
     }
 
     /**
+     * Functie voor het behandelen van het succesvol wijzigen van het wachtwoord
+     *
+     * zal token instellen en opslaan, en isLoggedIn in de VM op true zetten
+     */
+    private fun onRetrieveChangePasswordSuccess(result: TokenResponse) {
+        PreferenceUtil.setToken(result.token)
+        MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.notification_password_change_success))
+    }
+
+    /**
      * Disposed alle subscriptions wanneer de [AccountViewModel] niet meer gebruikt wordt.
      */
     override fun onCleared() {
@@ -182,6 +215,9 @@ class AccountViewModel : InjectedViewModel() {
         }
         if (::registerSubscription.isInitialized) {
             registerSubscription.dispose()
+        }
+        if (::changePasswordSubscription.isInitialized) {
+            changePasswordSubscription.dispose()
         }
     }
 }

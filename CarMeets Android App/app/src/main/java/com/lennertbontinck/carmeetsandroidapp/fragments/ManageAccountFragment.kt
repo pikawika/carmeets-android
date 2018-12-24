@@ -44,7 +44,10 @@ class ManageAccountFragment : Fragment() {
     private fun initListeners() {
         //wijzig wachtwoord
         btn_manage_account_change_password.setOnClickListener {
-            MessageUtil.showToast("clicked change pw")
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.frame_main_fragmentcontainer, ChangePasswordFragment())
+                .addToBackStack(getString(R.string.fragtag_change_password))
+                .commit()
         }
 
         //wijzig gebruikersnaam
