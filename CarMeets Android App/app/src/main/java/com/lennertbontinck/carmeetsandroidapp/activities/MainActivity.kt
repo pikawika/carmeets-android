@@ -95,13 +95,13 @@ class MainActivity : AppCompatActivity() {
                 return super.onOptionsItemSelected(item)
             }
 
-            R.id.ab_options_small -> {
-                guiViewModel.listDesign.value = ListDesignEnum.SMALL
+            R.id.ab_options_big -> {
+                guiViewModel.listDesign.value = ListDesignEnum.BIG
                 return super.onOptionsItemSelected(item)
             }
 
-            R.id.ab_options_big -> {
-                guiViewModel.listDesign.value = ListDesignEnum.BIG
+            R.id.ab_options_small -> {
+                guiViewModel.listDesign.value = ListDesignEnum.SMALL
                 return super.onOptionsItemSelected(item)
             }
 
@@ -235,8 +235,6 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         initListeners()
-        //haal de boot page uit shared pref en laad ze door het instellen van de bottom nav zijn selected id
-        menu_main_bottomnavigation.selectedItemId = PreferenceUtil.getDefaultBootPage().menuId
     }
 
     override fun onStop() {

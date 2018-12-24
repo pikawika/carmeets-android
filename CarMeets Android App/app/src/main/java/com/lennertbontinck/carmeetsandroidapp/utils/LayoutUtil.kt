@@ -33,7 +33,7 @@ object LayoutUtil {
      */
     @JvmStatic
     fun setListDesignOptionsVisibiltiy(parentActivity: AppCompatActivity , isVisible: Boolean) {
-        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_small)?.isVisible = isVisible
         parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_big)?.isVisible = isVisible
+        parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_small)?.isVisible = isVisible
     }
 }

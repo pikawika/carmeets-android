@@ -52,8 +52,8 @@
     <string name="ab_account_title">Account</string>
     <string name="ab_account_subtitle">Instellingen aanpassen</string>
 
-    <string name="ab_options_listdesign_big">Klassieke weergave</string>
-    <string name="ab_options_listdesign_small">Grotere weegave</string>
+    <string name="ab_options_list_design_small">Klassieke weergave</string>
+    <string name="ab_options_list_design_big">Grotere weegave</string>
 
     <string name="ab_search">Zoeken</string>
     <string name="ab_notifications">Notificaties</string>
@@ -100,6 +100,8 @@
     <string name="txt_preferences_change_boot_page">Startscherm instellen</string>
     <string name="txt_preferences_default_categories">Voorkeurscategoriën</string>
     <string name="txt_preferences_choose_boot_page">Startscherm kiezen</string>
+    <string name="txt_preferences_default_list_layout">Standaard lijstlayout</string>
+    <string name="txt_preferences_choose_default_list_layout">Standaard lijstlayout kiezen</string>
 
     <!-- carmeets -->
     <string name="txt_about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik
