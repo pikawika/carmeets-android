@@ -53,7 +53,13 @@ class ManageAccountFragment : Fragment() {
 
         //wijzig gebruikersnaam
         btn_manage_account_change_username.setOnClickListener {
-            MessageUtil.showToast("clicked change username")
+            MessageUtil.showDialogWithTextInput(
+                requireContext(),
+                getString(R.string.txt_change_username),
+                getString(R.string.txt_choose_new_username),
+                getString(R.string.hint_new_username),
+                changeUsername()
+            )
         }
 
         //wijzig e-mailadres
@@ -61,6 +67,11 @@ class ManageAccountFragment : Fragment() {
             MessageUtil.showToast("clicked change email")
         }
     }
+
+    /**
+     * Als parameter mee te geven functie die een wijzig wachtwoord verzoek uitvoert
+     */
+    private fun changeUsername() = { newUsername: String -> accountViewModel.changeUsername(newUsername) }
 
     /**
      * Functie voor het stoppen van de listeners

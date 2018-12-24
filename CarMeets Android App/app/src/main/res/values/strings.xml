@@ -14,8 +14,13 @@
     <string name="question_exit_app">Wilt u CarMeets afsluiten?</string>
     <string name="question_want_to_logout">Bent u zeker dat u wilt afmelden?</string>
 
+    <!-- hints -->
+    <string name="hint_new_username">Nieuwe gebruikersnaam</string>
+
     <!-- notification -->
     <string name="notification_password_change_success">Wachtwoord succesvol gewijzigd</string>
+    <string name="notification_username_change_success">Gebruikersnaam succesvol gewijzigd</string>
+    <string name="notification_email_change_success">E-mailadres succesvol gewijzigd</string>
 
     <!-- shared txt -->
     <string name="txt_meeting">Meeting</string>
@@ -24,6 +29,7 @@
     <string name="txt_preferences">Voorkeuren</string>
     <string name="txt_yes">Ja</string>
     <string name="txt_no">Nee</string>
+    <string name="txt_change">wijzig</string>
     <string name="txt_logout">Afmelden</string>
     <string name="txt_login_required">Aanmelden vereist</string>
     <string name="txt_login_required_for_this_function">Voor het gebruik van deze functie en tal van andere functies moet u aangemeld zijn.</string>
@@ -32,6 +38,7 @@
     <string name="txt_change_password">Wachtwoord wijzigen</string>
     <string name="txt_change_username">Gebruikersnaam wijzigen</string>
     <string name="txt_change_email">E-mailadres wijzigen</string>
+    <string name="txt_choose_new_username">Kies een nieuwe gebruikersnaam</string>
 
     <!-- shared alt -->
     <string name="alt_logo">Logo van CarMeets</string>

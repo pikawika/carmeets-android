@@ -2,6 +2,10 @@ package com.lennertbontinck.carmeetsandroidapp.utils
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
+import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.Toast
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
@@ -81,5 +85,46 @@ object MessageUtil {
 
         val dialog = builder.create()
         dialog.show()
+    }
+
+    /**
+     * Toont een dialoog popup met een textinput en voert met de opgeleverde string een gegeven functie uit
+     *
+     * @param context : context van het huidige omgeving (niet de [MainActivity] !)
+     *
+     * @param title : de gewenste titel van de popup
+     *
+     * @param message : de gewenste omschrijving in de popup
+     *
+     * @param hint : de gewenste hint in het inputveld
+     *
+     * @param func : een funtie dat moet uitgevoerd worden met de opgeleverde string
+     */
+    @JvmStatic
+    fun showDialogWithTextInput(
+        context: Context,
+        title: String,
+        message: String,
+        hint: String,
+        func: (String) -> Unit
+    ) {
+        val editText = EditText(context)
+        editText.setSingleLine(false)
+        editText.hint = hint
+        val container = FrameLayout(context)
+        val params = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        params.marginStart = 100
+        params.marginEnd = 100
+        editText.layoutParams = params
+        container.addView(editText)
+
+        AlertDialog.Builder(context)
+            .setTitle(title)
+            .setView(container)
+            .setMessage(message)
+            .setPositiveButton(context.getString(R.string.txt_change)) { _, _ -> func(editText.text.toString()) }
+            .setNeutralButton(context.getString(R.string.txt_cancel)) { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
     }
 }

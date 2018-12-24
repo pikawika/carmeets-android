@@ -6,6 +6,7 @@ import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.ChangePasswordRequest
+import com.lennertbontinck.carmeetsandroidapp.networks.requests.ChangeUsernameRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.LoginRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.RegisterRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
@@ -52,9 +53,14 @@ class AccountViewModel : InjectedViewModel() {
     private lateinit var registerSubscription: Disposable
 
     /**
-     * De subscription voor het wijzig wachtwoord
+     * De subscription voor het wijzig wachtwoord verzoek
      */
     private lateinit var changePasswordSubscription: Disposable
+
+    /**
+     * De subscription voor het wijzig gebruikersnaam verzoek
+     */
+    private lateinit var changeUsernameSubscription: Disposable
 
     init {
         username.value = PreferenceUtil.getUsername()
@@ -63,6 +69,10 @@ class AccountViewModel : InjectedViewModel() {
 
     /**
      * Logt de gebruiker in en returnt token
+     *
+     * @param username : gebruikersnaam. Required of type [String].
+     *
+     * @param password : wachtwoord. Required of type [String].
      */
     fun login(username: String, password: String) {
         loginSubscription = carmeetsApi.login(LoginRequest(username, password))
@@ -80,6 +90,12 @@ class AccountViewModel : InjectedViewModel() {
 
     /**
      * Registreert de gebruiker en returnt of al dan niet gelukt
+     *
+     * @param email : email te registreren gebruiker. Required of type [String].
+     *
+     * @param username : gebruikersnaam te registreren gebruiker. Required of type [String].
+     *
+     * @param password : wachtwoord te registreren gebruiker. Required of type [String].
      */
     fun register(email: String, username: String, password: String) {
         val registerRequest = RegisterRequest(username, password, email)
@@ -98,9 +114,11 @@ class AccountViewModel : InjectedViewModel() {
 
     /**
      * Veranderd het password van de gebruiker
+     *
+     * @param newPassword : nieuwe wachtwoord. Required of type [String].
      */
-    fun changePassword(password: String) {
-        changePasswordSubscription = carmeetsApi.changePassword(ChangePasswordRequest(password))
+    fun changePassword(newPassword: String) {
+        changePasswordSubscription = carmeetsApi.changePassword(ChangePasswordRequest(newPassword))
             //we tell it to fetch the data on background by
             .subscribeOn(Schedulers.io())
             //we like the fetched data to be displayed on the MainTread (UI)
@@ -109,6 +127,25 @@ class AccountViewModel : InjectedViewModel() {
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
                 { result -> onRetrieveChangePasswordSuccess(result) },
+                { error -> onRetrieveError(error) }
+            )
+    }
+
+    /**
+     * Veranderd de gebruikersnaam van de gebruiker
+     *
+     * @param newUsername : nieuwe gebruikersnaam. Required of type [String].
+     */
+    fun changeUsername(newUsername: String) {
+        changePasswordSubscription = carmeetsApi.changeUsername(ChangeUsernameRequest(newUsername))
+            //we tell it to fetch the data on background by
+            .subscribeOn(Schedulers.io())
+            //we like the fetched data to be displayed on the MainTread (UI)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onRetrieveStart() }
+            .doOnTerminate { onRetrieveFinish() }
+            .subscribe(
+                { result -> onRetrieveChangeUsernameSuccess(result, newUsername) },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -139,6 +176,8 @@ class AccountViewModel : InjectedViewModel() {
 
     /**
      * Functie voor het behandelen van het mislukken van het ophalen van data van de server
+     *
+     * @param error : de verkregeen error. Required of type [Throwable].
      */
     private fun onRetrieveError(error: Throwable) {
         //error is een http error
@@ -176,6 +215,10 @@ class AccountViewModel : InjectedViewModel() {
      * Functie voor het behandelen van het succesvol aanmelden
      *
      * zal token instellen en opslaan, en isLoggedIn in de VM op true zetten
+     *
+     * @param result : de response van de server. Required of type [TokenResponse].
+     *
+     * @param username : de gebruikersnaam waarmee aangemeld is. Required of type [String].
      */
     private fun onRetrieveLoginSuccess(result: TokenResponse, username: String) {
         PreferenceUtil.setToken(result.token)
@@ -187,7 +230,9 @@ class AccountViewModel : InjectedViewModel() {
     /**
      * Functie voor het behandelen van het succesvol registreren
      *
-     * zal token instellen en opslaan, en isLoggedIn in de VM op true zetten
+     * @param result : de response van de server. Required of type [TokenResponse].
+     *
+     * @param username : de gebruikersnaam waarmee geregistreerd is. Required of type [String].
      */
     private fun onRetrieveRegisterSuccess(result: TokenResponse, username: String) {
         PreferenceUtil.setToken(result.token)
@@ -199,11 +244,26 @@ class AccountViewModel : InjectedViewModel() {
     /**
      * Functie voor het behandelen van het succesvol wijzigen van het wachtwoord
      *
-     * zal token instellen en opslaan, en isLoggedIn in de VM op true zetten
+     * zal token instellen en opslaan
+     *
+     * @param result : de response van de server. Required of type [TokenResponse].
      */
     private fun onRetrieveChangePasswordSuccess(result: TokenResponse) {
         PreferenceUtil.setToken(result.token)
         MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.notification_password_change_success))
+    }
+
+    /**
+     * Functie voor het behandelen van het succesvol wijzigen van de gebruikersnaam
+     *
+     * zal token instellen en opslaan
+     *
+     * @param result : de response van de server. Required of type [TokenResponse].
+     */
+    private fun onRetrieveChangeUsernameSuccess(result: TokenResponse, newUsername: String) {
+        PreferenceUtil.setToken(result.token)
+        MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.notification_username_change_success))
+        username.value = newUsername
     }
 
     /**
@@ -219,6 +279,9 @@ class AccountViewModel : InjectedViewModel() {
         }
         if (::changePasswordSubscription.isInitialized) {
             changePasswordSubscription.dispose()
+        }
+        if (::changeUsernameSubscription.isInitialized) {
+            changeUsernameSubscription.dispose()
         }
     }
 }
