@@ -21,7 +21,6 @@ import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglistFragment
 import com.lennertbontinck.carmeetsandroidapp.utils.FragmentUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
-import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -203,14 +202,15 @@ class MainActivity : AppCompatActivity() {
             LayoutUtil.setListDesignOptionsVisibiltiy(this, guiViewModel.isListDesignOptionsVisible.value!!)
         })
 
+        guiViewModel.isBackButtonVisible.observe(this, Observer {
+            supportActionBar?.setDisplayHomeAsUpEnabled(guiViewModel.isBackButtonVisible.value!!)
+        })
+
+
         //Bij de init van de viewmodel wordt deze waarde ingesteld uit de shared pref
         //En opent dus de pagina die door de gebruiker ingesteld is als default boot page
         guiViewModel.activeMenuItem.observe(this, Observer {
             LayoutUtil.setBottomNavigation(this, guiViewModel.activeMenuItem.value!!.menuId)
-        })
-
-        guiViewModel.isBackButtonVisible.observe(this, Observer {
-            supportActionBar?.setDisplayHomeAsUpEnabled(guiViewModel.isBackButtonVisible.value!!)
         })
     }
 
