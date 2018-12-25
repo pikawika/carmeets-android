@@ -129,7 +129,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
 
-                    android:hint="@string/placeholder_register_confirm_password"
+                    android:hint="@string/placeholder_confirm_password"
                     android:inputType="textPassword"
 
                     app:layout_constraintTop_toBottomOf="@+id/text_register_username"

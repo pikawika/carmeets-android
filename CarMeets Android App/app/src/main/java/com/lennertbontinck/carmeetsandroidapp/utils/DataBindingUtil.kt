@@ -17,8 +17,7 @@ object DataBindingUtil {
     @JvmStatic
     @BindingAdapter("android:src")
     fun setImageUrl(view: ImageView, url: String?) {
-        if (url != null)
-        {
+        if (url != null) {
             Glide.with(view.context).load(BASE_URL_BACKEND_IMAGES + url).into(view)
         }
     }
@@ -29,8 +28,7 @@ object DataBindingUtil {
     @JvmStatic
     @BindingAdapter("android:dayInMonth")
     fun setDayInMonth(view: TextView, date: Date?) {
-        if (date != null)
-        {
+        if (date != null) {
             view.text = DateUtil.getDayInMonth(date)
         }
     }
@@ -41,8 +39,7 @@ object DataBindingUtil {
     @JvmStatic
     @BindingAdapter("android:shortMonthName")
     fun setShortMonthName(view: TextView, date: Date?) {
-        if (date != null)
-        {
+        if (date != null) {
             view.text = DateUtil.getShortMonthName(date)
         }
     }

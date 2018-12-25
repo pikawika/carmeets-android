@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_CHANGE_PASSWORD
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
@@ -44,19 +45,44 @@ class ManageAccountFragment : Fragment() {
     private fun initListeners() {
         //wijzig wachtwoord
         btn_manage_account_change_password.setOnClickListener {
-            MessageUtil.showToast("clicked change pw")
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.frame_main_fragmentcontainer, ChangePasswordFragment())
+                .addToBackStack(FRAGTAG_CHANGE_PASSWORD)
+                .commit()
         }
 
         //wijzig gebruikersnaam
         btn_manage_account_change_username.setOnClickListener {
-            MessageUtil.showToast("clicked change username")
+            MessageUtil.showDialogWithTextInput(
+                requireContext(),
+                getString(R.string.txt_change_username),
+                getString(R.string.txt_choose_new_username),
+                getString(R.string.hint_new_username),
+                changeUsername()
+            )
         }
 
         //wijzig e-mailadres
         btn_manage_account_change_email.setOnClickListener {
-            MessageUtil.showToast("clicked change email")
+            MessageUtil.showDialogWithTextInput(
+                requireContext(),
+                getString(R.string.txt_change_email),
+                getString(R.string.txt_choose_new_email),
+                getString(R.string.hint_new_email),
+                changeEmail()
+            )
         }
     }
+
+    /**
+     * Als parameter mee te geven functie die een wijzig wachtwoord verzoek uitvoert met een meegegeven string
+     */
+    private fun changeUsername() = { newUsername: String -> accountViewModel.changeUsername(newUsername) }
+
+    /**
+     * Als parameter mee te geven functie die een wijzig email verzoek uitvoert met een meegegeven string
+     */
+    private fun changeEmail() = { newEmail: String -> accountViewModel.changeEmail(newEmail) }
 
     /**
      * Functie voor het stoppen van de listeners

@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_ACCOUNT
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_LOGIN
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
@@ -50,7 +52,7 @@ class RegisterFragment : Fragment() {
             if (accountViewModel.isLoggedIn.value!!) {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
-                    .addToBackStack(getString(R.string.fragtag_account))
+                    .addToBackStack(FRAGTAG_ACCOUNT)
                     .commit()
             }
         })
@@ -111,7 +113,7 @@ class RegisterFragment : Fragment() {
         requireActivity().supportFragmentManager
             .beginTransaction()
             .replace(R.id.frame_main_fragmentcontainer, LoginFragment())
-            .addToBackStack(getString(R.string.fragtag_login))
+            .addToBackStack(FRAGTAG_LOGIN)
             .commit()
     }
 

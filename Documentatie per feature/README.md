@@ -6,3 +6,4 @@ In deze submap vind je per feature een beschrijving van wat de feauture juist im
 > 2. [Meer info over Feature 2 - MVVM structuur en meetinglijst via rest api verkregen](feature2-mvvm_basic-rest.md)
 > 3. [Meer info over Feature 3 - Intents en Best practices code cleanup](feature3-intents-best_practices.md)
 > 4. [Meer info over Feature 4 - Login, Registreer en Standaard startpagina](feature4-login-registreer-standaard_start_pagina.md)
+> 5. [Meer info over Feature 5 - Manage account en standaard lijstweergave](feature5-manage_account-default_listdesign.md)
