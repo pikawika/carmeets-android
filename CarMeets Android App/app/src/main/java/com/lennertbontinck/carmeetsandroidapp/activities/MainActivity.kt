@@ -24,6 +24,7 @@ import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglistFragment
 import com.lennertbontinck.carmeetsandroidapp.utils.FragmentUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -37,6 +38,11 @@ class MainActivity : AppCompatActivity() {
      * [MeetingViewModel] met de data over alle meetings
      */
     private lateinit var meetingViewModel: MeetingViewModel
+
+    /**
+     * [AccountViewModel] met de data over account
+     */
+    private lateinit var accountViewModel: AccountViewModel
 
     /**
      * [GuiViewModel] met de data over de GUI instellingen
@@ -59,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         //de viewmodels instantieren
         meetingViewModel = ViewModelProviders.of(this).get(MeetingViewModel::class.java)
         guiViewModel = ViewModelProviders.of(this).get(GuiViewModel::class.java)
+        accountViewModel = ViewModelProviders.of(this).get(AccountViewModel::class.java)
 
         //main activity binden
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -216,6 +223,11 @@ class MainActivity : AppCompatActivity() {
         meetingViewModel.meetingList.observe(this, Observer {
             updateNotificationAmount()
         })
+
+        //indien afgemeld/aangemeld opnieuw notificatie aantal bepalen
+        accountViewModel.isLoggedIn.observe(this, Observer {
+            updateNotificationAmount()
+        })
     }
 
     /**
@@ -248,6 +260,8 @@ class MainActivity : AppCompatActivity() {
         guiViewModel.isBackButtonVisible.removeObservers(this)
 
         meetingViewModel.meetingList.removeObservers(this)
+
+        accountViewModel.isLoggedIn.removeObservers(this)
     }
 
     override fun onStart() {
