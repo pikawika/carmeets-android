@@ -73,10 +73,16 @@ class MainActivity : AppCompatActivity() {
         //menu van de menu_toolbar instellen
         menuInflater.inflate(R.menu.menu_toolbar, menu)
 
+        updateNotificationAmount()
+
         //listener voor het klikken op noticaties uit de actionbar
+        //we kunnen niet onOptionsItemSelected gebruiken aangezien deze een click op de actionLayout niet registreerd.
+        //We kunnen dit niet instantieren bij onstart aangezien de onCreateOptionsMenu nog na de onstart wordt uitgvoerd
         val notifications = menu?.findItem(R.id.nav_notifications)?.actionView
+
         notifications?.findViewById<ImageView>(R.id.image_partialnotification_bell)
             ?.setOnClickListener { notificationsClicked() }
+
         notifications?.findViewById<TextView>(R.id.text_partialnotification_amount)
             ?.setOnClickListener { notificationsClicked() }
 
@@ -87,11 +93,6 @@ class MainActivity : AppCompatActivity() {
         //het item dat gelklikt is uit de menu_toolbar
         //dit id moet in theorie altijd ingevuld zijn want enkel dan weet je wat aangeduid en kan je bijhorende actie uitvoeren
         when (item?.itemId) {
-            R.id.nav_notifications -> {
-                notificationsClicked()
-                return super.onOptionsItemSelected(item)
-            }
-
             R.id.nav_search -> {
                 MessageUtil.showToast("Er is op zoeken geklikt")
                 return super.onOptionsItemSelected(item)
@@ -137,11 +138,6 @@ class MainActivity : AppCompatActivity() {
      * Verhoogt het aantal naast het notificatie icoon met 1 per klik.
      */
     private fun notificationsClicked() {
-        val notificationAmount = menu_main_toolbar.menu.findItem(R.id.nav_notifications)
-            ?.actionView?.findViewById<TextView>(R.id.text_partialnotification_amount)
-
-        notificationAmount?.text = (notificationAmount?.text.toString().toInt() + 1).toString()
-
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
             .addToBackStack(FRAGTAG_FAVOURITES_LIST)
@@ -215,6 +211,23 @@ class MainActivity : AppCompatActivity() {
         guiViewModel.activeMenuItem.observe(this, Observer {
             LayoutUtil.setBottomNavigation(this, guiViewModel.activeMenuItem.value!!.menuId)
         })
+
+        //indien meetinglijst update moet je notificatiehoeveelheid opnieuw bepalen
+        meetingViewModel.meetingList.observe(this, Observer {
+            updateNotificationAmount()
+        })
+    }
+
+    /**
+     * Synct de notification amount uit de [MeetingViewModel.getLikedGoingAmountNext7Days] met die uit de actionbar.
+     *
+     * Dit kan niet gebind worden aangezien kotlin nog niet ondersteund om menu items te databinden.
+     */
+    private fun updateNotificationAmount() {
+        val notificationAmount = menu_main_toolbar.menu.findItem(R.id.nav_notifications)
+            ?.actionView?.findViewById<TextView>(R.id.text_partialnotification_amount)
+
+        notificationAmount?.text = meetingViewModel.getLikedGoingAmountNext7Days().toString()
     }
 
     /**
@@ -233,6 +246,8 @@ class MainActivity : AppCompatActivity() {
         guiViewModel.activeMenuItem.removeObservers(this)
 
         guiViewModel.isBackButtonVisible.removeObservers(this)
+
+        meetingViewModel.meetingList.removeObservers(this)
     }
 
     override fun onStart() {

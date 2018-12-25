@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:minWidth="17sp"
 
-            android:text="@string/ab_notifications_default_amount"
+            tools:text="0"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
 

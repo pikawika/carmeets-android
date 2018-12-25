@@ -15,6 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -65,15 +66,24 @@ class MeetingViewModel : InjectedViewModel() {
     /**
      * Return de meetings waarvoor de huidige gebruiker liked of going heeft ingesteld
      */
-    fun getFavouritesList() : List<Meeting> {
-        return meetingList.value!!.filter { it.listUsersGoing.contains(getUserId()) || it.listUsersLiked.contains(getUserId()) }
+    fun getFavouritesList(): List<Meeting> {
+        return meetingList.value!!.filter {
+            it.listUsersGoing.contains(getUserId()) || it.listUsersLiked.contains(
+                getUserId()
+            )
+        }
     }
 
     /**
-     * Return de meetings waarvoor de huidige gebruiker liked of going heeft ingesteld
+     * Return aantal meetings waarvoor de huidige gebruiker liked of going heeft ingesteld in de komende 7 dagen
      */
-    fun getLikedGoingAmountNext7Days() : Int {
-        return meetingList.value!!.filter { it.listUsersGoing.contains(getUserId()) || it.listUsersLiked.contains(getUserId()) }.count()
+    fun getLikedGoingAmountNext7Days(): Int {
+        val dateInAWeek = Calendar.getInstance()
+        dateInAWeek.add(Calendar.DAY_OF_YEAR, 7)
+        return meetingList.value!!.filter {
+            (it.listUsersGoing.contains(getUserId()) || it.listUsersLiked.contains(getUserId()))
+                    && it.date <= dateInAWeek.time
+        }.count()
     }
 
     /**
@@ -162,7 +172,7 @@ class MeetingViewModel : InjectedViewModel() {
         }
     }
 
-    private fun getUserId() : String {
+    private fun getUserId(): String {
         val tokenContent = TokenUtil.getTokenContent()
 
         //indien niet aangemeld onmogelijke id returnen

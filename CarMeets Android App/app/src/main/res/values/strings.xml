@@ -74,7 +74,6 @@
 
     <string name="ab_search">Zoeken</string>
     <string name="ab_notifications">Notificaties</string>
-    <string name="ab_notifications_default_amount">0</string>
 
     <!-- meeting -->
     <string name="alt_item_meeting_img">Afbeelding van meeting</string>
