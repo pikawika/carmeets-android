@@ -2,6 +2,8 @@ package com.lennertbontinck.carmeetsandroidapp.networks
 
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.*
+import com.lennertbontinck.carmeetsandroidapp.networks.responses.GoingAmountResponse
+import com.lennertbontinck.carmeetsandroidapp.networks.responses.LikedAmountResponse
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.TokenResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -59,4 +61,20 @@ interface CarmeetsApi {
      */
     @POST("users/changeEmail")
     fun changeEmail(@Body changeEmailRequest: ChangeEmailRequest): Observable<TokenResponse>
+
+    /**
+     * Verander de like status van de aangemelde gebruiker voor een bepaalde meeting.
+     *
+     * @param toggleLikedRequest een [ToggleLikedRequest] object van de meeting waarop de actie moet uitgevoerd worden.
+     */
+    @POST("meetings/toggleLiked")
+    fun toggleLiked(@Body toggleLikedRequest: ToggleLikedRequest): Observable<LikedAmountResponse>
+
+    /**
+     * Verander de going status van de aangemelde gebruiker voor een bepaalde meeting.
+     *
+     * @param toggleGoingRequest een [ToggleGoingRequest] object van de meeting waarop de actie moet uitgevoerd worden.
+     */
+    @POST("meetings/toggleGoing")
+    fun toggleGoing(@Body toggleGoingRequest: ToggleGoingRequest): Observable<GoingAmountResponse>
 }
