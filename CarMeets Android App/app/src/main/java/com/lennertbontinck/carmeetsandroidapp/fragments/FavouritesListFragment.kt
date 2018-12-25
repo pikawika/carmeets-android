@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
-import com.lennertbontinck.carmeetsandroidapp.adapters.MeetingAdapter
+import com.lennertbontinck.carmeetsandroidapp.adapters.FavouritesAdapter
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
@@ -40,9 +40,9 @@ class FavouritesListFragment : Fragment() {
     private lateinit var accountViewModel: AccountViewModel
 
     /**
-     * [MeetingAdapter] voor het vullen van de favorieten lijst
+     * [FavouritesAdapter] voor het vullen van de favorieten lijst
      */
-    private lateinit var meetingAdapter: MeetingAdapter
+    private lateinit var favouritesAdapter: FavouritesAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val fragment = inflater.inflate(R.layout.fragment_meetinglist, container, false)
@@ -66,10 +66,10 @@ class FavouritesListFragment : Fragment() {
         }
 
         //adapter aanmaken
-        meetingAdapter = MeetingAdapter(requireActivity() as MainActivity)
+        favouritesAdapter = FavouritesAdapter(requireActivity() as MainActivity)
 
         //recyclerview vullen door adapter toe te kennen
-        fragment.recyclerview_meetinglist.adapter = meetingAdapter
+        fragment.recyclerview_meetinglist.adapter = favouritesAdapter
 
         return fragment
     }
@@ -80,14 +80,14 @@ class FavouritesListFragment : Fragment() {
     private fun initListeners() {
         //indien de meetinglijst veranderd moet de adapter opnieuw zijn cards genereren met nieuwe data
         meetingViewModel.meetingList.observe(this, Observer {
-            meetingAdapter.notifyDataSetChanged()
+            favouritesAdapter.notifyDataSetChanged()
         })
 
         //indien lijstDesign veranderd moet de adapter opnieuw zijn cards genereren met nieuwe stijl
         //hier kan je momenteel enkel adapter opnieuw toekennen mits notifyDataSetChanged etc niet
         //opnieuw inflate methode aanroept waar je itemstijl meegeeft
         guiViewModel.listDesign.observe(this, Observer {
-            recyclerview_meetinglist.adapter = meetingAdapter
+            recyclerview_meetinglist.adapter = favouritesAdapter
         })
     }
 

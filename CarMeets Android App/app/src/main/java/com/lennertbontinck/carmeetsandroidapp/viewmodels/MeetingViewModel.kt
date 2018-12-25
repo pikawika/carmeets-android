@@ -63,6 +63,20 @@ class MeetingViewModel : InjectedViewModel() {
     }
 
     /**
+     * Return de meetings waarvoor de huidige gebruiker liked of going heeft ingesteld
+     */
+    fun getFavouritesList() : List<Meeting> {
+        return meetingList.value!!.filter { it.listUsersGoing.contains(getUserId()) || it.listUsersLiked.contains(getUserId()) }
+    }
+
+    /**
+     * Return de meetings waarvoor de huidige gebruiker liked of going heeft ingesteld
+     */
+    fun getLikedGoingAmountNext7Days() : Int {
+        return meetingList.value!!.filter { it.listUsersGoing.contains(getUserId()) || it.listUsersLiked.contains(getUserId()) }.count()
+    }
+
+    /**
      * Functie voor het behandelen van het starten van een rest api call.
      */
     private fun onRetrieveStart() {
