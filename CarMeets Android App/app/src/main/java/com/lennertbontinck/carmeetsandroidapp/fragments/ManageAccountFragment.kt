@@ -64,14 +64,25 @@ class ManageAccountFragment : Fragment() {
 
         //wijzig e-mailadres
         btn_manage_account_change_email.setOnClickListener {
-            MessageUtil.showToast("clicked change email")
+            MessageUtil.showDialogWithTextInput(
+                requireContext(),
+                getString(R.string.txt_change_email),
+                getString(R.string.txt_choose_new_email),
+                getString(R.string.hint_new_email),
+                changeEmail()
+            )
         }
     }
 
     /**
-     * Als parameter mee te geven functie die een wijzig wachtwoord verzoek uitvoert
+     * Als parameter mee te geven functie die een wijzig wachtwoord verzoek uitvoert met een meegegeven string
      */
     private fun changeUsername() = { newUsername: String -> accountViewModel.changeUsername(newUsername) }
+
+    /**
+     * Als parameter mee te geven functie die een wijzig email verzoek uitvoert met een meegegeven string
+     */
+    private fun changeEmail() = { newEmail: String -> accountViewModel.changeEmail(newEmail) }
 
     /**
      * Functie voor het stoppen van de listeners

@@ -16,6 +16,7 @@
 
     <!-- hints -->
     <string name="hint_new_username">Nieuwe gebruikersnaam</string>
+    <string name="hint_new_email">Nieuw e-mailadres</string>
 
     <!-- notification -->
     <string name="notification_password_change_success">Wachtwoord succesvol gewijzigd</string>
@@ -38,7 +39,8 @@
     <string name="txt_change_password">Wachtwoord wijzigen</string>
     <string name="txt_change_username">Gebruikersnaam wijzigen</string>
     <string name="txt_change_email">E-mailadres wijzigen</string>
-    <string name="txt_choose_new_username">Kies een nieuwe gebruikersnaam</string>
+    <string name="txt_choose_new_username">Voer een nieuwe gebruikersnaam in</string>
+    <string name="txt_choose_new_email">Voer uw nieuw e-mailadres in</string>
 
     <!-- shared alt -->
     <string name="alt_logo">Logo van CarMeets</string>

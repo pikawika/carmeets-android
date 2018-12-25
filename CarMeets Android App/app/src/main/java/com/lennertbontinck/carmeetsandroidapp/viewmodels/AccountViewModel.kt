@@ -5,10 +5,7 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
-import com.lennertbontinck.carmeetsandroidapp.networks.requests.ChangePasswordRequest
-import com.lennertbontinck.carmeetsandroidapp.networks.requests.ChangeUsernameRequest
-import com.lennertbontinck.carmeetsandroidapp.networks.requests.LoginRequest
-import com.lennertbontinck.carmeetsandroidapp.networks.requests.RegisterRequest
+import com.lennertbontinck.carmeetsandroidapp.networks.requests.*
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.TokenResponse
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
@@ -61,6 +58,11 @@ class AccountViewModel : InjectedViewModel() {
      * De subscription voor het wijzig gebruikersnaam verzoek
      */
     private lateinit var changeUsernameSubscription: Disposable
+
+    /**
+     * De subscription voor het wijzig e-mailadres verzoek
+     */
+    private lateinit var changeEmailSubscription: Disposable
 
     init {
         username.value = PreferenceUtil.getUsername()
@@ -146,6 +148,25 @@ class AccountViewModel : InjectedViewModel() {
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
                 { result -> onRetrieveChangeUsernameSuccess(result, newUsername) },
+                { error -> onRetrieveError(error) }
+            )
+    }
+
+    /**
+     * Veranderd het e-mailadres van de gebruiker
+     *
+     * @param newEmail : nieuw e-mailadres. Required of type [String].
+     */
+    fun changeEmail(newEmail: String) {
+        changePasswordSubscription = carmeetsApi.changeEmail(ChangeEmailRequest(newEmail))
+            //we tell it to fetch the data on background by
+            .subscribeOn(Schedulers.io())
+            //we like the fetched data to be displayed on the MainTread (UI)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onRetrieveStart() }
+            .doOnTerminate { onRetrieveFinish() }
+            .subscribe(
+                { result -> onRetrieveChangeEmailSuccess(result) },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -259,11 +280,25 @@ class AccountViewModel : InjectedViewModel() {
      * zal token instellen en opslaan
      *
      * @param result : de response van de server. Required of type [TokenResponse].
+     *
+     * @param newUsername : de gebruikersnaam door de gebruiker ingesteld. Required of type [String].
      */
     private fun onRetrieveChangeUsernameSuccess(result: TokenResponse, newUsername: String) {
         PreferenceUtil.setToken(result.token)
         MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.notification_username_change_success))
         username.value = newUsername
+    }
+
+    /**
+     * Functie voor het behandelen van het succesvol wijzigen van de gebruikersnaam
+     *
+     * zal token instellen en opslaan
+     *
+     * @param result : de response van de server. Required of type [TokenResponse].
+     */
+    private fun onRetrieveChangeEmailSuccess(result: TokenResponse) {
+        PreferenceUtil.setToken(result.token)
+        MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.notification_email_change_success))
     }
 
     /**
@@ -282,6 +317,9 @@ class AccountViewModel : InjectedViewModel() {
         }
         if (::changeUsernameSubscription.isInitialized) {
             changeUsernameSubscription.dispose()
+        }
+        if (::changeEmailSubscription.isInitialized) {
+            changeEmailSubscription.dispose()
         }
     }
 }
