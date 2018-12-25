@@ -9,8 +9,7 @@ IMPORTANT: De backend is gratis gehost op heroku, hierdoor kunnen er af en toe l
 > - [Wat is de CarMeets app](#wat-is-de-carmeets-app)
 > - [Ontwikkelaar](#ontwikkelaar)
 > - [Documentatie in de code](#documentatie-in-de-code)
-> - [Documentatie per Feature](#documentatie-per-feature)
-> - [Releases en APKs](#releases-en-apks)
+> - [Releases en APKs](#documentatie-en-apks-per-feature)
 > - [GitHub Repository van de backend](#github-repository-van-de-backend)
 > - [Gebruikte bronnen](#gebruikte-bronnen)
 
@@ -27,16 +26,7 @@ Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik weer
 
 Er zijn in de code inline comments voorzien met uitleg wat bepaalde regels code juist doen en waarom ze nodig zijn. Overigens is voor de utils en tal van andere functies documentation voorzien zodanig dat deze uitleg over de functie en de parameters verschijnt bij het aanroepen van de functies.
 
-## Documentatie per Feature
-
-Er is voor elke feature een beschrijving van wat de feauture juist implementeert met extra uitleg waar nodig voorzien. Deze documenten dienen als verduidelijking van de commentaar die reeds in de code voorzien is. U vindt het volledige overzicht [hier.](Documentatie%20per%20feature/README.md)
-
-> 1. [Meer info over Feature 1 - Basic Layout](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
-> 2. [Meer info over Feature 2 - MVVM en basic rest](Documentatie%20per%20feature/feature2-mvvm_basic-rest.md)
-> 3. [Meer info over Feature 3 - Intents en best practices](Documentatie%20per%20feature/feature3-intents-best_practices.md)
-> 4. [Meer info over Feature 4 - Login, Registreer en Standaard startpagina](Documentatie%20per%20feature/feature4-login-registreer-standaard_start_pagina.md)
-
-## Releases en APKs
+## Documentatie en APKs per Feature
 
 > 1. Feature 1: Layout van de toolbar, bottom navigation, meetinglijst en detail pagina. Basic werking met dummy data en poc op onclicks.
 >     - [Meer info over Feature 1](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
@@ -50,6 +40,9 @@ Er is voor elke feature een beschrijving van wat de feauture juist implementeert
 > 4. Feature 4: Login, Registreer en Standaard startpagina
 >     - [Meer info over Feature 4](Documentatie%20per%20feature/feature4-login-registreer-standaard_start_pagina.md)
 >     - [APK](apks/carmeets-feature4.apk) 
+> 5. Feature 5 - Manage account en standaard lijstweergave
+>     - [Meer info over Feature 5 - Manage account en standaard lijstweergave](Documentatie%20per%20feature/feature5-manage_account-default_listdesign.md)
+>     - [APK](apks/carmeets-feature5.apk) 
 
 ## GitHub Repository van de backend
 Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaakt met de MEAN-stack zal ik de bestaande backend hergebruik en aanvullen waar nodig.
