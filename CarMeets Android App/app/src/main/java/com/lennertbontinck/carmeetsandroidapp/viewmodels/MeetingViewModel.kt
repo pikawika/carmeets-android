@@ -91,7 +91,7 @@ class MeetingViewModel : InjectedViewModel() {
     /**
      * Haalt de meetings opnieuw op van de server en stelt de lijst opnieuw gelijk
      */
-    fun refreshMeetingList() {
+    private fun refreshMeetingList() {
         //alle meetings van de server halen
         getAllMeetingsSubscription = carmeetsApi.getAllMeetings()
             //we tell it to fetch the data on background by
@@ -101,18 +101,16 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart() }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { result -> onRetrieveMeetingsSuccess(result) },
+                { result -> onRetrieveMeetingsRefreshSuccess(result) },
                 { error -> onRetrieveError(error) }
             )
     }
 
     /**
-     * toggled liked voor een meegeven meeting
-     *
-     * @param meetingId : de id van de desbetreffende meeting
+     * toggled liked voor de huidig geselecteerde meeting
      */
-    fun toggleLiked(meetingId: String) {
-        toggleLikedSubscription = carmeetsApi.toggleLiked(ToggleLikedRequest(meetingId))
+    fun toggleLiked() {
+        toggleLikedSubscription = carmeetsApi.toggleLiked(ToggleLikedRequest(selectedMeeting.value!!.meetingId))
             //we tell it to fetch the data on background by
             .subscribeOn(Schedulers.io())
             //we like the fetched data to be displayed on the MainTread (UI)
@@ -126,12 +124,10 @@ class MeetingViewModel : InjectedViewModel() {
     }
 
     /**
-     * toggled going voor een meegeven meeting
-     *
-     * @param meetingId : de id van de desbetreffende meeting
+     * toggled going voor de huidig geselecteerde meeting
      */
-    fun toggleGoing(meetingId: String) {
-        toggleGoingSubscription = carmeetsApi.toggleGoing(ToggleGoingRequest(meetingId))
+    fun toggleGoing() {
+        toggleGoingSubscription = carmeetsApi.toggleGoing(ToggleGoingRequest(selectedMeeting.value!!.meetingId))
             //we tell it to fetch the data on background by
             .subscribeOn(Schedulers.io())
             //we like the fetched data to be displayed on the MainTread (UI)
@@ -217,13 +213,22 @@ class MeetingViewModel : InjectedViewModel() {
     }
 
     /**
+     * Functie voor het behandelen van het succesvol ophalen van de meetings *(bij refresh)*.
+     *
+     * Zal de lijst van meetings gelijkstellen met het results.
+     */
+    private fun onRetrieveMeetingsRefreshSuccess(result: List<Meeting>) {
+        meetingList.value = result
+        refreshSelectedMeeting()
+    }
+
+    /**
      * Functie voor het behandelen van het succesvol wijzigen van een liked status.
      *
      *
      */
     private fun onRetrieveToggleLikedSuccess(result: LikedAmountResponse) {
         refreshMeetingList()
-        MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.txt_success))
     }
 
     /**
@@ -233,7 +238,6 @@ class MeetingViewModel : InjectedViewModel() {
      */
     private fun onRetrieveToggleGoingSuccess(result: GoingAmountResponse) {
         refreshMeetingList()
-        MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.txt_success))
     }
 
     /**
@@ -259,6 +263,30 @@ class MeetingViewModel : InjectedViewModel() {
                 isUserGoing = (selectedMeeting.listUsersGoing.contains(getUserId())),
                 isUserLiked = (selectedMeeting.listUsersLiked.contains(getUserId()))
             )
+        }
+    }
+
+    private fun refreshSelectedMeeting() {
+        if (this.selectedMeeting.value != null) {
+            val selectedMeeting =
+                meetingList.value!!.firstOrNull { it.meetingId == this.selectedMeeting.value!!.meetingId }
+            if (selectedMeeting != null) {
+                this.selectedMeeting.value = MeetingWithUserInfo(
+                    meetingId = selectedMeeting.meetingId,
+                    categories = selectedMeeting.categories,
+                    date = selectedMeeting.date,
+                    description = selectedMeeting.description,
+                    imageName = selectedMeeting.imageName,
+                    listUsersGoing = selectedMeeting.listUsersGoing,
+                    listUsersLiked = selectedMeeting.listUsersLiked,
+                    location = selectedMeeting.location,
+                    subtitle = selectedMeeting.subtitle,
+                    title = selectedMeeting.title,
+                    website = selectedMeeting.website,
+                    isUserGoing = (selectedMeeting.listUsersGoing.contains(getUserId())),
+                    isUserLiked = (selectedMeeting.listUsersLiked.contains(getUserId()))
+                )
+            }
         }
     }
 

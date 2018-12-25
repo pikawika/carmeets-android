@@ -1,5 +1,6 @@
 package com.lennertbontinck.carmeetsandroidapp.fragments
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -115,6 +116,14 @@ class MeetingDetailFragment : Fragment() {
             addToCalander()
         }
 
+        image_meetingdetail_like.setOnClickListener {
+            meetingViewModel.toggleLiked()
+        }
+
+        image_meetingdetail_going.setOnClickListener {
+            meetingViewModel.toggleGoing()
+        }
+
         button_meetingdetail_route.setOnClickListener {
             getDirections()
         }
@@ -130,6 +139,10 @@ class MeetingDetailFragment : Fragment() {
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
         button_meetingdetail_agenda.setOnClickListener { null }
+
+        image_meetingdetail_like.setOnClickListener { null }
+
+        image_meetingdetail_going.setOnClickListener { null }
 
         button_meetingdetail_route.setOnClickListener { null }
 

@@ -222,6 +222,7 @@ class MainActivity : AppCompatActivity() {
         //indien meetinglijst update moet je notificatiehoeveelheid opnieuw bepalen
         meetingViewModel.meetingList.observe(this, Observer {
             updateNotificationAmount()
+            MessageUtil.showToast("ik doe iets eh")
         })
 
         //indien afgemeld/aangemeld opnieuw notificatie aantal bepalen
