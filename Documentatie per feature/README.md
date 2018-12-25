@@ -7,3 +7,4 @@ In deze submap vind je per feature een beschrijving van wat de feauture juist im
 > 3. [Meer info over Feature 3 - Intents en Best practices code cleanup](feature3-intents-best_practices.md)
 > 4. [Meer info over Feature 4 - Login, Registreer en Standaard startpagina](feature4-login-registreer-standaard_start_pagina.md)
 > 5. [Meer info over Feature 5 - Manage account en standaard lijstweergave](feature5-manage_account-default_listdesign.md)
+> 6. [Feature 6 - Like en going, favorietenlijste, aantal in volgende week en responsive design fixes](feature6-like_and_going-response_fixes.md)
