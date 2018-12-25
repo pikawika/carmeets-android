@@ -89,6 +89,24 @@ class MeetingViewModel : InjectedViewModel() {
     }
 
     /**
+     * Haalt de meetings opnieuw op van de server en stelt de lijst opnieuw gelijk
+     */
+    fun refreshMeetingList() {
+        //alle meetings van de server halen
+        getAllMeetingsSubscription = carmeetsApi.getAllMeetings()
+            //we tell it to fetch the data on background by
+            .subscribeOn(Schedulers.io())
+            //we like the fetched data to be displayed on the MainTread (UI)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onRetrieveStart() }
+            .doOnTerminate { onRetrieveFinish() }
+            .subscribe(
+                { result -> onRetrieveMeetingsSuccess(result) },
+                { error -> onRetrieveError(error) }
+            )
+    }
+
+    /**
      * toggled liked voor een meegeven meeting
      *
      * @param meetingId : de id van de desbetreffende meeting
@@ -204,6 +222,7 @@ class MeetingViewModel : InjectedViewModel() {
      *
      */
     private fun onRetrieveToggleLikedSuccess(result: LikedAmountResponse) {
+        refreshMeetingList()
         MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.txt_success))
     }
 
@@ -213,6 +232,7 @@ class MeetingViewModel : InjectedViewModel() {
      *
      */
     private fun onRetrieveToggleGoingSuccess(result: GoingAmountResponse) {
+        refreshMeetingList()
         MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.txt_success))
     }
 
