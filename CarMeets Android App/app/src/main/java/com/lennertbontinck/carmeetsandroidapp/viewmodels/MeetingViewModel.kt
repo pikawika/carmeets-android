@@ -7,6 +7,10 @@ import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.models.MeetingWithUserInfo
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
+import com.lennertbontinck.carmeetsandroidapp.networks.requests.ToggleGoingRequest
+import com.lennertbontinck.carmeetsandroidapp.networks.requests.ToggleLikedRequest
+import com.lennertbontinck.carmeetsandroidapp.networks.responses.GoingAmountResponse
+import com.lennertbontinck.carmeetsandroidapp.networks.responses.LikedAmountResponse
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.TokenUtil
@@ -45,6 +49,16 @@ class MeetingViewModel : InjectedViewModel() {
      */
     private var getAllMeetingsSubscription: Disposable
 
+    /**
+     * De subscription op het toggle liked verzoek.
+     */
+    private lateinit var toggleLikedSubscription: Disposable
+
+    /**
+     * De subscription op het toggle going verzoek.
+     */
+    private lateinit var toggleGoingSubscription: Disposable
+
     init {
         //initieel vullen met een lege lijst zodat dit niet nul is
         meetingList.value = emptyList()
@@ -75,12 +89,50 @@ class MeetingViewModel : InjectedViewModel() {
     }
 
     /**
+     * toggled liked voor een meegeven meeting
+     *
+     * @param meetingId : de id van de desbetreffende meeting
+     */
+    fun toggleLiked(meetingId: String) {
+        toggleLikedSubscription = carmeetsApi.toggleLiked(ToggleLikedRequest(meetingId))
+            //we tell it to fetch the data on background by
+            .subscribeOn(Schedulers.io())
+            //we like the fetched data to be displayed on the MainTread (UI)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onRetrieveStart() }
+            .doOnTerminate { onRetrieveFinish() }
+            .subscribe(
+                { result -> onRetrieveToggleLikedSuccess(result) },
+                { error -> onRetrieveError(error) }
+            )
+    }
+
+    /**
+     * toggled going voor een meegeven meeting
+     *
+     * @param meetingId : de id van de desbetreffende meeting
+     */
+    fun toggleGoing(meetingId: String) {
+        toggleGoingSubscription = carmeetsApi.toggleGoing(ToggleGoingRequest(meetingId))
+            //we tell it to fetch the data on background by
+            .subscribeOn(Schedulers.io())
+            //we like the fetched data to be displayed on the MainTread (UI)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onRetrieveStart() }
+            .doOnTerminate { onRetrieveFinish() }
+            .subscribe(
+                { result -> onRetrieveToggleGoingSuccess(result) },
+                { error -> onRetrieveError(error) }
+            )
+    }
+
+    /**
      * Return aantal meetings waarvoor de huidige gebruiker liked of going heeft ingesteld in de komende 7 dagen
      */
     fun getLikedGoingAmountNext7Days(): Int {
         val dateInAWeek = Calendar.getInstance()
         dateInAWeek.add(Calendar.DAY_OF_YEAR, 7)
-        return meetingList.value!!.filter {
+        return meetingList.value!!.asSequence().filter {
             (it.listUsersGoing.contains(getUserId()) || it.listUsersLiked.contains(getUserId()))
                     && it.date <= dateInAWeek.time
         }.count()
@@ -147,6 +199,24 @@ class MeetingViewModel : InjectedViewModel() {
     }
 
     /**
+     * Functie voor het behandelen van het succesvol wijzigen van een liked status.
+     *
+     *
+     */
+    private fun onRetrieveToggleLikedSuccess(result: LikedAmountResponse) {
+        MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.txt_success))
+    }
+
+    /**
+     * Functie voor het behandelen van het succesvol wijzigen van een going status.
+     *
+     *
+     */
+    private fun onRetrieveToggleGoingSuccess(result: GoingAmountResponse) {
+        MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.txt_success))
+    }
+
+    /**
      * Stelt de door de gebruiker geselecteerde meeting in.
      *
      * @param meetingId : meetingId van meeting die als selected meeting moet ingesteld worden, verplicht van type [String].
@@ -185,6 +255,13 @@ class MeetingViewModel : InjectedViewModel() {
     override fun onCleared() {
         super.onCleared()
         getAllMeetingsSubscription.dispose()
-    }
 
+        if (::toggleGoingSubscription.isInitialized) {
+            toggleGoingSubscription.dispose()
+        }
+
+        if (::toggleLikedSubscription.isInitialized) {
+            toggleLikedSubscription.dispose()
+        }
+    }
 }

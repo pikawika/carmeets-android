@@ -41,6 +41,7 @@
     <string name="txt_change_email">E-mailadres wijzigen</string>
     <string name="txt_choose_new_username">Voer een nieuwe gebruikersnaam in</string>
     <string name="txt_choose_new_email">Voer uw nieuw e-mailadres in</string>
+    <string name="txt_success">Gelukt!</string>
 
     <!-- shared alt -->
     <string name="alt_logo">Logo van CarMeets</string>
