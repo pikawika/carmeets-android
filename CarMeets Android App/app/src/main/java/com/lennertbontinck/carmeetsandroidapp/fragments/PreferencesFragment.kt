@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
@@ -49,6 +50,11 @@ class PreferencesFragment : Fragment() {
             showBootPageSelector()
         }
 
+        //wijzig default lijst design
+        btn_preferences_change_default_list_layout.setOnClickListener {
+            showDefaultListLayoutSelector()
+        }
+
         //voorkeurscategoriën
         btn_preferences_change_default_categories.setOnClickListener {
             MessageUtil.showToast("clicked change default cats")
@@ -61,6 +67,7 @@ class PreferencesFragment : Fragment() {
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
         btn_preferences_change_boot_page.setOnClickListener { null }
+        btn_preferences_change_default_list_layout.setOnClickListener { null }
         btn_preferences_change_default_categories.setOnClickListener { null }
     }
 
@@ -83,6 +90,33 @@ class PreferencesFragment : Fragment() {
                 getString(R.string.ab_favourites_title) -> PreferenceUtil.setDefaultBootPage(MenuItemEnum.FAVOURITES)
                 getString(R.string.ab_account_title) -> PreferenceUtil.setDefaultBootPage(MenuItemEnum.ACCOUNT)
             }
+        }
+        builder.show()
+    }
+
+    /**
+     * Toont het keuze menu voor de standaard lijst design en stelt de gekozen lijstdesign in.
+     */
+    private fun showDefaultListLayoutSelector() {
+        //lijst van lijstdesigns
+        val designs = arrayOf(
+            getString(R.string.ab_options_list_design_small),
+            getString(R.string.ab_options_list_design_big)
+        )
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(getString(R.string.txt_preferences_choose_default_list_layout))
+        builder.setItems(designs) { _, which ->
+            when (designs[which]) {
+                //bijhorende Pagina ophalen
+                getString(R.string.ab_options_list_design_small) -> {
+                    PreferenceUtil.setDefaultListLayout(ListDesignEnum.SMALL)
+                }
+                getString(R.string.ab_options_list_design_big) -> {
+                    PreferenceUtil.setDefaultListLayout(ListDesignEnum.BIG)
+
+                }
+            }
+            guiViewModel.listDesign.value = PreferenceUtil.getDefaultListLayout()
         }
         builder.show()
     }

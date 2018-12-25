@@ -1,8 +1,7 @@
 package com.lennertbontinck.carmeetsandroidapp.networks
 
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
-import com.lennertbontinck.carmeetsandroidapp.networks.requests.LoginRequest
-import com.lennertbontinck.carmeetsandroidapp.networks.requests.RegisterRequest
+import com.lennertbontinck.carmeetsandroidapp.networks.requests.*
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.TokenResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -36,4 +35,28 @@ interface CarmeetsApi {
      */
     @POST("users/registreer")
     fun register(@Body registerRequest: RegisterRequest): Observable<TokenResponse>
+
+    /**
+     * Verander het wachtwoord van de aangemelde gebruiker en return tokenresponse.
+     *
+     * @param changePasswordRequest een [ChangePasswordRequest] object van het nieuwe wachtwoord dat de gebruiker wilt instellen.
+     */
+    @POST("users/changePassword")
+    fun changePassword(@Body changePasswordRequest: ChangePasswordRequest): Observable<TokenResponse>
+
+    /**
+     * Verander de gebruikersnaam van de aangemelde gebruiker en return tokenresponse.
+     *
+     * @param changeUsernameRequest een [ChangeUsernameRequest] object van de nieuwe gebruikersnaam dat de gebruiker wilt instellen.
+     */
+    @POST("users/changeUsername")
+    fun changeUsername(@Body changeUsernameRequest: ChangeUsernameRequest): Observable<TokenResponse>
+
+    /**
+     * Verander het e-mailadres van de aangemelde gebruiker en return tokenresponse.
+     *
+     * @param changeEmailRequest een [ChangeEmailRequest] object van het nieuwe e-mailadres dat de gebruiker wilt instellen.
+     */
+    @POST("users/changeEmail")
+    fun changeEmail(@Body changeEmailRequest: ChangeEmailRequest): Observable<TokenResponse>
 }

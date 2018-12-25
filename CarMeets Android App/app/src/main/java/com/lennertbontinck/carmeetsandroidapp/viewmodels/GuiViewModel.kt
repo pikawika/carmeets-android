@@ -6,6 +6,7 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
+import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
 
 class GuiViewModel : ViewModel() {
     /**
@@ -55,10 +56,10 @@ class GuiViewModel : ViewModel() {
         isTwoPaneEnvironment.value = false
         //initieel zijn de opties voor lijst design niet zichtbaar
         isListDesignOptionsVisible.value = false
-        //initieel is layout klein
-        listDesign.value = ListDesignEnum.SMALL
-        //initieel is actieve menu item de lijst van meetings
-        activeMenuItem.value = MenuItemEnum.MEETINGS
+        //initieel is layout de door gebruiker ingestelde standaard
+        listDesign.value = PreferenceUtil.getDefaultListLayout()
+        //initieel is actieve menu item de door gebruiker ingestelde standaard
+        activeMenuItem.value = PreferenceUtil.getDefaultBootPage()
     }
 
     fun resetLayout() {

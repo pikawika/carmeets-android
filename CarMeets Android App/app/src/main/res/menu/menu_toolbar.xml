@@ -18,17 +18,18 @@
             android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="always"/>
 
-    <!-- kleine lijst weergave -->
+    <!-- grote lijstweergave -->
     <item
             android:id="@+id/ab_options_small"
-            android:title="@string/ab_options_listdesign_big"
+            android:title="@string/ab_options_list_design_small"
             android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="never"/>
 
-    <!-- grote lijstweergave -->
+    <!-- kleine lijst weergave -->
     <item
             android:id="@+id/ab_options_big"
-            android:title="@string/ab_options_listdesign_small"
+            android:title="@string/ab_options_list_design_big"
             android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="never"/>
+
 </menu>

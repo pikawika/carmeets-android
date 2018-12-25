@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND_IMAGES
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_MEETING_DETAIL
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
@@ -55,13 +56,13 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
                 parentActivity.supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_meetinglist_meetingdetailcontainer, MeetingDetailFragment())
-                    .addToBackStack(parentActivity.getString(R.string.fragtag_meetingdetail))
+                    .addToBackStack(FRAGTAG_MEETING_DETAIL)
                     .commit()
             } else {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, MeetingDetailFragment())
-                    .addToBackStack(parentActivity.getString(R.string.fragtag_meetingdetail))
+                    .addToBackStack(FRAGTAG_MEETING_DETAIL)
                     .commit()
             }
         }

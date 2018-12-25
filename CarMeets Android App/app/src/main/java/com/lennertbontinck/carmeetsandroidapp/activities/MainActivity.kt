@@ -13,6 +13,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_ACCOUNT
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_FAVOURITES_LIST
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_MEETING_LIST
 import com.lennertbontinck.carmeetsandroidapp.databinding.ActivityMainBinding
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
@@ -21,7 +24,6 @@ import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglistFragment
 import com.lennertbontinck.carmeetsandroidapp.utils.FragmentUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
-import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -95,13 +97,13 @@ class MainActivity : AppCompatActivity() {
                 return super.onOptionsItemSelected(item)
             }
 
-            R.id.ab_options_small -> {
-                guiViewModel.listDesign.value = ListDesignEnum.SMALL
+            R.id.ab_options_big -> {
+                guiViewModel.listDesign.value = ListDesignEnum.BIG
                 return super.onOptionsItemSelected(item)
             }
 
-            R.id.ab_options_big -> {
-                guiViewModel.listDesign.value = ListDesignEnum.BIG
+            R.id.ab_options_small -> {
+                guiViewModel.listDesign.value = ListDesignEnum.SMALL
                 return super.onOptionsItemSelected(item)
             }
 
@@ -142,7 +144,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
-            .addToBackStack(getString(R.string.fragtag_favouriteslist))
+            .addToBackStack(FRAGTAG_FAVOURITES_LIST)
             .commit()
     }
 
@@ -165,21 +167,21 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_meetings -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
-                    .addToBackStack(getString(R.string.fragtag_meetinglist))
+                    .addToBackStack(FRAGTAG_MEETING_LIST)
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_favourites -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
-                    .addToBackStack(getString(R.string.fragtag_favouriteslist))
+                    .addToBackStack(FRAGTAG_FAVOURITES_LIST)
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_account -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
-                    .addToBackStack(getString(R.string.fragtag_account))
+                    .addToBackStack(FRAGTAG_ACCOUNT)
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
@@ -203,14 +205,15 @@ class MainActivity : AppCompatActivity() {
             LayoutUtil.setListDesignOptionsVisibiltiy(this, guiViewModel.isListDesignOptionsVisible.value!!)
         })
 
+        guiViewModel.isBackButtonVisible.observe(this, Observer {
+            supportActionBar?.setDisplayHomeAsUpEnabled(guiViewModel.isBackButtonVisible.value!!)
+        })
+
+
         //Bij de init van de viewmodel wordt deze waarde ingesteld uit de shared pref
         //En opent dus de pagina die door de gebruiker ingesteld is als default boot page
         guiViewModel.activeMenuItem.observe(this, Observer {
             LayoutUtil.setBottomNavigation(this, guiViewModel.activeMenuItem.value!!.menuId)
-        })
-
-        guiViewModel.isBackButtonVisible.observe(this, Observer {
-            supportActionBar?.setDisplayHomeAsUpEnabled(guiViewModel.isBackButtonVisible.value!!)
         })
     }
 
@@ -235,8 +238,6 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         initListeners()
-        //haal de boot page uit shared pref en laad ze door het instellen van de bottom nav zijn selected id
-        menu_main_bottomnavigation.selectedItemId = PreferenceUtil.getDefaultBootPage().menuId
     }
 
     override fun onStop() {

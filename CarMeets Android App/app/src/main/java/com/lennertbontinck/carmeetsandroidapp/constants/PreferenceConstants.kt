@@ -18,4 +18,9 @@ const val PREFERENCE_USERNAME = "CarMeetsUserName"
 /**
  * De naam waarmee de standaard startpagina in de shared preferences wordt opgeslagen.
  * */
-const val PREFERENCE_DEFAULTBOOTPAGE = "CarMeetsDefaultBootPage"
+const val PREFERENCE_DEFAULT_BOOT_PAGE = "CarMeetsDefaultBootPage"
+
+/**
+ * De naam waarmee de standaard startpagina in de shared preferences wordt opgeslagen.
+ * */
+const val PREFERENCE_DEFAULT_LIST_LAYOUT = "CarMeetsDefaultListLayout"

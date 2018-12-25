@@ -15,7 +15,7 @@ object DateUtil {
      *
      */
     @JvmStatic
-    fun getShortMonthName(date : Date) : String {
+    fun getShortMonthName(date: Date): String {
         return (DateFormat.format("MMMM", date) as String).substring(0, 3)
     }
 
@@ -25,7 +25,7 @@ object DateUtil {
      * @param[date] Datum waarvan je dayInMonth wilt. Required of type Date
      *
      */
-    fun getDayInMonth(date : Date) : String {
+    fun getDayInMonth(date: Date): String {
         return DateFormat.format("dd", date) as String
     }
 }
