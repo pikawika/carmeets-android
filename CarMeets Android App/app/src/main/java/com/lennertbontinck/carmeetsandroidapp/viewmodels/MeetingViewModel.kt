@@ -5,9 +5,11 @@ import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
+import com.lennertbontinck.carmeetsandroidapp.models.MeetingWithUserInfo
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.lennertbontinck.carmeetsandroidapp.utils.TokenUtil
 import com.squareup.moshi.Moshi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -29,7 +31,7 @@ class MeetingViewModel : InjectedViewModel() {
      *
      * Maak gebruik van [setSelectedMeeting] voor de value in te stellen.
      */
-    val selectedMeeting = MutableLiveData<Meeting>()
+    val selectedMeeting = MutableLiveData<MeetingWithUserInfo>()
 
     /**
      * een instantie van de carmeetsApi om data van de server op te halen.
@@ -126,7 +128,31 @@ class MeetingViewModel : InjectedViewModel() {
      * @param meetingId : meetingId van meeting die als selected meeting moet ingesteld worden, verplicht van type [String].
      */
     fun setSelectedMeeting(meetingId: String) {
-        selectedMeeting.value = meetingList.value!!.firstOrNull { it.meetingId == meetingId }
+        val selectedMeeting = meetingList.value!!.firstOrNull { it.meetingId == meetingId }
+        if (selectedMeeting != null) {
+            this.selectedMeeting.value = MeetingWithUserInfo(
+                meetingId = selectedMeeting.meetingId,
+                categories = selectedMeeting.categories,
+                date = selectedMeeting.date,
+                description = selectedMeeting.description,
+                imageName = selectedMeeting.imageName,
+                listUsersGoing = selectedMeeting.listUsersGoing,
+                listUsersLiked = selectedMeeting.listUsersLiked,
+                location = selectedMeeting.location,
+                subtitle = selectedMeeting.subtitle,
+                title = selectedMeeting.title,
+                website = selectedMeeting.website,
+                isUserGoing = (selectedMeeting.listUsersGoing.contains(getUserId())),
+                isUserLiked = (selectedMeeting.listUsersLiked.contains(getUserId()))
+            )
+        }
+    }
+
+    private fun getUserId() : String {
+        val tokenContent = TokenUtil.getTokenContent()
+
+        //indien niet aangemeld onmogelijke id returnen
+        return tokenContent?._id ?: "-1"
     }
 
     /**
