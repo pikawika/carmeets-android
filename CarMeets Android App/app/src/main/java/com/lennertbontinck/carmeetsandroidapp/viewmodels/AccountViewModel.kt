@@ -299,6 +299,11 @@ class AccountViewModel : InjectedViewModel() {
         MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.notification_email_change_success))
     }
 
+    /**
+     * Stelt de info uit de token in op deze viewmodel:
+     * - [username]
+     * - [userId]
+     */
     private fun tokenContentToViewModel() {
         val tokenContent = TokenUtil.getTokenContent()
 
