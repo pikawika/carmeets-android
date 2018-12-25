@@ -1,6 +1,5 @@
 package com.lennertbontinck.carmeetsandroidapp.fragments
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -12,9 +11,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
+import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.databinding.FragmentMeetingdetailBinding
 import com.lennertbontinck.carmeetsandroidapp.utils.LocationUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
+import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.fragment_meetingdetail.*
@@ -37,6 +38,11 @@ class MeetingDetailFragment : Fragment() {
     private lateinit var guiViewModel: GuiViewModel
 
     /**
+     * [AccountViewModel] met de data over de aangemelde gebruiker
+     */
+    private lateinit var accountViewModel: AccountViewModel
+
+    /**
      * De [FragmentMeetingdetailBinding] dat we gebruiken voor de effeciteve databinding
      */
     private lateinit var binding: FragmentMeetingdetailBinding
@@ -47,6 +53,7 @@ class MeetingDetailFragment : Fragment() {
         //viewmodels vullen
         meetingViewModel = ViewModelProviders.of(requireActivity()).get(MeetingViewModel::class.java)
         guiViewModel = ViewModelProviders.of(requireActivity()).get(GuiViewModel::class.java)
+        accountViewModel = ViewModelProviders.of(requireActivity()).get(AccountViewModel::class.java)
 
         val fragment = binding.root
         binding.meetingViewModel = meetingViewModel
@@ -117,11 +124,19 @@ class MeetingDetailFragment : Fragment() {
         }
 
         image_meetingdetail_like.setOnClickListener {
-            meetingViewModel.toggleLiked()
+            if (!accountViewModel.isLoggedIn.value!!) {
+                MessageUtil.showDialogLoginRequired(requireActivity() as MainActivity)
+            } else {
+                meetingViewModel.toggleLiked()
+            }
         }
 
         image_meetingdetail_going.setOnClickListener {
-            meetingViewModel.toggleGoing()
+            if (!accountViewModel.isLoggedIn.value!!) {
+                MessageUtil.showDialogLoginRequired(requireActivity() as MainActivity)
+            } else {
+                meetingViewModel.toggleGoing()
+            }
         }
 
         button_meetingdetail_route.setOnClickListener {
