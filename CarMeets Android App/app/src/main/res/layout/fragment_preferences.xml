@@ -27,86 +27,90 @@
             app:layout_constraintGuide_percent="0.9"
     />
 
-    <!-- Titel -->
-    <TextView
-            android:id="@+id/txt_preferences_title"
-            android:layout_width="wrap_content"
+    <ScrollView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-
-            android:text="@string/txt_preferences"
-            android:textSize="30sp"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-
-            app:layout_constraintStart_toStartOf="@id/guideline_preferences_10percent_vertical"
-            app:layout_constraintEnd_toEndOf="@id/guideline_preferences_account_90percent_vertical"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/btn_preferences_change_boot_page"
-
-            android:layout_marginBottom="8dp"
-
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintVertical_chainStyle="packed"
-    />
-
-    <!-- Startscherm instellen -->
-    <Button
-            android:id="@+id/btn_preferences_change_boot_page"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:textColor="@android:color/black"
-            android:text="@string/txt_preferences_change_boot_page"
-            android:background="@color/lightGrey"
-
-            app:layout_constraintStart_toStartOf="@id/guideline_preferences_10percent_vertical"
-            app:layout_constraintEnd_toEndOf="@id/guideline_preferences_account_90percent_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/txt_preferences_title"
-            app:layout_constraintBottom_toTopOf="@+id/btn_preferences_change_default_list_layout"
-
-            android:layout_marginTop="16dp"
-
-            app:layout_constraintHorizontal_bias="0.5"
-    />
-
-    <!-- Startscherm instellen -->
-    <Button
-            android:id="@+id/btn_preferences_change_default_list_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:textColor="@android:color/black"
-            android:text="@string/txt_preferences_default_list_layout"
-            android:background="@color/lightGrey"
-
-            app:layout_constraintStart_toStartOf="@id/guideline_preferences_10percent_vertical"
-            app:layout_constraintEnd_toEndOf="@id/guideline_preferences_account_90percent_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/btn_preferences_change_boot_page"
-            app:layout_constraintBottom_toTopOf="@+id/btn_preferences_change_default_categories"
-
-            android:layout_marginTop="16dp"
-
-            app:layout_constraintHorizontal_bias="0.5"
-    />
-
-    <!-- Voorkeurscategoriën -->
-    <Button
-            android:id="@+id/btn_preferences_change_default_categories"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:textColor="@android:color/black"
-            android:text="@string/txt_preferences_default_categories"
-            android:background="@color/lightGrey"
-
-            app:layout_constraintStart_toStartOf="@id/guideline_preferences_10percent_vertical"
-            app:layout_constraintEnd_toEndOf="@id/guideline_preferences_account_90percent_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/btn_preferences_change_default_list_layout"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline_preferences_10percent_vertical"
+            app:layout_constraintEnd_toEndOf="@id/guideline_preferences_account_90percent_vertical"
+    >
 
-            android:layout_marginTop="16dp"
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            app:layout_constraintHorizontal_bias="0.5"
-    />
 
+            <!-- Titel -->
+            <TextView
+                    android:id="@+id/txt_preferences_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/txt_preferences"
+                    android:textSize="30sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    android:layout_marginBottom="8dp"
+            />
+
+            <!-- Startscherm instellen -->
+            <Button
+                    android:id="@+id/btn_preferences_change_boot_page"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="@android:color/black"
+                    android:text="@string/txt_preferences_change_boot_page"
+                    android:background="@color/lightGrey"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_preferences_title"
+
+                    android:layout_marginTop="16dp"
+            />
+
+            <!-- Startscherm instellen -->
+            <Button
+                    android:id="@+id/btn_preferences_change_default_list_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="@android:color/black"
+                    android:text="@string/txt_preferences_default_list_layout"
+                    android:background="@color/lightGrey"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_preferences_change_boot_page"
+
+                    android:layout_marginTop="16dp"
+            />
+
+            <!-- Voorkeurscategoriën -->
+            <Button
+                    android:id="@+id/btn_preferences_change_default_categories"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="@android:color/black"
+                    android:text="@string/txt_preferences_default_categories"
+                    android:background="@color/lightGrey"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_preferences_change_default_list_layout"
+
+                    android:layout_marginTop="16dp"
+            />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>
+
+
