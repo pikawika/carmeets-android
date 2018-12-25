@@ -27,79 +27,83 @@
             app:layout_constraintGuide_percent="0.9"
     />
 
-    <!-- Titel -->
-    <TextView
-            android:id="@+id/txt_change_password_title"
+    <ScrollView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
-            android:text="@string/txt_change_password"
-            android:textSize="30sp"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            android:textAlignment="center"
-
-            app:layout_constraintStart_toStartOf="@+id/guideline_change_password_10percent_vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_change_password_90percent_vertical"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/txt_change_password_new_password"
-
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintVertical_chainStyle="packed"
-    />
-
-    <!-- Nieuw wachtwoord -->
-    <EditText
-            android:id="@+id/txt_change_password_new_password"
-
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:inputType="textPassword"
-            android:hint="@string/placeholder_new_password"
-
-            app:layout_constraintStart_toStartOf="@+id/guideline_change_password_10percent_vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_change_password_90percent_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/txt_change_password_title"
-            app:layout_constraintBottom_toTopOf="@+id/txt_change_password_confirm_password"
-
-            android:layout_marginTop="12dp"
-            app:layout_constraintHorizontal_bias="0.5"
-    />
-
-    <!-- Bevestig wachtwoord -->
-    <EditText
-            android:id="@+id/txt_change_password_confirm_password"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:inputType="textPassword"
-            android:hint="@string/placeholder_confirm_password"
-
-            app:layout_constraintStart_toStartOf="@+id/guideline_change_password_10percent_vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_change_password_90percent_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/txt_change_password_new_password"
-            app:layout_constraintBottom_toTopOf="@+id/btn_change_password"
-
-            android:layout_marginTop="8dp"
-            app:layout_constraintHorizontal_bias="0.5"
-    />
-
-    <!-- wijzig wachtwoord bevestig knop -->
-    <Button
-            android:id="@+id/btn_change_password"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:text="@string/btn_change_password"
-
-            app:layout_constraintStart_toStartOf="@+id/guideline_change_password_10percent_vertical"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_change_password_90percent_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/txt_change_password_confirm_password"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline_change_password_10percent_vertical"
+            app:layout_constraintEnd_toEndOf="@id/guideline_change_password_90percent_vertical"
+    >
 
-            android:layout_marginTop="12dp"
-            app:layout_constraintHorizontal_bias="0.5"
-    />
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+            <!-- Titel -->
+            <TextView
+                    android:id="@+id/txt_change_password_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/txt_change_password"
+                    android:textSize="30sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+            />
+
+            <!-- Nieuw wachtwoord -->
+            <EditText
+                    android:id="@+id/txt_change_password_new_password"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:inputType="textPassword"
+                    android:hint="@string/placeholder_new_password"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_change_password_title"
+
+                    android:layout_marginTop="12dp"
+            />
+
+            <!-- Bevestig wachtwoord -->
+            <EditText
+                    android:id="@+id/txt_change_password_confirm_password"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:inputType="textPassword"
+                    android:hint="@string/placeholder_confirm_password"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_change_password_new_password"
+
+                    android:layout_marginTop="8dp"
+            />
+
+            <!-- wijzig wachtwoord bevestig knop -->
+            <Button
+                    android:id="@+id/btn_change_password"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/btn_change_password"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_change_password_confirm_password"
+
+                    android:layout_marginTop="12dp"
+            />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

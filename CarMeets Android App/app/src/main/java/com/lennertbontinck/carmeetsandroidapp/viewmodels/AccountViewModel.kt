@@ -10,6 +10,7 @@ import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.TokenResponse
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
+import com.lennertbontinck.carmeetsandroidapp.utils.TokenUtil
 import com.squareup.moshi.Moshi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -30,14 +31,17 @@ class AccountViewModel : InjectedViewModel() {
     /**
      * De gebruikersnaam van de aangemelde user
      */
-    var username = MutableLiveData<String>()
-        private set
+    val username = MutableLiveData<String>()
+
+    /**
+     * De userId van de aangemelde user
+     */
+    private val userId = MutableLiveData<String>()
 
     /**
      * Bool of user al dan niet aangemeld is
      */
-    var isLoggedIn = MutableLiveData<Boolean>()
-        private set
+    val isLoggedIn = MutableLiveData<Boolean>()
 
     /**
      * De subscription voor het login verzoek
@@ -65,8 +69,8 @@ class AccountViewModel : InjectedViewModel() {
     private lateinit var changeEmailSubscription: Disposable
 
     init {
-        username.value = PreferenceUtil.getUsername()
         isLoggedIn.value = PreferenceUtil.getToken() != ""
+        tokenContentToViewModel()
     }
 
     /**
@@ -85,7 +89,7 @@ class AccountViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart() }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { result -> onRetrieveLoginSuccess(result, username) },
+                { result -> onRetrieveLoginSuccess(result) },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -109,7 +113,7 @@ class AccountViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart() }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { result -> onRetrieveRegisterSuccess(result, username) },
+                { result -> onRetrieveRegisterSuccess(result) },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -147,7 +151,7 @@ class AccountViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart() }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { result -> onRetrieveChangeUsernameSuccess(result, newUsername) },
+                { result -> onRetrieveChangeUsernameSuccess(result) },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -238,28 +242,22 @@ class AccountViewModel : InjectedViewModel() {
      * zal token instellen en opslaan, en isLoggedIn in de VM op true zetten
      *
      * @param result : de response van de server. Required of type [TokenResponse].
-     *
-     * @param username : de gebruikersnaam waarmee aangemeld is. Required of type [String].
      */
-    private fun onRetrieveLoginSuccess(result: TokenResponse, username: String) {
+    private fun onRetrieveLoginSuccess(result: TokenResponse) {
         PreferenceUtil.setToken(result.token)
         isLoggedIn.value = true
-        this.username.value = username
-        PreferenceUtil.setUsername(username)
+        tokenContentToViewModel()
     }
 
     /**
      * Functie voor het behandelen van het succesvol registreren
      *
      * @param result : de response van de server. Required of type [TokenResponse].
-     *
-     * @param username : de gebruikersnaam waarmee geregistreerd is. Required of type [String].
      */
-    private fun onRetrieveRegisterSuccess(result: TokenResponse, username: String) {
+    private fun onRetrieveRegisterSuccess(result: TokenResponse) {
         PreferenceUtil.setToken(result.token)
         isLoggedIn.value = true
-        this.username.value = username
-        PreferenceUtil.setUsername(username)
+        tokenContentToViewModel()
     }
 
     /**
@@ -271,6 +269,7 @@ class AccountViewModel : InjectedViewModel() {
      */
     private fun onRetrieveChangePasswordSuccess(result: TokenResponse) {
         PreferenceUtil.setToken(result.token)
+        tokenContentToViewModel()
         MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.notification_password_change_success))
     }
 
@@ -280,13 +279,12 @@ class AccountViewModel : InjectedViewModel() {
      * zal token instellen en opslaan
      *
      * @param result : de response van de server. Required of type [TokenResponse].
-     *
-     * @param newUsername : de gebruikersnaam door de gebruiker ingesteld. Required of type [String].
      */
-    private fun onRetrieveChangeUsernameSuccess(result: TokenResponse, newUsername: String) {
+    private fun onRetrieveChangeUsernameSuccess(result: TokenResponse) {
         PreferenceUtil.setToken(result.token)
+        tokenContentToViewModel()
         MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.notification_username_change_success))
-        username.value = newUsername
+
     }
 
     /**
@@ -299,6 +297,20 @@ class AccountViewModel : InjectedViewModel() {
     private fun onRetrieveChangeEmailSuccess(result: TokenResponse) {
         PreferenceUtil.setToken(result.token)
         MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.notification_email_change_success))
+    }
+
+    /**
+     * Stelt de info uit de token in op deze viewmodel:
+     * - [username]
+     * - [userId]
+     */
+    private fun tokenContentToViewModel() {
+        val tokenContent = TokenUtil.getTokenContent()
+
+        if (tokenContent != null) {
+            username.value = tokenContent.username
+            userId.value = tokenContent._id
+        }
     }
 
     /**

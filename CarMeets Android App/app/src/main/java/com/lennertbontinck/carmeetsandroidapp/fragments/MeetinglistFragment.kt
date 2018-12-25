@@ -88,8 +88,8 @@ class MeetinglistFragment : Fragment() {
      */
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
-        meetingViewModel.meetingList.removeObservers(requireActivity())
-        guiViewModel.listDesign.removeObservers(requireActivity())
+        meetingViewModel.meetingList.removeObservers(this)
+        guiViewModel.listDesign.removeObservers(this)
     }
 
     override fun onStart() {

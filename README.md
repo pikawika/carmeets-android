@@ -41,8 +41,11 @@ Er zijn in de code inline comments voorzien met uitleg wat bepaalde regels code 
 >     - [Meer info over Feature 4](Documentatie%20per%20feature/feature4-login-registreer-standaard_start_pagina.md)
 >     - [APK](apks/carmeets-feature4.apk) 
 > 5. Feature 5 - Manage account en standaard lijstweergave
->     - [Meer info over Feature 5 - Manage account en standaard lijstweergave](Documentatie%20per%20feature/feature5-manage_account-default_listdesign.md)
->     - [APK](apks/carmeets-feature5.apk) 
+>     - [Meer info over Feature 5](Documentatie%20per%20feature/feature5-manage_account-default_listdesign.md)
+>     - [APK](apks/carmeets-feature5.apk)
+> 6. Feature 6 - Like en going, favorietenlijste, aantal in volgende week en responsive design fixes
+>     - [Meer info over Feature 6](Documentatie%20per%20feature/feature6-like_and_going-response_fixes.md)
+>     - [APK](apks/carmeets-feature6.apk)
 
 ## GitHub Repository van de backend
 Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaakt met de MEAN-stack zal ik de bestaande backend hergebruik en aanvullen waar nodig.
