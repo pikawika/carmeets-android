@@ -36,24 +36,6 @@ object PreferenceUtil {
     }
 
     /**
-     * Haalt de gebruikersnaam op van de shared preferences
-     */
-    @JvmStatic
-    fun getUsername() : String? {
-        return sharedPreferences.getString(PREFERENCE_USERNAME, "")
-    }
-
-    /**
-     * Slaat de gebruikersnaam op in de shared prefences
-     *
-     * @param username : de gebruikersnaam van de aangemelde user
-     */
-    @JvmStatic
-    fun setUsername(username : String) {
-        sharedPreferences.edit().putString(PREFERENCE_USERNAME, username).apply()
-    }
-
-    /**
      * Haalt de standaard startpagina op van de shared preferences
      */
     @JvmStatic
