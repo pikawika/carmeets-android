@@ -9,7 +9,7 @@ import java.util.*
  * Een util om je te helpen met de room database,
  * in het bijzonder voor het converten van waardes naar een in room opslaanbaar type.
  */
-class RoomConverters {
+class RoomUtil {
 
     /**;
      * Zet een [Date] object om naar een [Long] zodat deze kan worden opgeslaan in de lokale databank
