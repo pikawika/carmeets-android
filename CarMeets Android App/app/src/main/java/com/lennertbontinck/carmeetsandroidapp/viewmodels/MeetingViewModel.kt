@@ -5,13 +5,13 @@ import android.arch.lifecycle.MutableLiveData
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
-import com.lennertbontinck.carmeetsandroidapp.roomdatabase.MeetingRepository
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.models.MeetingWithUserInfo
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.ToggleGoingRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.ToggleLikedRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
+import com.lennertbontinck.carmeetsandroidapp.roomdatabase.MeetingRepository
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.TokenUtil
 import com.squareup.moshi.Moshi
@@ -232,13 +232,17 @@ class MeetingViewModel : InjectedViewModel() {
             }
             //geen server error code -> toon universele http error code
             isErrorPageWithRoomOptionVisible.value = showCachedOptionOnFail
-            MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_httpRequest_crashed))
+            //indien error fragment niet toont, toon toast voor user toch te laten weten dat iets mis ging
+            if (!showCachedOptionOnFail)
+                MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_httpRequest_crashed))
             return
 
         } else {
             //geen http error code -> toon universele error code
             isErrorPageWithRoomOptionVisible.value = showCachedOptionOnFail
-            MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
+            //indien error fragment niet toont, toon toast voor user toch te laten weten dat iets mis ging
+            if (!showCachedOptionOnFail)
+                MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
             return
         }
     }
