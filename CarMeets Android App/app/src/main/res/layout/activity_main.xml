@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
-                app:isVisible='@{safeUnbox(meetingViewModel.isErrorPageWithRoomOptionVisible) || safeUnbox(accountViewModel.isLoadingPageVisible)}'
+                app:isVisible='@{safeUnbox(meetingViewModel.isErrorPageWithRoomOptionVisible)}'
                 tools:visibility="gone"
 
                 app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
-                app:isVisible='@{safeUnbox(meetingViewModel.isLoadingPageVisible)}'
+                app:isVisible='@{safeUnbox(meetingViewModel.isLoadingPageVisible) || safeUnbox(accountViewModel.isLoadingPageVisible)}'
                 tools:visibility="gone"
 
                 app:layout_constraintStart_toStartOf="parent"
