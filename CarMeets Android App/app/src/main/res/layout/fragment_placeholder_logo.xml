@@ -80,6 +80,8 @@
             android:text="@string/txt_about_carmeets"
             android:textSize="15sp"
             android:textAlignment="center"
+
+            android:paddingBottom="10dp"
     />
     </ScrollView>
 
