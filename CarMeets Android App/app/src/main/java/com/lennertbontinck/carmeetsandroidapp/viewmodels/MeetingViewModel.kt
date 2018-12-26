@@ -1,16 +1,16 @@
 package com.lennertbontinck.carmeetsandroidapp.viewmodels
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
+import com.lennertbontinck.carmeetsandroidapp.roomdatabase.MeetingRepository
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.models.MeetingWithUserInfo
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.ToggleGoingRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.ToggleLikedRequest
-import com.lennertbontinck.carmeetsandroidapp.networks.responses.GoingAmountResponse
-import com.lennertbontinck.carmeetsandroidapp.networks.responses.LikedAmountResponse
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.TokenUtil
@@ -18,6 +18,7 @@ import com.squareup.moshi.Moshi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import org.jetbrains.anko.doAsync
 import retrofit2.HttpException
 import java.util.*
 import javax.inject.Inject
@@ -39,10 +40,31 @@ class MeetingViewModel : InjectedViewModel() {
     val selectedMeeting = MutableLiveData<MeetingWithUserInfo>()
 
     /**
-     * een instantie van de carmeetsApi om data van de server op te halen.
+     * Een instantie van de carmeetsApi om data van de server op te halen.
      */
     @Inject
     lateinit var carmeetsApi: CarmeetsApi
+
+    /**
+     * Bool of optie voor items uit lokale room database weer te geven al dan niet zichtbaar is
+     */
+    val isShowRoomItemsVisible = MutableLiveData<Boolean>()
+
+    /**
+     * De lijst van alle meetings zoals die uit de lokale room database is gehaald.
+     */
+    val roomMeetingList: LiveData<List<Meeting>>
+
+    /**
+     * Bool of de lokale room database al dan niet is ingesteld als databron
+     */
+    val isLocalRoomDatabaseUsedAsSource = MutableLiveData<Boolean>()
+
+    /**
+     * De [MeetingRepository] gebruikt voor het ophalen van de meetings uit de lokale databank
+     */
+    @Inject
+    lateinit var meetingRepository: MeetingRepository
 
     /**
      * De subscription op het getAllMeetings verzoek.
@@ -63,6 +85,12 @@ class MeetingViewModel : InjectedViewModel() {
         //initieel vullen met een lege lijst zodat dit niet nul is
         meetingList.value = emptyList()
 
+        roomMeetingList = meetingRepository.meetings
+
+        isLocalRoomDatabaseUsedAsSource.value = false
+
+        isShowRoomItemsVisible.value = false
+
         //alle meetings van de server halen
         getAllMeetingsSubscription = carmeetsApi.getAllMeetings()
             //we tell it to fetch the data on background by
@@ -73,7 +101,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
                 { result -> onRetrieveMeetingsSuccess(result) },
-                { error -> onRetrieveError(error) }
+                { error -> onRetrieveError(error, true) }
             )
     }
 
@@ -91,7 +119,7 @@ class MeetingViewModel : InjectedViewModel() {
     /**
      * Haalt de meetings opnieuw op van de server en stelt de lijst opnieuw gelijk
      */
-    private fun refreshMeetingList() {
+    fun refreshMeetingList() {
         //alle meetings van de server halen
         getAllMeetingsSubscription = carmeetsApi.getAllMeetings()
             //we tell it to fetch the data on background by
@@ -102,7 +130,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
                 { result -> onRetrieveMeetingsRefreshSuccess(result) },
-                { error -> onRetrieveError(error) }
+                { error -> onRetrieveError(error, true) }
             )
     }
 
@@ -118,7 +146,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart() }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { result -> onRetrieveToggleLikedSuccess(result) },
+                { _ -> onRetrieveToggleLikedSuccess() },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -135,7 +163,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart() }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { result -> onRetrieveToggleGoingSuccess(result) },
+                { _ -> onRetrieveToggleGoingSuccess() },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -170,8 +198,13 @@ class MeetingViewModel : InjectedViewModel() {
 
     /**
      * Functie voor het behandelen van het mislukken van het ophalen van data van de server
+     *
+     * @param error : de verkregeen error. Required of type [Throwable].
+     *
+     * @param showCachedOptionOnFail : of bij het falen de optie voor het ophalen van de cached meetings
+     * aan de gebruiker moet worden voorgesteld
      */
-    private fun onRetrieveError(error: Throwable) {
+    private fun onRetrieveError(error: Throwable, showCachedOptionOnFail: Boolean = false) {
         //error is een http error
         if (error is HttpException) {
             //error body
@@ -193,11 +226,13 @@ class MeetingViewModel : InjectedViewModel() {
 
             }
             //geen server error code -> toon universele http error code
+            isShowRoomItemsVisible.value = showCachedOptionOnFail
             MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_httpRequest_crashed))
             return
 
         } else {
             //geen http error code -> toon universele error code
+            isShowRoomItemsVisible.value = showCachedOptionOnFail
             MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
             return
         }
@@ -210,6 +245,8 @@ class MeetingViewModel : InjectedViewModel() {
      */
     private fun onRetrieveMeetingsSuccess(result: List<Meeting>) {
         meetingList.value = result
+        isShowRoomItemsVisible.value = false
+        doAsync { meetingRepository.insert(result) }
     }
 
     /**
@@ -227,7 +264,7 @@ class MeetingViewModel : InjectedViewModel() {
      *
      *
      */
-    private fun onRetrieveToggleLikedSuccess(result: LikedAmountResponse) {
+    private fun onRetrieveToggleLikedSuccess() {
         refreshMeetingList()
     }
 
@@ -236,7 +273,7 @@ class MeetingViewModel : InjectedViewModel() {
      *
      *
      */
-    private fun onRetrieveToggleGoingSuccess(result: GoingAmountResponse) {
+    private fun onRetrieveToggleGoingSuccess() {
         refreshMeetingList()
     }
 

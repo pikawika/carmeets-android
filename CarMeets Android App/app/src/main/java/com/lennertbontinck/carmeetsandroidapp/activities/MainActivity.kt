@@ -28,6 +28,7 @@ import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.partial_error_with_show_cache.*
 
 /**
  * De *mainactivity* van de applicatie. Er is maar 1 activity doorheen de app.
@@ -70,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         //main activity binden
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.guiViewModel = guiViewModel
+        binding.meetingViewModel = meetingViewModel
         binding.setLifecycleOwner(this)
 
         //supportbar instellen zodat hij menu_toolbar gebruikt
@@ -204,6 +206,16 @@ class MainActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        btn_partial_error_with_show_cache_show_cache.setOnClickListener {
+            meetingViewModel.isLocalRoomDatabaseUsedAsSource.value = true
+            meetingViewModel.isShowRoomItemsVisible.value = false
+        }
+
+        btn_partial_error_with_show_cache_try_again.setOnClickListener {
+            meetingViewModel.refreshMeetingList()
+            meetingViewModel.isShowRoomItemsVisible.value = false
+        }
+
         guiViewModel.isListDesignOptionsVisible.observe(this, Observer {
             LayoutUtil.setListDesignOptionsVisibiltiy(this, guiViewModel.isListDesignOptionsVisible.value!!)
         })
@@ -211,7 +223,6 @@ class MainActivity : AppCompatActivity() {
         guiViewModel.isBackButtonVisible.observe(this, Observer {
             supportActionBar?.setDisplayHomeAsUpEnabled(guiViewModel.isBackButtonVisible.value!!)
         })
-
 
         //Bij de init van de viewmodel wordt deze waarde ingesteld uit de shared pref
         //En opent dus de pagina die door de gebruiker ingesteld is als default boot page
@@ -227,6 +238,21 @@ class MainActivity : AppCompatActivity() {
         //indien afgemeld/aangemeld opnieuw notificatie aantal bepalen
         accountViewModel.isLoggedIn.observe(this, Observer {
             updateNotificationAmount()
+        })
+
+        //indien de room items ingeladen zijn en er is voor gekozen de lokale room items te gebruiken als bron
+        //stel deze dan in als bron!
+        meetingViewModel.roomMeetingList.observe(this, Observer {
+            if (meetingViewModel.roomMeetingList.value != null && meetingViewModel.isLocalRoomDatabaseUsedAsSource.value!!){
+                meetingViewModel.meetingList.value = meetingViewModel.roomMeetingList.value
+            }
+        })
+
+        //indien gekozen voor room als meeting items kijken of de lijst niet null is en ze toekennen
+        meetingViewModel.isLocalRoomDatabaseUsedAsSource.observe(this, Observer {
+            if (meetingViewModel.roomMeetingList.value != null && meetingViewModel.isLocalRoomDatabaseUsedAsSource.value!!){
+                meetingViewModel.meetingList.value = meetingViewModel.roomMeetingList.value
+            }
         })
     }
 
@@ -262,6 +288,10 @@ class MainActivity : AppCompatActivity() {
         meetingViewModel.meetingList.removeObservers(this)
 
         accountViewModel.isLoggedIn.removeObservers(this)
+
+        meetingViewModel.roomMeetingList.removeObservers(this)
+
+        meetingViewModel.isLocalRoomDatabaseUsedAsSource.removeObservers(this)
     }
 
     override fun onStart() {

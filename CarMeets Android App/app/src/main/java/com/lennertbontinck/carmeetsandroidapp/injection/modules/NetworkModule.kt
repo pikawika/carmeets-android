@@ -4,6 +4,9 @@ package com.lennertbontinck.carmeetsandroidapp.injection.modules
 
 import android.content.Context
 import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND_API
+import com.lennertbontinck.carmeetsandroidapp.roomdatabase.MeetingDao
+import com.lennertbontinck.carmeetsandroidapp.roomdatabase.MeetingDatabase
+import com.lennertbontinck.carmeetsandroidapp.roomdatabase.MeetingRepository
 import com.lennertbontinck.carmeetsandroidapp.extensions.DateParser
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
@@ -125,5 +128,32 @@ class NetworkModule(private val context: Context) {
     @Singleton
     fun provideApplicationContext(): Context {
         return context.applicationContext
+    }
+
+    /**
+     * Return [MeetingRepository] object voor communicatie met room database adhv [MeetingDao]
+     */
+    @Provides
+    @Singleton
+    fun provideMeetingRepository(meetingDao: MeetingDao): MeetingRepository {
+        return MeetingRepository(meetingDao)
+    }
+
+    /**
+     * Return [MeetingDao] object voor acties op de room [MeetingDatabase]
+     */
+    @Provides
+    @Singleton
+    fun provideMeetingDao(meetingDatabase: MeetingDatabase): MeetingDao {
+        return meetingDatabase.meetingDao()
+    }
+
+    /**
+     * Return room [MeetingDatabase] object van de huidige context
+     */
+    @Provides
+    @Singleton
+    fun provideMeetingDatabase(context: Context): MeetingDatabase {
+        return MeetingDatabase.getInstance(context)
     }
 }

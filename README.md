@@ -46,6 +46,9 @@ Er zijn in de code inline comments voorzien met uitleg wat bepaalde regels code 
 > 6. Feature 6 - Like en going, favorietenlijste, aantal in volgende week en responsive design fixes
 >     - [Meer info over Feature 6](Documentatie%20per%20feature/feature6-like_and_going-response_fixes.md)
 >     - [APK](apks/carmeets-feature6.apk)
+> 6. Feature 7 - Lokale persistentie met room en eenvoudigere databinding
+>     - [Meer info over Feature 7](Documentatie%20per%20feature/feature7-room-lokale_persistentie.md)
+>     - [APK](apks/carmeets-feature7.apk)
 
 ## GitHub Repository van de backend
 Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaakt met de MEAN-stack zal ik de bestaande backend hergebruik en aanvullen waar nodig.

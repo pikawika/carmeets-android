@@ -3,6 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
 
         <variable
                 name="meetingViewModel"
@@ -64,7 +65,7 @@
                         android:layout_height="wrap_content"
 
                         android:src="@drawable/ic_heart_black_24dp"
-                        android:tint="@{safeUnbox(meetingViewModel.selectedMeeting.isUserLiked)? @color/colorPrimary : @android:color/black}"
+                        android:isToggledOn="@{safeUnbox(meetingViewModel.selectedMeeting.isUserLiked)}"
 
                         app:layout_constraintStart_toStartOf="parent"
 
@@ -77,7 +78,7 @@
                         android:layout_height="wrap_content"
 
                         android:src="@drawable/ic_check_black_24dp"
-                        android:tint="@{safeUnbox(meetingViewModel.selectedMeeting.isUserGoing)? @color/colorPrimary : @android:color/black}"
+                        android:isToggledOn="@{safeUnbox(meetingViewModel.selectedMeeting.isUserGoing)}"
 
                         app:layout_constraintEnd_toEndOf="parent"
 
@@ -270,6 +271,8 @@
                         android:drawableStart="@drawable/ic_link_pink_18dp"
                         android:drawableEnd="@drawable/ic_link_pink_18dp"
                         android:text="@string/btn_meeting_website"
+
+                        android:visibility='@{!TextUtils.isEmpty(meetingViewModel.selectedMeeting.website)}'
 
                         app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_route"
                         app:layout_constraintEnd_toEndOf="parent"
