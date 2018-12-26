@@ -4,10 +4,9 @@ Tot op heden kon je de app niet gebruiken als je geen internet verbinding hebt o
 
 ## Inhoudsopgave
 
-> - [Responsievere layout en databinding liked/going](#responsievere-layout-en-databinding-liked-going)
-> - [Like en Going methode](#like-en-going-methode)
-> - [Favorietenlijst en notificatiebelletje](#favorietenlijst-en-notificatiebelletje)
-> - [Login popup](#login-popup)
+> - [Databinding Util uitbreidingen](#databinding-util-uitbreidingen)
+> - [Room en RoomUtil](#room-en-roomutil)
+> - [Pagina indien geen meetings opgehaald](#pagina-indien-geen-meetings-opgehaald)
 
 ## Databinding Util uitbreidingen
 
