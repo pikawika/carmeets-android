@@ -270,6 +270,8 @@ class MeetingViewModel : InjectedViewModel() {
     private fun onRetrieveMeetingsRefreshSuccess(result: List<Meeting>) {
         meetingList.value = result
         refreshSelectedMeeting()
+        isErrorPageWithRoomOptionVisible.value = false
+        doAsync { meetingRepository.insert(result) }
     }
 
     /**

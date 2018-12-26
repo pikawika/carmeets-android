@@ -28,6 +28,7 @@ import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.partial_empty_list.*
 import kotlinx.android.synthetic.main.partial_error_with_show_cache.*
 
 /**
@@ -217,6 +218,11 @@ class MainActivity : AppCompatActivity() {
             meetingViewModel.isErrorPageWithRoomOptionVisible.value = false
         }
 
+        btn_partial_empty_list_refresh.setOnClickListener {
+            meetingViewModel.refreshMeetingList()
+            guiViewModel.isEmptyListVisible.value = false
+        }
+
         guiViewModel.isListDesignOptionsVisible.observe(this, Observer {
             LayoutUtil.setListDesignOptionsVisibiltiy(this, guiViewModel.isListDesignOptionsVisible.value!!)
         })
@@ -279,6 +285,12 @@ class MainActivity : AppCompatActivity() {
 
         //listener wanneer back button uit de menu_toolbar -> zelfde functie als hardware back button
         menu_main_toolbar.setNavigationOnClickListener { null }
+
+        btn_partial_error_with_show_cache_show_cache.setOnClickListener { null }
+
+        btn_partial_error_with_show_cache_try_again.setOnClickListener { null }
+
+        btn_partial_empty_list_refresh.setOnClickListener { null }
 
         guiViewModel.isListDesignOptionsVisible.removeObservers(this)
 

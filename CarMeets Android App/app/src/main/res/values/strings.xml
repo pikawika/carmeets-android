@@ -120,6 +120,7 @@
     <!-- partial_emptry_list -->
     <string name="txt_empty_list">Lege lijst…</string>
     <string name="txt_empty_list_long">Deze lijst is momenteel jammergenoeg leeg.</string>
+    <string name="txt_refresh_the_list">Laad de lijst opnieuw in</string>
 
     <!-- carmeets -->
     <string name="txt_about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik

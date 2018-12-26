@@ -118,6 +118,21 @@
                         android:layout_marginTop="20dp"
                 />
 
+                <!-- toon cached meetings -->
+                <Button
+                        android:id="@+id/btn_partial_empty_list_refresh"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="@string/txt_refresh_the_list"
+
+                        app:layout_constraintTop_toBottomOf="@+id/text_partial_empty_list_long"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+
+                        android:layout_marginTop="12dp"
+                />
+
             </android.support.constraint.ConstraintLayout>
 
         </ScrollView>
