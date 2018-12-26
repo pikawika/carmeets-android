@@ -73,6 +73,7 @@ class MeetinglistFragment : Fragment() {
         //indien de meetinglijst veranderd moet de adapter opnieuw zijn cards genereren met nieuwe data
         meetingViewModel.meetingList.observe(this, Observer {
             meetingAdapter.notifyDataSetChanged()
+            guiViewModel.isEmptyListVisible.value = meetingViewModel.meetingList.value!!.isEmpty()
         })
 
         //indien lijstDesign veranderd moet de adapter opnieuw zijn cards genereren met nieuwe stijl

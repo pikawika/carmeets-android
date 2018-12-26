@@ -81,6 +81,7 @@ class FavouritesListFragment : Fragment() {
         //indien de meetinglijst veranderd moet de adapter opnieuw zijn cards genereren met nieuwe data
         meetingViewModel.meetingList.observe(this, Observer {
             favouritesAdapter.notifyDataSetChanged()
+            guiViewModel.isEmptyListVisible.value = meetingViewModel.getFavouritesList().isEmpty()
         })
 
         //indien lijstDesign veranderd moet de adapter opnieuw zijn cards genereren met nieuwe stijl

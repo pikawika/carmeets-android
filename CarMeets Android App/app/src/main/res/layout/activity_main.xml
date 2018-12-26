@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
-                android:visibility='@{!(safeUnbox(meetingViewModel.isErrorPageWithRoomOptionVisible) || safeUnbox(meetingViewModel.isLoadingPageVisible) || safeUnbox(accountViewModel.isLoadingPageVisible))}'
+                android:visibility='@{!(safeUnbox(meetingViewModel.isErrorPageWithRoomOptionVisible) || safeUnbox(meetingViewModel.isLoadingPageVisible) || safeUnbox(accountViewModel.isLoadingPageVisible) || safeUnbox(guiViewModel.isEmptyListVisible))}'
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -101,6 +101,20 @@
                 android:layout_height="0dp"
 
                 app:isVisible='@{safeUnbox(meetingViewModel.isLoadingPageVisible) || safeUnbox(accountViewModel.isLoadingPageVisible)}'
+                tools:visibility="gone"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/menu_main_toolbar"
+                app:layout_constraintBottom_toTopOf="@id/menu_main_bottomnavigation"
+        />
+
+        <include
+                layout="@layout/partial_empty_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                app:isVisible='@{(safeUnbox(guiViewModel.isEmptyListVisible) &amp;&amp; !safeUnbox(meetingViewModel.isErrorPageWithRoomOptionVisible))}'
                 tools:visibility="gone"
 
                 app:layout_constraintStart_toStartOf="parent"
