@@ -79,9 +79,11 @@ class FavouritesListFragment : Fragment() {
      */
     private fun initListeners() {
         //indien de meetinglijst veranderd moet de adapter opnieuw zijn cards genereren met nieuwe data
+        //swipe to refresh mag ook gestopt worden aangezien er een nieuwe lijst is geladen
         meetingViewModel.meetingList.observe(this, Observer {
             favouritesAdapter.notifyDataSetChanged()
             guiViewModel.isEmptyListVisible.value = meetingViewModel.getFavouritesList().isEmpty()
+            swipe_refresh_meetinglist.isRefreshing = false
         })
 
         //indien lijstDesign veranderd moet de adapter opnieuw zijn cards genereren met nieuwe stijl
@@ -90,6 +92,11 @@ class FavouritesListFragment : Fragment() {
         guiViewModel.listDesign.observe(this, Observer {
             recyclerview_meetinglist.adapter = favouritesAdapter
         })
+
+        //swipe to refresh van de lijst
+        swipe_refresh_meetinglist.setOnRefreshListener {
+            meetingViewModel.refreshMeetingList(false)
+        }
     }
 
     /**
@@ -99,6 +106,9 @@ class FavouritesListFragment : Fragment() {
     private fun stopListeners() {
         meetingViewModel.meetingList.removeObservers(this)
         guiViewModel.listDesign.removeObservers(this)
+        //refreshing nog op false zetten voor we listener stoppen
+        swipe_refresh_meetinglist.isRefreshing = false
+        swipe_refresh_meetinglist.setOnRefreshListener { null }
     }
 
     override fun onStart() {

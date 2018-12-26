@@ -5,6 +5,7 @@
     <string name="error_no_calander_app">U heeft geen agenda applicatie geïnstalleerd op uw toestel.</string>
     <string name="error_something_crashed">Er liep iets mis bij het uitvoeren van de gevraagde actie.</string>
     <string name="error_httpRequest_crashed">Er liep iets mis bij het verwerken van uw serververzoek.</string>
+    <string name="error_dns_server_not_avaible">Communicatie met server mislukt. Vermoedelijk heeft u geen internetverbinding.</string>
 
     <!-- warnings -->
     <string name="warning_empty_fields">Gelieve alle velden in te vullen.</string>

@@ -74,6 +74,7 @@ class MeetinglistFragment : Fragment() {
         meetingViewModel.meetingList.observe(this, Observer {
             meetingAdapter.notifyDataSetChanged()
             guiViewModel.isEmptyListVisible.value = meetingViewModel.meetingList.value!!.isEmpty()
+            swipe_refresh_meetinglist.isRefreshing = false
         })
 
         //indien lijstDesign veranderd moet de adapter opnieuw zijn cards genereren met nieuwe stijl
@@ -82,6 +83,11 @@ class MeetinglistFragment : Fragment() {
         guiViewModel.listDesign.observe(this, Observer {
             recyclerview_meetinglist.adapter = meetingAdapter
         })
+
+        //swipe to refresh van de lijst
+        swipe_refresh_meetinglist.setOnRefreshListener {
+            meetingViewModel.refreshMeetingList(false)
+        }
     }
 
     /**
@@ -91,6 +97,9 @@ class MeetinglistFragment : Fragment() {
     private fun stopListeners() {
         meetingViewModel.meetingList.removeObservers(this)
         guiViewModel.listDesign.removeObservers(this)
+        //refreshing nog op false zetten voor we listener stoppen
+        swipe_refresh_meetinglist.isRefreshing = false
+        swipe_refresh_meetinglist.setOnRefreshListener { null }
     }
 
     override fun onStart() {

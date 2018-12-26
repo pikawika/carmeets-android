@@ -125,15 +125,17 @@ class MeetingViewModel : InjectedViewModel() {
 
     /**
      * Haalt de meetings opnieuw op van de server en stelt de lijst opnieuw gelijk
+     *
+     * @param showIsLoadingFragment : of het loading fragment al dan niet getoond dient te worden. Optional of type [Boolean], default true.
      */
-    fun refreshMeetingList() {
+    fun refreshMeetingList(showIsLoadingFragment : Boolean = true) {
         //alle meetings van de server halen
         getAllMeetingsSubscription = carmeetsApi.getAllMeetings()
             //we tell it to fetch the data on background by
             .subscribeOn(Schedulers.io())
             //we like the fetched data to be displayed on the MainTread (UI)
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { onRetrieveStart() }
+            .doOnSubscribe { onRetrieveStart(showIsLoadingFragment) }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
                 { result -> onRetrieveMeetingsRefreshSuccess(result) },
@@ -189,9 +191,11 @@ class MeetingViewModel : InjectedViewModel() {
 
     /**
      * Functie voor het behandelen van het starten van een rest api call.
+     *
+     * @param showIsLoadingFragment : of het loading fragment al dan niet getoond dient te worden. Optional of type [Boolean], default true.
      */
-    private fun onRetrieveStart() {
-        isLoadingPageVisible.value = true
+    private fun onRetrieveStart(showIsLoadingFragment : Boolean = true) {
+        isLoadingPageVisible.value = showIsLoadingFragment
     }
 
     /**
