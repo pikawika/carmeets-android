@@ -19,13 +19,17 @@ import java.util.*
  */
 object DataBindingUtil {
     /**
-     * Zorgt er voor dat een android;src bij een imageview gevult wordt adhv glide
+     * Zorgt er voor dat een android;src bij een imageview gevult wordt adhv glide indien string meegegeven
+     *
+     * Indien string loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967 is zal de gif voor loading ingesteld worden
+     * Dit is een random GUID dus de kans dat dit overeenkomt met een afbeeldingsurl is zo goed als onbestaande.
      */
     @JvmStatic
     @BindingAdapter("android:src")
-    fun setImageUrl(view: ImageView, url: String?) {
-        if (url != null) {
-            Glide.with(view.context).load(BASE_URL_BACKEND_IMAGES + url).into(view)
+    fun setImageUrlString(view: ImageView, url: String?) {
+        when {
+            url != null && url != "loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967" -> Glide.with(view.context).load(BASE_URL_BACKEND_IMAGES + url).into(view)
+            url == "loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967" -> Glide.with(view.context).load(R.drawable.loading).into(view)
         }
     }
 

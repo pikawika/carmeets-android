@@ -14,6 +14,7 @@
 
     <android.support.constraint.ConstraintLayout
             xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="@{isVisible}"
@@ -55,9 +56,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
 
-                app:layout_constraintDimensionRatio="WH,16:11"
+                app:layout_constraintDimensionRatio="WH,1:1"
                 android:scaleType="fitCenter"
-                android:src="@drawable/logo"
+                android:src="@{`loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967`}"
+                tools:src="@drawable/loading"
                 android:tint="@color/colorPrimary"
                 android:contentDescription="@string/alt_logo"
 
@@ -87,49 +89,35 @@
 
                 <!-- error bericht -->
                 <TextView
-                        android:id="@+id/text_partial_error_with_show_cache_error"
+                        android:id="@+id/text_partial_loading"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:text="@string/btn_partial_error_with_show_cache_error_message"
-                        android:textSize="24sp"
+                        android:text="@string/txt_loading"
+                        android:textSize="30sp"
                         android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
 
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                 />
 
-                <!-- toon cached meetings -->
-                <Button
-                        android:id="@+id/btn_partial_error_with_show_cache_show_cache"
+                <!-- error bericht -->
+                <TextView
+                        android:id="@+id/text_partial_loading_why_it_takes_so_long"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:text="@string/btn_partial_error_with_show_cache_show_cache"
+                        android:text="@string/txt_loading_why_it_takes_so_long"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
 
-                        app:layout_constraintTop_toBottomOf="@+id/text_partial_error_with_show_cache_error"
+                        app:layout_constraintTop_toBottomOf="@+id/text_partial_loading"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
 
-                        android:layout_marginTop="12dp"
-                />
-
-                <!-- probier opnieuw -->
-                <Button
-                        android:id="@+id/btn_partial_error_with_show_cache_try_again"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-
-                        android:text="@string/btn_partial_error_with_show_cache_try_again"
-                        android:background="@color/lightGrey"
-                        android:textColor="@android:color/black"
-
-                        app:layout_constraintTop_toBottomOf="@+id/btn_partial_error_with_show_cache_show_cache"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="20dp"
                 />
 
             </android.support.constraint.ConstraintLayout>

@@ -112,6 +112,10 @@
     <string name="btn_partial_error_with_show_cache_try_again">Probeer opnieuw</string>
     <string name="btn_partial_error_with_show_cache_error_message">Er liep iets mis bij het communiceren met de server.</string>
 
+    <!-- partial_loading -->
+    <string name="txt_loading">Bezig met laden…</string>
+    <string name="txt_loading_why_it_takes_so_long">Het kan zijn dat dit even duurt. Waarom? CarMeets is een gratis service en maakt gebruik van een gratis Heroku server :). </string>
+
     <!-- carmeets -->
     <string name="txt_about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik
         weer een kwaliteitsmeeting gemist had omdat ik niet wist wanneer deze plaatsvond. Daarom besloot ik, Lennert
