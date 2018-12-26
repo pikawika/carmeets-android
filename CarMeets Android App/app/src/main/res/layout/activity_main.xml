@@ -36,7 +36,7 @@
                 app:titleTextAppearance="@style/ToolbarTheme.ToolbarTextAppearance.Title"
                 app:subtitleTextAppearance="@style/ToolbarTheme.ToolbarTextAppearance.Subtitle"
 
-                android:visibility='@{!meetingViewModel.isShowRoomItemsVisible}'
+                android:visibility='@{!safeUnbox(meetingViewModel.isShowRoomItemsVisible)}'
                 tools:visibility="visible"
 
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +64,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
-                android:visibility='@{!meetingViewModel.isShowRoomItemsVisible}'
+                android:visibility='@{!safeUnbox(meetingViewModel.isShowRoomItemsVisible)}'
                 tools:visibility="visible"
 
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
-                app:isVisible="@{meetingViewModel.isShowRoomItemsVisible}"
+                app:isVisible='@{safeUnbox(meetingViewModel.isShowRoomItemsVisible)}'
                 tools:visibility="gone"
 
                 app:layout_constraintStart_toStartOf="parent"
