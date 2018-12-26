@@ -46,6 +46,11 @@ class MeetingViewModel : InjectedViewModel() {
     lateinit var carmeetsApi: CarmeetsApi
 
     /**
+     * Bool of optie voor items uit lokale room database weer te geven al dan niet zichtbaar is
+     */
+    val isShowRoomItemsVisible = MutableLiveData<Boolean>()
+
+    /**
      * De lijst van alle meetings zoals die uit de lokale room database is gehaald.
      */
     val roomMeetingList: LiveData<List<Meeting>>
@@ -84,6 +89,8 @@ class MeetingViewModel : InjectedViewModel() {
 
         isLocalRoomDatabaseUsedAsSource.value = false
 
+        isShowRoomItemsVisible.value = false
+
         //alle meetings van de server halen
         getAllMeetingsSubscription = carmeetsApi.getAllMeetings()
             //we tell it to fetch the data on background by
@@ -94,7 +101,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
                 { result -> onRetrieveMeetingsSuccess(result) },
-                { error -> onRetrieveError(error) }
+                { error -> onRetrieveError(error, true) }
             )
     }
 
@@ -112,7 +119,7 @@ class MeetingViewModel : InjectedViewModel() {
     /**
      * Haalt de meetings opnieuw op van de server en stelt de lijst opnieuw gelijk
      */
-    private fun refreshMeetingList() {
+    fun refreshMeetingList() {
         //alle meetings van de server halen
         getAllMeetingsSubscription = carmeetsApi.getAllMeetings()
             //we tell it to fetch the data on background by
@@ -123,7 +130,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
                 { result -> onRetrieveMeetingsRefreshSuccess(result) },
-                { error -> onRetrieveError(error) }
+                { error -> onRetrieveError(error, true) }
             )
     }
 
@@ -191,8 +198,13 @@ class MeetingViewModel : InjectedViewModel() {
 
     /**
      * Functie voor het behandelen van het mislukken van het ophalen van data van de server
+     *
+     * @param error : de verkregeen error. Required of type [Throwable].
+     *
+     * @param showCachedOptionOnFail : of bij het falen de optie voor het ophalen van de cached meetings
+     * aan de gebruiker moet worden voorgesteld
      */
-    private fun onRetrieveError(error: Throwable) {
+    private fun onRetrieveError(error: Throwable, showCachedOptionOnFail: Boolean = false) {
         //error is een http error
         if (error is HttpException) {
             //error body
@@ -214,11 +226,13 @@ class MeetingViewModel : InjectedViewModel() {
 
             }
             //geen server error code -> toon universele http error code
+            isShowRoomItemsVisible.value = showCachedOptionOnFail
             MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_httpRequest_crashed))
             return
 
         } else {
             //geen http error code -> toon universele error code
+            isShowRoomItemsVisible.value = showCachedOptionOnFail
             MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
             return
         }
@@ -231,6 +245,7 @@ class MeetingViewModel : InjectedViewModel() {
      */
     private fun onRetrieveMeetingsSuccess(result: List<Meeting>) {
         meetingList.value = result
+        isShowRoomItemsVisible.value = false
         doAsync { meetingRepository.insert(result) }
     }
 
