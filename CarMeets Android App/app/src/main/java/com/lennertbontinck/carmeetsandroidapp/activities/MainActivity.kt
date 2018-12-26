@@ -228,6 +228,21 @@ class MainActivity : AppCompatActivity() {
         accountViewModel.isLoggedIn.observe(this, Observer {
             updateNotificationAmount()
         })
+
+        //indien de room items ingeladen zijn en er is voor gekozen de lokale room items te gebruiken als bron
+        //stel deze dan in als bron!
+        meetingViewModel.roomMeetingList.observe(this, Observer {
+            if (meetingViewModel.roomMeetingList.value != null && meetingViewModel.isLocalRoomDatabaseUsedAsSource.value!!){
+                meetingViewModel.meetingList.value = meetingViewModel.roomMeetingList.value
+            }
+        })
+
+        //indien gekozen voor room als meeting items kijken of de lijst niet null is en ze toekennen
+        meetingViewModel.isLocalRoomDatabaseUsedAsSource.observe(this, Observer {
+            if (meetingViewModel.roomMeetingList.value != null && meetingViewModel.isLocalRoomDatabaseUsedAsSource.value!!){
+                meetingViewModel.meetingList.value = meetingViewModel.roomMeetingList.value
+            }
+        })
     }
 
     /**
@@ -262,6 +277,10 @@ class MainActivity : AppCompatActivity() {
         meetingViewModel.meetingList.removeObservers(this)
 
         accountViewModel.isLoggedIn.removeObservers(this)
+
+        meetingViewModel.roomMeetingList.removeObservers(this)
+
+        meetingViewModel.isLocalRoomDatabaseUsedAsSource.removeObservers(this)
     }
 
     override fun onStart() {

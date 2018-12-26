@@ -43,7 +43,10 @@ buildscript {
             'databinding'    : "3.1.4",
 
             //room voor lokale persistentie
-            'room'          : "1.1.1"
+            'room'          : "1.1.1",
+
+            //anko voor eenvoudige async taken
+            'anko'          : "0.9"
     ]
     repositories {
         google()
