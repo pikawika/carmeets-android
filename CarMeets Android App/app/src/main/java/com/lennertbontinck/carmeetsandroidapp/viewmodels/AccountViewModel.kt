@@ -44,6 +44,11 @@ class AccountViewModel : InjectedViewModel() {
     val isLoggedIn = MutableLiveData<Boolean>()
 
     /**
+     * Bool of loading fragment al dan niet zichtbaar is.
+     */
+    val isLoadingPageVisible = MutableLiveData<Boolean>()
+
+    /**
      * De subscription voor het login verzoek
      */
     private lateinit var loginSubscription: Disposable
@@ -70,6 +75,7 @@ class AccountViewModel : InjectedViewModel() {
 
     init {
         isLoggedIn.value = PreferenceUtil.getToken() != ""
+        isLoadingPageVisible.value = false
         tokenContentToViewModel()
     }
 
@@ -187,16 +193,14 @@ class AccountViewModel : InjectedViewModel() {
      * Functie voor het behandelen van het starten van een rest api call
      */
     private fun onRetrieveStart() {
-        //hier begint api call
-        //nog een soort loading voozien
+        isLoadingPageVisible.value = true
     }
 
     /**
      * Functie voor het behandelen van het eindigen van een rest api call
      */
     private fun onRetrieveFinish() {
-        //hier eindigt api call
-        //de loading hier nog stoppen
+        isLoadingPageVisible.value = false
     }
 
     /**

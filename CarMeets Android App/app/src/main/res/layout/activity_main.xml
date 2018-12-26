@@ -11,6 +11,11 @@
         <variable
                 name="meetingViewModel"
                 type="com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel"/>
+
+        <variable
+                name="accountViewModel"
+                type="com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel"/>
+
     </data>
 
 
@@ -36,7 +41,7 @@
                 app:titleTextAppearance="@style/ToolbarTheme.ToolbarTextAppearance.Title"
                 app:subtitleTextAppearance="@style/ToolbarTheme.ToolbarTextAppearance.Subtitle"
 
-                android:visibility='@{!safeUnbox(meetingViewModel.isShowRoomItemsVisible)}'
+                android:visibility='@{!safeUnbox(meetingViewModel.isErrorPageWithRoomOptionVisible)}'
                 tools:visibility="visible"
 
                 app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
+                android:visibility='@{!(safeUnbox(meetingViewModel.isErrorPageWithRoomOptionVisible) || safeUnbox(meetingViewModel.isLoadingPageVisible) || safeUnbox(accountViewModel.isLoadingPageVisible))}'
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/menu_main_toolbar"
@@ -66,7 +73,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
-                android:visibility='@{!safeUnbox(meetingViewModel.isShowRoomItemsVisible)}'
+                android:visibility='@{!safeUnbox(meetingViewModel.isErrorPageWithRoomOptionVisible)}'
                 tools:visibility="visible"
 
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -80,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
-                app:isVisible='@{safeUnbox(meetingViewModel.isShowRoomItemsVisible)}'
+                app:isVisible='@{safeUnbox(meetingViewModel.isErrorPageWithRoomOptionVisible) || safeUnbox(accountViewModel.isLoadingPageVisible)}'
                 tools:visibility="gone"
 
                 app:layout_constraintStart_toStartOf="parent"
@@ -93,13 +100,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
-                android:visibility="gone"
+                app:isVisible='@{safeUnbox(meetingViewModel.isLoadingPageVisible)}'
                 tools:visibility="gone"
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/menu_main_toolbar"
+                app:layout_constraintBottom_toTopOf="@id/menu_main_bottomnavigation"
+        />
 
 
     </android.support.constraint.ConstraintLayout>

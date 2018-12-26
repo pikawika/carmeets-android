@@ -46,9 +46,14 @@ class MeetingViewModel : InjectedViewModel() {
     lateinit var carmeetsApi: CarmeetsApi
 
     /**
-     * Bool of optie voor items uit lokale room database weer te geven al dan niet zichtbaar is
+     * Bool of error fragment met optie voor het tonen van lokale items al dan niet zichtbaar is.
      */
-    val isShowRoomItemsVisible = MutableLiveData<Boolean>()
+    val isErrorPageWithRoomOptionVisible = MutableLiveData<Boolean>()
+
+    /**
+     * Bool of loading fragment al dan niet zichtbaar is.
+     */
+    val isLoadingPageVisible = MutableLiveData<Boolean>()
 
     /**
      * De lijst van alle meetings zoals die uit de lokale room database is gehaald.
@@ -89,7 +94,9 @@ class MeetingViewModel : InjectedViewModel() {
 
         isLocalRoomDatabaseUsedAsSource.value = false
 
-        isShowRoomItemsVisible.value = false
+        isErrorPageWithRoomOptionVisible.value = false
+
+        isLoadingPageVisible.value = false
 
         //alle meetings van de server halen
         getAllMeetingsSubscription = carmeetsApi.getAllMeetings()
@@ -184,16 +191,14 @@ class MeetingViewModel : InjectedViewModel() {
      * Functie voor het behandelen van het starten van een rest api call.
      */
     private fun onRetrieveStart() {
-        //hier begint api call
-        //nog een soort loading voozien
+        isLoadingPageVisible.value = true
     }
 
     /**
      * Functie voor het behandelen van het eindigen van een rest api call.
      */
     private fun onRetrieveFinish() {
-        //hier eindigt api call
-        //de loading hier nog stoppen
+        isLoadingPageVisible.value = false
     }
 
     /**
@@ -226,13 +231,13 @@ class MeetingViewModel : InjectedViewModel() {
 
             }
             //geen server error code -> toon universele http error code
-            isShowRoomItemsVisible.value = showCachedOptionOnFail
+            isErrorPageWithRoomOptionVisible.value = showCachedOptionOnFail
             MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_httpRequest_crashed))
             return
 
         } else {
             //geen http error code -> toon universele error code
-            isShowRoomItemsVisible.value = showCachedOptionOnFail
+            isErrorPageWithRoomOptionVisible.value = showCachedOptionOnFail
             MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
             return
         }
@@ -245,7 +250,7 @@ class MeetingViewModel : InjectedViewModel() {
      */
     private fun onRetrieveMeetingsSuccess(result: List<Meeting>) {
         meetingList.value = result
-        isShowRoomItemsVisible.value = false
+        isErrorPageWithRoomOptionVisible.value = false
         doAsync { meetingRepository.insert(result) }
     }
 

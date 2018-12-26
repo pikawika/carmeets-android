@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.guiViewModel = guiViewModel
         binding.meetingViewModel = meetingViewModel
+        binding.accountViewModel = accountViewModel
         binding.setLifecycleOwner(this)
 
         //supportbar instellen zodat hij menu_toolbar gebruikt
@@ -208,12 +209,12 @@ class MainActivity : AppCompatActivity() {
 
         btn_partial_error_with_show_cache_show_cache.setOnClickListener {
             meetingViewModel.isLocalRoomDatabaseUsedAsSource.value = true
-            meetingViewModel.isShowRoomItemsVisible.value = false
+            meetingViewModel.isErrorPageWithRoomOptionVisible.value = false
         }
 
         btn_partial_error_with_show_cache_try_again.setOnClickListener {
             meetingViewModel.refreshMeetingList()
-            meetingViewModel.isShowRoomItemsVisible.value = false
+            meetingViewModel.isErrorPageWithRoomOptionVisible.value = false
         }
 
         guiViewModel.isListDesignOptionsVisible.observe(this, Observer {
