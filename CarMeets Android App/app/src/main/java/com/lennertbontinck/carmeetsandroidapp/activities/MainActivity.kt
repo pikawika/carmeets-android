@@ -103,24 +103,19 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         //het item dat gelklikt is uit de menu_toolbar
         //dit id moet in theorie altijd ingevuld zijn want enkel dan weet je wat aangeduid en kan je bijhorende actie uitvoeren
-        when (item?.itemId) {
-            R.id.nav_search -> {
-                MessageUtil.showToast("Er is op zoeken geklikt")
-                return super.onOptionsItemSelected(item)
-            }
-
+        return when (item?.itemId) {
             R.id.ab_options_big -> {
                 guiViewModel.listDesign.value = ListDesignEnum.BIG
-                return super.onOptionsItemSelected(item)
+                super.onOptionsItemSelected(item)
             }
 
             R.id.ab_options_small -> {
                 guiViewModel.listDesign.value = ListDesignEnum.SMALL
-                return super.onOptionsItemSelected(item)
+                super.onOptionsItemSelected(item)
             }
 
             //default
-            else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -250,14 +245,14 @@ class MainActivity : AppCompatActivity() {
         //indien de room items ingeladen zijn en er is voor gekozen de lokale room items te gebruiken als bron
         //stel deze dan in als bron!
         meetingViewModel.roomMeetingList.observe(this, Observer {
-            if (meetingViewModel.roomMeetingList.value != null && meetingViewModel.isLocalRoomDatabaseUsedAsSource.value!!){
+            if (meetingViewModel.roomMeetingList.value != null && meetingViewModel.isLocalRoomDatabaseUsedAsSource.value!!) {
                 meetingViewModel.meetingList.value = meetingViewModel.roomMeetingList.value
             }
         })
 
         //indien gekozen voor room als meeting items kijken of de lijst niet null is en ze toekennen
         meetingViewModel.isLocalRoomDatabaseUsedAsSource.observe(this, Observer {
-            if (meetingViewModel.roomMeetingList.value != null && meetingViewModel.isLocalRoomDatabaseUsedAsSource.value!!){
+            if (meetingViewModel.roomMeetingList.value != null && meetingViewModel.isLocalRoomDatabaseUsedAsSource.value!!) {
                 meetingViewModel.meetingList.value = meetingViewModel.roomMeetingList.value
             }
         })

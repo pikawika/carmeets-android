@@ -78,5 +78,7 @@ class GuiViewModel : ViewModel() {
         isBackButtonVisible.value = false
         //initieel zijn de opties voor lijst design niet zichtbaar
         isListDesignOptionsVisible.value = false
+        //initieel is geen fragment zichtbaar dat er een lege lijst is
+        isEmptyListVisible.value = false
     }
 }
