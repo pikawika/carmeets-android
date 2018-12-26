@@ -29,6 +29,11 @@ class ManageAccountFragment : Fragment() {
      */
     private lateinit var guiViewModel: GuiViewModel
 
+    /**
+     * De container waarin de submenu's moeten komen.
+     */
+    var containerForSubMenu = R.id.frame_main_fragmentcontainer
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_manage_account, container, false)
 
@@ -43,10 +48,13 @@ class ManageAccountFragment : Fragment() {
      * Functie voor het instantiëren van de listeners.
      */
     private fun initListeners() {
+        if (guiViewModel.isTwoPaneEnvironment.value!!)
+            containerForSubMenu = R.id.frame_account_two_pane_container
+
         //wijzig wachtwoord
         btn_manage_account_change_password.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.frame_main_fragmentcontainer, ChangePasswordFragment())
+                .replace(containerForSubMenu, ChangePasswordFragment())
                 .addToBackStack(FRAGTAG_CHANGE_PASSWORD)
                 .commit()
         }
@@ -99,8 +107,9 @@ class ManageAccountFragment : Fragment() {
         initListeners()
         guiViewModel.actionBarTitle.value = getString(R.string.txt_manage_account)
         guiViewModel.actionBarSubTitle.value = getString(R.string.ab_account_subtitle)
-        guiViewModel.isBackButtonVisible.value = true
         guiViewModel.activeMenuItem.value = MenuItemEnum.ACCOUNT
+        if (!guiViewModel.isTwoPaneEnvironment.value!!)
+            guiViewModel.isBackButtonVisible.value = true
     }
 
     override fun onStop() {

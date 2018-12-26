@@ -18,6 +18,7 @@ import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import kotlinx.android.synthetic.main.fragment_account.*
+import kotlinx.android.synthetic.main.fragment_account.view.*
 
 /**
  * Een [Fragment] die de accountpagina van een aangemelde gebruiker laat zien.
@@ -39,6 +40,11 @@ class AccountFragment : Fragment() {
      */
     private lateinit var binding: FragmentAccountBinding
 
+    /**
+     * De container waarin de submenu's moeten komen.
+     */
+    var containerForSubMenu = R.id.frame_main_fragmentcontainer
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account, container, false)
 
@@ -51,6 +57,17 @@ class AccountFragment : Fragment() {
         binding.accountViewModel = accountViewModel
         binding.setLifecycleOwner(activity)
 
+        if (fragment.frame_account_two_pane_container != null) {
+            guiViewModel.isTwoPaneEnvironment.value = true
+            containerForSubMenu = R.id.frame_account_two_pane_container
+            requireActivity().supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.frame_account_two_pane_container, LogoFragment())
+                .commit()
+        } else {
+            guiViewModel.isTwoPaneEnvironment.value = false
+        }
+
         return fragment
     }
 
@@ -61,7 +78,7 @@ class AccountFragment : Fragment() {
         // account beheren
         btn_account_manage_account.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.frame_main_fragmentcontainer, ManageAccountFragment())
+                .replace(containerForSubMenu, ManageAccountFragment())
                 .addToBackStack(FRAGTAG_MANAGE_ACCOUNT)
                 .commit()
         }
@@ -69,7 +86,7 @@ class AccountFragment : Fragment() {
         // voorkeuren
         btn_account_preferences.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.frame_main_fragmentcontainer, PreferencesFragment())
+                .replace(containerForSubMenu, PreferencesFragment())
                 .addToBackStack(FRAGTAG_PREFERENCES)
                 .commit()
         }

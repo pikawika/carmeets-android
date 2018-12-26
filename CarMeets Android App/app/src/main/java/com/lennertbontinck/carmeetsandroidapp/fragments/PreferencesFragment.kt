@@ -126,8 +126,9 @@ class PreferencesFragment : Fragment() {
         initListeners()
         guiViewModel.actionBarTitle.value = getString(R.string.txt_preferences)
         guiViewModel.actionBarSubTitle.value = getString(R.string.ab_account_subtitle)
-        guiViewModel.isBackButtonVisible.value = true
         guiViewModel.activeMenuItem.value = MenuItemEnum.ACCOUNT
+        if (!guiViewModel.isTwoPaneEnvironment.value!!)
+            guiViewModel.isBackButtonVisible.value = true
     }
 
     override fun onStop() {
