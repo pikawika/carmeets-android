@@ -69,3 +69,7 @@ Buiten het in de les ter beschikking gestelde boek heb volgende bronnen geraadpl
 > - [Functies meegeven als parameter](https://antonioleiva.com/function-references-kotlin/)
 > - [Auth interceptor op uitgaande requests](https://github.com/MarcinMoskala/SimpleKotlinMvpBoilerplate/blob/master/app/src/main/java/com/marcinmoskala/simplekotlinmvpboilerplate/repositories/providers/Retrofit.kt)
 > - [Doc over Kotlin Enums](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)
+> - [Moshi Parameterized Type voor list van strings](https://github.com/square/moshi/issues/78)
+> - [Tint programmatie gewijs instellen](https://stackoverflow.com/questions/20121938/how-to-set-tint-for-an-image-view-programmatically-in-android/45571812#45571812)
+> - [Includen van layout](https://developer.android.com/training/improving-layouts/reusing-layouts)
+> - [Data meegeven aan layout include](https://stackoverflow.com/questions/45205003/data-binding-error-trying-to-pass-viewmodel-into-include-layout-with-abstract-va)
