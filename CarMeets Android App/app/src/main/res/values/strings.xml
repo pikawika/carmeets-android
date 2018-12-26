@@ -107,6 +107,11 @@
     <!-- Fragment_change_password -->
     <string name="btn_change_password">Wijzig wachtwoord</string>
 
+    <!-- partial_error_with_show_cached -->
+    <string name="btn_partial_error_with_show_cache_show_cache">Toon offline meetings</string>
+    <string name="btn_partial_error_with_show_cache_try_again">Probeer opnieuw</string>
+    <string name="btn_partial_error_with_show_cache_error_message">Er liep iets mis bij het communiceren met de server.</string>
+
     <!-- carmeets -->
     <string name="txt_about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik
         weer een kwaliteitsmeeting gemist had omdat ik niet wist wanneer deze plaatsvond. Daarom besloot ik, Lennert

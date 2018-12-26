@@ -79,6 +79,14 @@ dependencies {
     // RxJava
     implementation "io.reactivex.rxjava2:rxjava:$versions.rx"
     implementation "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+
+    // Room lokale persistentie
+    implementation "android.arch.persistence.room:runtime:$versions.room"
+    kapt "android.arch.persistence.room:compiler:$versions.room"
+    androidTestImplementation "android.arch.persistence.room:testing:$versions.room"
+
+    // Anko voor eenvoudige async taken
+    implementation "org.jetbrains.anko:anko-common:$versions.anko"
 }
 
 

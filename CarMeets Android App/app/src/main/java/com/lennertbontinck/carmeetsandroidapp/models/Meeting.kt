@@ -1,5 +1,7 @@
 package com.lennertbontinck.carmeetsandroidapp.models
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import android.os.Parcelable
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
@@ -8,8 +10,12 @@ import java.util.*
 /**
  * Een Data [Class] die de informatie van een meeting bevat.
  */
+//tabel naam voor in de room database
+@Entity(tableName = "meeting_table")
 @Parcelize
 data class Meeting(
+    //primaire sleutel anotatie nodig voor room lokale databank
+    @PrimaryKey
     @field:Json(name = "_id") val meetingId: String,
     @field:Json(name = "name") val title: String,
     @field:Json(name = "shortDescription") val subtitle: String,
