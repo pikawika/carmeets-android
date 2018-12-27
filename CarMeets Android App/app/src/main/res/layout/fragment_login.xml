@@ -82,7 +82,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
 
-                    android:hint="@string/placeholder_username"
+                    android:hint="@string/placeholder_username_or_email"
                     android:inputType="text"
 
                     app:layout_constraintTop_toTopOf="parent"

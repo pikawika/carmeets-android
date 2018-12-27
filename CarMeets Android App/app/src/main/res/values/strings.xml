@@ -49,6 +49,7 @@
 
     <!-- shared alt -->
     <string name="placeholder_username">Gebruikersnaam</string>
+    <string name="placeholder_username_or_email">Gebruikersnaam of e-mailadres</string>
     <string name="placeholder_password">Wachtwoord</string>
     <string name="placeholder_new_password">Nieuw wachtwoord</string>
     <string name="placeholder_confirm_password">Bevestig wachtwoord</string>
