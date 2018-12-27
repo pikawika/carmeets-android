@@ -60,11 +60,11 @@ class LoginFragment : Fragment() {
             }
         })
 
-        btn_login_confirm.setOnClickListener {
+        button_login_confirm.setOnClickListener {
             login()
         }
 
-        btn_login_register.setOnClickListener {
+        button_login_register.setOnClickListener {
             goToRegister()
         }
     }
@@ -74,9 +74,9 @@ class LoginFragment : Fragment() {
      */
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
-        btn_login_confirm.setOnClickListener { null }
+        button_login_confirm.setOnClickListener { null }
 
-        btn_login_register.setOnClickListener { null }
+        button_login_register.setOnClickListener { null }
 
         accountViewModel.isLoggedIn.removeObservers(this)
     }
