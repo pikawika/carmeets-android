@@ -12,6 +12,7 @@ import com.lennertbontinck.carmeetsandroidapp.networks.requests.ToggleGoingReque
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.ToggleLikedRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
 import com.lennertbontinck.carmeetsandroidapp.roomdatabase.MeetingRepository
+import com.lennertbontinck.carmeetsandroidapp.utils.AdapterUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.TokenUtil
 import com.squareup.moshi.Moshi
@@ -300,21 +301,7 @@ class MeetingViewModel : InjectedViewModel() {
     fun setSelectedMeeting(meetingId: String) {
         val selectedMeeting = meetingList.value!!.firstOrNull { it.meetingId == meetingId }
         if (selectedMeeting != null) {
-            this.selectedMeeting.value = MeetingWithUserInfo(
-                meetingId = selectedMeeting.meetingId,
-                categories = selectedMeeting.categories,
-                date = selectedMeeting.date,
-                description = selectedMeeting.description,
-                imageName = selectedMeeting.imageName,
-                listUsersGoing = selectedMeeting.listUsersGoing,
-                listUsersLiked = selectedMeeting.listUsersLiked,
-                location = selectedMeeting.location,
-                subtitle = selectedMeeting.subtitle,
-                title = selectedMeeting.title,
-                website = selectedMeeting.website,
-                isUserGoing = (selectedMeeting.listUsersGoing.contains(getUserId())),
-                isUserLiked = (selectedMeeting.listUsersLiked.contains(getUserId()))
-            )
+            this.selectedMeeting.value = AdapterUtil.meetingToMeetingWithUserInfo(selectedMeeting, getUserId())
         }
     }
 
@@ -323,21 +310,7 @@ class MeetingViewModel : InjectedViewModel() {
             val selectedMeeting =
                 meetingList.value!!.firstOrNull { it.meetingId == this.selectedMeeting.value!!.meetingId }
             if (selectedMeeting != null) {
-                this.selectedMeeting.value = MeetingWithUserInfo(
-                    meetingId = selectedMeeting.meetingId,
-                    categories = selectedMeeting.categories,
-                    date = selectedMeeting.date,
-                    description = selectedMeeting.description,
-                    imageName = selectedMeeting.imageName,
-                    listUsersGoing = selectedMeeting.listUsersGoing,
-                    listUsersLiked = selectedMeeting.listUsersLiked,
-                    location = selectedMeeting.location,
-                    subtitle = selectedMeeting.subtitle,
-                    title = selectedMeeting.title,
-                    website = selectedMeeting.website,
-                    isUserGoing = (selectedMeeting.listUsersGoing.contains(getUserId())),
-                    isUserLiked = (selectedMeeting.listUsersLiked.contains(getUserId()))
-                )
+                this.selectedMeeting.value = AdapterUtil.meetingToMeetingWithUserInfo(selectedMeeting, getUserId())
             }
         }
     }
