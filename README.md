@@ -73,3 +73,4 @@ Buiten het in de les ter beschikking gestelde boek heb volgende bronnen geraadpl
 > - [Tint programmatie gewijs instellen](https://stackoverflow.com/questions/20121938/how-to-set-tint-for-an-image-view-programmatically-in-android/45571812#45571812)
 > - [Includen van layout](https://developer.android.com/training/improving-layouts/reusing-layouts)
 > - [Data meegeven aan layout include](https://stackoverflow.com/questions/45205003/data-binding-error-trying-to-pass-viewmodel-into-include-layout-with-abstract-va)
+> - [Open source animations](https://forum.xda-developers.com/showthread.php?t=2331728)
