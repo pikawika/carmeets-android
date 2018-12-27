@@ -1,8 +1,8 @@
 # Welkom bij CarMeets Android App!
 
-Dit is de GitHub repository voor de Android App van CarMeets. U kan hier steeds alle broncode raadplegen en clonen. Ik heb gebruik gemaakt van Trello boards als todo lijstjes, ook deze kan u hier raadplegen
+Dit is de GitHub repository voor de Android App van CarMeets. U kan hier steeds alle broncode raadplegen en clonen. Ik heb gebruik gemaakt van Trello boards als todo lijstjes. 
 
-IMPORTANT: De backend is gratis gehost op heroku, hierdoor kunnen er af en toe langere wachtijden zijn. Voornamelijk bij het initieel laden kan het even duren tegen de server opgestart is. Dit is omdat de heroku server na enige minuten inactiviteit in slaapstand gaat. 
+IMPORTANT: De backend is gratis gehost op heroku, hierdoor kunnen er af en toe langere wachtijden zijn. Voornamelijk bij het initieel laden kan het even duren tegen de server opgestart is. Dit is omdat de heroku server na enige minuten inactiviteit in slaapstand gaat. Gelukkig is eer een toffe loading animatie ingebouwd om het wachten minder saai te maken :)!
 
 ## Inhoudsopgave
 
@@ -24,9 +24,13 @@ Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik weer
 
 ## Documentatie in de code
 
-Er zijn in de code inline comments voorzien met uitleg wat bepaalde regels code juist doen en waarom ze nodig zijn. Overigens is voor de utils en tal van andere functies documentation voorzien zodanig dat deze uitleg over de functie en de parameters verschijnt bij het aanroepen van de functies.
+Er zijn in de code inline comments voorzien met uitleg wat bepaalde regels code juist doen en waarom ze nodig zijn. 
+
+Er is ook steeds KDoc voorzien bij de zelfgeschreven functies om toe te lichten wat ze doen en welke parameters verwacht worden.
 
 ## Documentatie en APKs per Feature
+
+Er is per afgewerkte feature een APK voorzien om eenvoudig te kunnen kijken hoe de app toen was. Ook is per feature documentatie voorzien om beknopt te beschrijven wat in die feature gerealiseerd is.
 
 > 1. Feature 1: Layout van de toolbar, bottom navigation, meetinglijst en detail pagina. Basic werking met dummy data en poc op onclicks.
 >     - [Meer info over Feature 1](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
@@ -46,9 +50,12 @@ Er zijn in de code inline comments voorzien met uitleg wat bepaalde regels code 
 > 6. Feature 6 - Like en going, favorietenlijste, aantal in volgende week en responsive design fixes
 >     - [Meer info over Feature 6](Documentatie%20per%20feature/feature6-like_and_going-response_fixes.md)
 >     - [APK](apks/carmeets-feature6.apk)
-> 6. Feature 7 - Lokale persistentie met room en eenvoudigere databinding
+> 7. Feature 7 - Lokale persistentie met room en eenvoudigere databinding
 >     - [Meer info over Feature 7](Documentatie%20per%20feature/feature7-room-lokale_persistentie.md)
 >     - [APK](apks/carmeets-feature7.apk)
+> 8. Feature 8 - GUI optimalisaties
+>     - [Meer info over Feature 8](Documentatie%20per%20feature/feature8-GUI_optimalisaties.md)
+>     - [APK](apks/carmeets-feature8.apk)
 
 ## GitHub Repository van de backend
 Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaakt met de MEAN-stack zal ik de bestaande backend hergebruik en aanvullen waar nodig.
@@ -73,4 +80,4 @@ Buiten het in de les ter beschikking gestelde boek heb volgende bronnen geraadpl
 > - [Tint programmatie gewijs instellen](https://stackoverflow.com/questions/20121938/how-to-set-tint-for-an-image-view-programmatically-in-android/45571812#45571812)
 > - [Includen van layout](https://developer.android.com/training/improving-layouts/reusing-layouts)
 > - [Data meegeven aan layout include](https://stackoverflow.com/questions/45205003/data-binding-error-trying-to-pass-viewmodel-into-include-layout-with-abstract-va)
-> - [Open source animations](https://forum.xda-developers.com/showthread.php?t=2331728)
+> - [Enkele open source animaties](https://forum.xda-developers.com/showthread.php?t=2331728)
