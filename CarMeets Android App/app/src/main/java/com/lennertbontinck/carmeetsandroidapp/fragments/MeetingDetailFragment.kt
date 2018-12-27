@@ -12,13 +12,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
-import com.lennertbontinck.carmeetsandroidapp.databinding.FragmentMeetingDetailBinding
+import com.lennertbontinck.carmeetsandroidapp.databinding.FragmentMeetingDetailsBinding
 import com.lennertbontinck.carmeetsandroidapp.utils.LocationUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
-import kotlinx.android.synthetic.main.fragment_meeting_detail.*
+import kotlinx.android.synthetic.main.fragment_meeting_details.*
 import java.net.URLEncoder
 
 
@@ -43,12 +43,12 @@ class MeetingDetailFragment : Fragment() {
     private lateinit var accountViewModel: AccountViewModel
 
     /**
-     * De [FragmentMeetingDetailBinding] dat we gebruiken voor de effeciteve databinding
+     * De [FragmentMeetingDetailsBinding] dat we gebruiken voor de effeciteve databinding
      */
-    private lateinit var binding: FragmentMeetingDetailBinding
+    private lateinit var binding: FragmentMeetingDetailsBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_meeting_detail, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_meeting_details, container, false)
 
         //viewmodels vullen
         meetingViewModel = ViewModelProviders.of(requireActivity()).get(MeetingViewModel::class.java)
@@ -128,11 +128,11 @@ class MeetingDetailFragment : Fragment() {
      * Functie voor het instantiëren van de listeners.
      */
     private fun initListeners() {
-        button_meeting_detail_agenda.setOnClickListener {
+        button_meeting_details_agenda.setOnClickListener {
             addToCalander()
         }
 
-        image_meeting_detail_like.setOnClickListener {
+        image_meeting_details_like.setOnClickListener {
             if (!accountViewModel.isLoggedIn.value!!) {
                 MessageUtil.showDialogLoginRequired(requireActivity() as MainActivity)
             } else {
@@ -140,7 +140,7 @@ class MeetingDetailFragment : Fragment() {
             }
         }
 
-        image_meeting_detail_going.setOnClickListener {
+        image_meeting_details_going.setOnClickListener {
             if (!accountViewModel.isLoggedIn.value!!) {
                 MessageUtil.showDialogLoginRequired(requireActivity() as MainActivity)
             } else {
@@ -148,11 +148,11 @@ class MeetingDetailFragment : Fragment() {
             }
         }
 
-        button_meeting_detail_route.setOnClickListener {
+        button_meeting_details_route.setOnClickListener {
             getDirections()
         }
 
-        button_meeting_detail_website.setOnClickListener {
+        button_meeting_details_website.setOnClickListener {
             goToWebsite()
         }
     }
@@ -162,15 +162,15 @@ class MeetingDetailFragment : Fragment() {
      */
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
-        button_meeting_detail_agenda.setOnClickListener { null }
+        button_meeting_details_agenda.setOnClickListener { null }
 
-        image_meeting_detail_like.setOnClickListener { null }
+        image_meeting_details_like.setOnClickListener { null }
 
-        image_meeting_detail_going.setOnClickListener { null }
+        image_meeting_details_going.setOnClickListener { null }
 
-        button_meeting_detail_route.setOnClickListener { null }
+        button_meeting_details_route.setOnClickListener { null }
 
-        button_meeting_detail_website.setOnClickListener { null }
+        button_meeting_details_website.setOnClickListener { null }
     }
 
     override fun onStart() {
