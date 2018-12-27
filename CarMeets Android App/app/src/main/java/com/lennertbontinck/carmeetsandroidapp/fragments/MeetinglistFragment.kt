@@ -13,8 +13,8 @@ import com.lennertbontinck.carmeetsandroidapp.adapters.MeetingAdapter
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
-import kotlinx.android.synthetic.main.fragment_meetinglist.*
-import kotlinx.android.synthetic.main.fragment_meetinglist.view.*
+import kotlinx.android.synthetic.main.fragment_meeting_list.*
+import kotlinx.android.synthetic.main.fragment_meeting_list.view.*
 
 /**
  * Een [Fragment] die alle gelikete en going meetings van een gebruiker laat zien.
@@ -38,7 +38,7 @@ class MeetinglistFragment : Fragment() {
     private lateinit var meetingAdapter: MeetingAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val fragment = inflater.inflate(R.layout.fragment_meetinglist, container, false)
+        val fragment = inflater.inflate(R.layout.fragment_meeting_list, container, false)
 
         //viewmodel vullen
         meetingViewModel = ViewModelProviders.of(requireActivity()).get(MeetingViewModel::class.java)
@@ -47,11 +47,11 @@ class MeetinglistFragment : Fragment() {
         //Bepalen of er al dan niet een detailcontainer is
         //->indien deze er is weet men dat het over een tablet (twoPane) gaat
         //->initieel vullen met ene placeholder logofragment om geen blake pagina te hebbenæ
-        if (fragment.frame_meetinglist_meetingdetailcontainer != null) {
+        if (fragment.frame_meeting_list_meeting_detail_container != null) {
             guiViewModel.isTwoPaneEnvironment.value = true
             requireActivity().supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.frame_meetinglist_meetingdetailcontainer, LogoFragment())
+                .replace(R.id.frame_meeting_list_meeting_detail_container, LogoFragment())
                 .commit()
         } else {
             guiViewModel.isTwoPaneEnvironment.value = false
@@ -61,7 +61,7 @@ class MeetinglistFragment : Fragment() {
         meetingAdapter = MeetingAdapter(requireActivity() as MainActivity)
 
         //recyclerview vullen door adapter toe te kennen
-        fragment.recyclerview_meetinglist.adapter = meetingAdapter
+        fragment.recycler_meeting_list.adapter = meetingAdapter
 
         return fragment
     }
@@ -74,18 +74,18 @@ class MeetinglistFragment : Fragment() {
         meetingViewModel.meetingList.observe(this, Observer {
             meetingAdapter.notifyDataSetChanged()
             guiViewModel.isEmptyListVisible.value = meetingViewModel.meetingList.value!!.isEmpty()
-            swipe_refresh_meetinglist.isRefreshing = false
+            swipe_refresh_meeting_list.isRefreshing = false
         })
 
         //indien lijstDesign veranderd moet de adapter opnieuw zijn cards genereren met nieuwe stijl
         //hier kan je momenteel enkel adapter opnieuw toekennen mits notifyDataSetChanged etc niet
         //opnieuw inflate methode aanroept waar je itemstijl meegeeft
         guiViewModel.listDesign.observe(this, Observer {
-            recyclerview_meetinglist.adapter = meetingAdapter
+            recycler_meeting_list.adapter = meetingAdapter
         })
 
         //swipe to refresh van de lijst
-        swipe_refresh_meetinglist.setOnRefreshListener {
+        swipe_refresh_meeting_list.setOnRefreshListener {
             meetingViewModel.refreshMeetingList(false)
         }
     }
@@ -98,8 +98,8 @@ class MeetinglistFragment : Fragment() {
         meetingViewModel.meetingList.removeObservers(this)
         guiViewModel.listDesign.removeObservers(this)
         //refreshing nog op false zetten voor we listener stoppen
-        swipe_refresh_meetinglist.isRefreshing = false
-        swipe_refresh_meetinglist.setOnRefreshListener { null }
+        swipe_refresh_meeting_list.isRefreshing = false
+        swipe_refresh_meeting_list.setOnRefreshListener { null }
     }
 
     override fun onStart() {

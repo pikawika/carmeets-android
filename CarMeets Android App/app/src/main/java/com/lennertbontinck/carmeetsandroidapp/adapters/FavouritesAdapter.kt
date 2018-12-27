@@ -59,7 +59,7 @@ class FavouritesAdapter(private val parentActivity: AppCompatActivity) :
                         R.anim.push_left_out,
                         R.anim.push_right_in,
                         R.anim.push_right_out)
-                    .replace(R.id.frame_meetinglist_meetingdetailcontainer, MeetingDetailFragment())
+                    .replace(R.id.frame_meeting_list_meeting_detail_container, MeetingDetailFragment())
                     .addToBackStack(FRAGTAG_MEETING_DETAIL)
                     .commit()
             } else {
