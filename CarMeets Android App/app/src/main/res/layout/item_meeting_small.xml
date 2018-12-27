@@ -25,7 +25,7 @@
                 android:id="@+id/guideline_item_meeting_40percent_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
+
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.4"
         />

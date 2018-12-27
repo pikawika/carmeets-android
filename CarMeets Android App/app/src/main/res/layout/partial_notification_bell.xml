@@ -17,11 +17,12 @@
         android:background="@android:color/transparent"
 
         android:orientation="vertical"
-        android:focusable="true">
+        android:focusable="true"
+>
 
     <!-- de bel -->
     <ImageView
-            android:id="@+id/image_partialnotification_bell"
+            android:id="@+id/image_partial_notification_bell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -31,11 +32,12 @@
 
             android:layout_margin="0dp"
             android:contentDescription="@string/ab_notifications"
-            android:focusable="true"/>
+            android:focusable="true"
+    />
 
     <!-- het aantal -->
     <TextView
-            android:id="@+id/text_partialnotification_amount"
+            android:id="@+id/text_partial_notification_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="17sp"
@@ -50,6 +52,7 @@
 
             android:layout_marginStart="18dp"
             android:paddingBottom="5dp"
-            android:focusable="true"/>
+            android:focusable="true"
+    />
 
 </RelativeLayout>

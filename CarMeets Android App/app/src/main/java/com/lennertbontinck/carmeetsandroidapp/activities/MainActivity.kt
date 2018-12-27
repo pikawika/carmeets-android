@@ -94,10 +94,10 @@ class MainActivity : AppCompatActivity() {
         //We kunnen dit niet instantieren bij onstart aangezien de onCreateOptionsMenu nog na de onstart wordt uitgvoerd
         val notifications = menu?.findItem(R.id.nav_notifications)?.actionView
 
-        notifications?.findViewById<ImageView>(R.id.image_partialnotification_bell)
+        notifications?.findViewById<ImageView>(R.id.image_partial_notification_bell)
             ?.setOnClickListener { notificationsClicked() }
 
-        notifications?.findViewById<TextView>(R.id.text_partialnotification_amount)
+        notifications?.findViewById<TextView>(R.id.text_partial_notification_amount)
             ?.setOnClickListener { notificationsClicked() }
 
         return true
@@ -296,17 +296,17 @@ class MainActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        btn_partial_error_with_show_cache_show_cache.setOnClickListener {
+        button_partial_error_with_show_cache_show_cache.setOnClickListener {
             meetingViewModel.isLocalRoomDatabaseUsedAsSource.value = true
             meetingViewModel.isErrorPageWithRoomOptionVisible.value = false
         }
 
-        btn_partial_error_with_show_cache_try_again.setOnClickListener {
+        button_partial_error_with_show_cache_try_again.setOnClickListener {
             meetingViewModel.refreshMeetingList()
             meetingViewModel.isErrorPageWithRoomOptionVisible.value = false
         }
 
-        btn_partial_empty_list_refresh.setOnClickListener {
+        button_partial_empty_list_refresh.setOnClickListener {
             meetingViewModel.refreshMeetingList()
             guiViewModel.isEmptyListVisible.value = false
         }
@@ -358,7 +358,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun updateNotificationAmount() {
         val notificationAmount = menu_main_toolbar.menu.findItem(R.id.nav_notifications)
-            ?.actionView?.findViewById<TextView>(R.id.text_partialnotification_amount)
+            ?.actionView?.findViewById<TextView>(R.id.text_partial_notification_amount)
 
         notificationAmount?.text = meetingViewModel.getLikedGoingAmountNext7Days().toString()
     }
@@ -374,11 +374,11 @@ class MainActivity : AppCompatActivity() {
         //listener wanneer back button uit de menu_toolbar -> zelfde functie als hardware back button
         menu_main_toolbar.setNavigationOnClickListener { null }
 
-        btn_partial_error_with_show_cache_show_cache.setOnClickListener { null }
+        button_partial_error_with_show_cache_show_cache.setOnClickListener { null }
 
-        btn_partial_error_with_show_cache_try_again.setOnClickListener { null }
+        button_partial_error_with_show_cache_try_again.setOnClickListener { null }
 
-        btn_partial_empty_list_refresh.setOnClickListener { null }
+        button_partial_empty_list_refresh.setOnClickListener { null }
 
         guiViewModel.isListDesignOptionsVisible.removeObservers(this)
 
