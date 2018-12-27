@@ -139,7 +139,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart(showIsLoadingFragment) }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { result -> onRetrieveMeetingsRefreshSuccess(result) },
+                { result -> onRetrieveMeetingsSuccess(result) },
                 { error -> onRetrieveError(error, true) }
             )
     }
@@ -156,7 +156,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart() }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { _ -> onRetrieveToggleLikedSuccess() },
+                { _ -> refreshMeetingList() },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -173,7 +173,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart() }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { _ -> onRetrieveToggleGoingSuccess() },
+                { _ -> refreshMeetingList() },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -256,41 +256,14 @@ class MeetingViewModel : InjectedViewModel() {
      * Functie voor het behandelen van het succesvol ophalen van de meetings.
      *
      * Zal de lijst van meetings gelijkstellen met het results.
+     *
+     * @param result : de lijst van meetings die de server returnt. Required of type [List<Meeting>]
      */
     private fun onRetrieveMeetingsSuccess(result: List<Meeting>) {
-        meetingList.value = result
-        isErrorPageWithRoomOptionVisible.value = false
-        doAsync { meetingRepository.insert(result) }
-    }
-
-    /**
-     * Functie voor het behandelen van het succesvol ophalen van de meetings *(bij refresh)*.
-     *
-     * Zal de lijst van meetings gelijkstellen met het results.
-     */
-    private fun onRetrieveMeetingsRefreshSuccess(result: List<Meeting>) {
         meetingList.value = result
         refreshSelectedMeeting()
         isErrorPageWithRoomOptionVisible.value = false
         doAsync { meetingRepository.insert(result) }
-    }
-
-    /**
-     * Functie voor het behandelen van het succesvol wijzigen van een liked status.
-     *
-     *
-     */
-    private fun onRetrieveToggleLikedSuccess() {
-        refreshMeetingList()
-    }
-
-    /**
-     * Functie voor het behandelen van het succesvol wijzigen van een going status.
-     *
-     *
-     */
-    private fun onRetrieveToggleGoingSuccess() {
-        refreshMeetingList()
     }
 
     /**
@@ -305,6 +278,9 @@ class MeetingViewModel : InjectedViewModel() {
         }
     }
 
+    /**
+     * Stelt de selected meeting opnieuw in door de meeting met dezelfde id uit de [meetingList] te halen.
+     */
     private fun refreshSelectedMeeting() {
         if (this.selectedMeeting.value != null) {
             val selectedMeeting =
@@ -315,6 +291,9 @@ class MeetingViewModel : InjectedViewModel() {
         }
     }
 
+    /**
+     * Haalt de gebruikersId uit de token of returnt "-1" zijnde een onmogelijke userId
+     */
     private fun getUserId(): String {
         val tokenContent = TokenUtil.getTokenContent()
 

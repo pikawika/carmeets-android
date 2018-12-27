@@ -11,11 +11,6 @@ const val PREFERENCES_NAME = "CarMeetsPreferences"
 const val PREFERENCE_TOKEN = "CarMeetsToken"
 
 /**
- * De naam waarmee de gebruikersnaam in de shared preferences wordt opgeslagen.
- * */
-const val PREFERENCE_USERNAME = "CarMeetsUserName"
-
-/**
  * De naam waarmee de standaard startpagina in de shared preferences wordt opgeslagen.
  * */
 const val PREFERENCE_DEFAULT_BOOT_PAGE = "CarMeetsDefaultBootPage"

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.adapters.MeetingAdapter
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_LOGO
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.MeetingViewModel
@@ -52,6 +53,7 @@ class MeetinglistFragment : Fragment() {
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.frame_meeting_list_meeting_detail_container, LogoFragment())
+                .addToBackStack(FRAGTAG_LOGO)
                 .commit()
         } else {
             guiViewModel.isTwoPaneEnvironment.value = false

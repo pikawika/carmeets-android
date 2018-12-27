@@ -62,6 +62,9 @@ class MeetingDetailFragment : Fragment() {
         return fragment
     }
 
+    /**
+     * Start een intent om het huidige geselecteerde meeting item toe te voegen aan de kalender.
+     */
     private fun addToCalander() {
         val calenderIntent = Intent(Intent.ACTION_INSERT).apply {
             data = CalendarContract.Events.CONTENT_URI
@@ -83,6 +86,9 @@ class MeetingDetailFragment : Fragment() {
         }
     }
 
+    /**
+     * Start een intent om directies te verkijgen naar de huidige geselecteerde meeting.
+     */
     private fun getDirections() {
         val mapIntent = Intent(Intent.ACTION_VIEW).apply {
             //geen long en lat dus 0,0 maar wel adres
@@ -103,6 +109,9 @@ class MeetingDetailFragment : Fragment() {
         }
     }
 
+    /**
+     * Start een intent om de website van de huidige geselecteerde meeting te openen.
+     */
     private fun goToWebsite() {
         val browserIntent = Intent(Intent.ACTION_VIEW).apply {
             data = Uri.parse(meetingViewModel.selectedMeeting.value!!.website)

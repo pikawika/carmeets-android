@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
 import com.lennertbontinck.carmeetsandroidapp.adapters.FavouritesAdapter
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_LOGO
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
@@ -60,6 +61,7 @@ class FavouritesListFragment : Fragment() {
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.frame_meeting_list_meeting_detail_container, LogoFragment())
+                .addToBackStack(FRAGTAG_LOGO)
                 .commit()
         } else {
             guiViewModel.isTwoPaneEnvironment.value = false

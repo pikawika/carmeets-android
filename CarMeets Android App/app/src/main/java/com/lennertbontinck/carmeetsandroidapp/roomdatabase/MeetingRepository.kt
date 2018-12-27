@@ -1,7 +1,6 @@
 package com.lennertbontinck.carmeetsandroidapp.roomdatabase
 
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
-import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 
 class MeetingRepository(private val meetingDao: MeetingDao) {
     /**

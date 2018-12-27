@@ -4,7 +4,7 @@ import android.text.format.DateFormat
 import java.util.*
 
 /**
- * Een util om je te helpen met het werken met *datums*
+ * Een util om je te helpen met het werken met [Date] objecten.
  */
 object DateUtil {
 

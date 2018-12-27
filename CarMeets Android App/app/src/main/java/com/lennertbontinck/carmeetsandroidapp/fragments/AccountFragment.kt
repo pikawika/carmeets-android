@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_LOGIN
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_LOGO
 import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_MANAGE_ACCOUNT
 import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_PREFERENCES
 import com.lennertbontinck.carmeetsandroidapp.databinding.FragmentAccountBinding
@@ -57,6 +58,7 @@ class AccountFragment : Fragment() {
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.frame_account_two_pane_container, LogoFragment())
+                .addToBackStack(FRAGTAG_LOGO)
                 .commit()
         } else {
             guiViewModel.isTwoPaneEnvironment.value = false
