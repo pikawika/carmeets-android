@@ -5,6 +5,7 @@
     <string name="error_no_calander_app">U heeft geen agenda applicatie geïnstalleerd op uw toestel.</string>
     <string name="error_something_crashed">Er liep iets mis bij het uitvoeren van de gevraagde actie.</string>
     <string name="error_httpRequest_crashed">Er liep iets mis bij het verwerken van uw serververzoek.</string>
+    <string name="error_dns_server_not_avaible">Communicatie met server mislukt. Vermoedelijk heeft u geen internetverbinding.</string>
 
     <!-- warnings -->
     <string name="warning_empty_fields">Gelieve alle velden in te vullen.</string>
@@ -48,6 +49,7 @@
 
     <!-- shared alt -->
     <string name="placeholder_username">Gebruikersnaam</string>
+    <string name="placeholder_username_or_email">Gebruikersnaam of e-mailadres</string>
     <string name="placeholder_password">Wachtwoord</string>
     <string name="placeholder_new_password">Nieuw wachtwoord</string>
     <string name="placeholder_confirm_password">Bevestig wachtwoord</string>
@@ -73,7 +75,6 @@
     <string name="ab_options_list_design_small">Klassieke weergave</string>
     <string name="ab_options_list_design_big">Grotere weegave</string>
 
-    <string name="ab_search">Zoeken</string>
     <string name="ab_notifications">Notificaties</string>
 
     <!-- meeting -->
@@ -84,6 +85,10 @@
     <string name="btn_meeting_agenda">Opslaan in kalender</string>
     <string name="btn_meeting_route">Routebeschrijving</string>
     <string name="btn_meeting_website">Website</string>
+    <string name="txt_meeting_categories">Categorieën</string>
+    <string name="txt_meeting_amount_going">Mensen die gaan</string>
+    <string name="txt_meeting_amount_liked">Mensen dat dit leuk vinden</string>
+
 
     <!-- fragment_login -->
     <string name="txt_login_register">Nog geen account? Registreer hier gratis!</string>
@@ -111,6 +116,15 @@
     <string name="btn_partial_error_with_show_cache_show_cache">Toon offline meetings</string>
     <string name="btn_partial_error_with_show_cache_try_again">Probeer opnieuw</string>
     <string name="btn_partial_error_with_show_cache_error_message">Er liep iets mis bij het communiceren met de server.</string>
+
+    <!-- partial_loading -->
+    <string name="txt_loading">Bezig met laden…</string>
+    <string name="txt_loading_why_it_takes_so_long">Het kan zijn dat dit even duurt. Waarom? CarMeets is een gratis service en maakt gebruik van een gratis Heroku server :). </string>
+
+    <!-- partial_emptry_list -->
+    <string name="txt_empty_list">Lege lijst…</string>
+    <string name="txt_empty_list_long">Deze lijst is momenteel jammergenoeg leeg.</string>
+    <string name="txt_refresh_the_list">Laad de lijst opnieuw in</string>
 
     <!-- carmeets -->
     <string name="txt_about_carmeets">Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik

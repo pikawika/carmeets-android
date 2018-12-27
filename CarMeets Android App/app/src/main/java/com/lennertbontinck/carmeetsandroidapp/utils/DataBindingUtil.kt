@@ -19,13 +19,21 @@ import java.util.*
  */
 object DataBindingUtil {
     /**
-     * Zorgt er voor dat een android;src bij een imageview gevult wordt adhv glide
+     * Zorgt er voor dat een android;src bij een imageview gevult wordt adhv glide indien string meegegeven
+     *
+     * Indien string loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967 is zal de gif voor loading ingesteld worden
+     * Dit is een random GUID dus de kans dat dit overeenkomt met een afbeeldingsurl is zo goed als onbestaande.
      */
     @JvmStatic
     @BindingAdapter("android:src")
-    fun setImageUrl(view: ImageView, url: String?) {
-        if (url != null) {
-            Glide.with(view.context).load(BASE_URL_BACKEND_IMAGES + url).into(view)
+    fun setImageUrlString(view: ImageView, url: String?) {
+        when {
+            url != null && url != "loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967" -> Glide.with(view.context).load(
+                BASE_URL_BACKEND_IMAGES + url
+            ).into(view)
+            url == "loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967" -> Glide.with(view.context).load(R.drawable.loading).into(
+                view
+            )
         }
     }
 
@@ -67,14 +75,65 @@ object DataBindingUtil {
     @JvmStatic
     @BindingAdapter("android:isToggledOn")
     fun setIsToggledOn(view: AppCompatImageView, isToggledOn: Boolean) {
-        if (isToggledOn){
-            ImageViewCompat.setImageTintList(view, ColorStateList.valueOf(
-                ContextCompat.getColor(CarMeetsApplication.getContext(), R.color.colorPrimary)))
+        if (isToggledOn) {
+            ImageViewCompat.setImageTintList(
+                view, ColorStateList.valueOf(
+                    ContextCompat.getColor(CarMeetsApplication.getContext(), R.color.colorPrimary)
+                )
+            )
 
         } else {
-            ImageViewCompat.setImageTintList(view, ColorStateList.valueOf(
-                ContextCompat.getColor(CarMeetsApplication.getContext(), R.color.black)))
+            ImageViewCompat.setImageTintList(
+                view, ColorStateList.valueOf(
+                    ContextCompat.getColor(CarMeetsApplication.getContext(), R.color.black)
+                )
+            )
         }
 
     }
+
+    /**
+     * Zorgt ervoor dat de lijst van categorieën mooi wordt meegegeven
+     */
+    @JvmStatic
+    @BindingAdapter("android:categories")
+    fun setCategories(view: TextView, categories: List<String>?) {
+        var categoriesSting = ""
+        if (categories != null && categories.isNotEmpty()) {
+            categoriesSting = CarMeetsApplication.getContext().getString(R.string.txt_meeting_categories) + ": "
+
+            categories.forEach { categoriesSting += "$it | " }
+
+            categoriesSting = categoriesSting.removeRange(categoriesSting.length - 3, categoriesSting.length - 1)
+        }
+        view.text = categoriesSting
+    }
+
+    /**
+     * Zorgt ervoor dat het aantal mensen dat gaat mooi wordt meegegeven
+     */
+    @JvmStatic
+    @BindingAdapter("android:amountGoing")
+    fun setAmountGoing(view: TextView, amountGoing: List<String>?) {
+        var amountGoingString = ""
+        if (amountGoing != null)
+            amountGoingString = CarMeetsApplication.getContext().getString(R.string.txt_meeting_amount_going) + ": " + amountGoing.count().toString()
+
+        view.text = amountGoingString
+    }
+
+    /**
+     * Zorgt ervoor dat het aantal mensen dat de meeting liked mooi wordt meegegeven
+     */
+    @JvmStatic
+    @BindingAdapter("android:amountLiked")
+    fun setAmountliked(view: TextView, amountLiked: List<String>?) {
+        var amountLikedString = ""
+        if (amountLiked != null)
+            amountLikedString = CarMeetsApplication.getContext().getString(R.string.txt_meeting_amount_liked) + ": " + amountLiked.count().toString()
+
+        view.text = amountLikedString
+    }
+
+
 }

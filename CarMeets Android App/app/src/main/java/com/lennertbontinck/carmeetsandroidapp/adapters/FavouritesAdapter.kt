@@ -55,12 +55,20 @@ class FavouritesAdapter(private val parentActivity: AppCompatActivity) :
             if (guiViewModel.isTwoPaneEnvironment.value!!) {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
+                    .setCustomAnimations(R.anim.push_left_in,
+                        R.anim.push_left_out,
+                        R.anim.push_right_in,
+                        R.anim.push_right_out)
                     .replace(R.id.frame_meetinglist_meetingdetailcontainer, MeetingDetailFragment())
                     .addToBackStack(FRAGTAG_MEETING_DETAIL)
                     .commit()
             } else {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
+                    .setCustomAnimations(R.anim.push_up_in,
+                        R.anim.push_up_out,
+                        R.anim.push_down_in,
+                        R.anim.push_down_out)
                     .replace(R.id.frame_main_fragmentcontainer, MeetingDetailFragment())
                     .addToBackStack(FRAGTAG_MEETING_DETAIL)
                     .commit()

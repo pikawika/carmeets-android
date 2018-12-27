@@ -44,6 +44,11 @@ class AccountViewModel : InjectedViewModel() {
     val isLoggedIn = MutableLiveData<Boolean>()
 
     /**
+     * Bool of loading fragment al dan niet zichtbaar is.
+     */
+    val isLoadingPageVisible = MutableLiveData<Boolean>()
+
+    /**
      * De subscription voor het login verzoek
      */
     private lateinit var loginSubscription: Disposable
@@ -70,6 +75,7 @@ class AccountViewModel : InjectedViewModel() {
 
     init {
         isLoggedIn.value = PreferenceUtil.getToken() != ""
+        isLoadingPageVisible.value = false
         tokenContentToViewModel()
     }
 
@@ -187,16 +193,14 @@ class AccountViewModel : InjectedViewModel() {
      * Functie voor het behandelen van het starten van een rest api call
      */
     private fun onRetrieveStart() {
-        //hier begint api call
-        //nog een soort loading voozien
+        isLoadingPageVisible.value = true
     }
 
     /**
      * Functie voor het behandelen van het eindigen van een rest api call
      */
     private fun onRetrieveFinish() {
-        //hier eindigt api call
-        //de loading hier nog stoppen
+        isLoadingPageVisible.value = false
     }
 
     /**
@@ -230,8 +234,11 @@ class AccountViewModel : InjectedViewModel() {
             return
 
         } else {
-            //geen http error code -> toon universele error code
-            MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
+            //geen http error code en niet door geen internet -> toon universelere error code
+            if (error.cause.toString() == "android.system.GaiException: android_getaddrinfo failed: EAI_NODATA (No address associated with hostname)")
+                MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_dns_server_not_avaible))
+            else
+                MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
             return
         }
     }

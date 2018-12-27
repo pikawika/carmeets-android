@@ -5,13 +5,13 @@ import android.arch.lifecycle.MutableLiveData
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.bases.InjectedViewModel
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
-import com.lennertbontinck.carmeetsandroidapp.roomdatabase.MeetingRepository
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.models.MeetingWithUserInfo
 import com.lennertbontinck.carmeetsandroidapp.networks.CarmeetsApi
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.ToggleGoingRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.ToggleLikedRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
+import com.lennertbontinck.carmeetsandroidapp.roomdatabase.MeetingRepository
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.TokenUtil
 import com.squareup.moshi.Moshi
@@ -46,9 +46,14 @@ class MeetingViewModel : InjectedViewModel() {
     lateinit var carmeetsApi: CarmeetsApi
 
     /**
-     * Bool of optie voor items uit lokale room database weer te geven al dan niet zichtbaar is
+     * Bool of error fragment met optie voor het tonen van lokale items al dan niet zichtbaar is.
      */
-    val isShowRoomItemsVisible = MutableLiveData<Boolean>()
+    val isErrorPageWithRoomOptionVisible = MutableLiveData<Boolean>()
+
+    /**
+     * Bool of loading fragment al dan niet zichtbaar is.
+     */
+    val isLoadingPageVisible = MutableLiveData<Boolean>()
 
     /**
      * De lijst van alle meetings zoals die uit de lokale room database is gehaald.
@@ -89,7 +94,9 @@ class MeetingViewModel : InjectedViewModel() {
 
         isLocalRoomDatabaseUsedAsSource.value = false
 
-        isShowRoomItemsVisible.value = false
+        isErrorPageWithRoomOptionVisible.value = false
+
+        isLoadingPageVisible.value = false
 
         //alle meetings van de server halen
         getAllMeetingsSubscription = carmeetsApi.getAllMeetings()
@@ -118,15 +125,17 @@ class MeetingViewModel : InjectedViewModel() {
 
     /**
      * Haalt de meetings opnieuw op van de server en stelt de lijst opnieuw gelijk
+     *
+     * @param showIsLoadingFragment : of het loading fragment al dan niet getoond dient te worden. Optional of type [Boolean], default true.
      */
-    fun refreshMeetingList() {
+    fun refreshMeetingList(showIsLoadingFragment : Boolean = true) {
         //alle meetings van de server halen
         getAllMeetingsSubscription = carmeetsApi.getAllMeetings()
             //we tell it to fetch the data on background by
             .subscribeOn(Schedulers.io())
             //we like the fetched data to be displayed on the MainTread (UI)
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { onRetrieveStart() }
+            .doOnSubscribe { onRetrieveStart(showIsLoadingFragment) }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
                 { result -> onRetrieveMeetingsRefreshSuccess(result) },
@@ -182,18 +191,18 @@ class MeetingViewModel : InjectedViewModel() {
 
     /**
      * Functie voor het behandelen van het starten van een rest api call.
+     *
+     * @param showIsLoadingFragment : of het loading fragment al dan niet getoond dient te worden. Optional of type [Boolean], default true.
      */
-    private fun onRetrieveStart() {
-        //hier begint api call
-        //nog een soort loading voozien
+    private fun onRetrieveStart(showIsLoadingFragment : Boolean = true) {
+        isLoadingPageVisible.value = showIsLoadingFragment
     }
 
     /**
      * Functie voor het behandelen van het eindigen van een rest api call.
      */
     private fun onRetrieveFinish() {
-        //hier eindigt api call
-        //de loading hier nog stoppen
+        isLoadingPageVisible.value = false
     }
 
     /**
@@ -226,14 +235,18 @@ class MeetingViewModel : InjectedViewModel() {
 
             }
             //geen server error code -> toon universele http error code
-            isShowRoomItemsVisible.value = showCachedOptionOnFail
-            MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_httpRequest_crashed))
+            isErrorPageWithRoomOptionVisible.value = showCachedOptionOnFail
+            //indien error fragment niet toont, toon toast voor user toch te laten weten dat iets mis ging
+            if (!showCachedOptionOnFail)
+                MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_httpRequest_crashed))
             return
 
         } else {
             //geen http error code -> toon universele error code
-            isShowRoomItemsVisible.value = showCachedOptionOnFail
-            MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
+            isErrorPageWithRoomOptionVisible.value = showCachedOptionOnFail
+            //indien error fragment niet toont, toon toast voor user toch te laten weten dat iets mis ging
+            if (!showCachedOptionOnFail)
+                MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
             return
         }
     }
@@ -245,7 +258,7 @@ class MeetingViewModel : InjectedViewModel() {
      */
     private fun onRetrieveMeetingsSuccess(result: List<Meeting>) {
         meetingList.value = result
-        isShowRoomItemsVisible.value = false
+        isErrorPageWithRoomOptionVisible.value = false
         doAsync { meetingRepository.insert(result) }
     }
 
@@ -257,6 +270,8 @@ class MeetingViewModel : InjectedViewModel() {
     private fun onRetrieveMeetingsRefreshSuccess(result: List<Meeting>) {
         meetingList.value = result
         refreshSelectedMeeting()
+        isErrorPageWithRoomOptionVisible.value = false
+        doAsync { meetingRepository.insert(result) }
     }
 
     /**

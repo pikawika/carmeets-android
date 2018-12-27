@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
-import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.PreferenceUtil
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.AccountViewModel
 import com.lennertbontinck.carmeetsandroidapp.viewmodels.GuiViewModel
@@ -54,11 +53,6 @@ class PreferencesFragment : Fragment() {
         btn_preferences_change_default_list_layout.setOnClickListener {
             showDefaultListLayoutSelector()
         }
-
-        //voorkeurscategoriën
-        btn_preferences_change_default_categories.setOnClickListener {
-            MessageUtil.showToast("clicked change default cats")
-        }
     }
 
     /**
@@ -68,7 +62,6 @@ class PreferencesFragment : Fragment() {
     private fun stopListeners() {
         btn_preferences_change_boot_page.setOnClickListener { null }
         btn_preferences_change_default_list_layout.setOnClickListener { null }
-        btn_preferences_change_default_categories.setOnClickListener { null }
     }
 
     /**
@@ -126,8 +119,9 @@ class PreferencesFragment : Fragment() {
         initListeners()
         guiViewModel.actionBarTitle.value = getString(R.string.txt_preferences)
         guiViewModel.actionBarSubTitle.value = getString(R.string.ab_account_subtitle)
-        guiViewModel.isBackButtonVisible.value = true
         guiViewModel.activeMenuItem.value = MenuItemEnum.ACCOUNT
+        if (!guiViewModel.isTwoPaneEnvironment.value!!)
+            guiViewModel.isBackButtonVisible.value = true
     }
 
     override fun onStop() {

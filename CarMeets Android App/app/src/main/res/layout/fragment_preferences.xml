@@ -30,6 +30,7 @@
     <ScrollView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/guideline_preferences_10percent_vertical"
@@ -38,7 +39,10 @@
 
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+
+                android:paddingBottom="10dp"
+        >
 
 
             <!-- Titel -->
@@ -93,24 +97,10 @@
                     android:layout_marginTop="16dp"
             />
 
-            <!-- Voorkeurscategoriën -->
-            <Button
-                    android:id="@+id/btn_preferences_change_default_categories"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="@android:color/black"
-                    android:text="@string/txt_preferences_default_categories"
-                    android:background="@color/lightGrey"
-
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_preferences_change_default_list_layout"
-
-                    android:layout_marginTop="16dp"
-            />
         </android.support.constraint.ConstraintLayout>
+
     </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
 
 

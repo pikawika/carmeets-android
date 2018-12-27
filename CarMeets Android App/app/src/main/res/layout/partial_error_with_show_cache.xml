@@ -55,9 +55,9 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
 
-                app:layout_constraintDimensionRatio="WH,16:11"
+                app:layout_constraintDimensionRatio="WH,550:163"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/logo"
+                android:src="@drawable/logo"
                 android:tint="@color/colorPrimary"
                 android:contentDescription="@string/alt_logo"
 
@@ -70,6 +70,7 @@
         <ScrollView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+
                 app:layout_constraintEnd_toStartOf="@+id/guideline_partial_error_with_show_cache_90percent_vertical"
                 app:layout_constraintStart_toStartOf="@+id/guideline_partial_error_with_show_cache_10percent_vertical"
                 app:layout_constraintTop_toBottomOf="@id/guideline_partial_error_with_show_cache_50percent_horizontal"
@@ -79,6 +80,8 @@
             <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+
+                    android:paddingBottom="10dp"
             >
 
 

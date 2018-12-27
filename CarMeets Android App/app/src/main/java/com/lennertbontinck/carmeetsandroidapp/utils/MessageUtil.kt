@@ -9,9 +9,9 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.activities.MainActivity
-import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_ACCOUNT
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_LOGIN
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
-import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
+import com.lennertbontinck.carmeetsandroidapp.fragments.LoginFragment
 
 /**
  * Een util om je te helpen met het weergeven van *berichten* aan de gebruiker.
@@ -75,8 +75,14 @@ object MessageUtil {
             CarMeetsApplication.getContext().getString(R.string.txt_login)
         ) { _, _ ->
             parentActivity.supportFragmentManager.beginTransaction()
-                .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
-                .addToBackStack(FRAGTAG_ACCOUNT)
+                .setCustomAnimations(
+                    R.anim.push_left_in,
+                    R.anim.push_left_out,
+                    R.anim.push_right_in,
+                    R.anim.push_right_out
+                )
+                .replace(R.id.frame_main_fragmentcontainer, LoginFragment())
+                .addToBackStack(FRAGTAG_LOGIN)
                 .commit()
         }
         builder.setNegativeButton(
