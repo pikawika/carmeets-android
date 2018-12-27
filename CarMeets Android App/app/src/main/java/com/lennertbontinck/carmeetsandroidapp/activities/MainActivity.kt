@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -21,6 +22,7 @@ import com.lennertbontinck.carmeetsandroidapp.enums.ListDesignEnum
 import com.lennertbontinck.carmeetsandroidapp.enums.MenuItemEnum
 import com.lennertbontinck.carmeetsandroidapp.fragments.AccountFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.FavouritesListFragment
+import com.lennertbontinck.carmeetsandroidapp.fragments.LoginFragment
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetinglistFragment
 import com.lennertbontinck.carmeetsandroidapp.utils.FragmentUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.LayoutUtil
@@ -145,10 +147,7 @@ class MainActivity : AppCompatActivity() {
      * Verhoogt het aantal naast het notificatie icoon met 1 per klik.
      */
     private fun notificationsClicked() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
-            .addToBackStack(FRAGTAG_FAVOURITES_LIST)
-            .commit()
+        goToFavourites()
     }
 
     /**
@@ -168,83 +167,121 @@ class MainActivity : AppCompatActivity() {
         //afhankelijk van geselecteerde nav item actie uitvoeren
         when (item.itemId) {
             R.id.nav_meetings -> {
-                if (guiViewModel.activeMenuItem.value!! != MenuItemEnum.MEETINGS) {
-                    supportFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.anim.push_right_in,
-                            R.anim.push_right_out,
-                            R.anim.push_left_in,
-                            R.anim.push_right_out)
-                        .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
-                        .addToBackStack(FRAGTAG_MEETING_LIST)
-                        .commit()
-                } else {
-                    supportFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.anim.push_down_in,
-                            R.anim.push_down_out,
-                            R.anim.push_up_in,
-                            R.anim.push_up_out)
-                        .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
-                        .addToBackStack(FRAGTAG_MEETING_LIST)
-                        .commit()
-                }
-
+                goToMeetings()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_favourites -> {
-                when {
-                    guiViewModel.activeMenuItem.value!! == MenuItemEnum.MEETINGS -> supportFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.anim.push_left_in,
-                            R.anim.push_left_out,
-                            R.anim.push_right_in,
-                            R.anim.push_right_out)
-                        .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
-                        .addToBackStack(FRAGTAG_FAVOURITES_LIST)
-                        .commit()
-                    guiViewModel.activeMenuItem.value!! == MenuItemEnum.ACCOUNT -> supportFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.anim.push_right_in,
-                            R.anim.push_right_out,
-                            R.anim.push_left_in,
-                            R.anim.push_right_out)
-                        .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
-                        .addToBackStack(FRAGTAG_FAVOURITES_LIST)
-                        .commit()
-                    else -> supportFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.anim.push_down_in,
-                            R.anim.push_down_out,
-                            R.anim.push_up_in,
-                            R.anim.push_up_out)
-                        .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
-                        .addToBackStack(FRAGTAG_FAVOURITES_LIST)
-                        .commit()
-                }
-
+                goToFavourites()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_account -> {
-                if (guiViewModel.activeMenuItem.value!! != MenuItemEnum.ACCOUNT){
-                    supportFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.anim.push_left_in,
-                            R.anim.push_left_out,
-                            R.anim.push_right_in,
-                            R.anim.push_right_out)
-                        .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
-                        .addToBackStack(FRAGTAG_ACCOUNT)
-                        .commit()
-                } else {
-                    supportFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.anim.push_down_in,
-                            R.anim.push_down_out,
-                            R.anim.push_up_in,
-                            R.anim.push_up_out)
-                        .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
-                        .addToBackStack(FRAGTAG_ACCOUNT)
-                        .commit()
-                }
-
+                goToAccount()
                 return@OnNavigationItemSelectedListener true
             }
         }
         return@OnNavigationItemSelectedListener false
+    }
+
+    /**
+     * Gaat naar de meeting list fragment gepaste animatie.
+     */
+    private fun goToMeetings() {
+        if (guiViewModel.activeMenuItem.value!! != MenuItemEnum.MEETINGS) {
+            supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.push_right_in,
+                    R.anim.push_right_out,
+                    R.anim.push_left_in,
+                    R.anim.push_right_out
+                )
+                .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
+                .addToBackStack(FRAGTAG_MEETING_LIST)
+                .commit()
+        } else {
+            supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.push_down_in,
+                    R.anim.push_down_out,
+                    R.anim.push_up_in,
+                    R.anim.push_up_out
+                )
+                .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
+                .addToBackStack(FRAGTAG_MEETING_LIST)
+                .commit()
+        }
+    }
+
+    /**
+     * Gaat naar de favourites list fragment gepaste animatie.
+     */
+    private fun goToFavourites() {
+        when {
+            guiViewModel.activeMenuItem.value!! == MenuItemEnum.MEETINGS -> supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.push_left_in,
+                    R.anim.push_left_out,
+                    R.anim.push_right_in,
+                    R.anim.push_right_out
+                )
+                .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
+                .addToBackStack(FRAGTAG_FAVOURITES_LIST)
+                .commit()
+            guiViewModel.activeMenuItem.value!! == MenuItemEnum.ACCOUNT -> supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.push_right_in,
+                    R.anim.push_right_out,
+                    R.anim.push_left_in,
+                    R.anim.push_right_out
+                )
+                .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
+                .addToBackStack(FRAGTAG_FAVOURITES_LIST)
+                .commit()
+            else -> supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.push_down_in,
+                    R.anim.push_down_out,
+                    R.anim.push_up_in,
+                    R.anim.push_up_out
+                )
+                .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
+                .addToBackStack(FRAGTAG_FAVOURITES_LIST)
+                .commit()
+        }
+    }
+
+    /**
+     * Gaat naar de account fragment of login fragment met een gepaste animatie
+     */
+    private fun goToAccount() {
+        var fragmentToShowForAccount: Fragment = AccountFragment()
+        //niet aangemeld naar login pagina
+        if (!accountViewModel.isLoggedIn.value!!) {
+            fragmentToShowForAccount = LoginFragment()
+        }
+
+        if (guiViewModel.activeMenuItem.value!! != MenuItemEnum.ACCOUNT) {
+            supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.push_left_in,
+                    R.anim.push_left_out,
+                    R.anim.push_right_in,
+                    R.anim.push_right_out
+                )
+                .replace(R.id.frame_main_fragmentcontainer, fragmentToShowForAccount)
+                .addToBackStack(FRAGTAG_ACCOUNT)
+                .commit()
+        } else {
+            supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.push_down_in,
+                    R.anim.push_down_out,
+                    R.anim.push_up_in,
+                    R.anim.push_up_out
+                )
+                .replace(R.id.frame_main_fragmentcontainer, fragmentToShowForAccount)
+                .addToBackStack(FRAGTAG_ACCOUNT)
+                .commit()
+        }
     }
 
     /**

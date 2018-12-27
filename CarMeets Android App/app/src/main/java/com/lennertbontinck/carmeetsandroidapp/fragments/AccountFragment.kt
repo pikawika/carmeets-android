@@ -40,11 +40,6 @@ class AccountFragment : Fragment() {
      */
     private lateinit var binding: FragmentAccountBinding
 
-    /**
-     * De container waarin de submenu's moeten komen.
-     */
-    var containerForSubMenu = R.id.frame_main_fragmentcontainer
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account, container, false)
 
@@ -59,7 +54,6 @@ class AccountFragment : Fragment() {
 
         if (fragment.frame_account_two_pane_container != null) {
             guiViewModel.isTwoPaneEnvironment.value = true
-            containerForSubMenu = R.id.frame_account_two_pane_container
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.frame_account_two_pane_container, LogoFragment())
@@ -77,18 +71,49 @@ class AccountFragment : Fragment() {
     private fun initListeners() {
         // account beheren
         btn_account_manage_account.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(containerForSubMenu, ManageAccountFragment())
-                .addToBackStack(FRAGTAG_MANAGE_ACCOUNT)
-                .commit()
+            if (guiViewModel.isTwoPaneEnvironment.value!!) {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.push_left_in,
+                        R.anim.push_left_out,
+                        R.anim.push_right_in,
+                        R.anim.push_right_out)
+                    .replace(R.id.frame_account_two_pane_container, ManageAccountFragment())
+                    .addToBackStack(FRAGTAG_MANAGE_ACCOUNT)
+                    .commit()
+            } else {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.push_up_in,
+                        R.anim.push_up_out,
+                        R.anim.push_down_in,
+                        R.anim.push_down_out)
+                    .replace(R.id.frame_main_fragmentcontainer, ManageAccountFragment())
+                    .addToBackStack(FRAGTAG_MANAGE_ACCOUNT)
+                    .commit()
+            }
+
         }
 
         // voorkeuren
         btn_account_preferences.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(containerForSubMenu, PreferencesFragment())
-                .addToBackStack(FRAGTAG_PREFERENCES)
-                .commit()
+            if (guiViewModel.isTwoPaneEnvironment.value!!) {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.push_left_in,
+                        R.anim.push_left_out,
+                        R.anim.push_right_in,
+                        R.anim.push_right_out)
+                    .replace(R.id.frame_account_two_pane_container, PreferencesFragment())
+                    .addToBackStack(FRAGTAG_PREFERENCES)
+                    .commit()
+            } else {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.push_up_in,
+                        R.anim.push_up_out,
+                        R.anim.push_down_in,
+                        R.anim.push_down_out)
+                    .replace(R.id.frame_main_fragmentcontainer, PreferencesFragment())
+                    .addToBackStack(FRAGTAG_PREFERENCES)
+                    .commit()
+            }
         }
 
         //afmelden
@@ -106,6 +131,10 @@ class AccountFragment : Fragment() {
             if (!accountViewModel.isLoggedIn.value!!) {
                 requireActivity().supportFragmentManager
                     .beginTransaction()
+                    .setCustomAnimations(R.anim.push_up_in,
+                        R.anim.push_up_out,
+                        R.anim.push_down_in,
+                        R.anim.push_down_out)
                     .replace(R.id.frame_main_fragmentcontainer, LoginFragment())
                     .addToBackStack(FRAGTAG_LOGIN)
                     .commit()
