@@ -101,9 +101,9 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
     override fun getItemCount() = meetingViewModel.meetingList.value!!.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val image: ImageView = view.image_itemmeeting
-        val title: TextView = view.text_itemmeeting_title
-        val subtitle: TextView = view.text_itemmeeting_subtitle
-        val location: TextView = view.text_itemmeeting_location
+        val image: ImageView = view.image_item_meeting
+        val title: TextView = view.text_item_meeting_title
+        val subtitle: TextView = view.text_item_meeting_subtitle
+        val location: TextView = view.text_item_meeting_location
     }
 }
