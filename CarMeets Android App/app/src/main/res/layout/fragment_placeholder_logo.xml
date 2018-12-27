@@ -17,7 +17,7 @@
 
             app:layout_constraintDimensionRatio="BH,550:163"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/logo"
+            app:srcCompat="@drawable/img_logo"
 
             app:layout_constraintStart_toStartOf="@id/guideline_placeholder_logo_10percent_vertical"
             app:layout_constraintEnd_toEndOf="@id/guideline_placeholder_logo_90percent_vertical"

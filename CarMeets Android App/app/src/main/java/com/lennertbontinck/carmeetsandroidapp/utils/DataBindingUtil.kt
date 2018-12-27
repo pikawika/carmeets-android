@@ -31,7 +31,7 @@ object DataBindingUtil {
             url != null && url != "loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967" -> Glide.with(view.context).load(
                 BASE_URL_BACKEND_IMAGES + url
             ).into(view)
-            url == "loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967" -> Glide.with(view.context).load(R.drawable.loading).into(
+            url == "loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967" -> Glide.with(view.context).load(R.drawable.gif_loading).into(
                 view
             )
         }

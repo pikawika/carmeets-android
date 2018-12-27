@@ -47,7 +47,7 @@
 
             app:layout_constraintDimensionRatio="WH,550:163"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/logo"
+            app:srcCompat="@drawable/img_logo"
             android:tint="@color/colorPrimary"
             android:contentDescription="@string/alt_logo"
 
