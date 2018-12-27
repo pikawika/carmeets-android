@@ -49,7 +49,7 @@
 
     <!-- Visuele scheidingslijn op 45% verticaal -->
     <View
-            android:id="@+id/divider_meeting_list_45percent"
+            android:id="@+id/divider_meeting_list_45percent_vertical"
             android:layout_width="2dp"
             android:layout_height="0dp"
             android:background="@android:color/darker_gray"
@@ -71,7 +71,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/divider_meeting_list_45percent"
+            app:layout_constraintStart_toStartOf="@+id/divider_meeting_list_45percent_vertical"
 
             android:layout_marginStart="8dp"
     />

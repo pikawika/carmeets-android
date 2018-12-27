@@ -43,7 +43,7 @@
             app:layout_constraintGuide_percent="0.5"
     />
 
-    <!-- Virtuele scheidingslijn op 10% horizontaal -->
+    <!-- Virtuele scheidingslijn op 10% verticaal -->
     <android.support.constraint.Guideline
             android:id="@+id/guideline_logo_10percent_vertical"
             android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
             app:layout_constraintGuide_percent="0.1"
     />
 
-    <!-- Virtuele scheidingslijn op 90% horizontaal -->
+    <!-- Virtuele scheidingslijn op 90% verticaal -->
     <android.support.constraint.Guideline
             android:id="@+id/guideline_logo_90percent_vertical"
             android:layout_width="wrap_content"
