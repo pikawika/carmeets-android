@@ -3,7 +3,11 @@
 De main activity met toolbar en bottom navigation en holder voor fragment.
 Voorziet ook de error pagina's etc gebind.
  -->
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+>
     <data>
         <import type="android.view.View"/>
 
@@ -23,8 +27,6 @@ Voorziet ook de error pagina's etc gebind.
 
 
     <android.support.constraint.ConstraintLayout
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
