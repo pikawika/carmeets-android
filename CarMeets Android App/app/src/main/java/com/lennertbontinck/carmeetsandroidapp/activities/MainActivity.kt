@@ -40,22 +40,22 @@ import kotlinx.android.synthetic.main.partial_error_with_show_cache.*
 class MainActivity : AppCompatActivity() {
 
     /**
-     * [MeetingViewModel] met de data over alle meetings
+     * [MeetingViewModel] met de data over alle meetings.
      */
     private lateinit var meetingViewModel: MeetingViewModel
 
     /**
-     * [AccountViewModel] met de data over account
+     * [AccountViewModel] met de data over account.
      */
     private lateinit var accountViewModel: AccountViewModel
 
     /**
-     * [GuiViewModel] met de data over de GUI instellingen
+     * [GuiViewModel] met de data over de GUI instellingen.
      */
     private lateinit var guiViewModel: GuiViewModel
 
     /**
-     * De [ActivityMainBinding] dat we gebruiken voor de effeciteve databinding
+     * De [ActivityMainBinding] dat we gebruiken voor de effeciteve databinding.
      */
     private lateinit var binding: ActivityMainBinding
 
@@ -142,18 +142,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * *POC* functie dat toont dat je een onclick van notificatiebel kan vastleggen en dat je het aantal kan aanpassen.
-     *
-     * Verhoogt het aantal naast het notificatie icoon met 1 per klik.
+     * Functie die het aanklikken van het notificatie icoon behandeld.
      */
     private fun notificationsClicked() {
         goToFavourites()
     }
 
     /**
-     * methode voor de *bottom navigation* in de gaten te houden.
+     * methode voor de *bottom navigation* selected item te monitoren.
      *
-     * zorgt er voor dat bij het selecteren van een bottom navigation item gecontroleerd wordt of
+     * zorgt er voor dat bij het selecteren van een bottom navigation de juiste pagina getoond wordt met checks of je nog niet op die pagina zit.
      */
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         //indien zelfde nav item geselecteerd als het reeds is, doe niets.
