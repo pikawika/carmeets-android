@@ -60,7 +60,7 @@ class ManageAccountFragment : Fragment() {
                         R.anim.push_up_out,
                         R.anim.push_down_in,
                         R.anim.push_down_out)
-                    .replace(R.id.frame_main_fragmentcontainer, ChangePasswordFragment())
+                    .replace(R.id.frame_main_fragment_container, ChangePasswordFragment())
                     .addToBackStack(FRAGTAG_CHANGE_PASSWORD)
                     .commit()
             }

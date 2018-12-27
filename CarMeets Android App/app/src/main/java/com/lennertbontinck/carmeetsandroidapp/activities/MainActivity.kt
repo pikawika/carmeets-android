@@ -194,7 +194,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_left_in,
                     R.anim.push_right_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
+                .replace(R.id.frame_main_fragment_container, MeetinglistFragment())
                 .addToBackStack(FRAGTAG_MEETING_LIST)
                 .commit()
         } else {
@@ -205,7 +205,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_up_in,
                     R.anim.push_up_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
+                .replace(R.id.frame_main_fragment_container, MeetinglistFragment())
                 .addToBackStack(FRAGTAG_MEETING_LIST)
                 .commit()
         }
@@ -223,7 +223,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_right_in,
                     R.anim.push_right_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
+                .replace(R.id.frame_main_fragment_container, FavouritesListFragment())
                 .addToBackStack(FRAGTAG_FAVOURITES_LIST)
                 .commit()
             guiViewModel.activeMenuItem.value!! == MenuItemEnum.ACCOUNT -> supportFragmentManager.beginTransaction()
@@ -233,7 +233,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_left_in,
                     R.anim.push_right_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
+                .replace(R.id.frame_main_fragment_container, FavouritesListFragment())
                 .addToBackStack(FRAGTAG_FAVOURITES_LIST)
                 .commit()
             else -> supportFragmentManager.beginTransaction()
@@ -243,7 +243,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_up_in,
                     R.anim.push_up_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
+                .replace(R.id.frame_main_fragment_container, FavouritesListFragment())
                 .addToBackStack(FRAGTAG_FAVOURITES_LIST)
                 .commit()
         }
@@ -267,7 +267,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_right_in,
                     R.anim.push_right_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, fragmentToShowForAccount)
+                .replace(R.id.frame_main_fragment_container, fragmentToShowForAccount)
                 .addToBackStack(FRAGTAG_ACCOUNT)
                 .commit()
         } else {
@@ -278,7 +278,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_up_in,
                     R.anim.push_up_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, fragmentToShowForAccount)
+                .replace(R.id.frame_main_fragment_container, fragmentToShowForAccount)
                 .addToBackStack(FRAGTAG_ACCOUNT)
                 .commit()
         }
@@ -289,7 +289,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun initListeners() {
         //listener op de bottomnav
-        menu_main_bottomnavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        menu_main_bottom_navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
         //listener wanneer back button uit de menu_toolbar -> zelfde functie als hardware back button
         menu_main_toolbar.setNavigationOnClickListener {
@@ -369,7 +369,7 @@ class MainActivity : AppCompatActivity() {
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
         //listener op de bottomnav
-        menu_main_bottomnavigation.setOnNavigationItemSelectedListener(null)
+        menu_main_bottom_navigation.setOnNavigationItemSelectedListener(null)
 
         //listener wanneer back button uit de menu_toolbar -> zelfde functie als hardware back button
         menu_main_toolbar.setNavigationOnClickListener { null }

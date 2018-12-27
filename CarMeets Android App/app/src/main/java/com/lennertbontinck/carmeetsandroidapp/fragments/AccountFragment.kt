@@ -86,7 +86,7 @@ class AccountFragment : Fragment() {
                         R.anim.push_up_out,
                         R.anim.push_down_in,
                         R.anim.push_down_out)
-                    .replace(R.id.frame_main_fragmentcontainer, ManageAccountFragment())
+                    .replace(R.id.frame_main_fragment_container, ManageAccountFragment())
                     .addToBackStack(FRAGTAG_MANAGE_ACCOUNT)
                     .commit()
             }
@@ -110,7 +110,7 @@ class AccountFragment : Fragment() {
                         R.anim.push_up_out,
                         R.anim.push_down_in,
                         R.anim.push_down_out)
-                    .replace(R.id.frame_main_fragmentcontainer, PreferencesFragment())
+                    .replace(R.id.frame_main_fragment_container, PreferencesFragment())
                     .addToBackStack(FRAGTAG_PREFERENCES)
                     .commit()
             }
@@ -135,7 +135,7 @@ class AccountFragment : Fragment() {
                         R.anim.push_up_out,
                         R.anim.push_down_in,
                         R.anim.push_down_out)
-                    .replace(R.id.frame_main_fragmentcontainer, LoginFragment())
+                    .replace(R.id.frame_main_fragment_container, LoginFragment())
                     .addToBackStack(FRAGTAG_LOGIN)
                     .commit()
             }

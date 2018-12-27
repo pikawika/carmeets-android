@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- de main activity met menu_toolbar en bottom navigation en holder voor fragment -->
+<!--
+De main activity met toolbar en bottom navigation en holder voor fragment.
+Voorziet ook de error pagina's etc gebind.
+ -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="android.view.View"/>
@@ -28,6 +31,7 @@
 
             android:orientation="vertical">
 
+        <!-- De toolbar die dient als Action Bar -->
         <android.support.v7.widget.Toolbar
                 android:id="@+id/menu_main_toolbar"
                 android:layout_width="match_parent"
@@ -54,8 +58,9 @@
                 tools:subtitle="@string/ab_meetings_subtitle"
         />
 
+        <!-- FrameLayout voor de main fragment container -->
         <FrameLayout
-                android:id="@+id/frame_main_fragmentcontainer"
+                android:id="@+id/frame_main_fragment_container"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
@@ -64,12 +69,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/menu_main_toolbar"
-                app:layout_constraintBottom_toTopOf="@id/menu_main_bottomnavigation"/>
+                app:layout_constraintBottom_toTopOf="@id/menu_main_bottom_navigation"
+        />
 
-
-
+        <!-- De bottom navigation -->
         <android.support.design.widget.BottomNavigationView
-                android:id="@+id/menu_main_bottomnavigation"
+                android:id="@+id/menu_main_bottom_navigation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
@@ -80,8 +85,10 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
 
-                app:menu="@menu/menu_bottom_navigation"/>
+                app:menu="@menu/menu_bottom_navigation"
+        />
 
+        <!-- Error pagina met optie voor lokale items weer te geven -->
         <include
                 layout="@layout/partial_error_with_show_cache"
                 android:layout_width="match_parent"
@@ -93,8 +100,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+        />
 
+        <!-- Aan het laden pagina -->
         <include
                 layout="@layout/partial_loading"
                 android:layout_width="match_parent"
@@ -106,9 +115,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/menu_main_toolbar"
-                app:layout_constraintBottom_toTopOf="@id/menu_main_bottomnavigation"
+                app:layout_constraintBottom_toTopOf="@id/menu_main_bottom_navigation"
         />
 
+        <!-- Lege lijst pagina -->
         <include
                 layout="@layout/partial_empty_list"
                 android:layout_width="match_parent"
@@ -120,9 +130,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/menu_main_toolbar"
-                app:layout_constraintBottom_toTopOf="@id/menu_main_bottomnavigation"
+                app:layout_constraintBottom_toTopOf="@id/menu_main_bottom_navigation"
         />
 
-
     </android.support.constraint.ConstraintLayout>
+
 </layout>

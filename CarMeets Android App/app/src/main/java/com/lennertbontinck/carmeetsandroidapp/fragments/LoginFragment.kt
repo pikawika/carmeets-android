@@ -54,7 +54,7 @@ class LoginFragment : Fragment() {
                         R.anim.push_down_out,
                         R.anim.push_up_in,
                         R.anim.push_up_out)
-                    .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
+                    .replace(R.id.frame_main_fragment_container, AccountFragment())
                     .addToBackStack(FRAGTAG_ACCOUNT)
                     .commit()
             }
@@ -91,7 +91,7 @@ class LoginFragment : Fragment() {
                 R.anim.push_left_out,
                 R.anim.push_right_in,
                 R.anim.push_right_out)
-            .replace(R.id.frame_main_fragmentcontainer, RegisterFragment())
+            .replace(R.id.frame_main_fragment_container, RegisterFragment())
             .addToBackStack(FRAGTAG_REGISTER)
             .commit()
     }

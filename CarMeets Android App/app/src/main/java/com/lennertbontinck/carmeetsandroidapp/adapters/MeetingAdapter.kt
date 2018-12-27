@@ -69,7 +69,7 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
                         R.anim.push_up_out,
                         R.anim.push_down_in,
                         R.anim.push_down_out)
-                    .replace(R.id.frame_main_fragmentcontainer, MeetingDetailFragment())
+                    .replace(R.id.frame_main_fragment_container, MeetingDetailFragment())
                     .addToBackStack(FRAGTAG_MEETING_DETAIL)
                     .commit()
             }
