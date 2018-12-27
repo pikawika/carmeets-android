@@ -70,7 +70,7 @@ class AccountFragment : Fragment() {
      */
     private fun initListeners() {
         // account beheren
-        btn_account_manage_account.setOnClickListener {
+        button_account_manage_account.setOnClickListener {
             if (guiViewModel.isTwoPaneEnvironment.value!!) {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.push_left_in,
@@ -94,7 +94,7 @@ class AccountFragment : Fragment() {
         }
 
         // voorkeuren
-        btn_account_preferences.setOnClickListener {
+        button_account_preferences.setOnClickListener {
             if (guiViewModel.isTwoPaneEnvironment.value!!) {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.push_left_in,
@@ -117,7 +117,7 @@ class AccountFragment : Fragment() {
         }
 
         //afmelden
-        btn_account_logout.setOnClickListener {
+        button_account_logout.setOnClickListener {
             MessageUtil.showDialogYesNo(
                 requireActivity(),
                 getString(R.string.txt_logout),
@@ -155,9 +155,9 @@ class AccountFragment : Fragment() {
      */
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
-        btn_account_manage_account.setOnClickListener { null }
-        btn_account_preferences.setOnClickListener { null }
-        btn_account_logout.setOnClickListener { null }
+        button_account_manage_account.setOnClickListener { null }
+        button_account_preferences.setOnClickListener { null }
+        button_account_logout.setOnClickListener { null }
         accountViewModel.isLoggedIn.removeObservers(this)
 
     }
