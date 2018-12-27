@@ -285,8 +285,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:drawableStart="@drawable/ic_add_agenda_pink_18dp"
-                        android:drawableEnd="@drawable/ic_add_agenda_pink_18dp"
+                        android:drawableStart="@drawable/ic_add_agenda_white_18dp"
+                        android:drawableEnd="@drawable/ic_add_agenda_white_18dp"
                         android:text="@string/btn_meeting_agenda"
 
                         app:layout_constraintTop_toBottomOf="@+id/text_meetingdetail_amount_going"
@@ -303,8 +303,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:drawableStart="@drawable/ic_navigation_pink_18dp"
-                        android:drawableEnd="@drawable/ic_navigation_pink_18dp"
+                        android:drawableStart="@drawable/ic_navigation_white_18dp"
+                        android:drawableEnd="@drawable/ic_navigation_white_18dp"
                         android:text="@string/btn_meeting_route"
 
                         app:layout_constraintTop_toBottomOf="@+id/button_meetingdetail_agenda"
@@ -320,8 +320,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:drawableStart="@drawable/ic_link_pink_18dp"
-                        android:drawableEnd="@drawable/ic_link_pink_18dp"
+                        android:drawableStart="@drawable/ic_link_white_18dp"
+                        android:drawableEnd="@drawable/ic_link_white_18dp"
                         android:text="@string/btn_meeting_website"
 
                         android:visibility='@{!TextUtils.isEmpty(meetingViewModel.selectedMeeting.website)}'

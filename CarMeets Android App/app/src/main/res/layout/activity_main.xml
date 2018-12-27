@@ -114,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
-                app:isVisible='@{(safeUnbox(guiViewModel.isEmptyListVisible) &amp;&amp; !safeUnbox(meetingViewModel.isErrorPageWithRoomOptionVisible))}'
+                app:isVisible='@{(safeUnbox(guiViewModel.isEmptyListVisible) &amp;&amp; !safeUnbox(meetingViewModel.isErrorPageWithRoomOptionVisible) &amp;&amp; !(safeUnbox(meetingViewModel.isLoadingPageVisible) || safeUnbox(accountViewModel.isLoadingPageVisible)))}'
                 tools:visibility="gone"
 
                 app:layout_constraintStart_toStartOf="parent"
