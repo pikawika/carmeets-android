@@ -47,18 +47,18 @@ class ChangePasswordFragment : Fragment() {
      */
     private fun initListeners() {
         //wijzig ww geklikt
-        btn_change_password.setOnClickListener {
+        button_change_password.setOnClickListener {
             when {
-                txt_change_password_new_password.text.toString() != txt_change_password_confirm_password.text.toString() -> MessageUtil.showToast(
+                text_change_password_new_password.text.toString() != text_change_password_confirm_password.text.toString() -> MessageUtil.showToast(
                     getString(R.string.warning_passwords_not_equal)
                 )
-                TextUtils.isEmpty(txt_change_password_new_password.text.toString()) -> MessageUtil.showToast(
+                TextUtils.isEmpty(text_change_password_new_password.text.toString()) -> MessageUtil.showToast(
                     getString(
                         R.string.warning_empty_fields
                     )
                 )
                 else -> {
-                    accountViewModel.changePassword(txt_change_password_new_password.text.toString())
+                    accountViewModel.changePassword(text_change_password_new_password.text.toString())
                     requireActivity().supportFragmentManager.popBackStack()
                 }
             }
@@ -70,7 +70,7 @@ class ChangePasswordFragment : Fragment() {
      */
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
-        btn_change_password.setOnClickListener { null }
+        button_change_password.setOnClickListener { null }
     }
 
     override fun onStart() {

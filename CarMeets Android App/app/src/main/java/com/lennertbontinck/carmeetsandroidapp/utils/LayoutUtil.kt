@@ -20,10 +20,10 @@ object LayoutUtil {
     @JvmStatic
     fun setBottomNavigation(parentActivity: AppCompatActivity, bottomNavId: Int) {
         //Indien niets in backstack mag het aangepast worden zodat listener de juiste fragment laad.
-        if (parentActivity.menu_main_bottomnavigation.selectedItemId != bottomNavId
+        if (parentActivity.menu_main_bottom_navigation.selectedItemId != bottomNavId
             || parentActivity.supportFragmentManager.backStackEntryCount <= 1
         ) {
-            parentActivity.menu_main_bottomnavigation.selectedItemId = bottomNavId
+            parentActivity.menu_main_bottom_navigation.selectedItemId = bottomNavId
         }
     }
 

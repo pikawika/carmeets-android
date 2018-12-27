@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_LOGIN
+import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_LOGO
 import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_MANAGE_ACCOUNT
 import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_PREFERENCES
 import com.lennertbontinck.carmeetsandroidapp.databinding.FragmentAccountBinding
@@ -57,6 +58,7 @@ class AccountFragment : Fragment() {
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.frame_account_two_pane_container, LogoFragment())
+                .addToBackStack(FRAGTAG_LOGO)
                 .commit()
         } else {
             guiViewModel.isTwoPaneEnvironment.value = false
@@ -70,7 +72,7 @@ class AccountFragment : Fragment() {
      */
     private fun initListeners() {
         // account beheren
-        btn_account_manage_account.setOnClickListener {
+        button_account_manage_account.setOnClickListener {
             if (guiViewModel.isTwoPaneEnvironment.value!!) {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.push_left_in,
@@ -86,7 +88,7 @@ class AccountFragment : Fragment() {
                         R.anim.push_up_out,
                         R.anim.push_down_in,
                         R.anim.push_down_out)
-                    .replace(R.id.frame_main_fragmentcontainer, ManageAccountFragment())
+                    .replace(R.id.frame_main_fragment_container, ManageAccountFragment())
                     .addToBackStack(FRAGTAG_MANAGE_ACCOUNT)
                     .commit()
             }
@@ -94,7 +96,7 @@ class AccountFragment : Fragment() {
         }
 
         // voorkeuren
-        btn_account_preferences.setOnClickListener {
+        button_account_preferences.setOnClickListener {
             if (guiViewModel.isTwoPaneEnvironment.value!!) {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.push_left_in,
@@ -110,14 +112,14 @@ class AccountFragment : Fragment() {
                         R.anim.push_up_out,
                         R.anim.push_down_in,
                         R.anim.push_down_out)
-                    .replace(R.id.frame_main_fragmentcontainer, PreferencesFragment())
+                    .replace(R.id.frame_main_fragment_container, PreferencesFragment())
                     .addToBackStack(FRAGTAG_PREFERENCES)
                     .commit()
             }
         }
 
         //afmelden
-        btn_account_logout.setOnClickListener {
+        button_account_logout.setOnClickListener {
             MessageUtil.showDialogYesNo(
                 requireActivity(),
                 getString(R.string.txt_logout),
@@ -135,7 +137,7 @@ class AccountFragment : Fragment() {
                         R.anim.push_up_out,
                         R.anim.push_down_in,
                         R.anim.push_down_out)
-                    .replace(R.id.frame_main_fragmentcontainer, LoginFragment())
+                    .replace(R.id.frame_main_fragment_container, LoginFragment())
                     .addToBackStack(FRAGTAG_LOGIN)
                     .commit()
             }
@@ -155,9 +157,9 @@ class AccountFragment : Fragment() {
      */
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
-        btn_account_manage_account.setOnClickListener { null }
-        btn_account_preferences.setOnClickListener { null }
-        btn_account_logout.setOnClickListener { null }
+        button_account_manage_account.setOnClickListener { null }
+        button_account_preferences.setOnClickListener { null }
+        button_account_logout.setOnClickListener { null }
         accountViewModel.isLoggedIn.removeObservers(this)
 
     }

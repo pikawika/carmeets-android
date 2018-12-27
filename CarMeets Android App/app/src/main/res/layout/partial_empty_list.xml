@@ -8,7 +8,8 @@
 
         <variable
                 name="isVisible"
-                type="boolean"/>
+                type="boolean"
+        />
 
     </data>
 
@@ -19,7 +20,7 @@
             android:visibility="@{isVisible}"
     >
 
-        <!-- Virtual divider horizontal 50% -->
+        <!-- Virtuele scheidingslijn op 50% horizontaal -->
         <android.support.constraint.Guideline
                 android:id="@+id/guideline_partial_empty_list_with_show_cache_50percent_horizontal"
                 android:layout_width="wrap_content"
@@ -29,7 +30,7 @@
                 app:layout_constraintGuide_percent="0.5"
         />
 
-        <!-- Virtual divider vertical 10% -->
+        <!-- Virtuele scheidingslijn op 10% verticaal -->
         <android.support.constraint.Guideline
                 android:id="@+id/guideline_partial_empty_list_with_show_cache_10percent_vertical"
                 android:layout_width="wrap_content"
@@ -39,7 +40,7 @@
                 app:layout_constraintGuide_percent="0.10"
         />
 
-        <!-- Virtual divider vertical 90% -->
+        <!-- Virtuele scheidingslijn op 90% verticaal -->
         <android.support.constraint.Guideline
                 android:id="@+id/guideline_partial_empty_list_with_show_cache_90percent_vertical"
                 android:layout_width="wrap_content"
@@ -51,13 +52,13 @@
 
         <!-- Logo -->
         <ImageView
-                android:id="@+id/img_partial_empty_list_with_show_cache_logo"
+                android:id="@+id/image_partial_empty_list_with_show_cache_logo"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
 
                 app:layout_constraintDimensionRatio="WH,550:163"
                 android:scaleType="fitCenter"
-                android:src="@drawable/logo"
+                android:src="@drawable/img_logo"
                 android:tint="@color/colorPrimary"
                 android:contentDescription="@string/alt_logo"
 
@@ -120,7 +121,7 @@
 
                 <!-- toon cached meetings -->
                 <Button
-                        android:id="@+id/btn_partial_empty_list_refresh"
+                        android:id="@+id/button_partial_empty_list_refresh"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 

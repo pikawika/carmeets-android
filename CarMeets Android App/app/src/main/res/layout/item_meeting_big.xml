@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 1 lijst item BIG -->
+<!-- 1 meeting lijst item BIG -->
 <android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,15 +12,17 @@
         app:cardCornerRadius="7dp"
         app:cardElevation="5dp"
 
-        android:orientation="vertical">
+        android:orientation="vertical"
+>
 
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+    >
 
         <!-- afbeelding -->
         <ImageView
-                android:id="@+id/image_itemmeeting"
+                android:id="@+id/image_item_meeting"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
@@ -35,11 +37,12 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop ="15dp"
-                android:contentDescription="@string/alt_item_meeting_img"/>
+                android:contentDescription="@string/alt_item_meeting_img"
+        />
 
         <!-- titel -->
         <TextView
-                android:id="@+id/text_itemmeeting_title"
+                android:id="@+id/text_item_meeting_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -47,17 +50,18 @@
                 android:textSize="24sp"
                 android:textColor="@android:color/black"
 
-                app:layout_constraintTop_toBottomOf="@+id/image_itemmeeting"
+                app:layout_constraintTop_toBottomOf="@+id/image_item_meeting"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
 
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp"
+        />
 
         <!-- subtitel -->
         <TextView
-                android:id="@+id/text_itemmeeting_subtitle"
+                android:id="@+id/text_item_meeting_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -66,28 +70,30 @@
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_itemmeeting_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_item_meeting_title"
 
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"/>
+                android:layout_marginEnd="20dp"
+        />
 
         <!-- locatie -->
         <TextView
-                android:id="@+id/text_itemmeeting_location"
+                android:id="@+id/text_item_meeting_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
                 tools:text="9260, Schellebelle"
-                android:drawableLeft="@drawable/ic_location_pink_20dp"
+                android:drawableStart="@drawable/ic_location_pink_20dp"
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_itemmeeting_subtitle"
+                app:layout_constraintTop_toBottomOf="@+id/text_item_meeting_subtitle"
 
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:paddingTop="5dp"
-                android:paddingBottom="10dp"/>
+                android:paddingBottom="10dp"
+        />
 
     </android.support.constraint.ConstraintLayout>
 

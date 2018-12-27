@@ -56,6 +56,9 @@ Er is per afgewerkte feature een APK voorzien om eenvoudig te kunnen kijken hoe 
 > 8. Feature 8 - GUI optimalisaties
 >     - [Meer info over Feature 8](Documentatie%20per%20feature/feature8-GUI_optimalisaties.md)
 >     - [APK](apks/carmeets-feature8.apk)
+> 9. Feature 9 - Code cleanup
+>     - [Meer info over Feature 9](Documentatie%20per%20feature/feature9-code_cleanup.md)
+>     - [APK](apks/carmeets-feature9.apk)
 
 ## GitHub Repository van de backend
 Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaakt met de MEAN-stack zal ik de bestaande backend hergebruik en aanvullen waar nodig.
