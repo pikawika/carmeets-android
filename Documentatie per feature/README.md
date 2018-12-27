@@ -1,6 +1,6 @@
 # Documentatie per Feature
 
-In deze submap vind je per feature een beschrijving van wat de feauture juist implementeert met extra uitleg waar nodig. Deze documenten dienen als verduidelijking van de commentaar die reeds in de code voorzien is. 
+In deze submap vind je per feature een beschrijving van wat de feauture juist implementeert met extra uitleg waar nodig. Deze documenten dienen als verduidelijking van wat in de feature voorzien is en van de commentaar die reeds in de code voorzien is. 
 
 ## Gedocumenteerde features
 
@@ -11,3 +11,4 @@ In deze submap vind je per feature een beschrijving van wat de feauture juist im
 > 5. [Meer info over Feature 5 - Manage account en standaard lijstweergave](feature5-manage_account-default_listdesign.md)
 > 6. [Feature 6 - Like en going, favorietenlijste, aantal in volgende week en responsive design fixes](feature6-like_and_going-response_fixes.md)
 > 7. [Feature 7 - Lokale persistentie met room en eenvoudigere databinding](feature7-room-lokale_persistentie.md)
+> 8. [Feature 8 - GUI optimalisaties](feature8-GUI_optimalisaties.md)

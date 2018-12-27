@@ -45,10 +45,25 @@ class ManageAccountFragment : Fragment() {
     private fun initListeners() {
         //wijzig wachtwoord
         btn_manage_account_change_password.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.frame_main_fragmentcontainer, ChangePasswordFragment())
-                .addToBackStack(FRAGTAG_CHANGE_PASSWORD)
-                .commit()
+            if (guiViewModel.isTwoPaneEnvironment.value!!) {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.push_left_in,
+                        R.anim.push_left_out,
+                        R.anim.push_right_in,
+                        R.anim.push_right_out)
+                    .replace(R.id.frame_account_two_pane_container, ChangePasswordFragment())
+                    .addToBackStack(FRAGTAG_CHANGE_PASSWORD)
+                    .commit()
+            } else {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.push_up_in,
+                        R.anim.push_up_out,
+                        R.anim.push_down_in,
+                        R.anim.push_down_out)
+                    .replace(R.id.frame_main_fragmentcontainer, ChangePasswordFragment())
+                    .addToBackStack(FRAGTAG_CHANGE_PASSWORD)
+                    .commit()
+            }
         }
 
         //wijzig gebruikersnaam
@@ -99,8 +114,9 @@ class ManageAccountFragment : Fragment() {
         initListeners()
         guiViewModel.actionBarTitle.value = getString(R.string.txt_manage_account)
         guiViewModel.actionBarSubTitle.value = getString(R.string.ab_account_subtitle)
-        guiViewModel.isBackButtonVisible.value = true
         guiViewModel.activeMenuItem.value = MenuItemEnum.ACCOUNT
+        if (!guiViewModel.isTwoPaneEnvironment.value!!)
+            guiViewModel.isBackButtonVisible.value = true
     }
 
     override fun onStop() {

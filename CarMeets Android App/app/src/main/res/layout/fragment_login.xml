@@ -45,7 +45,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
 
-            app:layout_constraintDimensionRatio="WH,16:11"
+            app:layout_constraintDimensionRatio="WH,550:163"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/logo"
             android:tint="@color/colorPrimary"
@@ -61,6 +61,7 @@
     <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
+
             app:layout_constraintEnd_toStartOf="@+id/guideline_login_90percent_vertical"
             app:layout_constraintStart_toStartOf="@+id/guideline_login_10percent_vertical"
             app:layout_constraintTop_toBottomOf="@id/guideline_login_50percent_horizontal"
@@ -70,6 +71,8 @@
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                
+                android:paddingBottom="10dp"
         >
 
 
@@ -79,7 +82,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
 
-                    android:hint="@string/placeholder_username"
+                    android:hint="@string/placeholder_username_or_email"
                     android:inputType="text"
 
                     app:layout_constraintTop_toTopOf="parent"

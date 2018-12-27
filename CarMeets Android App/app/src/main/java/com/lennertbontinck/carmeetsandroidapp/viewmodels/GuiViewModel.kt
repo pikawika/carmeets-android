@@ -40,6 +40,11 @@ class GuiViewModel : ViewModel() {
     val listDesign = MutableLiveData<ListDesignEnum>()
 
     /**
+     * Het huidige door de gebruiker geselecteerde design van lijstitems.
+     */
+    val isEmptyListVisible = MutableLiveData<Boolean>()
+
+    /**
      * Het huidige door de gebruiker geselecteerde menu item.
      */
     var activeMenuItem = MutableLiveData<MenuItemEnum>()
@@ -60,6 +65,8 @@ class GuiViewModel : ViewModel() {
         listDesign.value = PreferenceUtil.getDefaultListLayout()
         //initieel is actieve menu item de door gebruiker ingestelde standaard
         activeMenuItem.value = PreferenceUtil.getDefaultBootPage()
+        //initieel is geen fragment zichtbaar dat er een lege lijst is
+        isEmptyListVisible.value = false
     }
 
     fun resetLayout() {
@@ -71,5 +78,7 @@ class GuiViewModel : ViewModel() {
         isBackButtonVisible.value = false
         //initieel zijn de opties voor lijst design niet zichtbaar
         isListDesignOptionsVisible.value = false
+        //initieel is geen fragment zichtbaar dat er een lege lijst is
+        isEmptyListVisible.value = false
     }
 }

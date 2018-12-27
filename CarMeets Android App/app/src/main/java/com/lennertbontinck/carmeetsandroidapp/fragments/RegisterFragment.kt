@@ -51,6 +51,10 @@ class RegisterFragment : Fragment() {
         accountViewModel.isLoggedIn.observe(this, Observer {
             if (accountViewModel.isLoggedIn.value!!) {
                 requireActivity().supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.push_down_in,
+                        R.anim.push_down_out,
+                        R.anim.push_up_in,
+                        R.anim.push_up_out)
                     .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
                     .addToBackStack(FRAGTAG_ACCOUNT)
                     .commit()
@@ -112,6 +116,10 @@ class RegisterFragment : Fragment() {
     private fun goToLogin() {
         requireActivity().supportFragmentManager
             .beginTransaction()
+            .setCustomAnimations(R.anim.push_right_in,
+                R.anim.push_right_out,
+                R.anim.push_left_in,
+                R.anim.push_left_out)
             .replace(R.id.frame_main_fragmentcontainer, LoginFragment())
             .addToBackStack(FRAGTAG_LOGIN)
             .commit()

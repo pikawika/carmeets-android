@@ -9,27 +9,18 @@
             android:title="@string/ab_notifications"
             android:icon="@drawable/ic_notifications_white_24dp"
             app:actionLayout="@layout/partial_notificationbell"
-            app:showAsAction="always"/>
-
-    <!-- zoeken -->
-    <item
-            android:id="@+id/nav_search"
-            android:title="@string/ab_search"
-            android:icon="@drawable/ic_search_white_24dp"
-            app:showAsAction="always"/>
+            app:showAsAction="ifRoom"/>
 
     <!-- grote lijstweergave -->
     <item
             android:id="@+id/ab_options_small"
             android:title="@string/ab_options_list_design_small"
-            android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="never"/>
 
     <!-- kleine lijst weergave -->
     <item
             android:id="@+id/ab_options_big"
             android:title="@string/ab_options_list_design_big"
-            android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="never"/>
 
 </menu>
