@@ -12,6 +12,7 @@ import com.lennertbontinck.carmeetsandroidapp.networks.requests.ToggleGoingReque
 import com.lennertbontinck.carmeetsandroidapp.networks.requests.ToggleLikedRequest
 import com.lennertbontinck.carmeetsandroidapp.networks.responses.MessageResponse
 import com.lennertbontinck.carmeetsandroidapp.roomdatabase.MeetingRepository
+import com.lennertbontinck.carmeetsandroidapp.utils.AdapterUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.MessageUtil
 import com.lennertbontinck.carmeetsandroidapp.utils.TokenUtil
 import com.squareup.moshi.Moshi
@@ -138,7 +139,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart(showIsLoadingFragment) }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { result -> onRetrieveMeetingsRefreshSuccess(result) },
+                { result -> onRetrieveMeetingsSuccess(result) },
                 { error -> onRetrieveError(error, true) }
             )
     }
@@ -155,7 +156,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart() }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { _ -> onRetrieveToggleLikedSuccess() },
+                { _ -> refreshMeetingList() },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -172,7 +173,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart() }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { _ -> onRetrieveToggleGoingSuccess() },
+                { _ -> refreshMeetingList() },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -255,41 +256,14 @@ class MeetingViewModel : InjectedViewModel() {
      * Functie voor het behandelen van het succesvol ophalen van de meetings.
      *
      * Zal de lijst van meetings gelijkstellen met het results.
+     *
+     * @param result : de lijst van meetings die de server returnt. Required of type [List<Meeting>]
      */
     private fun onRetrieveMeetingsSuccess(result: List<Meeting>) {
-        meetingList.value = result
-        isErrorPageWithRoomOptionVisible.value = false
-        doAsync { meetingRepository.insert(result) }
-    }
-
-    /**
-     * Functie voor het behandelen van het succesvol ophalen van de meetings *(bij refresh)*.
-     *
-     * Zal de lijst van meetings gelijkstellen met het results.
-     */
-    private fun onRetrieveMeetingsRefreshSuccess(result: List<Meeting>) {
         meetingList.value = result
         refreshSelectedMeeting()
         isErrorPageWithRoomOptionVisible.value = false
         doAsync { meetingRepository.insert(result) }
-    }
-
-    /**
-     * Functie voor het behandelen van het succesvol wijzigen van een liked status.
-     *
-     *
-     */
-    private fun onRetrieveToggleLikedSuccess() {
-        refreshMeetingList()
-    }
-
-    /**
-     * Functie voor het behandelen van het succesvol wijzigen van een going status.
-     *
-     *
-     */
-    private fun onRetrieveToggleGoingSuccess() {
-        refreshMeetingList()
     }
 
     /**
@@ -300,48 +274,26 @@ class MeetingViewModel : InjectedViewModel() {
     fun setSelectedMeeting(meetingId: String) {
         val selectedMeeting = meetingList.value!!.firstOrNull { it.meetingId == meetingId }
         if (selectedMeeting != null) {
-            this.selectedMeeting.value = MeetingWithUserInfo(
-                meetingId = selectedMeeting.meetingId,
-                categories = selectedMeeting.categories,
-                date = selectedMeeting.date,
-                description = selectedMeeting.description,
-                imageName = selectedMeeting.imageName,
-                listUsersGoing = selectedMeeting.listUsersGoing,
-                listUsersLiked = selectedMeeting.listUsersLiked,
-                location = selectedMeeting.location,
-                subtitle = selectedMeeting.subtitle,
-                title = selectedMeeting.title,
-                website = selectedMeeting.website,
-                isUserGoing = (selectedMeeting.listUsersGoing.contains(getUserId())),
-                isUserLiked = (selectedMeeting.listUsersLiked.contains(getUserId()))
-            )
+            this.selectedMeeting.value = AdapterUtil.meetingToMeetingWithUserInfo(selectedMeeting, getUserId())
         }
     }
 
+    /**
+     * Stelt de selected meeting opnieuw in door de meeting met dezelfde id uit de [meetingList] te halen.
+     */
     private fun refreshSelectedMeeting() {
         if (this.selectedMeeting.value != null) {
             val selectedMeeting =
                 meetingList.value!!.firstOrNull { it.meetingId == this.selectedMeeting.value!!.meetingId }
             if (selectedMeeting != null) {
-                this.selectedMeeting.value = MeetingWithUserInfo(
-                    meetingId = selectedMeeting.meetingId,
-                    categories = selectedMeeting.categories,
-                    date = selectedMeeting.date,
-                    description = selectedMeeting.description,
-                    imageName = selectedMeeting.imageName,
-                    listUsersGoing = selectedMeeting.listUsersGoing,
-                    listUsersLiked = selectedMeeting.listUsersLiked,
-                    location = selectedMeeting.location,
-                    subtitle = selectedMeeting.subtitle,
-                    title = selectedMeeting.title,
-                    website = selectedMeeting.website,
-                    isUserGoing = (selectedMeeting.listUsersGoing.contains(getUserId())),
-                    isUserLiked = (selectedMeeting.listUsersLiked.contains(getUserId()))
-                )
+                this.selectedMeeting.value = AdapterUtil.meetingToMeetingWithUserInfo(selectedMeeting, getUserId())
             }
         }
     }
 
+    /**
+     * Haalt de gebruikersId uit de token of returnt "-1" zijnde een onmogelijke userId
+     */
     private fun getUserId(): String {
         val tokenContent = TokenUtil.getTokenContent()
 

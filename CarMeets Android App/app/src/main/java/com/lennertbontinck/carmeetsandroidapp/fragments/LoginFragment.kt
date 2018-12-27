@@ -54,17 +54,17 @@ class LoginFragment : Fragment() {
                         R.anim.push_down_out,
                         R.anim.push_up_in,
                         R.anim.push_up_out)
-                    .replace(R.id.frame_main_fragmentcontainer, AccountFragment())
+                    .replace(R.id.frame_main_fragment_container, AccountFragment())
                     .addToBackStack(FRAGTAG_ACCOUNT)
                     .commit()
             }
         })
 
-        btn_login_confirm.setOnClickListener {
+        button_login_confirm.setOnClickListener {
             login()
         }
 
-        btn_login_register.setOnClickListener {
+        button_login_register.setOnClickListener {
             goToRegister()
         }
     }
@@ -74,9 +74,9 @@ class LoginFragment : Fragment() {
      */
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
-        btn_login_confirm.setOnClickListener { null }
+        button_login_confirm.setOnClickListener { null }
 
-        btn_login_register.setOnClickListener { null }
+        button_login_register.setOnClickListener { null }
 
         accountViewModel.isLoggedIn.removeObservers(this)
     }
@@ -91,7 +91,7 @@ class LoginFragment : Fragment() {
                 R.anim.push_left_out,
                 R.anim.push_right_in,
                 R.anim.push_right_out)
-            .replace(R.id.frame_main_fragmentcontainer, RegisterFragment())
+            .replace(R.id.frame_main_fragment_container, RegisterFragment())
             .addToBackStack(FRAGTAG_REGISTER)
             .commit()
     }

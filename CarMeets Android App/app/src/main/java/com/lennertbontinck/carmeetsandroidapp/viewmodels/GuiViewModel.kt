@@ -69,6 +69,14 @@ class GuiViewModel : ViewModel() {
         isEmptyListVisible.value = false
     }
 
+    /**
+     * Zet de standaardwaarden van de layout terug zijnde:
+     * - [actionBarTitle] = R.string.app_name
+     * - [actionBarSubTitle] = ""
+     * - [isBackButtonVisible] = false
+     * - [isListDesignOptionsVisible] = false
+     * - [isEmptyListVisible] = false
+     */
     fun resetLayout() {
         //initieel is titel de app naam
         actionBarTitle.value = CarMeetsApplication.getContext().getString(R.string.app_name)

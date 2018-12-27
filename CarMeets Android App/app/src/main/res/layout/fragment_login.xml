@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Fragment om in te loggen -->
+<!-- Fragment om een gebruiker te laten aanmelden -->
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         tools:ignore="Autofill"
 >
 
-    <!-- Virtual divider horizontal 50% -->
+    <!-- Virtuele scheidingslijn op 50% horizontaal -->
     <android.support.constraint.Guideline
             android:id="@+id/guideline_login_50percent_horizontal"
             android:layout_width="wrap_content"
@@ -19,7 +21,7 @@
             app:layout_constraintGuide_percent="0.5"
     />
 
-    <!-- Virtual divider vertical 10% -->
+    <!-- Virtuele scheidingslijn op 10% verticaal -->
     <android.support.constraint.Guideline
             android:id="@+id/guideline_login_10percent_vertical"
             android:layout_width="wrap_content"
@@ -29,7 +31,7 @@
             app:layout_constraintGuide_percent="0.10"
     />
 
-    <!-- Virtual divider vertical 90% -->
+    <!-- Virtuele scheidingslijn op 90% verticaal -->
     <android.support.constraint.Guideline
             android:id="@+id/guideline_login_90percent_vertical"
             android:layout_width="wrap_content"
@@ -41,13 +43,13 @@
 
     <!-- Logo -->
     <ImageView
-            android:id="@+id/img_login_logo"
+            android:id="@+id/image_login_logo"
             android:layout_width="0dp"
             android:layout_height="0dp"
 
             app:layout_constraintDimensionRatio="WH,550:163"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/logo"
+            app:srcCompat="@drawable/img_logo"
             android:tint="@color/colorPrimary"
             android:contentDescription="@string/alt_logo"
 
@@ -71,12 +73,12 @@
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                
+
                 android:paddingBottom="10dp"
         >
 
 
-            <!-- Username -->
+            <!-- Gebruikersnaam -->
             <EditText
                     android:id="@+id/text_login_username"
                     android:layout_width="0dp"
@@ -90,7 +92,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
             />
 
-            <!-- Password -->
+            <!-- Wachtwoord -->
             <EditText
                     android:id="@+id/text_login_password"
                     android:layout_width="0dp"
@@ -106,9 +108,9 @@
                     android:layout_marginTop="8dp"
             />
 
-            <!-- Sign in button -->
+            <!-- Log in knop -->
             <Button
-                    android:id="@+id/btn_login_confirm"
+                    android:id="@+id/button_login_confirm"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
 
@@ -121,16 +123,16 @@
                     android:layout_marginTop="12dp"
             />
 
-            <!-- Register link -->
+            <!-- Ga naar registratie link -->
             <TextView
-                    android:id="@+id/btn_login_register"
+                    android:id="@+id/button_login_register"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
 
                     android:text="@string/txt_login_register"
                     android:textAlignment="center"
 
-                    app:layout_constraintTop_toBottomOf="@+id/btn_login_confirm"
+                    app:layout_constraintTop_toBottomOf="@+id/button_login_confirm"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
 

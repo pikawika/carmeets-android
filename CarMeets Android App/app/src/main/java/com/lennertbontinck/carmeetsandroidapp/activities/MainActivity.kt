@@ -40,22 +40,22 @@ import kotlinx.android.synthetic.main.partial_error_with_show_cache.*
 class MainActivity : AppCompatActivity() {
 
     /**
-     * [MeetingViewModel] met de data over alle meetings
+     * [MeetingViewModel] met de data over alle meetings.
      */
     private lateinit var meetingViewModel: MeetingViewModel
 
     /**
-     * [AccountViewModel] met de data over account
+     * [AccountViewModel] met de data over account.
      */
     private lateinit var accountViewModel: AccountViewModel
 
     /**
-     * [GuiViewModel] met de data over de GUI instellingen
+     * [GuiViewModel] met de data over de GUI instellingen.
      */
     private lateinit var guiViewModel: GuiViewModel
 
     /**
-     * De [ActivityMainBinding] dat we gebruiken voor de effeciteve databinding
+     * De [ActivityMainBinding] dat we gebruiken voor de effeciteve databinding.
      */
     private lateinit var binding: ActivityMainBinding
 
@@ -94,10 +94,10 @@ class MainActivity : AppCompatActivity() {
         //We kunnen dit niet instantieren bij onstart aangezien de onCreateOptionsMenu nog na de onstart wordt uitgvoerd
         val notifications = menu?.findItem(R.id.nav_notifications)?.actionView
 
-        notifications?.findViewById<ImageView>(R.id.image_partialnotification_bell)
+        notifications?.findViewById<ImageView>(R.id.image_partial_notification_bell)
             ?.setOnClickListener { notificationsClicked() }
 
-        notifications?.findViewById<TextView>(R.id.text_partialnotification_amount)
+        notifications?.findViewById<TextView>(R.id.text_partial_notification_amount)
             ?.setOnClickListener { notificationsClicked() }
 
         return true
@@ -142,18 +142,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * *POC* functie dat toont dat je een onclick van notificatiebel kan vastleggen en dat je het aantal kan aanpassen.
-     *
-     * Verhoogt het aantal naast het notificatie icoon met 1 per klik.
+     * Functie die het aanklikken van het notificatie icoon behandeld.
      */
     private fun notificationsClicked() {
         goToFavourites()
     }
 
     /**
-     * methode voor de *bottom navigation* in de gaten te houden.
+     * methode voor de *bottom navigation* selected item te monitoren.
      *
-     * zorgt er voor dat bij het selecteren van een bottom navigation item gecontroleerd wordt of
+     * zorgt er voor dat bij het selecteren van een bottom navigation de juiste pagina getoond wordt met checks of je nog niet op die pagina zit.
      */
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         //indien zelfde nav item geselecteerd als het reeds is, doe niets.
@@ -194,7 +192,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_left_in,
                     R.anim.push_right_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
+                .replace(R.id.frame_main_fragment_container, MeetinglistFragment())
                 .addToBackStack(FRAGTAG_MEETING_LIST)
                 .commit()
         } else {
@@ -205,7 +203,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_up_in,
                     R.anim.push_up_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, MeetinglistFragment())
+                .replace(R.id.frame_main_fragment_container, MeetinglistFragment())
                 .addToBackStack(FRAGTAG_MEETING_LIST)
                 .commit()
         }
@@ -223,7 +221,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_right_in,
                     R.anim.push_right_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
+                .replace(R.id.frame_main_fragment_container, FavouritesListFragment())
                 .addToBackStack(FRAGTAG_FAVOURITES_LIST)
                 .commit()
             guiViewModel.activeMenuItem.value!! == MenuItemEnum.ACCOUNT -> supportFragmentManager.beginTransaction()
@@ -233,7 +231,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_left_in,
                     R.anim.push_right_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
+                .replace(R.id.frame_main_fragment_container, FavouritesListFragment())
                 .addToBackStack(FRAGTAG_FAVOURITES_LIST)
                 .commit()
             else -> supportFragmentManager.beginTransaction()
@@ -243,7 +241,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_up_in,
                     R.anim.push_up_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, FavouritesListFragment())
+                .replace(R.id.frame_main_fragment_container, FavouritesListFragment())
                 .addToBackStack(FRAGTAG_FAVOURITES_LIST)
                 .commit()
         }
@@ -267,7 +265,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_right_in,
                     R.anim.push_right_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, fragmentToShowForAccount)
+                .replace(R.id.frame_main_fragment_container, fragmentToShowForAccount)
                 .addToBackStack(FRAGTAG_ACCOUNT)
                 .commit()
         } else {
@@ -278,7 +276,7 @@ class MainActivity : AppCompatActivity() {
                     R.anim.push_up_in,
                     R.anim.push_up_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, fragmentToShowForAccount)
+                .replace(R.id.frame_main_fragment_container, fragmentToShowForAccount)
                 .addToBackStack(FRAGTAG_ACCOUNT)
                 .commit()
         }
@@ -289,24 +287,24 @@ class MainActivity : AppCompatActivity() {
      */
     private fun initListeners() {
         //listener op de bottomnav
-        menu_main_bottomnavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        menu_main_bottom_navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
         //listener wanneer back button uit de menu_toolbar -> zelfde functie als hardware back button
         menu_main_toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
 
-        btn_partial_error_with_show_cache_show_cache.setOnClickListener {
+        button_partial_error_with_show_cache_show_cache.setOnClickListener {
             meetingViewModel.isLocalRoomDatabaseUsedAsSource.value = true
             meetingViewModel.isErrorPageWithRoomOptionVisible.value = false
         }
 
-        btn_partial_error_with_show_cache_try_again.setOnClickListener {
+        button_partial_error_with_show_cache_try_again.setOnClickListener {
             meetingViewModel.refreshMeetingList()
             meetingViewModel.isErrorPageWithRoomOptionVisible.value = false
         }
 
-        btn_partial_empty_list_refresh.setOnClickListener {
+        button_partial_empty_list_refresh.setOnClickListener {
             meetingViewModel.refreshMeetingList()
             guiViewModel.isEmptyListVisible.value = false
         }
@@ -358,7 +356,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun updateNotificationAmount() {
         val notificationAmount = menu_main_toolbar.menu.findItem(R.id.nav_notifications)
-            ?.actionView?.findViewById<TextView>(R.id.text_partialnotification_amount)
+            ?.actionView?.findViewById<TextView>(R.id.text_partial_notification_amount)
 
         notificationAmount?.text = meetingViewModel.getLikedGoingAmountNext7Days().toString()
     }
@@ -369,16 +367,16 @@ class MainActivity : AppCompatActivity() {
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
         //listener op de bottomnav
-        menu_main_bottomnavigation.setOnNavigationItemSelectedListener(null)
+        menu_main_bottom_navigation.setOnNavigationItemSelectedListener(null)
 
         //listener wanneer back button uit de menu_toolbar -> zelfde functie als hardware back button
         menu_main_toolbar.setNavigationOnClickListener { null }
 
-        btn_partial_error_with_show_cache_show_cache.setOnClickListener { null }
+        button_partial_error_with_show_cache_show_cache.setOnClickListener { null }
 
-        btn_partial_error_with_show_cache_try_again.setOnClickListener { null }
+        button_partial_error_with_show_cache_try_again.setOnClickListener { null }
 
-        btn_partial_empty_list_refresh.setOnClickListener { null }
+        button_partial_empty_list_refresh.setOnClickListener { null }
 
         guiViewModel.isListDesignOptionsVisible.removeObservers(this)
 

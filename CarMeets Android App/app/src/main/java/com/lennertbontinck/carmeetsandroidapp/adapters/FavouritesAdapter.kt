@@ -59,7 +59,7 @@ class FavouritesAdapter(private val parentActivity: AppCompatActivity) :
                         R.anim.push_left_out,
                         R.anim.push_right_in,
                         R.anim.push_right_out)
-                    .replace(R.id.frame_meetinglist_meetingdetailcontainer, MeetingDetailFragment())
+                    .replace(R.id.frame_meeting_list_meeting_detail_container, MeetingDetailFragment())
                     .addToBackStack(FRAGTAG_MEETING_DETAIL)
                     .commit()
             } else {
@@ -69,7 +69,7 @@ class FavouritesAdapter(private val parentActivity: AppCompatActivity) :
                         R.anim.push_up_out,
                         R.anim.push_down_in,
                         R.anim.push_down_out)
-                    .replace(R.id.frame_main_fragmentcontainer, MeetingDetailFragment())
+                    .replace(R.id.frame_main_fragment_container, MeetingDetailFragment())
                     .addToBackStack(FRAGTAG_MEETING_DETAIL)
                     .commit()
             }
@@ -101,9 +101,9 @@ class FavouritesAdapter(private val parentActivity: AppCompatActivity) :
     override fun getItemCount() = meetingViewModel.getFavouritesList().size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val image: ImageView = view.image_itemmeeting
-        val title: TextView = view.text_itemmeeting_title
-        val subtitle: TextView = view.text_itemmeeting_subtitle
-        val location: TextView = view.text_itemmeeting_location
+        val image: ImageView = view.image_item_meeting
+        val title: TextView = view.text_item_meeting_title
+        val subtitle: TextView = view.text_item_meeting_subtitle
+        val location: TextView = view.text_item_meeting_location
     }
 }

@@ -81,7 +81,7 @@ object MessageUtil {
                     R.anim.push_right_in,
                     R.anim.push_right_out
                 )
-                .replace(R.id.frame_main_fragmentcontainer, LoginFragment())
+                .replace(R.id.frame_main_fragment_container, LoginFragment())
                 .addToBackStack(FRAGTAG_LOGIN)
                 .commit()
         }

@@ -44,7 +44,7 @@ class ManageAccountFragment : Fragment() {
      */
     private fun initListeners() {
         //wijzig wachtwoord
-        btn_manage_account_change_password.setOnClickListener {
+        button_manage_account_change_password.setOnClickListener {
             if (guiViewModel.isTwoPaneEnvironment.value!!) {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.push_left_in,
@@ -60,14 +60,14 @@ class ManageAccountFragment : Fragment() {
                         R.anim.push_up_out,
                         R.anim.push_down_in,
                         R.anim.push_down_out)
-                    .replace(R.id.frame_main_fragmentcontainer, ChangePasswordFragment())
+                    .replace(R.id.frame_main_fragment_container, ChangePasswordFragment())
                     .addToBackStack(FRAGTAG_CHANGE_PASSWORD)
                     .commit()
             }
         }
 
         //wijzig gebruikersnaam
-        btn_manage_account_change_username.setOnClickListener {
+        button_manage_account_change_username.setOnClickListener {
             MessageUtil.showDialogWithTextInput(
                 requireContext(),
                 getString(R.string.txt_change_username),
@@ -78,7 +78,7 @@ class ManageAccountFragment : Fragment() {
         }
 
         //wijzig e-mailadres
-        btn_manage_account_change_email.setOnClickListener {
+        button_manage_account_change_email.setOnClickListener {
             MessageUtil.showDialogWithTextInput(
                 requireContext(),
                 getString(R.string.txt_change_email),
@@ -104,9 +104,9 @@ class ManageAccountFragment : Fragment() {
      */
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
-        btn_manage_account_change_password.setOnClickListener { null }
-        btn_manage_account_change_username.setOnClickListener { null }
-        btn_manage_account_change_email.setOnClickListener { null }
+        button_manage_account_change_password.setOnClickListener { null }
+        button_manage_account_change_username.setOnClickListener { null }
+        button_manage_account_change_email.setOnClickListener { null }
     }
 
     override fun onStart() {

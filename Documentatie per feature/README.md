@@ -12,3 +12,4 @@ In deze submap vind je per feature een beschrijving van wat de feauture juist im
 > 6. [Feature 6 - Like en going, favorietenlijste, aantal in volgende week en responsive design fixes](feature6-like_and_going-response_fixes.md)
 > 7. [Feature 7 - Lokale persistentie met room en eenvoudigere databinding](feature7-room-lokale_persistentie.md)
 > 8. [Feature 8 - GUI optimalisaties](feature8-GUI_optimalisaties.md)
+> 9. [Feature 9 - Code cleanup](feature9-code_cleanup.md)

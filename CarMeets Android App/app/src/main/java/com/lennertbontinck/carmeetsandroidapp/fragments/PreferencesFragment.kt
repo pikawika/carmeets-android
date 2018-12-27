@@ -45,12 +45,12 @@ class PreferencesFragment : Fragment() {
      */
     private fun initListeners() {
         //wijzig startpagina
-        btn_preferences_change_boot_page.setOnClickListener {
+        button_preferences_change_boot_page.setOnClickListener {
             showBootPageSelector()
         }
 
         //wijzig default lijst design
-        btn_preferences_change_default_list_layout.setOnClickListener {
+        button_preferences_change_default_list_layout.setOnClickListener {
             showDefaultListLayoutSelector()
         }
     }
@@ -60,8 +60,8 @@ class PreferencesFragment : Fragment() {
      */
     @Suppress("UNUSED_EXPRESSION")
     private fun stopListeners() {
-        btn_preferences_change_boot_page.setOnClickListener { null }
-        btn_preferences_change_default_list_layout.setOnClickListener { null }
+        button_preferences_change_boot_page.setOnClickListener { null }
+        button_preferences_change_default_list_layout.setOnClickListener { null }
     }
 
     /**
