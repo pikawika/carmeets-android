@@ -43,6 +43,8 @@ dependencies {
 
     //testen
     testImplementation "junit:junit:$versions.junit"
+    //indien mockk nodig in gewone testen
+    //testImplementation "io.mockk:mockk:$versions.mockk"
     androidTestImplementation "com.android.support.test:runner:$versions.runner"
     androidTestImplementation "com.android.support.test:rules:$versions.runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$versions.espresso"

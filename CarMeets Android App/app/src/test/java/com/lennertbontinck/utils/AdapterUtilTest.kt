@@ -20,12 +20,10 @@ class AdapterUtilTest {
     private var listUsersLikedWithoutUser = listOf("2", "3")
     private var listUsersLikedWithUser = listOf("1", "2")
 
-
-
-    private val meetingWithoutUserLink = Meeting(userId, "title", "subtitle", "descrtpition", categories, listUsersGoingWithoutUser, listUsersLikedWithoutUser, Date(), "Schellebelle", "9260", "Dendermondsesteenweg","92", "img", "https://www.lennertbontinck.com")
-    private val meetingWithUserLiked = Meeting(userId, "title", "subtitle", "descrtpition", categories, listUsersGoingWithoutUser, listUsersLikedWithUser, Date(), "Schellebelle", "9260", "Dendermondsesteenweg","92", "img", "https://www.lennertbontinck.com")
-    private val meetingWithUserGoing = Meeting(userId, "title", "subtitle", "descrtpition", categories, listUsersGoingWithUser, listUsersLikedWithoutUser, Date(), "Schellebelle", "9260", "Dendermondsesteenweg","92", "img", "https://www.lennertbontinck.com")
-    private val meetingWithUserLikedAndGoing = Meeting(userId, "title", "subtitle", "descrtpition", categories, listUsersGoingWithUser, listUsersLikedWithUser, Date(), "Schellebelle", "9260", "Dendermondsesteenweg","92", "img", "https://www.lennertbontinck.com")
+    private val meetingWithoutUserLink = Meeting("1", "title", "subtitle", "descrtpition", categories, listUsersGoingWithoutUser, listUsersLikedWithoutUser, Date(), "Schellebelle", "9260", "Dendermondsesteenweg","92", "img", "https://www.lennertbontinck.com")
+    private val meetingWithUserLiked = Meeting("2", "title", "subtitle", "descrtpition", categories, listUsersGoingWithoutUser, listUsersLikedWithUser, Date(), "Schellebelle", "9260", "Dendermondsesteenweg","92", "img", "https://www.lennertbontinck.com")
+    private val meetingWithUserGoing = Meeting("3", "title", "subtitle", "descrtpition", categories, listUsersGoingWithUser, listUsersLikedWithoutUser, Date(), "Schellebelle", "9260", "Dendermondsesteenweg","92", "img", "https://www.lennertbontinck.com")
+    private val meetingWithUserLikedAndGoing = Meeting("4", "title", "subtitle", "descrtpition", categories, listUsersGoingWithUser, listUsersLikedWithUser, Date(), "Schellebelle", "9260", "Dendermondsesteenweg","92", "img", "https://www.lennertbontinck.com")
 
     @Test
     fun adapterUtil_meetingToMeetingWithUserInfo_noUserLink() {
