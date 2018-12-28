@@ -20,7 +20,6 @@ object PreferenceUtil {
     /**
      * Haalt de token op van de shared preferences
      */
-    @JvmStatic
     fun getToken() : String? {
         return sharedPreferences.getString(PREFERENCE_TOKEN, "")
     }

@@ -44,7 +44,9 @@ dependencies {
     //testen
     testImplementation "junit:junit:$versions.junit"
     androidTestImplementation "com.android.support.test:runner:$versions.runner"
+    androidTestImplementation "com.android.support.test:rules:$versions.runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$versions.espresso"
+    androidTestImplementation "io.mockk:mockk-android:$versions.mockk"
 
     //meetinglijst -> recyclerview en cardview
     implementation "com.android.support:recyclerview-v7:$versions.espresso"
