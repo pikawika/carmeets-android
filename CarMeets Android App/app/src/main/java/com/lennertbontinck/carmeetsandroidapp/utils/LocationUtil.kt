@@ -13,7 +13,6 @@ object LocationUtil {
      * @param[location] : het location object waarvan je de city notation wilt
      *
      */
-    @JvmStatic
     fun getCityNotation(location: Location): String {
         return (location.postalCode + ", " + location.city)
     }
@@ -24,7 +23,6 @@ object LocationUtil {
      * @param[location] : het location object waarvan je de address notation wilt
      *
      */
-    @JvmStatic
     fun getAddressNotation(location: Location): String {
         return (location.streetName + " " + location.houseNumber + ", " + location.postalCode + " " + location.city)
     }

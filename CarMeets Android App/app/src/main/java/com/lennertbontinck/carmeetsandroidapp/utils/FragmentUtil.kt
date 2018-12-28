@@ -21,7 +21,6 @@ object FragmentUtil {
      * @param[supportFragmentManager] De gebruikte supportFragmentManager. Required of type FragmentManager.
      *
      */
-    @JvmStatic
     fun checkFragmentEqualsNavItem(item: MenuItem?, supportFragmentManager: FragmentManager): Boolean {
         //indien nog geen in de backstack kan het ook niet gelijk zijn
         if (supportFragmentManager.backStackEntryCount <= 1) return false

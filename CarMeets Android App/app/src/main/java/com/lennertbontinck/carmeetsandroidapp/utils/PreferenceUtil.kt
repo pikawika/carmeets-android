@@ -29,7 +29,6 @@ object PreferenceUtil {
      *
      * @param token : de token van de aangemelde gebruiker
      */
-    @JvmStatic
     fun setToken(token : String) {
         sharedPreferences.edit().putString(PREFERENCE_TOKEN, token).apply()
     }
@@ -37,7 +36,6 @@ object PreferenceUtil {
     /**
      * Haalt de standaard startpagina op van de shared preferences
      */
-    @JvmStatic
     fun getDefaultBootPage(): MenuItemEnum {
         //default enum 0 -> meetings
         return MenuItemEnum.values()[sharedPreferences.getInt(PREFERENCE_DEFAULT_BOOT_PAGE, 0)]
@@ -48,7 +46,6 @@ object PreferenceUtil {
      *
      * @param menuItem : de gekozen standaard startpagina als [MenuItemEnum]
      */
-    @JvmStatic
     fun setDefaultBootPage(menuItem: MenuItemEnum) {
         //ordinal aangezien we de plaats in de enum willen voor later terug om te zetten naar de enum
         sharedPreferences.edit().putInt(PREFERENCE_DEFAULT_BOOT_PAGE, menuItem.ordinal).apply()
@@ -57,7 +54,6 @@ object PreferenceUtil {
     /**
      * Haalt de standaard lijst design op van de shared preferences
      */
-    @JvmStatic
     fun getDefaultListLayout() : ListDesignEnum {
         //default enum 0 -> meetings
         return ListDesignEnum.values()[sharedPreferences.getInt(PREFERENCE_DEFAULT_LIST_LAYOUT, 0)]
@@ -68,7 +64,6 @@ object PreferenceUtil {
      *
      * @param listDesignEnum : de gekozen standaard lijst design als [ListDesignEnum]
      */
-    @JvmStatic
     fun setDefaultListLayout(listDesignEnum: ListDesignEnum) {
         //ordinal aangezien we de plaats in de enum willen voor later terug om te zetten naar de enum
         sharedPreferences.edit().putInt(PREFERENCE_DEFAULT_LIST_LAYOUT, listDesignEnum.ordinal).apply()
@@ -77,7 +72,6 @@ object PreferenceUtil {
     /**
      * Verwijderd alle sharedPreferences
      */
-    @JvmStatic
     fun deletePreferences() {
         sharedPreferences.edit().clear().apply()
     }

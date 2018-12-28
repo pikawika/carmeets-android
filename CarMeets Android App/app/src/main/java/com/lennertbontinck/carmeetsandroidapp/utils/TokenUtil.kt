@@ -11,7 +11,6 @@ object TokenUtil {
     /**
      * Zorgt er voor dat enkel de dag in de maand als text wordt ingesteld indien datum meegeven als android:dayInMonth
      */
-    @JvmStatic
     fun getTokenContent() : TokenContent? {
         return try {
             val split = PreferenceUtil.getToken()!!.split(".")

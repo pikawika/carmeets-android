@@ -17,7 +17,6 @@ object LayoutUtil {
      * @param bottomNavId : de id van het menuitem dat geselecteerd moet zijn in de bottomnavigation. Required of type [Int].
      *
      */
-    @JvmStatic
     fun setBottomNavigation(parentActivity: AppCompatActivity, bottomNavId: Int) {
         //Indien niets in backstack mag het aangepast worden zodat listener de juiste fragment laad.
         if (parentActivity.menu_main_bottom_navigation.selectedItemId != bottomNavId
@@ -34,7 +33,6 @@ object LayoutUtil {
      *
      * @param isVisible : of de items al dan niet moeten zichtbaar zijn. Required of type [Boolean]
      */
-    @JvmStatic
     fun setListDesignOptionsVisibiltiy(parentActivity: AppCompatActivity, isVisible: Boolean) {
         parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_big)?.isVisible = isVisible
         parentActivity.menu_main_toolbar.menu.findItem(R.id.ab_options_small)?.isVisible = isVisible

@@ -15,7 +15,6 @@ object AdapterUtil {
      *
      * @param userId : Id van de aangemelde gebruiker. Optional of type [String].
      */
-    @JvmStatic
     fun meetingToMeetingWithUserInfo(meeting: Meeting, userId: String = "-1"): MeetingWithUserInfo {
         return MeetingWithUserInfo(
             meeting = meeting,
