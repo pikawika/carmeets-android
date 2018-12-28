@@ -26,7 +26,6 @@ import org.junit.runners.JUnit4
 class UIFavouritesTest {
 
     private val username = "androidtestuser"
-    private val email = "androidtestuser@lennertbontinck.com"
     private val password = "Password123"
 
     @Rule
@@ -48,7 +47,7 @@ class UIFavouritesTest {
         //kijk login zichtbaar
         onView(withId(R.id.fragment_login)).check(matches(isDisplayed()))
         //vul email in
-        onView(withId(R.id.text_login_username)).perform(ViewActions.typeText(email))
+        onView(withId(R.id.text_login_username)).perform(ViewActions.typeText(username))
         android.support.test.espresso.Espresso.closeSoftKeyboard()
         //vul password in
         onView(withId(R.id.text_login_password)).perform(ViewActions.typeText(password))
