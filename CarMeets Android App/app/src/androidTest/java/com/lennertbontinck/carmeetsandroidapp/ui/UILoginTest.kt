@@ -23,6 +23,7 @@ import org.junit.runners.JUnit4
 class UILoginTest {
 
     private val username = "androidtestuser"
+    private val email = "androidtestuser@lennertbontinck.com"
     private val password = "Password123"
 
     @Rule
@@ -38,6 +39,11 @@ class UILoginTest {
         //wacht even voor het laden van de data
         //server zou actief moeten zijn vooraleer testen uitgevoerd worden om onnodig lange wachttijden te vermijden
         SystemClock.sleep(1000)
+
+        //klik account
+        onView(withId(R.id.nav_account)).perform(click())
+        //kijk login zichtbaar
+        onView(withId(R.id.fragment_login)).check(matches(isDisplayed()))
     }
 
     @After
@@ -47,10 +53,6 @@ class UILoginTest {
 
     @Test
     fun login_bothFieldsEmpty_showToastEmptyFields() {
-        //klik account
-        onView(withId(R.id.nav_account)).perform(click())
-        //kijk login zichtbaar
-        onView(withId(R.id.fragment_login)).check(matches(isDisplayed()))
         //druk direct op aanmelden
         onView(withId(R.id.button_login_confirm)).perform(click())
         //kijk empty fields toast
@@ -67,10 +69,6 @@ class UILoginTest {
 
     @Test
     fun login_usernameFieldsEmpty_showToastEmptyFields() {
-        //klik account
-        onView(withId(R.id.nav_account)).perform(click())
-        //kijk login zichtbaar
-        onView(withId(R.id.fragment_login)).check(matches(isDisplayed()))
         //vul password in
         onView(withId(R.id.text_login_password)).perform(ViewActions.typeText(password))
         android.support.test.espresso.Espresso.closeSoftKeyboard()
@@ -90,10 +88,6 @@ class UILoginTest {
 
     @Test
     fun login_passwordFieldsEmpty_showToastEmptyFields() {
-        //klik account
-        onView(withId(R.id.nav_account)).perform(click())
-        //kijk login zichtbaar
-        onView(withId(R.id.fragment_login)).check(matches(isDisplayed()))
         //vul username in
         onView(withId(R.id.text_login_username)).perform(ViewActions.typeText(username))
         android.support.test.espresso.Espresso.closeSoftKeyboard()
@@ -112,13 +106,23 @@ class UILoginTest {
     }
 
     @Test
-    fun login_correctInfo_userLogsIn() {
-        //klik account
-        onView(withId(R.id.nav_account)).perform(click())
-        //kijk login zichtbaar
-        onView(withId(R.id.fragment_login)).check(matches(isDisplayed()))
+    fun login_correctInfo_logInWithUsername_userLogsIn() {
         //vul username in
         onView(withId(R.id.text_login_username)).perform(ViewActions.typeText(username))
+        android.support.test.espresso.Espresso.closeSoftKeyboard()
+        //vul password in
+        onView(withId(R.id.text_login_password)).perform(ViewActions.typeText(password))
+        android.support.test.espresso.Espresso.closeSoftKeyboard()
+        //druk op aanmelden
+        onView(withId(R.id.button_login_confirm)).perform(click())
+        //username op account pagina
+        onView(withId(R.id.text_account_username)).check(matches(withText(username)))
+    }
+
+    @Test
+    fun login_correctInfo_logInWithEmail_userLogsIn() {
+        //vul username in
+        onView(withId(R.id.text_login_username)).perform(ViewActions.typeText(email))
         android.support.test.espresso.Espresso.closeSoftKeyboard()
         //vul password in
         onView(withId(R.id.text_login_password)).perform(ViewActions.typeText(password))
