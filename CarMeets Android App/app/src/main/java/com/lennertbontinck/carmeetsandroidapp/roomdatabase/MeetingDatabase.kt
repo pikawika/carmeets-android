@@ -2,6 +2,7 @@ package com.lennertbontinck.carmeetsandroidapp.roomdatabase
 
 import android.arch.persistence.room.*
 import android.content.Context
+import com.lennertbontinck.carmeetsandroidapp.constants.ROOM_DATABASE_NAME
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.RoomUtil
 
@@ -43,7 +44,7 @@ abstract class MeetingDatabase : RoomDatabase() {
             val newInstance = Room.databaseBuilder(
                 context,
                 MeetingDatabase::class.java,
-                "carmeets_database"
+                ROOM_DATABASE_NAME
             ).build()
 
             instance = newInstance

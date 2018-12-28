@@ -243,10 +243,11 @@ class MeetingViewModel : InjectedViewModel() {
             return
 
         } else {
-            //geen http error code -> toon universele error code
+            //geen http error code, kijken of door geen internet anders universele error
             isErrorPageWithRoomOptionVisible.value = showCachedOptionOnFail
-            //indien error fragment niet toont, toon toast voor user toch te laten weten dat iets mis ging
-            if (!showCachedOptionOnFail)
+            if (!isErrorPageWithRoomOptionVisible.value!! && error.cause.toString() == "android.system.GaiException: android_getaddrinfo failed: EAI_NODATA (No address associated with hostname)")
+                MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_dns_server_not_avaible))
+            else if (!isErrorPageWithRoomOptionVisible.value!!)
                 MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_something_crashed))
             return
         }

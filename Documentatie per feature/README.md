@@ -13,3 +13,4 @@ In deze submap vind je per feature een beschrijving van wat de feauture juist im
 > 7. [Feature 7 - Lokale persistentie met room en eenvoudigere databinding](feature7-room-lokale_persistentie.md)
 > 8. [Feature 8 - GUI optimalisaties](feature8-GUI_optimalisaties.md)
 > 9. [Feature 9 - Code cleanup](feature9-code_cleanup.md)
+> 10. [Meer info over Feature 10 - Testen](feature10-testen.md)

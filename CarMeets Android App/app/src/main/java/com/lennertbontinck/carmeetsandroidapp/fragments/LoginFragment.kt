@@ -101,7 +101,7 @@ class LoginFragment : Fragment() {
      */
     private fun login() {
         //velden leeg
-        if (TextUtils.isEmpty(text_login_username.text.toString()) && TextUtils.isEmpty(text_login_password.text.toString()))
+        if (TextUtils.isEmpty(text_login_username.text.toString()) || TextUtils.isEmpty(text_login_password.text.toString()))
             MessageUtil.showToast(
                 getString(R.string.warning_empty_fields)
             )

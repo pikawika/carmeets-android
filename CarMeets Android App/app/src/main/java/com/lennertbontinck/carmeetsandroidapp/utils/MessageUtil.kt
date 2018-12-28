@@ -25,7 +25,6 @@ object MessageUtil {
      * @param[time] Hoe lang de toast op het scherm moet blijven. Optional of type Int (Toast Length), default Toast.LENGTH_LONG.
      *
      */
-    @JvmStatic
     fun showToast(message: String, time: Int = Toast.LENGTH_LONG) {
         Toast.makeText(CarMeetsApplication.getContext(), message, time).show()
     }
@@ -41,7 +40,6 @@ object MessageUtil {
      *
      * @param func : een funtie dat moet uitgevoerd worden, parameterloos. Required of type [Unit].
      */
-    @JvmStatic
     fun showDialogYesNo(parentActivity: Activity, title: String, message: String, func: () -> Unit) {
         val builder = AlertDialog.Builder(parentActivity)
         builder.setCancelable(true)
@@ -65,7 +63,6 @@ object MessageUtil {
      *
      * @param parentActivity : activity van de huidige omgeving. Required of type [MainActivity].
      */
-    @JvmStatic
     fun showDialogLoginRequired(parentActivity: MainActivity) {
         val builder = AlertDialog.Builder(parentActivity)
         builder.setCancelable(true)
@@ -106,7 +103,6 @@ object MessageUtil {
      *
      * @param func : een funtie dat moet uitgevoerd worden met de opgeleverde string
      */
-    @JvmStatic
     fun showDialogWithTextInput(
         context: Context,
         title: String,
