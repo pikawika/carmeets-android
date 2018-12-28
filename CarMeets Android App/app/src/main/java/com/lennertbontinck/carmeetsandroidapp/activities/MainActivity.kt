@@ -145,6 +145,10 @@ class MainActivity : AppCompatActivity() {
      * Functie die het aanklikken van het notificatie icoon behandeld.
      */
     private fun notificationsClicked() {
+        if (!accountViewModel.isLoggedIn.value!!){
+            MessageUtil.showDialogLoginRequired(this)
+            return
+        }
         goToFavourites()
     }
 
@@ -169,6 +173,10 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_favourites -> {
+                if (!accountViewModel.isLoggedIn.value!!){
+                    MessageUtil.showDialogLoginRequired(this)
+                    return@OnNavigationItemSelectedListener false
+                }
                 goToFavourites()
                 return@OnNavigationItemSelectedListener true
             }
