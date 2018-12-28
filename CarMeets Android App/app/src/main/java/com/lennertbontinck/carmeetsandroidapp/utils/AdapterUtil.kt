@@ -18,17 +18,7 @@ object AdapterUtil {
     @JvmStatic
     fun meetingToMeetingWithUserInfo(meeting: Meeting, userId: String = "-1"): MeetingWithUserInfo {
         return MeetingWithUserInfo(
-            meetingId = meeting.meetingId,
-            categories = meeting.categories,
-            date = meeting.date,
-            description = meeting.description,
-            imageName = meeting.imageName,
-            listUsersGoing = meeting.listUsersGoing,
-            listUsersLiked = meeting.listUsersLiked,
-            location = meeting.location,
-            subtitle = meeting.subtitle,
-            title = meeting.title,
-            website = meeting.website,
+            meeting = meeting,
             isUserGoing = (meeting.listUsersGoing.contains(userId)),
             isUserLiked = (meeting.listUsersLiked.contains(userId))
         )

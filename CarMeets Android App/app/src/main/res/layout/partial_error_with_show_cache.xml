@@ -100,6 +100,22 @@
                         app:layout_constraintEnd_toEndOf="parent"
                 />
 
+                <!-- error bericht uitleg -->
+                <TextView
+                        android:id="@+id/text_partial_error_with_show_cache_error_long"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:text="@string/btn_partial_error_with_show_cache_error_message_if_internet_try_again"
+                        android:textAlignment="center"
+
+                        app:layout_constraintTop_toBottomOf="@+id/text_partial_error_with_show_cache_error"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+
+                        android:layout_marginTop="8dp"
+                />
+
                 <!-- toon cached meetings -->
                 <Button
                         android:id="@+id/button_partial_error_with_show_cache_show_cache"
@@ -108,7 +124,7 @@
 
                         android:text="@string/btn_partial_error_with_show_cache_show_cache"
 
-                        app:layout_constraintTop_toBottomOf="@+id/text_partial_error_with_show_cache_error"
+                        app:layout_constraintTop_toBottomOf="@+id/text_partial_error_with_show_cache_error_long"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
 

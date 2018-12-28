@@ -13,7 +13,7 @@ import java.util.*
 //tabel naam voor in de room database
 @Entity(tableName = "meeting_table")
 @Parcelize
-data class Meeting(
+open class Meeting(
     //primaire sleutel anotatie nodig voor room lokale databank
     @PrimaryKey
     @field:Json(name = "_id") val meetingId: String,
