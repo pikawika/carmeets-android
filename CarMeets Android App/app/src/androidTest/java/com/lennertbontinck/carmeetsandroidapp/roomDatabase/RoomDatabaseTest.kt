@@ -2,6 +2,7 @@ package com.lennertbontinck.carmeetsandroidapp.roomDatabase
 
 import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry
+import com.lennertbontinck.carmeetsandroidapp.constants.ROOM_DATABASE_NAME
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.roomDatabase.RoomDatabaseTestUtils.getValue
 import com.lennertbontinck.carmeetsandroidapp.roomdatabase.MeetingDao
@@ -33,7 +34,9 @@ class RoomDatabaseTest {
         db = Room.inMemoryDatabaseBuilder(context, MeetingDatabase::class.java).build()
         meetingDao = db.meetingDao()
 
-        meetingDao.deleteAllMeetings()
+        //verwijder lokale db
+        InstrumentationRegistry.getTargetContext()
+            .deleteDatabase(ROOM_DATABASE_NAME)
     }
 
     @Test

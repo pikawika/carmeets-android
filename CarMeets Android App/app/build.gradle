@@ -48,6 +48,7 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$versions.runner"
     androidTestImplementation "com.android.support.test:rules:$versions.runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$versions.espresso"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
     androidTestImplementation "io.mockk:mockk-android:$versions.mockk"
 
     //meetinglijst -> recyclerview en cardview
