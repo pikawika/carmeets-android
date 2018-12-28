@@ -51,6 +51,21 @@ class UIAuthenticationRequiredTest {
     }
 
     @Test
+    fun favouritesList_showLoginDialogForNotSignedIn_goToLoginOnAccept() {
+        //klik nav favorieten
+        onView(withId(R.id.nav_favourites)).perform(click())
+
+        //kijk dialog en klik
+        onView(withText(R.string.txt_login_required_for_this_function)).inRoot(RootMatchers.isDialog())
+            .check(matches(isDisplayed()))
+        onView(withText(R.string.txt_login_required_for_this_function)).inRoot(RootMatchers.isDialog())
+        onView(withText(R.string.txt_login)).inRoot(RootMatchers.isDialog()).perform(click())
+
+        //kijk login fragment zichtbaar
+        onView(withId(R.id.fragment_login)).check(matches(isDisplayed()))
+    }
+
+    @Test
     fun notification_showLoginDialogForNotSignedIn_goToLoginOnAccept() {
         //klik notifi
         onView(withId(R.id.image_partial_notification_bell)).perform(click())
