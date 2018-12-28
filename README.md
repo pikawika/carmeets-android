@@ -1,5 +1,7 @@
 # Welkom bij CarMeets Android App!
 
+[DOWNLOAD DE ANDROID APP!](http://lennertbontinck.com/ftp/apk/carmeets.apk)
+
 Dit is de GitHub repository voor de Android App van CarMeets. U kan hier steeds alle broncode raadplegen en clonen. Ik heb gebruik gemaakt van Trello boards als todo lijstjes. 
 
 IMPORTANT: De backend is gratis gehost op heroku, hierdoor kunnen er af en toe langere wachtijden zijn. Voornamelijk bij het initieel laden kan het even duren tegen de server opgestart is. Dit is omdat de heroku server na enige minuten inactiviteit in slaapstand gaat. Gelukkig is eer een toffe loading animatie ingebouwd om het wachten minder saai te maken :)!
