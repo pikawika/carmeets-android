@@ -121,7 +121,7 @@ class UILoginTest {
 
     @Test
     fun login_correctInfo_logInWithEmail_userLogsIn() {
-        //vul username in
+        //vul email in
         onView(withId(R.id.text_login_username)).perform(ViewActions.typeText(email))
         android.support.test.espresso.Espresso.closeSoftKeyboard()
         //vul password in
@@ -129,6 +129,8 @@ class UILoginTest {
         android.support.test.espresso.Espresso.closeSoftKeyboard()
         //druk op aanmelden
         onView(withId(R.id.button_login_confirm)).perform(click())
+        //wacht even voor server
+        SystemClock.sleep(1000)
         //username op account pagina
         onView(withId(R.id.text_account_username)).check(matches(withText(username)))
     }
