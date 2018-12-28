@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND_IMAGES
 import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_MEETING_DETAIL
@@ -86,7 +87,8 @@ class FavouritesAdapter(private val parentActivity: AppCompatActivity) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = meetingViewModel.getFavouritesList()[position]
-        Glide.with(parentActivity).load(BASE_URL_BACKEND_IMAGES + item.imageName).into(holder.image)
+        Glide.with(parentActivity).load(BASE_URL_BACKEND_IMAGES + item.imageName)
+            .apply(RequestOptions().placeholder(R.drawable.img_logo_16by9)).into(holder.image)
         holder.title.text = item.title
         holder.subtitle.text = item.subtitle
         holder.location.text = LocationUtil.getCityNotation(item.location)

@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND_IMAGES
 import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
@@ -35,12 +36,10 @@ object DataBindingUtil {
         when {
             imageName != "loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967" -> Glide.with(view.context).load(
                 BASE_URL_BACKEND_IMAGES + imageName
-            ).into(view)
+            ).apply(RequestOptions().placeholder(R.drawable.img_logo_16by9)).into(view)
             imageName == "loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967" -> Glide.with(view.context).load(
                 R.drawable.gif_loading
-            ).into(
-                view
-            )
+            ).apply(RequestOptions().placeholder(R.drawable.img_logo_16by9)).into(view)
         }
     }
 
