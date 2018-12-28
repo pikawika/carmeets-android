@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND_IMAGES
 import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_MEETING_DETAIL
@@ -55,20 +56,24 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
             if (guiViewModel.isTwoPaneEnvironment.value!!) {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
-                    .setCustomAnimations(R.anim.push_left_in,
+                    .setCustomAnimations(
+                        R.anim.push_left_in,
                         R.anim.push_left_out,
                         R.anim.push_right_in,
-                        R.anim.push_right_out)
+                        R.anim.push_right_out
+                    )
                     .replace(R.id.frame_meeting_list_meeting_detail_container, MeetingDetailFragment())
                     .addToBackStack(FRAGTAG_MEETING_DETAIL)
                     .commit()
             } else {
                 parentActivity.supportFragmentManager
                     .beginTransaction()
-                    .setCustomAnimations(R.anim.push_up_in,
+                    .setCustomAnimations(
+                        R.anim.push_up_in,
                         R.anim.push_up_out,
                         R.anim.push_down_in,
-                        R.anim.push_down_out)
+                        R.anim.push_down_out
+                    )
                     .replace(R.id.frame_main_fragment_container, MeetingDetailFragment())
                     .addToBackStack(FRAGTAG_MEETING_DETAIL)
                     .commit()
@@ -86,7 +91,8 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = meetingViewModel.meetingList.value!![position]
-        Glide.with(parentActivity).load(BASE_URL_BACKEND_IMAGES + item.imageName).into(holder.image)
+        Glide.with(parentActivity).load(BASE_URL_BACKEND_IMAGES + item.imageName)
+            .apply(RequestOptions().placeholder(R.drawable.img_logo_16by9)).into(holder.image)
         holder.title.text = item.title
         holder.subtitle.text = item.subtitle
         holder.location.text = LocationUtil.getCityNotation(item.location)

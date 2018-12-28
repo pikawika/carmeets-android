@@ -1,5 +1,7 @@
 # Welkom bij CarMeets Android App!
 
+[DOWNLOAD DE ANDROID APP!](http://lennertbontinck.com/ftp/apk/carmeets.apk)
+
 Dit is de GitHub repository voor de Android App van CarMeets. U kan hier steeds alle broncode raadplegen en clonen. Ik heb gebruik gemaakt van Trello boards als todo lijstjes. 
 
 IMPORTANT: De backend is gratis gehost op heroku, hierdoor kunnen er af en toe langere wachtijden zijn. Voornamelijk bij het initieel laden kan het even duren tegen de server opgestart is. Dit is omdat de heroku server na enige minuten inactiviteit in slaapstand gaat. Gelukkig is eer een toffe loading animatie ingebouwd om het wachten minder saai te maken :)!
@@ -59,6 +61,9 @@ Er is per afgewerkte feature een APK voorzien om eenvoudig te kunnen kijken hoe 
 > 9. Feature 9 - Code cleanup
 >     - [Meer info over Feature 9](Documentatie%20per%20feature/feature9-code_cleanup.md)
 >     - [APK](apks/carmeets-feature9.apk)
+> 10. Feature 10 - Testen
+>     - [Meer info over Feature 10](Documentatie%20per%20feature/feature10-testen.md)
+>     - [APK](apks/carmeets-feature10.apk)
 
 ## GitHub Repository van de backend
 Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaakt met de MEAN-stack zal ik de bestaande backend hergebruik en aanvullen waar nodig.
@@ -84,3 +89,6 @@ Buiten het in de les ter beschikking gestelde boek heb volgende bronnen geraadpl
 > - [Includen van layout](https://developer.android.com/training/improving-layouts/reusing-layouts)
 > - [Data meegeven aan layout include](https://stackoverflow.com/questions/45205003/data-binding-error-trying-to-pass-viewmodel-into-include-layout-with-abstract-va)
 > - [Enkele open source animaties](https://forum.xda-developers.com/showthread.php?t=2331728)
+> - [Mockk](https://mockk.io/)
+> - [Recyclerview acties met espresso](https://stackoverflow.com/a/32788964)
+> - [Reset test omgeving](https://stackoverflow.com/a/37606822)

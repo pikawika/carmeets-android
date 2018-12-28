@@ -234,7 +234,7 @@ class AccountViewModel : InjectedViewModel() {
             return
 
         } else {
-            //geen http error code en niet door geen internet -> toon universelere error code
+            //geen http error code, kijken of door geen internet anders universele error
             if (error.cause.toString() == "android.system.GaiException: android_getaddrinfo failed: EAI_NODATA (No address associated with hostname)")
                 MessageUtil.showToast(CarMeetsApplication.getContext().getString(R.string.error_dns_server_not_avaible))
             else

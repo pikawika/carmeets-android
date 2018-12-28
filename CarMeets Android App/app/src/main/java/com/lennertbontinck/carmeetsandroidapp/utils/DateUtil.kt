@@ -14,7 +14,6 @@ object DateUtil {
      * @param[date] Datum waarvan je shortMonthName wilt. Required of type Date
      *
      */
-    @JvmStatic
     fun getShortMonthName(date: Date): String {
         return (DateFormat.format("MMMM", date) as String).substring(0, 3)
     }

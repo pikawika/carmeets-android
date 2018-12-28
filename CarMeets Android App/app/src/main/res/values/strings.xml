@@ -116,6 +116,7 @@
     <string name="btn_partial_error_with_show_cache_show_cache">Toon offline meetings</string>
     <string name="btn_partial_error_with_show_cache_try_again">Probeer opnieuw</string>
     <string name="btn_partial_error_with_show_cache_error_message">Er liep iets mis bij het communiceren met de server.</string>
+    <string name="btn_partial_error_with_show_cache_error_message_if_internet_try_again">Indien u over een werkende internetverbinding beschikt was de server mogelijks nog aan het opstarten en probeert u best even opnieuw.</string>
 
     <!-- partial_loading -->
     <string name="txt_loading">Bezig met laden…</string>
