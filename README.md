@@ -89,3 +89,6 @@ Buiten het in de les ter beschikking gestelde boek heb volgende bronnen geraadpl
 > - [Includen van layout](https://developer.android.com/training/improving-layouts/reusing-layouts)
 > - [Data meegeven aan layout include](https://stackoverflow.com/questions/45205003/data-binding-error-trying-to-pass-viewmodel-into-include-layout-with-abstract-va)
 > - [Enkele open source animaties](https://forum.xda-developers.com/showthread.php?t=2331728)
+> - [Mockk](https://mockk.io/)
+> - [Recyclerview acties met espresso](https://stackoverflow.com/a/32788964)
+> - [Reset test omgeving](https://stackoverflow.com/a/37606822)
