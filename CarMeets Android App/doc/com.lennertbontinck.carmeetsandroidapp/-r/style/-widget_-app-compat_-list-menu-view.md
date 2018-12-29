@@ -1,0 +1,6 @@
+[app](../../../index.md) / [com.lennertbontinck.carmeetsandroidapp](../../index.md) / [R](../index.md) / [style](index.md) / [Widget_AppCompat_ListMenuView](./-widget_-app-compat_-list-menu-view.md)
+
+# Widget_AppCompat_ListMenuView
+
+`static val Widget_AppCompat_ListMenuView: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`static val Widget_AppCompat_ListMenuView: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

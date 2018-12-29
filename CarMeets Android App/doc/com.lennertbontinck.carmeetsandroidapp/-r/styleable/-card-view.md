@@ -1,0 +1,16 @@
+[app](../../../index.md) / [com.lennertbontinck.carmeetsandroidapp](../../index.md) / [R](../index.md) / [styleable](index.md) / [CardView](./-card-view.md)
+
+# CardView
+
+`static val CardView: `[`IntArray`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int-array/index.html)
+`static val CardView: `[`IntArray`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int-array/index.html)
+
+Attributes that can be used with a CardView.
+
+Includes the following attributes:
+
+    AttributeDescription ```[`android:minWidth`](-card-view_android_min-width.md)` ```[`android:minHeight`](-card-view_android_min-height.md)` ```[`com.lennertbontinck.carmeetsandroidapp:cardBackgroundColor`](-card-view_card-background-color.md)`Background color for CardView. ```[`com.lennertbontinck.carmeetsandroidapp:cardCornerRadius`](-card-view_card-corner-radius.md)`Corner radius for CardView. ```[`com.lennertbontinck.carmeetsandroidapp:cardElevation`](-card-view_card-elevation.md)`Elevation for CardView. ```[`com.lennertbontinck.carmeetsandroidapp:cardMaxElevation`](-card-view_card-max-elevation.md)`Maximum Elevation for CardView. ```[`com.lennertbontinck.carmeetsandroidapp:cardPreventCornerOverlap`](-card-view_card-prevent-corner-overlap.md)`Add padding to CardView on v20 and before to prevent intersections between the Card content and rounded corners. ```[`com.lennertbontinck.carmeetsandroidapp:cardUseCompatPadding`](-card-view_card-use-compat-padding.md)`Add padding in API v21+ as well to have the same measurements with previous versions. ```[`com.lennertbontinck.carmeetsandroidapp:contentPadding`](-card-view_content-padding.md)`Inner padding between the edges of the Card and children of the CardView. ```[`com.lennertbontinck.carmeetsandroidapp:contentPaddingBottom`](-card-view_content-padding-bottom.md)`Inner padding between the bottom edge of the Card and children of the CardView. ```[`com.lennertbontinck.carmeetsandroidapp:contentPaddingLeft`](-card-view_content-padding-left.md)`Inner padding between the left edge of the Card and children of the CardView. ```[`com.lennertbontinck.carmeetsandroidapp:contentPaddingRight`](-card-view_content-padding-right.md)`Inner padding between the right edge of the Card and children of the CardView. ```[`com.lennertbontinck.carmeetsandroidapp:contentPaddingTop`](-card-view_content-padding-top.md)`Inner padding between the top edge of the Card and children of the CardView.
+
+**See Also**
+[#CardView_android_minWidth](-card-view_android_min-width.md)[#CardView_android_minHeight](-card-view_android_min-height.md)[#CardView_cardBackgroundColor](-card-view_card-background-color.md)[#CardView_cardCornerRadius](-card-view_card-corner-radius.md)[#CardView_cardElevation](-card-view_card-elevation.md)[#CardView_cardMaxElevation](-card-view_card-max-elevation.md)[#CardView_cardPreventCornerOverlap](-card-view_card-prevent-corner-overlap.md)[#CardView_cardUseCompatPadding](-card-view_card-use-compat-padding.md)[#CardView_contentPadding](-card-view_content-padding.md)[#CardView_contentPaddingBottom](-card-view_content-padding-bottom.md)[#CardView_contentPaddingLeft](-card-view_content-padding-left.md)[#CardView_contentPaddingRight](-card-view_content-padding-right.md)[#CardView_contentPaddingTop](-card-view_content-padding-top.md)
+

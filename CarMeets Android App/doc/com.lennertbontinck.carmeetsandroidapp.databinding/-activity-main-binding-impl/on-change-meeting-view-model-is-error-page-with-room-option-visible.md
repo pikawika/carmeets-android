@@ -1,0 +1,6 @@
+[app](../../index.md) / [com.lennertbontinck.carmeetsandroidapp.databinding](../index.md) / [ActivityMainBindingImpl](index.md) / [onChangeMeetingViewModelIsErrorPageWithRoomOptionVisible](./on-change-meeting-view-model-is-error-page-with-room-option-visible.md)
+
+# onChangeMeetingViewModelIsErrorPageWithRoomOptionVisible
+
+`private open fun onChangeMeetingViewModelIsErrorPageWithRoomOptionVisible(MeetingViewModelIsErrorPageWithRoomOptionVisible: MutableLiveData<`[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`>, fieldId: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`private open fun onChangeMeetingViewModelIsErrorPageWithRoomOptionVisible(MeetingViewModelIsErrorPageWithRoomOptionVisible: MutableLiveData<`[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`>, fieldId: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)

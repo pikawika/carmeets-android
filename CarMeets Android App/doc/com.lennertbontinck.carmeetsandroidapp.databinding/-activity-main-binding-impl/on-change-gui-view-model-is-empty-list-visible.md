@@ -1,0 +1,6 @@
+[app](../../index.md) / [com.lennertbontinck.carmeetsandroidapp.databinding](../index.md) / [ActivityMainBindingImpl](index.md) / [onChangeGuiViewModelIsEmptyListVisible](./on-change-gui-view-model-is-empty-list-visible.md)
+
+# onChangeGuiViewModelIsEmptyListVisible
+
+`private open fun onChangeGuiViewModelIsEmptyListVisible(GuiViewModelIsEmptyListVisible: MutableLiveData<`[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`>, fieldId: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`private open fun onChangeGuiViewModelIsEmptyListVisible(GuiViewModelIsEmptyListVisible: MutableLiveData<`[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`>, fieldId: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)

@@ -1,0 +1,6 @@
+[app](../../../index.md) / [dagger.android.support](../../index.md) / [R](../index.md) / [styleable](index.md) / [AppCompatTheme_editTextColor](./-app-compat-theme_edit-text-color.md)
+
+# AppCompatTheme_editTextColor
+
+`static val AppCompatTheme_editTextColor: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`static val AppCompatTheme_editTextColor: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

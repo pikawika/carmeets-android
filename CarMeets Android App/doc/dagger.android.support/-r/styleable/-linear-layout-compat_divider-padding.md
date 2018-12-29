@@ -1,0 +1,6 @@
+[app](../../../index.md) / [dagger.android.support](../../index.md) / [R](../index.md) / [styleable](index.md) / [LinearLayoutCompat_dividerPadding](./-linear-layout-compat_divider-padding.md)
+
+# LinearLayoutCompat_dividerPadding
+
+`static val LinearLayoutCompat_dividerPadding: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`static val LinearLayoutCompat_dividerPadding: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

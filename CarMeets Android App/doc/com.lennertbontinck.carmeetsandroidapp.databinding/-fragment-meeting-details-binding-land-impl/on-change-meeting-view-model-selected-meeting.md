@@ -1,0 +1,6 @@
+[app](../../index.md) / [com.lennertbontinck.carmeetsandroidapp.databinding](../index.md) / [FragmentMeetingDetailsBindingLandImpl](index.md) / [onChangeMeetingViewModelSelectedMeeting](./on-change-meeting-view-model-selected-meeting.md)
+
+# onChangeMeetingViewModelSelectedMeeting
+
+`private open fun onChangeMeetingViewModelSelectedMeeting(MeetingViewModelSelectedMeeting: MutableLiveData<`[`MeetingWithUserInfo`](../../com.lennertbontinck.carmeetsandroidapp.models/-meeting-with-user-info/index.md)`>, fieldId: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`private open fun onChangeMeetingViewModelSelectedMeeting(MeetingViewModelSelectedMeeting: MutableLiveData<`[`MeetingWithUserInfo`](../../com.lennertbontinck.carmeetsandroidapp.models/-meeting-with-user-info/index.md)`>, fieldId: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)

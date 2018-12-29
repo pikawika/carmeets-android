@@ -1,0 +1,16 @@
+[app](../../../index.md) / [com.lennertbontinck.carmeetsandroidapp](../../index.md) / [R](../index.md) / [styleable](index.md) / [AppCompatTextView](./-app-compat-text-view.md)
+
+# AppCompatTextView
+
+`static val AppCompatTextView: `[`IntArray`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int-array/index.html)
+`static val AppCompatTextView: `[`IntArray`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int-array/index.html)
+
+Attributes that can be used with a AppCompatTextView.
+
+Includes the following attributes:
+
+    AttributeDescription ```[`android:textAppearance`](-app-compat-text-view_android_text-appearance.md)` ```[`com.lennertbontinck.carmeetsandroidapp:autoSizeMaxTextSize`](-app-compat-text-view_auto-size-max-text-size.md)`The maximum text size constraint to be used when auto-sizing text. ```[`com.lennertbontinck.carmeetsandroidapp:autoSizeMinTextSize`](-app-compat-text-view_auto-size-min-text-size.md)`The minimum text size constraint to be used when auto-sizing text. ```[`com.lennertbontinck.carmeetsandroidapp:autoSizePresetSizes`](-app-compat-text-view_auto-size-preset-sizes.md)`Resource array of dimensions to be used in conjunction with `autoSizeTextType` set to `uniform`. ```[`com.lennertbontinck.carmeetsandroidapp:autoSizeStepGranularity`](-app-compat-text-view_auto-size-step-granularity.md)`Specify the auto-size step size if `autoSizeTextType` is set to `uniform`. ```[`com.lennertbontinck.carmeetsandroidapp:autoSizeTextType`](-app-compat-text-view_auto-size-text-type.md)`Specify the type of auto-size. ```[`com.lennertbontinck.carmeetsandroidapp:firstBaselineToTopHeight`](-app-compat-text-view_first-baseline-to-top-height.md)`Distance from the top of the TextView to the first text baseline. ```[`com.lennertbontinck.carmeetsandroidapp:fontFamily`](-app-compat-text-view_font-family.md)`The attribute for the font family. ```[`com.lennertbontinck.carmeetsandroidapp:lastBaselineToBottomHeight`](-app-compat-text-view_last-baseline-to-bottom-height.md)`Distance from the bottom of the TextView to the last text baseline. ```[`com.lennertbontinck.carmeetsandroidapp:lineHeight`](-app-compat-text-view_line-height.md)`Explicit height between lines of text. ```[`com.lennertbontinck.carmeetsandroidapp:textAllCaps`](-app-compat-text-view_text-all-caps.md)`Present the text in ALL CAPS.
+
+**See Also**
+[#AppCompatTextView_android_textAppearance](-app-compat-text-view_android_text-appearance.md)[#AppCompatTextView_autoSizeMaxTextSize](-app-compat-text-view_auto-size-max-text-size.md)[#AppCompatTextView_autoSizeMinTextSize](-app-compat-text-view_auto-size-min-text-size.md)[#AppCompatTextView_autoSizePresetSizes](-app-compat-text-view_auto-size-preset-sizes.md)[#AppCompatTextView_autoSizeStepGranularity](-app-compat-text-view_auto-size-step-granularity.md)[#AppCompatTextView_autoSizeTextType](-app-compat-text-view_auto-size-text-type.md)[#AppCompatTextView_firstBaselineToTopHeight](-app-compat-text-view_first-baseline-to-top-height.md)[#AppCompatTextView_fontFamily](-app-compat-text-view_font-family.md)[#AppCompatTextView_lastBaselineToBottomHeight](-app-compat-text-view_last-baseline-to-bottom-height.md)[#AppCompatTextView_lineHeight](-app-compat-text-view_line-height.md)[#AppCompatTextView_textAllCaps](-app-compat-text-view_text-all-caps.md)
+

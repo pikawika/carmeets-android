@@ -1,0 +1,6 @@
+[app](../../index.md) / [com.lennertbontinck.carmeetsandroidapp.databinding](../index.md) / [ActivityMainBindingImpl](index.md) / [onChangeMeetingViewModelIsLoadingPageVisible](./on-change-meeting-view-model-is-loading-page-visible.md)
+
+# onChangeMeetingViewModelIsLoadingPageVisible
+
+`private open fun onChangeMeetingViewModelIsLoadingPageVisible(MeetingViewModelIsLoadingPageVisible: MutableLiveData<`[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`>, fieldId: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`private open fun onChangeMeetingViewModelIsLoadingPageVisible(MeetingViewModelIsLoadingPageVisible: MutableLiveData<`[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`>, fieldId: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)

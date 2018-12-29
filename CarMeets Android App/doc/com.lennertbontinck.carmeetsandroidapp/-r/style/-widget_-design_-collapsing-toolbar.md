@@ -1,0 +1,6 @@
+[app](../../../index.md) / [com.lennertbontinck.carmeetsandroidapp](../../index.md) / [R](../index.md) / [style](index.md) / [Widget_Design_CollapsingToolbar](./-widget_-design_-collapsing-toolbar.md)
+
+# Widget_Design_CollapsingToolbar
+
+`static val Widget_Design_CollapsingToolbar: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`static val Widget_Design_CollapsingToolbar: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
