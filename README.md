@@ -30,7 +30,7 @@ Er zijn in de code inline comments voorzien met uitleg wat bepaalde regels code 
 
 Er is ook steeds KDoc voorzien bij de zelfgeschreven functies om toe te lichten wat ze doen en welke parameters verwacht worden.
 
-Een dokka export van de KDoc vindt [hier](CarMeets%20Android%20App/doc/index.md)
+Een dokka export van de KDoc vindt [hier](CarMeets%20Android%20App/doc/index.md).
 
 ## Documentatie en APKs per Feature
 
