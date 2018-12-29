@@ -24,13 +24,21 @@ Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik weer
 | :---     | :---                          | :---                                |
 | Bontinck Lennert | <https://github.com/pikawika> | [lennert.bontinck.y9785@student.hogent.be](mailto:lennert.bontinck.y9785@student.hogent.be) |
 
+## Demo account
+
+Er is een demo account voorzien zodanig u zich niet hoeft te registreren om de app te testen. Gelieve het wachtwoord van het demo account niet te wijzigen. Indien u deze feature wilt testen kan u zeer eenvoudig zelf een account maken via de app. U dient uw e-mailadres niet te valideren.
+
+- Gebruikersnaam: demo
+- E-mailadres: demo@lennertbontinck.com
+- Wachtwoord: demo321
+
 ## Documentatie in de code
 
 Er zijn in de code inline comments voorzien met uitleg wat bepaalde regels code juist doen en waarom ze nodig zijn. 
 
 Er is ook steeds KDoc voorzien bij de zelfgeschreven functies om toe te lichten wat ze doen en welke parameters verwacht worden.
 
-Een dokka export van de KDoc, met enkel de packages die ikzelf geschreven hebt, vindt u [hier](CarMeets%20Android%20App/doc/index.md).
+Een dokka export van de KDoc, met enkel de packages die door mij geschreven zijn, vindt u [hier](CarMeets%20Android%20App/doc/index.md).
 
 ## Documentatie en APKs per Feature
 
