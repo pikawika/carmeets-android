@@ -10,6 +10,7 @@ IMPORTANT: De backend is gratis gehost op heroku, hierdoor kunnen er af en toe l
 
 > - [Wat is de CarMeets app](#wat-is-de-carmeets-app)
 > - [Ontwikkelaar](#ontwikkelaar)
+> - [Demo account](#demo-account)
 > - [Documentatie in de code](#documentatie-in-de-code)
 > - [Releases en APKs](#documentatie-en-apks-per-feature)
 > - [GitHub Repository van de backend](#github-repository-van-de-backend)
