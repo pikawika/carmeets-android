@@ -34,6 +34,7 @@ dependencies {
     //default
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 
     //support packages
     implementation "com.android.support:appcompat-v7:$versions.support"

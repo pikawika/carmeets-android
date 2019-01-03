@@ -8,9 +8,7 @@ import org.junit.Assert.*
 import java.util.*
 
 /**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
+ * tests voor de adapter util.
  */
 class AdapterUtilTest {
     private var categories = listOf("cat1", "cat2")

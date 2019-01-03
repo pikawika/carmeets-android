@@ -75,6 +75,9 @@ Er is per afgewerkte feature een APK voorzien om eenvoudig te kunnen kijken hoe 
 > 10. Feature 10 - Testen
 >     - [Meer info over Feature 10](Documentatie%20per%20feature/feature10-testen.md)
 >     - [APK](apks/carmeets-feature10.apk)
+> 11. Feature 11 - Kotlin versie upgrade
+>     - Kotlin versie naar 1.3.11
+>     - [APK](apks/carmeets-feature11.apk)
 
 ## GitHub Repository van de backend
 Aangezien de CarMeets Android App een opvolging is van de CarMeets website gemaakt met de MEAN-stack zal ik de bestaande backend hergebruik en aanvullen waar nodig.

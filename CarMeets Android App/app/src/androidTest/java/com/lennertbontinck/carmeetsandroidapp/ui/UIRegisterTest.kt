@@ -21,7 +21,9 @@ import org.junit.runners.JUnit4
 import java.util.*
 
 
-
+/**
+ * UI tests voor registreer verloop.
+ */
 @RunWith(JUnit4::class)
 class UIRegisterTest {
 

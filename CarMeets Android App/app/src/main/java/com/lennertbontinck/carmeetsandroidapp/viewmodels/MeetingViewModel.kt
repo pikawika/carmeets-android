@@ -156,7 +156,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart() }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { _ -> refreshMeetingList() },
+                { refreshMeetingList() },
                 { error -> onRetrieveError(error) }
             )
     }
@@ -173,7 +173,7 @@ class MeetingViewModel : InjectedViewModel() {
             .doOnSubscribe { onRetrieveStart() }
             .doOnTerminate { onRetrieveFinish() }
             .subscribe(
-                { _ -> refreshMeetingList() },
+                { refreshMeetingList() },
                 { error -> onRetrieveError(error) }
             )
     }
