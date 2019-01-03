@@ -1,0 +1,15 @@
+[app](../../../index.md) / [com.lennertbontinck.carmeetsandroidapp](../../index.md) / [R](../index.md) / [styleable](index.md) / [GradientColorItem_android_color](./-gradient-color-item_android_color.md)
+
+# GradientColorItem_android_color
+
+`static val GradientColorItem_android_color: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`static val GradientColorItem_android_color: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+
+**Attr**
+description The current color for the offset inside the gradient.
+
+May be a color value, in the form of "`#*rgb*`", "`#*argb*`", "`#*rrggbb*`", or "`#*aarrggbb*`".
+
+**Attr**
+name android:color
+

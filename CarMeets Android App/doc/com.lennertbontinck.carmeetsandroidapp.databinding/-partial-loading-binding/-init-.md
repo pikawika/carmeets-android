@@ -1,0 +1,6 @@
+[app](../../index.md) / [com.lennertbontinck.carmeetsandroidapp.databinding](../index.md) / [PartialLoadingBinding](index.md) / [&lt;init&gt;](./-init-.md)
+
+# &lt;init&gt;
+
+`protected PartialLoadingBinding(_bindingComponent: `[`DataBindingComponent`](../../android.databinding/-data-binding-component.md)`, _root: View, _localFieldCount: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, guidelinePartialLoadingWithShowCache10percentVertical: Guideline, guidelinePartialLoadingWithShowCache50percentHorizontal: Guideline, guidelinePartialLoadingWithShowCache90percentVertical: Guideline, imagePartialLoading: ImageView, textPartialLoading: TextView, textPartialLoadingWhyItTakesSoLong: TextView)`
+`protected PartialLoadingBinding(_bindingComponent: `[`DataBindingComponent`](../../android.databinding/-data-binding-component.md)`, _root: View, _localFieldCount: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, guidelinePartialLoadingWithShowCache10percentVertical: Guideline, guidelinePartialLoadingWithShowCache50percentHorizontal: Guideline, guidelinePartialLoadingWithShowCache90percentVertical: Guideline, imagePartialLoading: ImageView, textPartialLoading: TextView, textPartialLoadingWhyItTakesSoLong: TextView)`

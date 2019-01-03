@@ -8,6 +8,8 @@ import java.util.concurrent.TimeUnit
 object RoomDatabaseTestUtils {
     /**
      * Used to check the value inside a LiveData object
+     *
+     * source: H. De Weirdt -> https://github.com/hdeweirdt/RoomStart
      */
     @Throws(InterruptedException::class)
     fun <T> getValue(liveData: LiveData<T>): T {

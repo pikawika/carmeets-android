@@ -1,0 +1,6 @@
+[app](../../../index.md) / [android.support.v7.appcompat](../../index.md) / [R](../index.md) / [style](index.md) / [Widget_AppCompat_Light_ActionBar_TabText_Inverse](./-widget_-app-compat_-light_-action-bar_-tab-text_-inverse.md)
+
+# Widget_AppCompat_Light_ActionBar_TabText_Inverse
+
+`static val Widget_AppCompat_Light_ActionBar_TabText_Inverse: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`static val Widget_AppCompat_Light_ActionBar_TabText_Inverse: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

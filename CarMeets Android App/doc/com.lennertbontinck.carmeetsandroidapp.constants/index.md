@@ -1,0 +1,25 @@
+[app](../index.md) / [com.lennertbontinck.carmeetsandroidapp.constants](./index.md)
+
+## Package com.lennertbontinck.carmeetsandroidapp.constants
+
+### Properties
+
+| Name | Summary |
+|---|---|
+| [BASE_URL_BACKEND_API](-b-a-s-e_-u-r-l_-b-a-c-k-e-n-d_-a-p-i.md) | `const val BASE_URL_BACKEND_API: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>De url van de *CarMeets backend*. |
+| [BASE_URL_BACKEND_IMAGES](-b-a-s-e_-u-r-l_-b-a-c-k-e-n-d_-i-m-a-g-e-s.md) | `const val BASE_URL_BACKEND_IMAGES: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>De url van de *CarMeets backend images*. Vervolg deze url met de bestandsnaam van de image. |
+| [FRAGTAG_ACCOUNT](-f-r-a-g-t-a-g_-a-c-c-o-u-n-t.md) | `const val FRAGTAG_ACCOUNT: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Fragtag voor [AccountFragment](../com.lennertbontinck.carmeetsandroidapp.fragments/-account-fragment/index.md) |
+| [FRAGTAG_CHANGE_PASSWORD](-f-r-a-g-t-a-g_-c-h-a-n-g-e_-p-a-s-s-w-o-r-d.md) | `const val FRAGTAG_CHANGE_PASSWORD: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Fragtag voor [ChangePasswordFragment](../com.lennertbontinck.carmeetsandroidapp.fragments/-change-password-fragment/index.md) |
+| [FRAGTAG_FAVOURITES_LIST](-f-r-a-g-t-a-g_-f-a-v-o-u-r-i-t-e-s_-l-i-s-t.md) | `const val FRAGTAG_FAVOURITES_LIST: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Fragtag voor [FavouritesListFragment](../com.lennertbontinck.carmeetsandroidapp.fragments/-favourites-list-fragment/index.md) |
+| [FRAGTAG_LOGIN](-f-r-a-g-t-a-g_-l-o-g-i-n.md) | `const val FRAGTAG_LOGIN: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Fragtag voor [LoginFragment](../com.lennertbontinck.carmeetsandroidapp.fragments/-login-fragment/index.md) |
+| [FRAGTAG_LOGO](-f-r-a-g-t-a-g_-l-o-g-o.md) | `const val FRAGTAG_LOGO: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Fragtag voor [LogoFragment](../com.lennertbontinck.carmeetsandroidapp.fragments/-logo-fragment/index.md) |
+| [FRAGTAG_MANAGE_ACCOUNT](-f-r-a-g-t-a-g_-m-a-n-a-g-e_-a-c-c-o-u-n-t.md) | `const val FRAGTAG_MANAGE_ACCOUNT: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Fragtag voor [ManageAccountFragment](../com.lennertbontinck.carmeetsandroidapp.fragments/-manage-account-fragment/index.md) |
+| [FRAGTAG_MEETING_DETAIL](-f-r-a-g-t-a-g_-m-e-e-t-i-n-g_-d-e-t-a-i-l.md) | `const val FRAGTAG_MEETING_DETAIL: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Fragtag voor [MeetingDetailFragment](../com.lennertbontinck.carmeetsandroidapp.fragments/-meeting-detail-fragment/index.md) |
+| [FRAGTAG_MEETING_LIST](-f-r-a-g-t-a-g_-m-e-e-t-i-n-g_-l-i-s-t.md) | `const val FRAGTAG_MEETING_LIST: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Fragtag voor [MeetinglistFragment](../com.lennertbontinck.carmeetsandroidapp.fragments/-meetinglist-fragment/index.md) |
+| [FRAGTAG_PREFERENCES](-f-r-a-g-t-a-g_-p-r-e-f-e-r-e-n-c-e-s.md) | `const val FRAGTAG_PREFERENCES: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Fragtag voor [PreferencesFragment](../com.lennertbontinck.carmeetsandroidapp.fragments/-preferences-fragment/index.md) |
+| [FRAGTAG_REGISTER](-f-r-a-g-t-a-g_-r-e-g-i-s-t-e-r.md) | `const val FRAGTAG_REGISTER: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Fragtag voor [RegisterFragment](../com.lennertbontinck.carmeetsandroidapp.fragments/-register-fragment/index.md) |
+| [PREFERENCES_NAME](-p-r-e-f-e-r-e-n-c-e-s_-n-a-m-e.md) | `const val PREFERENCES_NAME: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>De naam hoe shared preferences worden opgeslagen. |
+| [PREFERENCE_DEFAULT_BOOT_PAGE](-p-r-e-f-e-r-e-n-c-e_-d-e-f-a-u-l-t_-b-o-o-t_-p-a-g-e.md) | `const val PREFERENCE_DEFAULT_BOOT_PAGE: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>De naam waarmee de standaard startpagina in de shared preferences wordt opgeslagen. |
+| [PREFERENCE_DEFAULT_LIST_LAYOUT](-p-r-e-f-e-r-e-n-c-e_-d-e-f-a-u-l-t_-l-i-s-t_-l-a-y-o-u-t.md) | `const val PREFERENCE_DEFAULT_LIST_LAYOUT: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>De naam waarmee de standaard startpagina in de shared preferences wordt opgeslagen. |
+| [PREFERENCE_TOKEN](-p-r-e-f-e-r-e-n-c-e_-t-o-k-e-n.md) | `const val PREFERENCE_TOKEN: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>De naam waarmee de token in de shared preferences wordt opgeslagen. |
+| [ROOM_DATABASE_NAME](-r-o-o-m_-d-a-t-a-b-a-s-e_-n-a-m-e.md) | `const val ROOM_DATABASE_NAME: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>De naam hoe shared preferences worden opgeslagen. |

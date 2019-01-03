@@ -19,6 +19,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
+/**
+ * UI tests voor login nodig meldingen.
+ */
 @RunWith(JUnit4::class)
 class UIAuthenticationRequiredTest {
 
