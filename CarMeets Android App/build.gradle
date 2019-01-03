@@ -4,7 +4,7 @@ buildscript {
     ext.versions = [
             //default
             'support'       : '28.0.0',
-            'kotlin'        : '1.2.71',
+            'kotlin'        : '1.3.11',
             'constraint'    : '1.1.3',
             'gradle'        : '3.2.1',
 
@@ -12,7 +12,7 @@ buildscript {
             'junit'         : '4.12',
             'runner'        : '1.0.2',
             'espresso'      : '3.0.2',
-            'mockk'         : '1.8.13',
+            'mockk'         : '1.8.13.kotlin13',
 
 
             //recycler en cardview lijst
@@ -48,7 +48,7 @@ buildscript {
             'room'          : "1.1.1",
 
             //anko voor eenvoudige async taken
-            'anko'          : "0.9"
+            'anko'          : "0.10.4"
     ]
     repositories {
         google()

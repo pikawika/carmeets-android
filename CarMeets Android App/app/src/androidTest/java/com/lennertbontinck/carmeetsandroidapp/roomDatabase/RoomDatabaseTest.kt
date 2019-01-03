@@ -12,6 +12,9 @@ import org.junit.Before
 import org.junit.Test
 import java.util.*
 
+/**
+ * Tests voor de lokale databank.
+ */
 class RoomDatabaseTest {
     private lateinit var meetingDao: MeetingDao
     private lateinit var db: MeetingDatabase
