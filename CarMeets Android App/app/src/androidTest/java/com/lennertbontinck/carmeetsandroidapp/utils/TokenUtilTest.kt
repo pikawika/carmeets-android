@@ -9,6 +9,8 @@ import org.junit.*
 
 /**
  * tests voor de token util.
+ *
+ * Mockk doesn't like older SDK's so testing these is best done on a recent SDK like 28.
  */
 class TokenUtilTest {
 

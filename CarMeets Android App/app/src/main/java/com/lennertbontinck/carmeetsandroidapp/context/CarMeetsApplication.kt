@@ -2,11 +2,12 @@ package com.lennertbontinck.carmeetsandroidapp.context
 
 import android.app.Application
 import android.content.Context
+import android.support.multidex.MultiDexApplication
 import com.lennertbontinck.carmeetsandroidapp.injection.components.DaggerNetworkComponent
 import com.lennertbontinck.carmeetsandroidapp.injection.components.NetworkComponent
 import com.lennertbontinck.carmeetsandroidapp.injection.modules.NetworkModule
 
-class CarMeetsApplication: Application() {
+class CarMeetsApplication: MultiDexApplication() {
 
     /**
      * Er is een instance nodig van de dagger [NetworkComponent] om de injectie mee uit te voeren.

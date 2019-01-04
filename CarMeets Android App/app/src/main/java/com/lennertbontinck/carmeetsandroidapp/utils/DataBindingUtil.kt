@@ -99,7 +99,6 @@ object DataBindingUtil {
                     ContextCompat.getColor(CarMeetsApplication.getContext(), R.color.colorPrimary)
                 )
             )
-
         } else {
             ImageViewCompat.setImageTintList(
                 view, ColorStateList.valueOf(
@@ -107,7 +106,6 @@ object DataBindingUtil {
                 )
             )
         }
-
     }
 
     /**
