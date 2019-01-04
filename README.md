@@ -45,6 +45,8 @@ Een dokka export van de KDoc, met enkel de packages die door mij geschreven zijn
 
 Er is per afgewerkte feature een APK voorzien om eenvoudig te kunnen kijken hoe de app toen was. Ook is per feature documentatie voorzien om beknopt te beschrijven wat in die feature gerealiseerd is.
 
+!IMPORTANT: alle apks tot en met feature 10 zijn enkel voorzien van een V2 signature wat installatie op sommige toestellen onmogelijk maakt. De APK vanaf feature 11 en de laatste nieuwe apk, [steeds hier te downloaden](http://lennertbontinck.com/ftp/apk/carmeets.apk), zijn ook voorzien van beide zowel V1 als V2 keys. De oude branches staan nog open en het is mogelijk om voor uzelf een apk te maken van vorgaande branches met de gewenste signature.
+
 > 1. Feature 1: Layout van de toolbar, bottom navigation, meetinglijst en detail pagina. Basic werking met dummy data en poc op onclicks.
 >     - [Meer info over Feature 1](Documentatie%20per%20feature/feature1-Basic-Gui_Home-and-detail.md)
 >     - [APK](apks/carmeets-feature1.apk)
