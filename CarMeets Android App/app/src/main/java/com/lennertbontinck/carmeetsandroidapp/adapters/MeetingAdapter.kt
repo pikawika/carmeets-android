@@ -13,7 +13,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.lennertbontinck.carmeetsandroidapp.R
 import com.lennertbontinck.carmeetsandroidapp.constants.BASE_URL_BACKEND_IMAGES
 import com.lennertbontinck.carmeetsandroidapp.constants.FRAGTAG_MEETING_DETAIL
-import com.lennertbontinck.carmeetsandroidapp.context.CarMeetsApplication
 import com.lennertbontinck.carmeetsandroidapp.fragments.MeetingDetailFragment
 import com.lennertbontinck.carmeetsandroidapp.models.Meeting
 import com.lennertbontinck.carmeetsandroidapp.utils.LocationUtil
@@ -83,7 +82,7 @@ class MeetingAdapter(private val parentActivity: AppCompatActivity) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //Stelt de juiste lijstdesign in
-        val view = LayoutInflater.from(CarMeetsApplication.getContext())
+        val view = LayoutInflater.from(parent.context)
             .inflate(guiViewModel.listDesign.value!!.layoutId, parent, false)
 
         return ViewHolder(view)
