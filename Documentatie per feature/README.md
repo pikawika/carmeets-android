@@ -14,3 +14,4 @@ In deze submap vind je per feature een beschrijving van wat de feauture juist im
 > 8. [Feature 8 - GUI optimalisaties](feature8-GUI_optimalisaties.md)
 > 9. [Feature 9 - Code cleanup](feature9-code_cleanup.md)
 > 10. [Meer info over Feature 10 - Testen](feature10-testen.md)
+> 11. [Meer info over Feature 11 - Kotlin versie hoger, min sdk lager](feature11-version_changes.md)

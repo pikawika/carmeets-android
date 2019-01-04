@@ -75,8 +75,8 @@ Er is per afgewerkte feature een APK voorzien om eenvoudig te kunnen kijken hoe 
 > 10. Feature 10 - Testen
 >     - [Meer info over Feature 10](Documentatie%20per%20feature/feature10-testen.md)
 >     - [APK](apks/carmeets-feature10.apk)
-> 11. Feature 11 - Kotlin versie upgrade
->     - Kotlin versie naar 1.3.11
+> 11. Feature 11 - Kotlin versie hoger, min sdk lager
+>     - [Meer info over Feature 11](Documentatie%20per%20feature/feature11-version_changes.md)
 >     - [APK](apks/carmeets-feature11.apk)
 
 ## GitHub Repository van de backend

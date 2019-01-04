@@ -13,8 +13,9 @@ android {
     }
     defaultConfig {
         applicationId "com.lennertbontinck.carmeetsandroidapp"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -35,6 +36,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
+    implementation 'com.android.support:multidex:1.0.3'
 
     //support packages
     implementation "com.android.support:appcompat-v7:$versions.support"

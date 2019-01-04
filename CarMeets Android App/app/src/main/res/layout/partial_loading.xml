@@ -60,7 +60,6 @@
                 android:scaleType="fitCenter"
                 android:src="@{`loading_animation_carmeets_3e157a5f-56dc-4017-85ce-ee679d3e0967`}"
                 tools:src="@drawable/gif_loading"
-                android:tint="@color/colorPrimary"
                 android:contentDescription="@string/alt_logo"
 
                 app:layout_constraintEnd_toStartOf="@+id/guideline_partial_loading_with_show_cache_90percent_vertical"

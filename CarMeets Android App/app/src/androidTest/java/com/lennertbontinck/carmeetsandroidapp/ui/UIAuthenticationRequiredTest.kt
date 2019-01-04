@@ -27,14 +27,14 @@ class UIAuthenticationRequiredTest {
 
     @Rule
     @JvmField
-    var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
+    var mActivityTestRule = ActivityTestRule(MainActivity::class.java, false, false)
 
     @Before
     fun beforeTests() {
         //verwijder shared preferences
         PreferenceUtil.deletePreferences()
 
-
+        mActivityTestRule.launchActivity(null)
         //wacht even voor het laden van de data
         //server zou actief moeten zijn vooraleer testen uitgevoerd worden om onnodig lange wachttijden te vermijden
         SystemClock.sleep(1000)
