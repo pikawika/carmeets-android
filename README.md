@@ -108,3 +108,6 @@ Buiten het in de les ter beschikking gestelde boek heb volgende bronnen geraadpl
 > - [Mockk](https://mockk.io/)
 > - [Recyclerview acties met espresso](https://stackoverflow.com/a/32788964)
 > - [Reset test omgeving](https://stackoverflow.com/a/37606822)
+
+* * *
+© [Bontinck Lennert](https://www.lennertbontinck.com/) 3TINA 2018-2019
